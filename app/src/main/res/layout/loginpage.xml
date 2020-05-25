@@ -89,10 +89,12 @@
         android:id="@+id/button4"
         android:layout_width="246dp"
         android:layout_height="56dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="136dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="Return"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="536dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
