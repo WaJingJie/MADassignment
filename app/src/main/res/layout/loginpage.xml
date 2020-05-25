@@ -40,11 +40,11 @@
         app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/loginUsername"
         android:layout_width="246dp"
         android:layout_height="47dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginBottom="340dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="352dp"
         android:autoText="true"
         android:background="#FFFFFF"
         android:ems="10"
@@ -53,6 +53,35 @@
         android:text="Enter Your Username"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="#8E8D8D"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/loginPassword"
+        android:layout_width="246dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="288dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:inputType="textPersonName"
+        android:text="Enter Your Password"
+        android:textColor="#8E8D8D"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="246dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="212dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Submit"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
