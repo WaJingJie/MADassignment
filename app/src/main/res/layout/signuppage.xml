@@ -41,54 +41,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="246dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="352dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:fontFamily="@font/open_sans"
-        android:inputType="textPersonName"
-        android:text="Enter Your Email"
-        android:textColor="#8E8D8D"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="246dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="284dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:fontFamily="@font/open_sans"
-        android:inputType="textPersonName"
-        android:text="Choose A Password"
-        android:textColor="#8E8D8D"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="246dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="216dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:fontFamily="@font/open_sans"
-        android:inputType="textPersonName"
-        android:text="Confirm Your Password"
-        android:textColor="#8E8D8D"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/button5"
         android:layout_width="246dp"
@@ -112,6 +64,46 @@
         android:fontFamily="@font/open_sans_bold"
         android:text="Return"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="246dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="352dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:inputType="textEmailAddress"
+        android:text="Enter Your Email"
+        android:textColor="#8E8D8D"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="246dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="284dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="246dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="216dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
