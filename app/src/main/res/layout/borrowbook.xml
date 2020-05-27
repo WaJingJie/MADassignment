@@ -7,17 +7,17 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/bottombar"
         android:layout_width="418dp"
         android:layout_height="89dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/bottombar" />
+        app:srcCompat="@drawable/blackbottombar" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/borrowbar"
         android:layout_width="428dp"
         android:layout_height="93dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         app:srcCompat="@drawable/borrowbar" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/enterisbn"
         android:layout_width="333dp"
         android:layout_height="72dp"
         android:layout_marginStart="40dp"
@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/bookname"
         android:layout_width="333dp"
         android:layout_height="72dp"
         android:layout_marginStart="40dp"
@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/dateborrowed"
         android:layout_width="333dp"
         android:layout_height="72dp"
         android:layout_marginStart="40dp"
@@ -74,7 +74,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/duedate"
         android:layout_width="333dp"
         android:layout_height="72dp"
         android:layout_marginStart="40dp"
@@ -113,7 +113,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/borrowbutton"
         android:layout_width="196dp"
         android:layout_height="53dp"
         android:layout_marginStart="104dp"
@@ -125,5 +125,38 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/logout"
+        android:layout_width="48dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logoutpic" />
+
+    <ImageButton
+        android:id="@+id/returnhome"
+        android:layout_width="56dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="20dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/homeicon" />
+
+    <ImageButton
+        android:id="@+id/returnprofile"
+        android:layout_width="52dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/profilebutton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

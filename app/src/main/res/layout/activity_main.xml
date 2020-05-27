@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/background"
+        android:id="@+id/welcomebackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/appbackground" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/welcomeicon"
         android:layout_width="198dp"
         android:layout_height="230dp"
         android:layout_marginTop="32dp"
@@ -31,7 +31,7 @@
         app:srcCompat="@drawable/applogo" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/welcometitle"
         android:layout_width="168dp"
         android:layout_height="63dp"
         android:layout_marginStart="120dp"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/welcomelogin"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="191dp"
         android:layout_height="52dp"
@@ -59,7 +59,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/welcomesignup"
         android:layout_width="187dp"
         android:layout_height="49dp"
         android:layout_marginStart="112dp"
@@ -72,7 +72,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/welcometext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"

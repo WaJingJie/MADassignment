@@ -7,17 +7,19 @@
     android:background="#FFFFFF">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/loginbackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/appbackground" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/loginicon"
         android:layout_width="198dp"
         android:layout_height="230dp"
         android:layout_marginTop="32dp"
@@ -27,7 +29,7 @@
         app:srcCompat="@drawable/applogo" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/logintitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
@@ -37,10 +39,10 @@
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/loginbackground" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/loginemail"
         android:layout_width="246dp"
         android:layout_height="47dp"
         android:layout_marginStart="80dp"
@@ -56,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/loginpassword"
         android:layout_width="246dp"
         android:layout_height="47dp"
         android:layout_marginStart="80dp"
@@ -68,7 +70,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/loginsubmit"
         android:layout_width="246dp"
         android:layout_height="56dp"
         android:layout_marginStart="80dp"
@@ -81,15 +83,15 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/logincancel"
         android:layout_width="246dp"
         android:layout_height="56dp"
         android:layout_marginStart="80dp"
         android:layout_marginBottom="136dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
-        android:text="Return"
+        android:text="@android:string/cancel"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/loginbackground"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

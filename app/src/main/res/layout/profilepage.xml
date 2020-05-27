@@ -13,9 +13,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/bottombar" />
+        app:srcCompat="@drawable/blackbottombar" />
 
     <ScrollView
+        android:id="@+id/blackbackground"
         android:layout_width="415dp"
         android:layout_height="299dp"
         android:background="#000000"
@@ -30,7 +31,7 @@
     </ScrollView>
 
     <ImageView
-        android:id="@+id/imageView16"
+        android:id="@+id/greycircle"
         android:layout_width="194dp"
         android:layout_height="157dp"
         android:layout_marginStart="108dp"
@@ -40,7 +41,7 @@
         app:srcCompat="@drawable/greyoutline" />
 
     <ImageView
-        android:id="@+id/imageView17"
+        android:id="@+id/blueprofile"
         android:layout_width="161dp"
         android:layout_height="141dp"
         android:layout_marginStart="124dp"
@@ -50,7 +51,7 @@
         app:srcCompat="@drawable/blueprofile" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/email"
         android:layout_width="356dp"
         android:layout_height="88dp"
         android:layout_marginStart="24dp"
@@ -66,7 +67,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/phoneno"
         android:layout_width="356dp"
         android:layout_height="88dp"
         android:layout_marginStart="24dp"
@@ -82,7 +83,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="128dp"
@@ -95,7 +96,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/editprofilebutton"
         android:layout_width="175dp"
         android:layout_height="61dp"
         android:layout_marginStart="116dp"
@@ -107,5 +108,38 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/logout"
+        android:layout_width="48dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logoutpic" />
+
+    <ImageButton
+        android:id="@+id/returnhome"
+        android:layout_width="56dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="20dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/homeicon" />
+
+    <ImageButton
+        android:id="@+id/returnprofile"
+        android:layout_width="52dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/profilebutton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
