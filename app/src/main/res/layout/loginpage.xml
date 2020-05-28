@@ -4,27 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
-
-    <ImageView
-        android:id="@+id/loginbackground"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/appbackground" />
+    android:background="@drawable/appbackground"
+    tools:context=".LoginPage">
 
     <ImageView
         android:id="@+id/loginicon"
         android:layout_width="198dp"
         android:layout_height="230dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="104dp"
+        app:layout_constraintBottom_toTopOf="@+id/logintitle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/applogo" />
 
@@ -32,21 +21,21 @@
         android:id="@+id/logintitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="nplibrary"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/loginemail"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/loginbackground" />
+        app:layout_constraintTop_toBottomOf="@+id/loginicon" />
 
     <EditText
         android:id="@+id/loginemail"
         android:layout_width="246dp"
         android:layout_height="47dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="352dp"
+        android:layout_marginBottom="16dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/open_sans"
@@ -54,44 +43,48 @@
         android:text="Enter Your Email"
         android:textColor="#8E8D8D"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/loginpassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/loginpassword"
         android:layout_width="246dp"
         android:layout_height="47dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="288dp"
+        android:layout_marginBottom="21dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/loginsubmit"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/loginsubmit"
         android:layout_width="246dp"
         android:layout_height="56dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="212dp"
+        android:layout_marginBottom="24dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="Submit"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/logincancel"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/logincancel"
         android:layout_width="246dp"
         android:layout_height="56dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="136dp"
+        android:layout_marginBottom="60dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="@android:string/cancel"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/loginbackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
