@@ -32,7 +32,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homepageview"
         android:layout_width="409dp"
-        android:layout_height="551dp"
+        android:layout_height="478dp"
         app:layout_constraintBottom_toTopOf="@id/bottombar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
