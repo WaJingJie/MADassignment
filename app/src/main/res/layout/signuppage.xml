@@ -11,7 +11,7 @@
         android:id="@+id/signupicon"
         android:layout_width="198dp"
         android:layout_height="230dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="104dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,8 +21,8 @@
         android:id="@+id/signuptitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="220dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="nplibrary"
         android:textColor="#FFFFFF"
@@ -35,7 +35,7 @@
         android:layout_width="246dp"
         android:layout_height="56dp"
         android:layout_marginStart="80dp"
-        android:layout_marginBottom="144dp"
+        android:layout_marginBottom="92dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="Submit"
@@ -48,7 +48,7 @@
         android:layout_width="246dp"
         android:layout_height="56dp"
         android:layout_marginStart="80dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="24dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="@android:string/cancel"
@@ -57,42 +57,67 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/signupemail"
+        android:id="@+id/signupname"
         android:layout_width="246dp"
         android:layout_height="47dp"
         android:layout_marginStart="80dp"
-        android:layout_marginBottom="352dp"
+        android:layout_marginTop="340dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/open_sans"
-        android:inputType="textEmailAddress"
-        android:text="Enter Your Email"
+        android:inputType="textPersonName"
+        android:text="Enter Your Name"
         android:textColor="#8E8D8D"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/signuppassword"
-        android:layout_width="246dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="284dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/signupconfirm"
         android:layout_width="246dp"
         android:layout_height="47dp"
         android:layout_marginStart="80dp"
-        android:layout_marginBottom="216dp"
+        android:layout_marginTop="452dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:fontFamily="@font/open_sans"
+        android:inputType="textPersonName"
+        android:text="Confirm Your Password"
+        android:textColor="#8E8D8D"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/signuppassword"
+        android:layout_width="246dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="396dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:inputType="textPersonName"
+        android:text="Enter Your Password"
+        android:textColor="#8E8D8D"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/signupemail"
+        android:layout_width="246dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="284dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:inputType="textPersonName"
+        android:text="Enter Your Email"
+        android:textColor="#8E8D8D"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,8 +29,7 @@
         android:id="@+id/enterisbn"
         android:layout_width="310dp"
         android:layout_height="49dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="448dp"
         android:background="@drawable/greybox"
         android:ems="10"
         android:fontFamily="@font/benchnine_bold"
@@ -39,18 +39,18 @@
         android:text="Edit Profile Name"
         android:textColor="#8E8D8D"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/editprofileemail"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/borrowbar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.942" />
 
     <EditText
         android:id="@+id/editphoneno"
         android:layout_width="310dp"
         android:layout_height="42dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="296dp"
         android:background="@drawable/greybox"
         android:ems="10"
         android:fontFamily="@font/benchnine_bold"
@@ -60,17 +60,18 @@
         android:text="Edit Phone Number"
         android:textColor="#8E8D8D"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/editpassword"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editprofileemail" />
+        app:layout_constraintTop_toBottomOf="@+id/editprofileemail"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editprofileemail"
         android:layout_width="310dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="372dp"
         android:background="@drawable/greybox"
         android:ems="10"
         android:fontFamily="@font/benchnine_bold"
@@ -80,17 +81,18 @@
         android:text="Edit Profile Email"
         android:textColor="#8E8D8D"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/editphoneno"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterisbn" />
+        app:layout_constraintTop_toBottomOf="@+id/enterisbn"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editpassword"
         android:layout_width="310dp"
         android:layout_height="42dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="216dp"
         android:background="@drawable/greybox"
         android:ems="10"
         android:fontFamily="@font/benchnine_bold"
@@ -100,11 +102,12 @@
         android:text="Edit Password"
         android:textColor="#8E8D8D"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/borrowbutton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editphoneno" />
+        app:layout_constraintTop_toBottomOf="@+id/editphoneno"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/borrowbutton"
