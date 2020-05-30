@@ -19,14 +19,17 @@
         <activity android:name=".LoginPage"></activity>
         <activity android:name=".MainPage">
         </activity>
-        <activity android:name=".BorrowBook"></activity>
-        <activity android:name=".EditProfile"></activity>
-        <activity android:name=".ProfilePage">
+        <activity android:name=".BorrowBook">
+        </activity>
+        <activity android:name=".EditProfile">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ProfilePage">
+
         </activity>
         <meta-data
             android:name="preloaded_fonts"

@@ -72,7 +72,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blackbackground"
-        app:layout_constraintVertical_bias="0.763" />
+        app:layout_constraintVertical_bias="0.572" />
 
     <TextView
         android:id="@+id/phoneno"
@@ -94,7 +94,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.733" />
 
     <TextView
         android:id="@+id/name"
@@ -126,7 +126,7 @@
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneno"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.902" />
 
     <ImageButton
         android:id="@+id/logout"
