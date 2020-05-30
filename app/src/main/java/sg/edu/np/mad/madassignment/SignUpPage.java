@@ -15,7 +15,7 @@ public class SignUpPage extends AppCompatActivity {
     private static final String TAG = "NP Library";
     DBHandler dbHandler;
     private TextView signupemail, signupname, signuppassword, signupconfirm;
-    private Button submitbtn, cancelbtn;
+    private Button submitbutton, cancelbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +26,10 @@ public class SignUpPage extends AppCompatActivity {
         signupname = findViewById(R.id.signupname);
         signuppassword = findViewById(R.id.signuppassword);
         signupconfirm = findViewById(R.id.signupconfirm);
-        submitbtn = findViewById(R.id.signupsubmit);
-        cancelbtn = findViewById(R.id.signupcancel);
+        submitbutton = findViewById(R.id.signupsubmit);
+        cancelbutton = findViewById(R.id.signupcancel);
 
-        submitbtn.setOnClickListener(new View.OnClickListener() {
+        submitbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -46,7 +46,7 @@ public class SignUpPage extends AppCompatActivity {
         });
 
 
-        cancelbtn.setOnClickListener(new View.OnClickListener() {
+        cancelbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent welcomepage = new Intent(SignUpPage.this, MainActivity.class);

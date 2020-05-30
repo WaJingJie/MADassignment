@@ -17,7 +17,7 @@ public class LoginPage extends AppCompatActivity {
     private static final String TAG = "NP Library";
     DBHandler dbHandler;
     private TextView loginemail, loginpassword;
-    private Button submitbtn, cancelbtn;
+    private Button submitbutton, cancelbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +26,10 @@ public class LoginPage extends AppCompatActivity {
 
         loginemail = findViewById(R.id.loginemail);
         loginpassword = findViewById(R.id.loginpassword);
-        submitbtn = findViewById(R.id.loginsubmit);
-        cancelbtn = findViewById(R.id.logincancel);
+        submitbutton = findViewById(R.id.loginsubmit);
+        cancelbutton = findViewById(R.id.logincancel);
 
-        submitbtn.setOnClickListener(new View.OnClickListener() {
+        submitbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -45,7 +45,7 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-        cancelbtn.setOnClickListener(new View.OnClickListener() {
+        cancelbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent welcomepage = new Intent(LoginPage.this, MainActivity.class);
