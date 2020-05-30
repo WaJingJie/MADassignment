@@ -36,11 +36,8 @@ public class LoginPage extends AppCompatActivity {
                 String email = loginemail.getText().toString();
                 String password = loginpassword.getText().toString();
                 Log.v(TAG, FILENAME + ": Logging in with: " + email + ": " + password);
-                if (userValid(email, password) == false){
-                    Log.v(TAG, FILENAME + ": Invalid user!");
-                    reset();
-                    Toast.makeText(getApplicationContext(), "Invalid email or password! Please re-enter again.",
-                            Toast.LENGTH_LONG).show();
+                if (validateUser(email, password) == true){
+
                     return;
                 }
 
@@ -59,12 +56,21 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
-    public boolean userValid(String e, String p){
-        return true;
+    public boolean validateUser(String e, String p){
+        Log.v(TAG, FILENAME + ": Invalid user!");
+        reset();
+        Toast.makeText(getApplicationContext(), "Invalid email or password! Please re-enter again.",
+                Toast.LENGTH_LONG).show();
+        return false;
     }
     public void reset(){
         loginemail.setText("Enter Your Email");
         loginpassword.setText("Enter Your Password");
+    }
+
+    protected void onStop(){
+        super.onStop();
+        finish();
     }
 
 }
