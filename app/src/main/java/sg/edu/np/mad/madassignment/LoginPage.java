@@ -25,7 +25,7 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginpage);
 
-        loginemail = findViewById(R.id.loginemail);
+        /*loginemail = findViewById(R.id.loginemail);
         loginpassword = findViewById(R.id.loginpassword);
         submitbtn = findViewById(R.id.loginsubmit);
         cancelbtn = findViewById(R.id.logincancel);
@@ -75,6 +75,6 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(redirect_to_login);
                 finish();
             }
-        });
+        });*/
     }
 }
