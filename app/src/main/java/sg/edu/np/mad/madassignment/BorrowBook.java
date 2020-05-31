@@ -1,6 +1,7 @@
 package sg.edu.np.mad.madassignment;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -23,12 +24,19 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class BorrowBook extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+    EditText isbn;
+    EditText bookname;
     EditText borrowdate;
     EditText duedate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.borrowbook);
+
+        isbn = findViewById(R.id.isbnfield);
+        bookname = findViewById(R.id.bookname);
+
         borrowdate = findViewById(R.id.dateborrowed);
         borrowdate.setInputType(InputType.TYPE_NULL);
 
@@ -69,11 +77,20 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                 Date getDate = calendar.getTime();
                 DateFormat sdf = new SimpleDateFormat("M/dd/yy");
 
-
                 String date = sdf.format(getDate);
                 duedate.setText(date);
             }
         });
+
+        Intent backtohome = new Intent(BorrowBook.this, MainPage.class);
+        Bundle data = new Bundle();
+        data.putString("isbn", isbn.getText().toString());
+        data.putString("bookname", bookname.getText().toString());
+        data.putString("borrowdate", borrowdate.getText().toString());
+        data.putString("duedate", duedate.getText().toString());
+
+        backtohome.putExtras(data);
+        startActivity(backtohome);
     }
 
     @Override
@@ -83,7 +100,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
-
 
         borrowdate = findViewById(R.id.dateborrowed);
         borrowdate.setText(currentDateString);
