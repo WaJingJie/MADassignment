@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,9 +23,11 @@ import androidx.fragment.app.DialogFragment;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class BorrowBook extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     EditText isbn;
@@ -29,6 +35,13 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
     EditText borrowdate;
     EditText duedate;
 
+    ImageButton ig;
+    Button borrowbtn;
+
+    ArrayList<String> isbnList = new ArrayList<>();
+    ArrayList<String> booknameList = new ArrayList<>();
+    ArrayList<String> borrowdateList = new ArrayList<>();
+    ArrayList<String> duedateList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +55,26 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
 
         duedate = findViewById(R.id.duedatefield);
         duedate.setInputType(InputType.TYPE_NULL);
+
+        ig = findViewById(R.id.logout);
+        borrowbtn = findViewById(R.id.borrowbutton);
+
+        //this gets the data from home page
+        Intent recieveingEnd = getIntent();
+        //get arraylist from homepage
+        isbnList = recieveingEnd.getStringArrayListExtra("isbn");
+        booknameList = recieveingEnd.getStringArrayListExtra("bookname");
+        borrowdateList = recieveingEnd.getStringArrayListExtra("borrowdate");
+        duedateList = recieveingEnd.getStringArrayListExtra("duedate");
+
+        //statement to detect if the list is null
+        if(isbnList == null){
+            //recreates the list to not make it null
+            isbnList= new ArrayList<String>();
+            booknameList= new ArrayList<String>();
+            borrowdateList= new ArrayList<String>();
+            duedateList= new ArrayList<String>();
+        }
 
         //shows date picker when the text box is click
         borrowdate.setOnClickListener(new View.OnClickListener() {
@@ -82,15 +115,35 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
-        Intent backtohome = new Intent(BorrowBook.this, MainPage.class);
-        Bundle data = new Bundle();
-        data.putString("isbn", isbn.getText().toString());
-        data.putString("bookname", bookname.getText().toString());
-        data.putString("borrowdate", borrowdate.getText().toString());
-        data.putString("duedate", duedate.getText().toString());
+        borrowbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //adding input fields to list when btn is pressed
+                isbnList.add(isbn.getText().toString());
+                booknameList.add(bookname.getText().toString());
+                borrowdateList.add(borrowdate.getText().toString());
+                duedateList.add(duedate.getText().toString());
 
-        backtohome.putExtras(data);
-        startActivity(backtohome);
+                /*Log.d("List", isbnList.toString());
+                Log.d("List", booknameList.toString());
+                Log.d("List", borrowdateList.toString());
+                Log.d("List", duedateList.toString());*/
+
+                //intent to go back to homepage
+                Intent backtohome = new Intent(BorrowBook.this, MainPage.class);
+                //allows for multiple data to be intent to homepage
+                Bundle data = new Bundle();
+
+                data.putStringArrayList("isbn", isbnList);
+                data.putStringArrayList("bookname", booknameList);
+                data.putStringArrayList("borrowdate", borrowdateList);
+                data.putStringArrayList("duedate", duedateList);
+                backtohome.putExtras(data);
+                //begins actitvity of homepage
+                startActivity(backtohome);
+            }
+        });
+
     }
 
     @Override
@@ -104,4 +157,10 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         borrowdate = findViewById(R.id.dateborrowed);
         borrowdate.setText(currentDateString);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }
+
