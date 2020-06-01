@@ -19,8 +19,6 @@
         <activity android:name=".LoginPage">
 
         </activity>
-        <activity android:name=".MainPage">
-        </activity>
         <activity android:name=".BorrowBook">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
