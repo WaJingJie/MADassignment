@@ -26,9 +26,9 @@
         android:id="@+id/welcomeicon"
         android:layout_width="198dp"
         android:layout_height="230dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="104dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/welcomebackground"
         app:srcCompat="@drawable/applogo" />
 
@@ -36,47 +36,47 @@
         android:id="@+id/welcometitle"
         android:layout_width="168dp"
         android:layout_height="63dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="220dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="nplibrary"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/welcomeicon" />
 
     <Button
         android:id="@+id/welcomelogin"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="191dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="10dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="Login"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/welcometext"
         app:layout_constraintEnd_toEndOf="@+id/welcomebackground"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcometitle" />
 
     <TextView
         android:id="@+id/welcometext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="22dp"
         android:fontFamily="@font/open_sans"
         android:text="Or if you don't have an account,"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/welcomesignup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomelogin" />
 
     <Button
         android:id="@+id/welcomesignup"
         android:layout_width="187dp"
         android:layout_height="49dp"
+        android:layout_marginTop="24dp"
         android:layout_marginBottom="180dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
@@ -85,6 +85,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcometext" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
