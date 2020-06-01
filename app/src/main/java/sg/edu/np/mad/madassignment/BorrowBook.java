@@ -56,7 +56,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         duedate = findViewById(R.id.duedatefield);
         duedate.setInputType(InputType.TYPE_NULL);
 
-        ig = findViewById(R.id.logout);
+        ig = findViewById(R.id.logoutbutton);
         borrowbtn = findViewById(R.id.borrowbutton);
 
         //gets the today date
