@@ -36,21 +36,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<String> data = new ArrayList<>();
-
-        for(int i=0; i<100; i++)
-        {
-            data.add("#" + i);
-        }
-
-        RecyclerView rv = findViewById(R.id.homepageview);
-
-        LibraryAdapter adapter = new LibraryAdapter(data);
-        rv.setAdapter(adapter);
-
-        LinearLayoutManager layout = new LinearLayoutManager(this);
-        rv.setLayoutManager(layout);
-        rv.setItemAnimator(new DefaultItemAnimator());
 
     }
 }
