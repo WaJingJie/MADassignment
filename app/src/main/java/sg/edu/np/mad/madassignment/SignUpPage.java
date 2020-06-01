@@ -20,7 +20,7 @@ public class SignUpPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loginpage);
+        setContentView(R.layout.signuppage);
 
         signupemail = findViewById(R.id.signupemail);
         signupname = findViewById(R.id.signupname);
