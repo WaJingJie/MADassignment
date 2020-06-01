@@ -59,6 +59,14 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         ig = findViewById(R.id.logout);
         borrowbtn = findViewById(R.id.borrowbutton);
 
+        //gets the today date
+        Calendar c = Calendar.getInstance();
+        String todaydate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
+        borrowdate.setText(todaydate);
+
+        //increment date for due date
+        incrementdate();
+
         //this gets the data from home page
         Intent recieveingEnd = getIntent();
         //get arraylist from homepage
@@ -88,30 +96,17 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         //auto fills up the due date by 2 weeks
         borrowdate.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
 
             @Override
             public void afterTextChanged(Editable s) {
-
-                String d = borrowdate.getText().toString();
-
-                String[] dsplit = d.split("/");
-
-                int day = Integer.parseInt(dsplit[0]);
-                int month = Integer.parseInt(dsplit[1]);
-                int year = Integer.parseInt(dsplit[2]);
-
-                GregorianCalendar calendar = new GregorianCalendar();
-                calendar.set(year,day-1,month+14);
-
-                Date getDate = calendar.getTime();
-                DateFormat sdf = new SimpleDateFormat("M/dd/yy");
-
-                String date = sdf.format(getDate);
-                duedate.setText(date);
+                incrementdate();
             }
         });
 
@@ -145,6 +140,25 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         });
 
     }
+    //method used to increase due date by 14 days
+    private void incrementdate(){
+        String d = borrowdate.getText().toString();
+
+        String[] dsplit = d.split("/");
+
+        int day = Integer.parseInt(dsplit[0]);
+        int month = Integer.parseInt(dsplit[1]);
+        int year = Integer.parseInt(dsplit[2]);
+
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.set(year,day-1,month+14);
+
+        Date getDate = calendar.getTime();
+        DateFormat sdf = new SimpleDateFormat("M/dd/yy");
+
+        String date = sdf.format(getDate);
+        duedate.setText(date);
+    }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -162,5 +176,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
     protected void onResume() {
         super.onResume();
     }
+
 }
 
