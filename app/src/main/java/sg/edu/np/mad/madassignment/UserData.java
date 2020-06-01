@@ -15,7 +15,7 @@ public class UserData {
     public static final String COLUMN_EMAIL = "Email";
     public static final String COLUMN_NAME = "Name";
     public static final String COLUMN_PASSWORD = "Password";
-    public static final String;
+    //public static final String;
 
 
     public UserData()

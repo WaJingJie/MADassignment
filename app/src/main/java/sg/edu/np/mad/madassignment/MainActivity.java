@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             data.add("#" + i);
         }
 
-        RecyclerView rv = findViewById(R.id.recyclerview);
+        RecyclerView rv = findViewById(R.id.homepageview);
 
         LibraryAdapter adapter = new LibraryAdapter(data);
         rv.setAdapter(adapter);
