@@ -42,8 +42,7 @@
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/cbbooks"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topbar" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/cbbooks"
@@ -71,8 +70,7 @@
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/cbno"
-        app:layout_constraintEnd_toStartOf="@+id/hbbooks"
-        app:layout_constraintTop_toBottomOf="@+id/topbar" />
+        app:layout_constraintEnd_toStartOf="@+id/hbbooks" />
 
     <TextView
         android:id="@+id/cbno"
@@ -120,8 +118,7 @@
         app:layout_constraintBottom_toTopOf="@+id/canborrow"
         app:layout_constraintEnd_toStartOf="@+id/hbno"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topbar" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -174,40 +171,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/bottombar"
         app:layout_constraintStart_toEndOf="@+id/homebutton" />
 
-    <ImageView
-        android:id="@+id/topbar"
+    <TextView
+        android:id="@+id/toptitle"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:background="#000000"
-        android:src="@drawable/smallblackbox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/design_default_color_on_secondary" />
-
-    <TextView
-        android:id="@+id/toptitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="4dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="nplibrary"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="@+id/topbar"
-        app:layout_constraintTop_toTopOf="@id/topbar" />
-
-    <ImageView
-        android:id="@+id/topicon"
-        android:layout_width="65dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="88dp"
-        android:src="@drawable/appbooklogo"
-        app:layout_constraintEnd_toEndOf="@+id/topbar"
-        app:layout_constraintStart_toEndOf="@+id/toptitle"
-        app:layout_constraintTop_toTopOf="@id/topbar" />
+        app:layout_constraintBottom_toTopOf="@+id/haveborrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
