@@ -11,9 +11,9 @@
         android:id="@+id/signupicon"
         android:layout_width="198dp"
         android:layout_height="230dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="104dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/applogo" />
 
@@ -21,47 +21,49 @@
         android:id="@+id/signuptitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="220dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="nplibrary"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/signupicon" />
 
     <Button
         android:id="@+id/signupsubmit"
         android:layout_width="246dp"
         android:layout_height="56dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginTop="11dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="Submit"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupconfirm" />
 
     <Button
         android:id="@+id/signupcancel"
         android:layout_width="246dp"
         android:layout_height="56dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginTop="13dp"
         android:layout_marginBottom="24dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="@android:string/cancel"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupsubmit"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/signupname"
         android:layout_width="246dp"
         android:layout_height="47dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="9dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/open_sans"
@@ -69,15 +71,15 @@
         android:text="Enter Your Name"
         android:textColor="#8E8D8D"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/signupemail" />
 
     <EditText
         android:id="@+id/signupconfirm"
         android:layout_width="246dp"
         android:layout_height="47dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="452dp"
+        android:layout_marginTop="9dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/open_sans"
@@ -85,15 +87,15 @@
         android:text="Confirm Your Password"
         android:textColor="#8E8D8D"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/signuppassword" />
 
     <EditText
         android:id="@+id/signuppassword"
         android:layout_width="246dp"
         android:layout_height="47dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="396dp"
+        android:layout_marginTop="9dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/open_sans"
@@ -101,15 +103,15 @@
         android:text="Enter Your Password"
         android:textColor="#8E8D8D"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/signupname" />
 
     <EditText
         android:id="@+id/signupemail"
         android:layout_width="246dp"
         android:layout_height="47dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="284dp"
+        android:layout_marginTop="7dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/open_sans"
@@ -117,7 +119,8 @@
         android:text="Enter Your Email"
         android:textColor="#8E8D8D"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/signuptitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

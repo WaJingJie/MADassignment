@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SignUpPage extends AppCompatActivity {
     private static final String FILENAME = "LoginPage.java";
     private static final String TAG = "NP Library";
-    DBHandler dbHandler;
+    /BHandler dbHandler;
     private TextView signupemail, signupname, signuppassword, signupconfirm;
     private Button submitbutton, cancelbutton;
 

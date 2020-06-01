@@ -6,20 +6,10 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="418dp"
-        android:layout_height="89dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/blackbottombar" />
-
     <ScrollView
         android:id="@+id/blackbackground"
-        android:layout_width="415dp"
-        android:layout_height="250dp"
+        android:layout_width="0dp"
+        android:layout_height="304dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -100,16 +90,16 @@
         android:id="@+id/name"
         android:layout_width="197dp"
         android:layout_height="52dp"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/benchnine_bold"
         android:text="John Tan"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="@+id/blackbackground"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/greycircle" />
 
     <Button
         android:id="@+id/editprofilebutton"
@@ -128,37 +118,48 @@
         app:layout_constraintTop_toBottomOf="@+id/phoneno"
         app:layout_constraintVertical_bias="0.902" />
 
+    <ImageView
+        android:id="@+id/bottombar"
+        android:layout_width="0dp"
+        android:layout_height="76dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@color/design_default_color_on_secondary" />
+
     <ImageButton
-        android:id="@+id/logout"
-        android:layout_width="48dp"
-        android:layout_height="59dp"
+        android:id="@+id/logoutbutton"
+        android:layout_width="46dp"
+        android:layout_height="51dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         android:background="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/logoutpic" />
+        android:src="@drawable/logoutpic"
+        app:layout_constraintBottom_toBottomOf="@+id/bottombar"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/returnhome"
-        android:layout_width="56dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginBottom="20dp"
-        android:background="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/homeicon" />
-
-    <ImageButton
-        android:id="@+id/returnprofile"
-        android:layout_width="52dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="152dp"
+        android:id="@+id/homebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
         android:layout_marginBottom="16dp"
         android:background="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/profilebutton" />
+        android:src="@drawable/homeicon"
+        app:layout_constraintBottom_toBottomOf="@+id/bottombar"
+        app:layout_constraintStart_toEndOf="@+id/logoutbutton" />
+
+    <ImageButton
+        android:id="@+id/profilebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        android:src="@drawable/profilebutton"
+        app:layout_constraintBottom_toBottomOf="@+id/bottombar"
+        app:layout_constraintStart_toEndOf="@+id/homebutton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
