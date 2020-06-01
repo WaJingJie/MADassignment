@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginPage extends AppCompatActivity {
     private static final String FILENAME = "LoginPage.java";
     private static final String TAG = "NP Library";
-    DBHandler dbHandler;
+    //DBHandler dbHandler;
     private TextView loginemail, loginpassword;
     private Button submitbutton, cancelbutton;
 

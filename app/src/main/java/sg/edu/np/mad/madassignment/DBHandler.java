@@ -1,4 +1,4 @@
-package sg.edu.np.mad.madassignment;
+/*package sg.edu.np.mad.madassignment;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -72,4 +72,4 @@ public class DBHandler extends SQLiteOpenHelper{
          //
 
     }
-}
+}*/
