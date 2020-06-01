@@ -64,7 +64,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         String todaydate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
         borrowdate.setText(todaydate);
 
-        //increment date for due date
+        //auto increment date for due date
         incrementdate();
 
         //this gets the data from home page
@@ -96,13 +96,10 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         //auto fills up the due date by 2 weeks
         borrowdate.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {

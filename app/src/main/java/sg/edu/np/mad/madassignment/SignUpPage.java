@@ -13,14 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SignUpPage extends AppCompatActivity {
     private static final String FILENAME = "LoginPage.java";
     private static final String TAG = "NP Library";
-    /BHandler dbHandler;
+    //DBHandler dbHandler;
     private TextView signupemail, signupname, signuppassword, signupconfirm;
     private Button submitbutton, cancelbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loginpage);
+        setContentView(R.layout.signuppage);
 
         signupemail = findViewById(R.id.signupemail);
         signupname = findViewById(R.id.signupname);

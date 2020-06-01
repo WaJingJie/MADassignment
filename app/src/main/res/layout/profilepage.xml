@@ -126,7 +126,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        tools:src="@color/design_default_color_on_secondary" />
+        android:background="#000000"/>
 
     <ImageButton
         android:id="@+id/logoutbutton"
