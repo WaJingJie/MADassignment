@@ -1,20 +1,23 @@
 package sg.edu.np.mad.madassignment;
 
+import android.widget.ArrayAdapter;
+
 import java.util.ArrayList;
 import java.util.Date;
 
 public class UserData {
-    private String MyEmail;
-    private String MyPassword;
-    private ArrayList<Integer> ISBN = new ArrayList<>();
-    private ArrayList<String> Name = new ArrayList<>();
-    private ArrayList<Date> DateBorrowed = new ArrayList<>();
-    private ArrayList<Date> DueDate = new ArrayList<>();
-
+    private String email;
+    private String name;
+    private String password;
+    private int booksborrowed;
+    private int canborrow;
     public static final String TABLE_NAME = "Users";
     public static final String COLUMN_EMAIL = "Email";
     public static final String COLUMN_NAME = "Name";
     public static final String COLUMN_PASSWORD = "Password";
+    public static final String COLUMN_BOOKSBORROWED = "No Of Books Borrowed";
+    public static final String COLUMN_CANBORROW = "No of Books User Can Borrow";
+
     //public static final String;
 
 
@@ -22,51 +25,46 @@ public class UserData {
     {
     }
 
-    public UserData(String myEmail, String myPassword, ArrayList<Integer> myISBN,
-                    ArrayList<String> myName, ArrayList<Date> dateBorrowed, ArrayList<Date> dueDate) {
-        this.MyEmail = myEmail;
-        this.MyPassword = myPassword;
-        this.ISBN = myISBN;
-        this.Name = myName;
-        this.DateBorrowed = dateBorrowed;
-        this.DueDate= dueDate;
+    public UserData(String myEmail, String myName, String myPassword,
+                    int booksBorrowed, int canBorrow) {
+        this.email = myEmail;
+        this.name = myName;
+        this.password = myPassword;
+        this.booksborrowed = booksBorrowed;
+        this.canborrow = canBorrow;
     }
 
-    public ArrayList<Integer> getISBN() {
-        return this.ISBN;
-    }
-
-    public void setISBN(ArrayList<Integer> isbn) {
-        this.ISBN = isbn;
-    }
-
-    public ArrayList<String> getName() { return this.Name; }
-
-    public void setName(ArrayList<String> name) { this.Name = name; }
-
-    public ArrayList<Date> getDateBorrowed() {
-        return this.DateBorrowed;
-    }
-
-    public void setDateBorrowed(ArrayList<Date> dateborrowed) {
-        this.DateBorrowed = dateborrowed;
-    }
-
-    public ArrayList<Date> getDueDate() { return this.DueDate; }
-
-    public void setDueDate(ArrayList<Date> duedate) { this.DueDate = duedate; }
-
-    public String getMyEmail() { return this.MyEmail; }
+    public String getMyEmail() { return this.email; }
 
     public void setMyEmail(String myEmail) {
-        this.MyEmail = myEmail;
+        this.email = myEmail;
     }
 
     public String getMyPassword() {
-        return this.MyPassword;
+        return this.password;
     }
 
     public void setMyPassword(String myPassword) {
-        this.MyPassword = myPassword;
+        this.password = myPassword;
+    }
+
+    public String getMyName() { return this.name; }
+
+    public void setMyName(String myName) { this.name = myName; }
+
+    public int getBooksBorrowed() {
+        return this.booksborrowed;
+    }
+
+    public void setBooksBorrowed(int booksBorrowed) {
+        this.booksborrowed = booksBorrowed;
+    }
+
+    public int getCanborrow() {
+        return this.canborrow;
+    }
+
+    public void setCanborrow(int canBorrow) {
+        this.canborrow = canBorrow;
     }
 }
