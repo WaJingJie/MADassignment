@@ -25,6 +25,8 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginpage);
 
+        dbHandler = new DBHandler(this,null,null,1);
+
         loginemail = findViewById(R.id.loginemail);
         loginpassword = findViewById(R.id.loginpassword);
         submitbutton = findViewById(R.id.loginsubmit);
@@ -86,8 +88,8 @@ public class LoginPage extends AppCompatActivity {
     }
 
     public void reset(){
-        loginemail.setText("Enter Your Email");
-        loginpassword.setText("Enter Your Password");
+        loginemail.setHint("Enter Your Email");
+        loginpassword.setHint("Enter Your Password");
     }
 
     protected void onStop(){

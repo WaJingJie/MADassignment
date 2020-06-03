@@ -24,6 +24,8 @@ public class SignUpPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signuppage);
 
+        dbHandler = new DBHandler(this,null,null,1);
+
         signupemail = findViewById(R.id.signupemail);
         signupname = findViewById(R.id.signupname);
         signuppassword = findViewById(R.id.signuppassword);
@@ -40,9 +42,9 @@ public class SignUpPage extends AppCompatActivity {
                 String password = signuppassword.getText().toString();
                 checkUser(email, password, name);
                 // redirect to home page
-                Log.v(TAG, FILENAME + ": Go to home page");
+                /*Log.v(TAG, FILENAME + ": Go to home page");
                 Intent homepage = new Intent(SignUpPage.this, HomePage.class);
-                startActivity(homepage);
+                startActivity(homepage);*/
             }
         });
 
@@ -62,29 +64,33 @@ public class SignUpPage extends AppCompatActivity {
     public void checkUser(String email, String password, String name){
         if(email.isEmpty() || password.isEmpty() || name.isEmpty()){
             Toast.makeText(SignUpPage.this, "Please complete all the details.", Toast.LENGTH_SHORT);
-            return;
+
         }
-        else if(dbHandler.findUser(email) != null){
+        /*else if(dbHandler.findUser(email) != null){
             Toast.makeText(SignUpPage.this, "User already exists! Please enter another email.",
                     Toast.LENGTH_LONG).show();
             reset();
-            return;
+
+        }*/
+        else {
+            int nofbooksborrowed = 0;
+            int canborrow = 9;
+            UserData data = new UserData(email, name, password,
+                    nofbooksborrowed, canborrow);
+            dbHandler.addUser(data);
+            Log.v(TAG, FILENAME + ": New user successfully created !");
+            Toast.makeText(SignUpPage.this, "Account created successfully!",
+                    Toast.LENGTH_SHORT).show();
         }
-        int nofbooksborrowed = 0;
-        int canborrow = 9;
-        UserData data = new UserData(email, name, password,
-                nofbooksborrowed, canborrow);
-        dbHandler.addUser(data);
-        Log.v(TAG, FILENAME + ": New user successfully created !");
-        Toast.makeText(SignUpPage.this, "Account created successfully!",
-                Toast.LENGTH_SHORT).show();
+
+
     }
 
     public void reset(){
-        signupemail.setText("Enter Your Email");
-        signupname.setText("Enter Your Name");
-        signuppassword.setText("Enter Your Password");
-        signupconfirm.setText("Confirm Your Password");
+        signupemail.setHint("Enter Your Email");
+        signupname.setHint("Enter Your Name");
+        signuppassword.setHint("Enter Your Password");
+        signupconfirm.setHint("Confirm Your Password");
     }
 
     protected void onStop(){
