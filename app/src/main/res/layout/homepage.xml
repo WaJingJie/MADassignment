@@ -34,62 +34,66 @@
     <TextView
         android:id="@+id/hbbooks"
         android:layout_width="0dp"
-        android:layout_height="62dp"
+        android:layout_height="40dp"
         android:background="#FFFFFF"
         android:fontFamily="@font/poppins_light"
-        android:padding="8dp"
+        android:padding="3dp"
         android:text="books."
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/cbbooks"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toptitle" />
 
     <TextView
         android:id="@+id/cbbooks"
         android:layout_width="0dp"
-        android:layout_height="64dp"
+        android:layout_height="40dp"
         android:background="#FFFFFF"
         android:fontFamily="@font/poppins_light"
-        android:padding="8dp"
+        android:padding="3dp"
         android:text="books."
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/homepageview"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hbbooks" />
 
     <TextView
         android:id="@+id/hbno"
         android:layout_width="0dp"
-        android:layout_height="62dp"
+        android:layout_height="40dp"
         android:background="#FFFFFF"
         android:fontFamily="@font/poppins_light"
-        android:padding="7dp"
-        android:paddingTop="10dp"
+        android:padding="3dp"
         android:text="6"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/cbno"
-        app:layout_constraintEnd_toStartOf="@+id/hbbooks" />
+        app:layout_constraintEnd_toStartOf="@+id/hbbooks"
+        app:layout_constraintTop_toBottomOf="@+id/toptitle" />
 
     <TextView
         android:id="@+id/cbno"
         android:layout_width="0dp"
-        android:layout_height="64dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="1dp"
         android:background="#FFFFFF"
         android:fontFamily="@font/poppins_light"
-        android:padding="7dp"
+        android:padding="3dp"
         android:text="3"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/homepageview"
-        app:layout_constraintEnd_toStartOf="@+id/cbbooks" />
+        app:layout_constraintEnd_toStartOf="@+id/cbbooks"
+        app:layout_constraintTop_toBottomOf="@+id/hbno" />
 
     <TextView
         android:id="@+id/canborrow"
         android:layout_width="0dp"
-        android:layout_height="63dp"
+        android:layout_height="40dp"
         android:background="#FFFFFF"
         android:fontFamily="@font/poppins_light"
         android:paddingTop="7dp"
@@ -97,7 +101,7 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/cbno"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,19 +110,20 @@
     <TextView
         android:id="@+id/haveborrow"
         android:layout_width="0dp"
-        android:layout_height="63dp"
+        android:layout_height="40dp"
         android:background="#FFFFFF"
         android:fontFamily="@font/poppins_light"
-        android:paddingTop="7dp"
-        android:paddingBottom="7dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
         android:text="You have borrowed"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/canborrow"
         app:layout_constraintEnd_toStartOf="@+id/hbno"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toptitle" />
 
 
     <ImageView

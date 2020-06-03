@@ -6,11 +6,32 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class LibraryViewHolder extends RecyclerView.ViewHolder {
-    TextView txt;
+    TextView isbnview;
+    TextView nameview;
+    TextView dateborrowedview;
+    TextView duedateview;
+
+    TextView bookisbn;
+    TextView bookname;
+    TextView borrowdate;
+    TextView duedate;
+
+    View view;
 
     public LibraryViewHolder(View v) {
         super(v);
-        txt = v.findViewById(android.R.id.text1);
+
+        isbnview = v.findViewById(R.id.isbnview);
+        nameview = v.findViewById(R.id.nameview);
+        dateborrowedview = v.findViewById(R.id.dateborrowedview);
+        duedateview = v.findViewById(R.id.duedateview);
+
+        bookisbn = v.findViewById(R.id.bookisbn);
+        bookname = v.findViewById(R.id.bookname);
+        borrowdate = v.findViewById(R.id.borrowdate);
+        duedate = v.findViewById(R.id.duedate);
+
+        view = v;
     }
 
 }
