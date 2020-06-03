@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.widget.TextView;
 import android.os.Bundle;
 import android.util.Log;
+import java.util.ArrayList;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -36,12 +37,18 @@ public class LoginPage extends AppCompatActivity {
                 String email = loginemail.getText().toString();
                 String password = loginpassword.getText().toString();
                 Log.v(TAG, FILENAME + ": Logging in with: " + email + ": " + password);
-                if (validateUser(email, password) == true){
-
+                if (checkUser(email, password) == false){
+                    Log.v(TAG, FILENAME + ": Invalid user!");
+                    reset();
                     return;
                 }
-
-                // redirect to level select page
+                // redirect to home page
+                Log.v(TAG, FILENAME + ": Valid User! Logging in");
+                Intent homepage = new Intent(LoginPage.this, HomePage.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("Email", email);
+                homepage.putExtras(bundle);
+                startActivity(homepage);
             }
         });
 
@@ -56,13 +63,28 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
-    public boolean validateUser(String e, String p){
-        Log.v(TAG, FILENAME + ": Invalid user!");
-        reset();
-        Toast.makeText(getApplicationContext(), "Invalid email or password! Please re-enter again.",
-                Toast.LENGTH_LONG).show();
-        return false;
+
+    public boolean checkUser(String e, String p){
+        UserData data = DBHandler.findUser(e);
+        if(data == null){
+            Toast.makeText(getApplicationContext(), "Invalid email or password! Please re-enter again.",
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else if(data.getMyPassword() != p) {
+            Toast.makeText(getApplicationContext(), "Invalid email or password! Please re-enter again.",
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else{
+            return true;
+        }
     }
+    public int onReturn(View v)
+    {
+        return 0;
+    }
+
     public void reset(){
         loginemail.setText("Enter Your Email");
         loginpassword.setText("Enter Your Password");
