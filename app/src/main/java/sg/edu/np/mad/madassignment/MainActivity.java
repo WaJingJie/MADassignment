@@ -18,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //this is to link the java class to its layout
         setContentView(R.layout.activity_main);
+        //this is to link the buttons to their layout components
         loginbtn = findViewById(R.id.welcomelogin);
         signupbtn = findViewById(R.id.welcomesignup);
         loginbtn.setOnClickListener(new View.OnClickListener() {
