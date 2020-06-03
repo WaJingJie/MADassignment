@@ -22,10 +22,13 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
-        ArrayList<String> data = new ArrayList<>();
+        ArrayList<String> isbn = new ArrayList<>();
+        ArrayList<String> bookname = new ArrayList<>();
+        ArrayList<String> dateborrowed = new ArrayList<>();
+        ArrayList<String> duedate = new ArrayList<>();
         rv = findViewById(R.id.homepageview);
         addbook = findViewById(R.id.homepageadd);
-        LibraryAdapter adapter = new LibraryAdapter(data);
+        LibraryAdapter adapter = new LibraryAdapter(isbn, bookname, dateborrowed, duedate);
         rv.setAdapter(adapter);
         LinearLayoutManager layout = new LinearLayoutManager(this);
         rv.setLayoutManager(layout);

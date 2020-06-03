@@ -122,7 +122,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                 Log.d("List", duedateList.toString());*/
 
                 //intent to go back to homepage
-                Intent backtohome = new Intent(BorrowBook.this, MainPage.class);
+                Intent backtohome = new Intent(BorrowBook.this, HomePage.class);
                 //allows for multiple data to be intent to homepage
                 Bundle data = new Bundle();
 

@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginPage extends AppCompatActivity {
     private static final String FILENAME = "LoginPage.java";
     private static final String TAG = "NP Library";
-    //DBHandler dbHandler;
+    DBHandler dbHandler;
     private TextView loginemail, loginpassword;
     private Button submitbutton, cancelbutton;
 
@@ -65,7 +65,7 @@ public class LoginPage extends AppCompatActivity {
 
 
     public boolean checkUser(String e, String p){
-        UserData data = DBHandler.findUser(e);
+        UserData data = dbHandler.findUser(e);
         if(data == null){
             Toast.makeText(getApplicationContext(), "Invalid email or password! Please re-enter again.",
                     Toast.LENGTH_LONG).show();
