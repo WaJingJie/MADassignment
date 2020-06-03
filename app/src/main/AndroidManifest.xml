@@ -15,7 +15,7 @@
         <activity android:name=".LoginPage">
 
         </activity>
-        <activity android:name=".MainPage">
+        <activity android:name=".HomePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
