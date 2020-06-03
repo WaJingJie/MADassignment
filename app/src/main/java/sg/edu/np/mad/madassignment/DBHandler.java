@@ -28,7 +28,7 @@ public class DBHandler extends SQLiteOpenHelper{
                 "(" + COLUMN_EMAIL + "TEXT," + COLUMN_NAME
                 + " TEXT," + COLUMN_PASSWORD + " TEXT,"
                 + COLUMN_NO_OF_BOOKS_BORROWED + "INTEGER,"
-                + COLUMN_NO_OF_BOOKS_BORROWED + "INTEGER" + ")";
+                + COLUMN_NO_OF_BOOKS_USER_CAN_BORROW + "INTEGER" + ")";
         db.execSQL(CREATE_USERDATA_TABLE);
         Log.v(TAG, "DB Created: " + CREATE_USERDATA_TABLE);
 
