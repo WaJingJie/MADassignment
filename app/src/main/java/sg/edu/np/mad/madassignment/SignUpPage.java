@@ -40,6 +40,7 @@ public class SignUpPage extends AppCompatActivity {
                 String email = signupemail.getText().toString();
                 String name = signupname.getText().toString();
                 String password = signuppassword.getText().toString();
+
                 checkUser(email, password, name);
                 // redirect to home page
                 /*Log.v(TAG, FILENAME + ": Go to home page");
@@ -62,16 +63,21 @@ public class SignUpPage extends AppCompatActivity {
     }
 
     public void checkUser(String email, String password, String name){
+        int nofbooksborrowed = 0;
+        int canborrow = 9;
         if(email.isEmpty() || password.isEmpty() || name.isEmpty()){
             Toast.makeText(SignUpPage.this, "Please complete all the details.", Toast.LENGTH_SHORT);
 
+        }
+        else{
+            dupvalidate(email, name, password, nofbooksborrowed, canborrow);
         }
         /*else if(dbHandler.findUser(email) != null){
             Toast.makeText(SignUpPage.this, "User already exists! Please enter another email.",
                     Toast.LENGTH_LONG).show();
             reset();
 
-        }*/
+        }
         else {
             int nofbooksborrowed = 0;
             int canborrow = 9;
@@ -81,9 +87,27 @@ public class SignUpPage extends AppCompatActivity {
             Log.v(TAG, FILENAME + ": New user successfully created !");
             Toast.makeText(SignUpPage.this, "Account created successfully!",
                     Toast.LENGTH_SHORT).show();
+        }*/
+
+
+    }
+
+    public void dupvalidate(String email, String name, String password, int b, int c){
+        DBHandler dbHandler = new DBHandler(this, null, null, 1);
+        UserData data = dbHandler.findUser(email);
+
+        if(data != null){
+            Toast.makeText(SignUpPage.this, "User already exists! Please enter another email.",
+                    Toast.LENGTH_LONG).show();
         }
+        else{
 
-
+            UserData userdata = new UserData(email, name, password, b, c);
+            dbHandler.addUser(userdata);
+            Log.v(TAG, FILENAME + ": New user successfully created !");
+            Toast.makeText(SignUpPage.this, "Account created successfully!",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void reset(){

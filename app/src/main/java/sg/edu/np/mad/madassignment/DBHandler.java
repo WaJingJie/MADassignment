@@ -54,7 +54,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
     public UserData findUser(String email) {
-        String query = "SELECT * FROM " + TABLE_USERDATA + " WHERE "
+        String query = "SELECT " + COLUMN_EMAIL +" FROM " + TABLE_USERDATA + " WHERE "
                 + COLUMN_EMAIL
                 + " = \"" + email + "\"";
         SQLiteDatabase db = this.getWritableDatabase();
@@ -64,14 +64,11 @@ public class DBHandler extends SQLiteOpenHelper{
 
         if(cursor.moveToFirst()){
             userData.setMyEmail(cursor.getString(0));
-            userData.setMyName(cursor.getString(1));
-            userData.setMyPassword(cursor.getString(2));
-            userData.setBooksBorrowed(Integer.parseInt(cursor.getString(3)));
-            userData.setCanborrow(Integer.parseInt(cursor.getString(4)));
             cursor.close();
             Log.v(TAG, FILENAME + ": QueryData: " + userData.getBooksBorrowed() + userData.getCanborrow());
         }
         else{
+            userData = null;
             Log.v(TAG, FILENAME+ ": No data found!");
         }
         db.close();
