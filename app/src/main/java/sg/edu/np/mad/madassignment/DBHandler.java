@@ -65,13 +65,20 @@ public class DBHandler extends SQLiteOpenHelper{
         Cursor cursor = db.rawQuery(query, null);
         UserData userData = new UserData();
         Log.v(TAG, FILENAME +": Find user form database: " + query);
+        /*String password;
+        int booksborrow;
+        int canborrow;*/
 
         if(cursor.moveToFirst()){
             userData.setMyEmail(cursor.getString(0));
-            /*userData.setMyName(cursor.getString(1));
+            userData.setMyName(cursor.getString(1));
             userData.setMyPassword(cursor.getString(2));
             userData.setBooksBorrowed(cursor.getInt(3));
-            userData.setCanborrow(cursor.getInt(4));*/
+            userData.setCanborrow(cursor.getInt(4));
+
+            /*password.add(cursor.getString(1));
+            booksborrow.add(cursor.getString(2));
+            canborrow.add(cursor.getString(3));*/
             cursor.close();
             Log.v(TAG, FILENAME + ": QueryData: " + userData.getBooksBorrowed() + userData.getCanborrow());
         }
