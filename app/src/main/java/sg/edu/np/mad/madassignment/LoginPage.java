@@ -69,13 +69,15 @@ public class LoginPage extends AppCompatActivity {
     public boolean checkUser(String e, String p){
         UserData data = dbHandler.findUser(e);
         if(data == null){
-            Toast.makeText(getApplicationContext(), "Invalid email or password! Please re-enter again.",
+            Toast.makeText(getApplicationContext(), "Invalid email! Please re-enter again.",
                     Toast.LENGTH_LONG).show();
+            reset();
             return false;
         }
         else if(data.getMyPassword() != p) {
-            Toast.makeText(getApplicationContext(), "Invalid email or password! Please re-enter again.",
+            Toast.makeText(getApplicationContext(), "Invalid password! Please re-enter again.",
                     Toast.LENGTH_LONG).show();
+            resetPassword();
             return false;
         }
         else{
@@ -89,6 +91,10 @@ public class LoginPage extends AppCompatActivity {
 
     public void reset(){
         loginemail.setHint("Enter Your Email");
+        loginpassword.setHint("Enter Your Password");
+    }
+
+    public void resetPassword(){
         loginpassword.setHint("Enter Your Password");
     }
 

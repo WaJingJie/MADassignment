@@ -42,10 +42,10 @@ public class SignUpPage extends AppCompatActivity {
                 String password = signuppassword.getText().toString();
 
                 checkUser(email, password, name);
-                // redirect to home page
-                /*Log.v(TAG, FILENAME + ": Go to home page");
+                //redirect to home page
+                Log.v(TAG, FILENAME + ": Go to home page");
                 Intent homepage = new Intent(SignUpPage.this, HomePage.class);
-                startActivity(homepage);*/
+                startActivity(homepage);
             }
         });
 

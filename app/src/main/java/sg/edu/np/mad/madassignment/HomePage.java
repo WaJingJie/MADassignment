@@ -52,7 +52,7 @@ public class HomePage extends AppCompatActivity {
 
         //test log to see if arraykist is created properly
         if(isbnList == null){
-            hbno.setText("9");
+            hbno.setText("0");
             cbno.setText("9");
             Log.d("List", "empty");
         }
