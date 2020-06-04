@@ -35,7 +35,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
     EditText borrowdate;
     EditText duedate;
 
-    ImageButton ig;
+    ImageButton logoutbutton, homebutton, profilebutton;
     Button borrowbtn;
 
     ArrayList<String> isbnList = new ArrayList<>();
@@ -56,7 +56,9 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         duedate = findViewById(R.id.duedatefield);
         duedate.setInputType(InputType.TYPE_NULL);
 
-        ig = findViewById(R.id.logoutbutton);
+        logoutbutton = findViewById(R.id.logoutbutton);
+        homebutton = findViewById(R.id.homebutton);
+        profilebutton = findViewById(R.id.profilebutton);
         borrowbtn = findViewById(R.id.borrowbutton);
 
         //gets the today date
@@ -133,6 +135,33 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                 backtohome.putExtras(data);
                 //begins actitvity of homepage
                 startActivity(backtohome);
+            }
+        });
+
+        //this is to allow the user to log out
+        logoutbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent welcomepage = new Intent(BorrowBook.this, MainActivity.class);
+                startActivity(welcomepage);
+            }
+        });
+
+        //this is to redirect the user to the home page
+        homebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homepage = new Intent(BorrowBook.this, HomePage.class);
+                startActivity(homepage);
+            }
+        });
+
+        //this is to redirect the user to the profile page
+        profilebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilepage = new Intent(BorrowBook.this, ProfilePage.class);
+                startActivity(profilepage);
             }
         });
 

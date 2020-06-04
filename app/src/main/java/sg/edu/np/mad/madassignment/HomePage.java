@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Adapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -25,7 +25,7 @@ public class HomePage extends AppCompatActivity {
 
     TextView hbno;
     TextView cbno;
-
+    ImageButton logoutbutton, homebutton, profilebutton;
     ArrayList<String> isbnList = new ArrayList<>();
     ArrayList<String> booknameList = new ArrayList<>();
     ArrayList<String> borrowdateList = new ArrayList<>();
@@ -41,14 +41,17 @@ public class HomePage extends AppCompatActivity {
         hbno = findViewById(R.id.hbno);
         cbno = findViewById(R.id.cbno);
 
+        logoutbutton = findViewById(R.id.logoutbutton);
+        homebutton = findViewById(R.id.homebutton);
+        profilebutton = findViewById(R.id.profilebutton);
         //this gets the data from borrow book page
-        Intent recieveingEnd = getIntent();
+        Intent receivingEnd = getIntent();
 
         //get arraylist from borrowbook page
-        isbnList = recieveingEnd.getStringArrayListExtra("isbn");
-        booknameList = recieveingEnd.getStringArrayListExtra("bookname");
-        borrowdateList = recieveingEnd.getStringArrayListExtra("borrowdate");
-        duedateList = recieveingEnd.getStringArrayListExtra("duedate");
+        isbnList = receivingEnd.getStringArrayListExtra("isbn");
+        booknameList = receivingEnd.getStringArrayListExtra("bookname");
+        borrowdateList = receivingEnd.getStringArrayListExtra("borrowdate");
+        duedateList = receivingEnd.getStringArrayListExtra("duedate");
 
         //test log to see if arraykist is created properly
         if(isbnList == null){
@@ -94,6 +97,33 @@ public class HomePage extends AppCompatActivity {
                 data.putStringArrayList("duedate", duedateList);
                 toborrowpage.putExtras(data);
                 startActivity(toborrowpage);
+            }
+        });
+
+        //this is to allow the user to log out
+        logoutbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent welcomepage = new Intent(HomePage.this, MainActivity.class);
+                startActivity(welcomepage);
+            }
+        });
+
+        //this is to redirect the user to the home page
+        /*homebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homepage = new Intent(this, HomePage.class);
+                startActivity(homepage);
+            }
+        });*/
+
+        //this is to redirect the user to the profile page
+        profilebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilepage = new Intent(HomePage.this, ProfilePage.class);
+                startActivity(profilepage);
             }
         });
     }
