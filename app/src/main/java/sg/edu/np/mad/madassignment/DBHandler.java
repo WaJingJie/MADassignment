@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.view.View;
 
 import java.util.ArrayList;
 public class DBHandler extends SQLiteOpenHelper{
@@ -18,12 +19,15 @@ public class DBHandler extends SQLiteOpenHelper{
     public static final String COLUMN_PASSWORD = "userpassword";
     public static final String COLUMN_NO_OF_BOOKS_BORROWED= "noofbooksborrowed";
     public static final String COLUMN_NO_OF_BOOKS_USER_CAN_BORROW = "canborrow";
+
+
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         String CREATE_USERDATA_TABLE = "CREATE TABLE " + TABLE_USERDATA +
                 "(" + COLUMN_EMAIL + " TEXT," + COLUMN_NAME
                 + " TEXT," + COLUMN_PASSWORD + " TEXT,"
@@ -64,6 +68,10 @@ public class DBHandler extends SQLiteOpenHelper{
 
         if(cursor.moveToFirst()){
             userData.setMyEmail(cursor.getString(0));
+            /*userData.setMyName(cursor.getString(1));
+            userData.setMyPassword(cursor.getString(2));
+            userData.setBooksBorrowed(cursor.getInt(3));
+            userData.setCanborrow(cursor.getInt(4));*/
             cursor.close();
             Log.v(TAG, FILENAME + ": QueryData: " + userData.getBooksBorrowed() + userData.getCanborrow());
         }
@@ -89,13 +97,12 @@ public class DBHandler extends SQLiteOpenHelper{
         if (cursor.moveToFirst()) {
             userData.setMyEmail(cursor.getString(0));
             db.delete(TABLE_USERDATA, COLUMN_EMAIL + " = ?",
-                    new String[] { String.valueOf(userData.getMyEmail()) });
+            new String[] { String.valueOf(userData.getMyEmail()) });
             cursor.close();
             result = true;
         }
         db.close();
         return result;
-
-
     }
+
 }

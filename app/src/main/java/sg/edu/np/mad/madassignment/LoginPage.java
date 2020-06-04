@@ -31,7 +31,6 @@ public class LoginPage extends AppCompatActivity {
         loginpassword = findViewById(R.id.loginpassword);
         submitbutton = findViewById(R.id.loginsubmit);
         cancelbutton = findViewById(R.id.logincancel);
-
         submitbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +43,8 @@ public class LoginPage extends AppCompatActivity {
                     reset();
                     return;
                 }
+
+
                 // redirect to home page
                 Log.v(TAG, FILENAME + ": Valid User! Logging in");
                 Intent homepage = new Intent(LoginPage.this, HomePage.class);

@@ -34,37 +34,33 @@ public class UserData {
         this.canborrow = canBorrow;
     }
 
-    public String getMyEmail() { return this.email; }
-
     public void setMyEmail(String myEmail) {
         this.email = myEmail;
+    }
+
+    public String getMyEmail() { return this.email; }
+
+    public void setMyPassword(String myPassword) {
+        this.password = myPassword;
     }
 
     public String getMyPassword() {
         return this.password;
     }
 
-    public void setMyPassword(String myPassword) {
-        this.password = myPassword;
-    }
+    public void setMyName(String myName) { this.name = myName; }
 
     public String getMyName() { return this.name; }
 
-    public void setMyName(String myName) { this.name = myName; }
+    public void setBooksBorrowed(int booksBorrowed) { this.booksborrowed = booksBorrowed; }
 
     public int getBooksBorrowed() {
         return this.booksborrowed;
     }
 
-    public void setBooksBorrowed(int booksBorrowed) {
-        this.booksborrowed = booksBorrowed;
-    }
+    public void setCanborrow(int canBorrow) { this.canborrow = canBorrow; }
 
     public int getCanborrow() {
         return this.canborrow;
-    }
-
-    public void setCanborrow(int canBorrow) {
-        this.canborrow = canBorrow;
     }
 }

@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfilePage extends AppCompatActivity {
     ImageButton logoutbutton, homebutton, profilebutton;
+    TextView name, email;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -18,7 +21,11 @@ public class ProfilePage extends AppCompatActivity {
         logoutbutton = findViewById(R.id.logoutbutton);
         homebutton = findViewById(R.id.homebutton);
         profilebutton = findViewById(R.id.profilebutton);
-
+        name = findViewById(R.id.name);
+        email = findViewById(R.id.email);
+        UserData userData = new UserData();
+        name.setText(userData.getMyName());
+        email.setText(userData.getMyEmail());
         //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override

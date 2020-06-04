@@ -40,8 +40,15 @@ public class SignUpPage extends AppCompatActivity {
                 String email = signupemail.getText().toString();
                 String name = signupname.getText().toString();
                 String password = signuppassword.getText().toString();
+                int nofbooksborrowed = 0;
+                int canborrow = 9;
+                if(email.isEmpty() || password.isEmpty() || name.isEmpty()){
+                    Toast.makeText(SignUpPage.this, "Please complete all the details.", Toast.LENGTH_SHORT);
 
-                checkUser(email, password, name);
+                }
+                else{
+                    dupvalidate(email, name, password, nofbooksborrowed, canborrow);
+                }
                 //redirect to home page
                 Log.v(TAG, FILENAME + ": Go to home page");
                 Intent homepage = new Intent(SignUpPage.this, HomePage.class);
@@ -62,39 +69,10 @@ public class SignUpPage extends AppCompatActivity {
         });
     }
 
-    public void checkUser(String email, String password, String name){
-        int nofbooksborrowed = 0;
-        int canborrow = 9;
-        if(email.isEmpty() || password.isEmpty() || name.isEmpty()){
-            Toast.makeText(SignUpPage.this, "Please complete all the details.", Toast.LENGTH_SHORT);
 
-        }
-        else{
-            dupvalidate(email, name, password, nofbooksborrowed, canborrow);
-        }
-        /*else if(dbHandler.findUser(email) != null){
-            Toast.makeText(SignUpPage.this, "User already exists! Please enter another email.",
-                    Toast.LENGTH_LONG).show();
-            reset();
-
-        }
-        else {
-            int nofbooksborrowed = 0;
-            int canborrow = 9;
-            UserData data = new UserData(email, name, password,
-                    nofbooksborrowed, canborrow);
-            dbHandler.addUser(data);
-            Log.v(TAG, FILENAME + ": New user successfully created !");
-            Toast.makeText(SignUpPage.this, "Account created successfully!",
-                    Toast.LENGTH_SHORT).show();
-        }*/
-
-
-    }
-
-    public void dupvalidate(String email, String name, String password, int b, int c){
+    public void dupvalidate(String e, String n, String p, int b, int c){
         DBHandler dbHandler = new DBHandler(this, null, null, 1);
-        UserData data = dbHandler.findUser(email);
+        UserData data = dbHandler.findUser(e);
 
         if(data != null){
             Toast.makeText(SignUpPage.this, "User already exists! Please enter another email.",
@@ -102,11 +80,12 @@ public class SignUpPage extends AppCompatActivity {
         }
         else{
 
-            UserData userdata = new UserData(email, name, password, b, c);
+            UserData userdata = new UserData(e, n, p, b, c);
             dbHandler.addUser(userdata);
             Log.v(TAG, FILENAME + ": New user successfully created !");
             Toast.makeText(SignUpPage.this, "Account created successfully!",
                     Toast.LENGTH_SHORT).show();
+            reset();
         }
     }
 
