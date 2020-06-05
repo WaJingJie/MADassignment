@@ -26,7 +26,7 @@ public class ProfilePage extends AppCompatActivity {
         UserData userData = LoginPage.userdata;
         name.setText(userData.getMyName());
         email.setText(userData.getMyEmail());
-        //this is to allow the user to log out
+        //This method is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
