@@ -18,7 +18,7 @@ public class SignUpPage extends AppCompatActivity {
     DBHandler dbHandler;
     private EditText signupemail, signupname, signuppassword, signupconfirm;
     private Button submitbutton, cancelbutton;
-    private ArrayList<String> emailList, nameList, passwordList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,11 +44,15 @@ public class SignUpPage extends AppCompatActivity {
                 int nofbooksborrowed = 0;
                 int canborrow = 9;
 
+
+                Log.v(TAG, FILENAME + ": Redirecting to Login Page");
+                //This method is to check if any of the sign-up boxes are empty
                 if(email.isEmpty() || password.isEmpty() || name.isEmpty() || confirm.isEmpty()){
                     Toast.makeText(SignUpPage.this, "Please complete all the details.", Toast.LENGTH_SHORT).show();
 
                 }
                 else{
+                    //This method is to check whether the email has been already used by an existing user
                     dupvalidate(email, name, password, nofbooksborrowed, canborrow);
                 }
 
