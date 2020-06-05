@@ -9,9 +9,10 @@ import android.view.View;
 
 import java.util.ArrayList;
 public class DBHandler extends SQLiteOpenHelper{
+
+    private static final int DATABASE_VERSION = 1;
     private static final String FILENAME = "DBHandler.java";
     public static final String DATABASE_NAME = "NPLibrary.db";
-    private static final int DATABASE_VERSION = 1;
     private static final String TAG = "NP Library!";
     public static final String TABLE_USERDATA= "users";
     public static final String COLUMN_EMAIL = "useremail";
@@ -28,11 +29,12 @@ public class DBHandler extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String CREATE_USERDATA_TABLE = "CREATE TABLE " + TABLE_USERDATA +
-                "(" + COLUMN_EMAIL + " TEXT," + COLUMN_NAME
-                + " TEXT," + COLUMN_PASSWORD + " TEXT,"
-                + COLUMN_NO_OF_BOOKS_BORROWED + "INTEGER,"
-                + COLUMN_NO_OF_BOOKS_USER_CAN_BORROW + "INTEGER" + ")";
+        String CREATE_USERDATA_TABLE = "CREATE TABLE " + TABLE_USERDATA + "("
+                + COLUMN_EMAIL + " TEXT,"
+                + COLUMN_NAME + " TEXT,"
+                + COLUMN_PASSWORD + " TEXT,"
+                + COLUMN_NO_OF_BOOKS_BORROWED + " INTEGER,"
+                + COLUMN_NO_OF_BOOKS_USER_CAN_BORROW + " INTEGER" + ")";
         db.execSQL(CREATE_USERDATA_TABLE);
         Log.v(TAG, "DB Created: " + CREATE_USERDATA_TABLE);
 
@@ -58,20 +60,20 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
     public UserData findUser(String email) {
-        String query = "SELECT " + COLUMN_EMAIL +" FROM " + TABLE_USERDATA + " WHERE "
+        String query = "SELECT * FROM " + TABLE_USERDATA + " WHERE "
                 + COLUMN_EMAIL
                 + " = \"" + email + "\"";
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         UserData userData = new UserData();
         Log.v(TAG, FILENAME +": Find user form database: " + query);
 
         if(cursor.moveToFirst()){
             userData.setMyEmail(cursor.getString(0));
-            /*userData.setMyName(cursor.getString(1));
+            userData.setMyName(cursor.getString(1));
             userData.setMyPassword(cursor.getString(2));
             userData.setBooksBorrowed(cursor.getInt(3));
-            userData.setCanborrow(cursor.getInt(4));*/
+            userData.setCanborrow(cursor.getInt(4));
             cursor.close();
             Log.v(TAG, FILENAME + ": QueryData: " + userData.getBooksBorrowed() + userData.getCanborrow());
         }
@@ -82,6 +84,21 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
         return userData;
     }
+
+    /*public Cursor loginvalidator() {
+        String query = "SELECT " + COLUMN_EMAIL +" FROM " + TABLE_USERDATA + " WHERE "
+                + COLUMN_EMAIL
+                + " = \"" + email + "\"";
+        Cursor cursor = this.database.query(TABLE_USERDATA,
+                new String[]{COLUMN_EMAIL, COLUMN_NAME, COLUMN_PASSWORD, COLUMN_NO_OF_BOOKS_BORROWED, COLUMN_NO_OF_BOOKS_USER_CAN_BORROW}
+                ,null,null,null,null,null);
+
+        if(cursor!= null){
+            cursor.moveToFirst();
+        }
+        database.close();
+        return cursor;
+    }*/
 
     public boolean deleteAccount(String email) {
         boolean result = false;

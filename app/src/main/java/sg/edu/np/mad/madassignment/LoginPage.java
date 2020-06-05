@@ -1,7 +1,9 @@
 package sg.edu.np.mad.madassignment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,9 +19,9 @@ public class LoginPage extends AppCompatActivity {
     private static final String FILENAME = "LoginPage.java";
     private static final String TAG = "NP Library";
     DBHandler dbHandler;
-    private TextView loginemail, loginpassword;
+    private EditText loginemail, loginpassword;
     private Button submitbutton, cancelbutton;
-
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +46,6 @@ public class LoginPage extends AppCompatActivity {
                     return;
                 }
 
-
                 // redirect to home page
                 Log.v(TAG, FILENAME + ": Valid User! Logging in");
                 Intent homepage = new Intent(LoginPage.this, HomePage.class);
@@ -66,7 +67,6 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
-
     public boolean checkUser(String e, String p){
         UserData data = dbHandler.findUser(e);
         if(data == null){
@@ -74,6 +74,7 @@ public class LoginPage extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             reset();
             return false;
+
         }
         else if(data.getMyPassword() != p) {
             Toast.makeText(getApplicationContext(), "Invalid password! Please re-enter again.",
@@ -82,7 +83,7 @@ public class LoginPage extends AppCompatActivity {
             return false;
         }
         else{
-            return true;
+            return  true;
         }
     }
     public int onReturn(View v)

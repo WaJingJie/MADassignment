@@ -49,10 +49,11 @@ public class SignUpPage extends AppCompatActivity {
                 else{
                     dupvalidate(email, name, password, nofbooksborrowed, canborrow);
                 }
+                reset();
                 //redirect to home page
-                Log.v(TAG, FILENAME + ": Go to home page");
+                /*Log.v(TAG, FILENAME + ": Go to home page");
                 Intent homepage = new Intent(SignUpPage.this, HomePage.class);
-                startActivity(homepage);
+                startActivity(homepage);*/
             }
         });
 
@@ -79,13 +80,11 @@ public class SignUpPage extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
         else{
-
             UserData userdata = new UserData(e, n, p, b, c);
             dbHandler.addUser(userdata);
             Log.v(TAG, FILENAME + ": New user successfully created !");
             Toast.makeText(SignUpPage.this, "Account created successfully!",
                     Toast.LENGTH_SHORT).show();
-            reset();
         }
     }
 
