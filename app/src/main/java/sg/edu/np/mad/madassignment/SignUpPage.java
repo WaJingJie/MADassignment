@@ -48,6 +48,7 @@ public class SignUpPage extends AppCompatActivity {
                 }
                 else{
                     dupvalidate(email, name, password, nofbooksborrowed, canborrow);
+
                 }
                 //redirect to home page
                 Log.v(TAG, FILENAME + ": Go to home page");
@@ -85,6 +86,7 @@ public class SignUpPage extends AppCompatActivity {
             Log.v(TAG, FILENAME + ": New user successfully created !");
             Toast.makeText(SignUpPage.this, "Account created successfully!",
                     Toast.LENGTH_SHORT).show();
+            LoginPage.userdata = data;
             reset();
         }
     }

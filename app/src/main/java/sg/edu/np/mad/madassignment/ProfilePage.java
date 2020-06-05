@@ -23,7 +23,7 @@ public class ProfilePage extends AppCompatActivity {
         profilebutton = findViewById(R.id.profilebutton);
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
-        UserData userData = new UserData();
+        UserData userData = LoginPage.userdata;
         name.setText(userData.getMyName());
         email.setText(userData.getMyEmail());
         //this is to allow the user to log out

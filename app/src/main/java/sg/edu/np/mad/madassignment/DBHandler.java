@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DBHandler extends SQLiteOpenHelper{
     private static final String FILENAME = "DBHandler.java";
     public static final String DATABASE_NAME = "NPLibrary.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     private static final String TAG = "NP Library!";
     public static final String TABLE_USERDATA= "users";
     public static final String COLUMN_EMAIL = "useremail";
@@ -31,10 +31,11 @@ public class DBHandler extends SQLiteOpenHelper{
         String CREATE_USERDATA_TABLE = "CREATE TABLE " + TABLE_USERDATA +
                 "(" + COLUMN_EMAIL + " TEXT," + COLUMN_NAME
                 + " TEXT," + COLUMN_PASSWORD + " TEXT,"
-                + COLUMN_NO_OF_BOOKS_BORROWED + "INTEGER,"
-                + COLUMN_NO_OF_BOOKS_USER_CAN_BORROW + "INTEGER" + ")";
+                + COLUMN_NO_OF_BOOKS_BORROWED + " INTEGER,"
+                + COLUMN_NO_OF_BOOKS_USER_CAN_BORROW + " INTEGER" + ")";
         db.execSQL(CREATE_USERDATA_TABLE);
         Log.v(TAG, "DB Created: " + CREATE_USERDATA_TABLE);
+
 
     }
 
@@ -58,7 +59,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
     public UserData findUser(String email) {
-        String query = "SELECT " + COLUMN_EMAIL +" FROM " + TABLE_USERDATA + " WHERE "
+        String query = "SELECT * FROM " + TABLE_USERDATA + " WHERE "
                 + COLUMN_EMAIL
                 + " = \"" + email + "\"";
         SQLiteDatabase db = this.getWritableDatabase();
@@ -75,7 +76,6 @@ public class DBHandler extends SQLiteOpenHelper{
             userData.setMyPassword(cursor.getString(2));
             userData.setBooksBorrowed(cursor.getInt(3));
             userData.setCanborrow(cursor.getInt(4));
-
             /*password.add(cursor.getString(1));
             booksborrow.add(cursor.getString(2));
             canborrow.add(cursor.getString(3));*/

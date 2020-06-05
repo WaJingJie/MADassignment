@@ -19,7 +19,7 @@ public class LoginPage extends AppCompatActivity {
     DBHandler dbHandler;
     private TextView loginemail, loginpassword;
     private Button submitbutton, cancelbutton;
-
+    public static UserData userdata;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,13 +75,14 @@ public class LoginPage extends AppCompatActivity {
             reset();
             return false;
         }
-        else if(data.getMyPassword() != p) {
+        else if(!data.getMyPassword().equals(p)) {
             Toast.makeText(getApplicationContext(), "Invalid password! Please re-enter again.",
                     Toast.LENGTH_LONG).show();
             resetPassword();
             return false;
         }
         else{
+            userdata = data;
             return true;
         }
     }
