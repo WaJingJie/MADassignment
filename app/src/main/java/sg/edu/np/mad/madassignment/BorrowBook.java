@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -122,7 +123,8 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                 Log.d("List", booknameList.toString());
                 Log.d("List", borrowdateList.toString());
                 Log.d("List", duedateList.toString());*/
-
+                Toast.makeText(getApplicationContext(), "Book successfully borrowed!",
+                        Toast.LENGTH_LONG).show();
                 //intent to go back to homepage
                 Intent backtohome = new Intent(BorrowBook.this, HomePage.class);
                 //allows for multiple data to be intent to homepage
