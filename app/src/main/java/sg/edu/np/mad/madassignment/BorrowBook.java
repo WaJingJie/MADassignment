@@ -7,30 +7,24 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 public class BorrowBook extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+    private static final String FILENAME = "BorrowBook.java";
+    private static final String TAG = "NP Library";
     EditText isbn;
     EditText bookname;
     EditText borrowdate;
@@ -62,22 +56,28 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         profilebutton = findViewById(R.id.profilebutton);
         borrowbtn = findViewById(R.id.borrowbutton);
 
+        Log.v(TAG, FILENAME +": Getting today's date");
         //gets the today date
         Calendar c = Calendar.getInstance();
         String todaydate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
         borrowdate.setText(todaydate);
 
+        Log.v(TAG, FILENAME +": Incrementing due date");
         //auto increment date for due date
         incrementdate();
 
+        Log.v(TAG, FILENAME +": Retrieving data from HomePage");
         //this gets the data from home page
         Intent recieveingEnd = getIntent();
+
+        Log.v(TAG, FILENAME +": Retrieving ArrayLists from the list");
         //get arraylist from homepage
         isbnList = recieveingEnd.getStringArrayListExtra("isbn");
         booknameList = recieveingEnd.getStringArrayListExtra("bookname");
         borrowdateList = recieveingEnd.getStringArrayListExtra("borrowdate");
         duedateList = recieveingEnd.getStringArrayListExtra("duedate");
 
+        Log.v(TAG, FILENAME +": Checking if ArrayLists are null");
         //statement to detect if the list is null
         if(isbnList == null){
             //recreates the list to not make it null
@@ -87,6 +87,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
             duedateList= new ArrayList<String>();
         }
 
+        Log.v(TAG, FILENAME +": Showing date picker");
         //shows date picker when the text box is click
         borrowdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +97,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
+        Log.v(TAG, FILENAME +": Autofills due date");
         //auto fills up the due date by 2 weeks
         borrowdate.addTextChangedListener(new TextWatcher() {
             @Override
@@ -110,6 +112,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
+        Log.v(TAG, FILENAME +": Borrow Button clicked");
         borrowbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,10 +122,11 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                 borrowdateList.add(borrowdate.getText().toString());
                 duedateList.add(duedate.getText().toString());
 
-                /*Log.d("List", isbnList.toString());
+                Log.d("List", isbnList.toString());
                 Log.d("List", booknameList.toString());
                 Log.d("List", borrowdateList.toString());
-                Log.d("List", duedateList.toString());*/
+                Log.d("List", duedateList.toString());
+
                 Toast.makeText(getApplicationContext(), "Book successfully borrowed!",
                         Toast.LENGTH_LONG).show();
                 //intent to go back to homepage
@@ -135,11 +139,14 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                 data.putStringArrayList("borrowdate", borrowdateList);
                 data.putStringArrayList("duedate", duedateList);
                 backtohome.putExtras(data);
+
+                Log.v(TAG, FILENAME +": Redirecting user to HomePage");
                 //begins actitvity of homepage
                 startActivity(backtohome);
             }
         });
 
+        Log.v(TAG, FILENAME +": User logging out!");
         //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +156,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
+        Log.v(TAG, FILENAME +": Redirecting user to Home Page");
         //this is to redirect the user to the home page
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +166,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
+        Log.v(TAG, FILENAME +": Redirecting user to Profile Page");
         //this is to redirect the user to the profile page
         profilebutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,6 +177,8 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         });
 
     }
+
+
     //method used to increase due date by 14 days
     private void incrementdate(){
         String d = borrowdate.getText().toString();
@@ -186,6 +197,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
 
         String date = sdf.format(getDate);
         duedate.setText(date);
+        Log.v(TAG, FILENAME +": Calculating Due Date");
     }
 
     @Override
@@ -198,6 +210,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
 
         borrowdate = findViewById(R.id.dateborrowed);
         borrowdate.setText(currentDateString);
+        Log.v(TAG, FILENAME +": Setting Current Date");
     }
 
     @Override
