@@ -9,81 +9,78 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/welcomebackground"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/welcomeicon"
+        android:layout_width="170dp"
+        android:layout_height="197dp"
+        android:layout_marginTop="72dp"
+        app:layout_constraintBottom_toTopOf="@+id/welcometitle"
+        app:layout_constraintEnd_toEndOf="@+id/welcometitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/welcometitle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/appbackground" />
-
-    <ImageView
-        android:id="@+id/welcomeicon"
-        android:layout_width="198dp"
-        android:layout_height="230dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/welcomebackground"
         app:srcCompat="@drawable/applogo" />
-
-    <TextView
-        android:id="@+id/welcometitle"
-        android:layout_width="168dp"
-        android:layout_height="63dp"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="nplibrary"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeicon" />
 
     <Button
         android:id="@+id/welcomelogin"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="191dp"
         android:layout_height="52dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="Login"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/welcomebackground"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/welcometext"
+        app:layout_constraintEnd_toEndOf="@+id/welcometext"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/welcometext"
         app:layout_constraintTop_toBottomOf="@+id/welcometitle" />
 
     <TextView
         android:id="@+id/welcometext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginBottom="24dp"
         android:fontFamily="@font/open_sans"
         android:text="Or if you don't have an account,"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/welcomesignup"
+        app:layout_constraintEnd_toEndOf="@+id/welcomesignup"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/welcomesignup"
         app:layout_constraintTop_toBottomOf="@+id/welcomelogin" />
 
     <Button
         android:id="@+id/welcomesignup"
         android:layout_width="187dp"
         android:layout_height="49dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="136dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="Sign Up"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcometext" />
+
+    <TextView
+        android:id="@+id/welcometitle"
+        android:layout_width="168dp"
+        android:layout_height="63dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="nplibrary"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/welcomelogin"
+        app:layout_constraintEnd_toEndOf="@+id/welcomelogin"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/welcomelogin"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeicon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

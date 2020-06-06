@@ -9,9 +9,8 @@
 
     <EditText
         android:id="@+id/loginemail"
-        android:layout_width="246dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="239dp"
+        android:layout_height="40dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/open_sans"
@@ -27,9 +26,8 @@
 
     <EditText
         android:id="@+id/loginpassword"
-        android:layout_width="246dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="239dp"
+        android:layout_height="40dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/open_sans"
@@ -38,32 +36,29 @@
         android:textColor="#8E8D8D"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/loginsubmit"
-        app:layout_constraintEnd_toEndOf="@+id/loginsubmit"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/loginsubmit"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginemail" />
 
     <ImageView
         android:id="@+id/loginicon"
-        android:layout_width="170dp"
-        android:layout_height="197dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="137dp"
+        android:layout_height="114dp"
         app:layout_constraintBottom_toTopOf="@+id/logintitle"
         app:layout_constraintEnd_toEndOf="@+id/logintitle"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/logintitle"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74"
         app:srcCompat="@drawable/applogo" />
 
     <TextView
         android:id="@+id/logintitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="170dp"
+        android:layout_height="57dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="nplibrary"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/loginemail"
@@ -74,31 +69,31 @@
 
     <Button
         android:id="@+id/loginsubmit"
-        android:layout_width="191dp"
+        android:layout_width="163dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="152dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="Submit"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/logincancel"
-        app:layout_constraintEnd_toEndOf="@+id/logincancel"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/logincancel"
-        app:layout_constraintTop_toBottomOf="@+id/loginpassword" />
+        app:layout_constraintBottom_toBottomOf="@+id/logincancel"
+        app:layout_constraintEnd_toStartOf="@+id/logincancel"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/logincancel"
-        android:layout_width="191dp"
+        android:layout_width="163dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="152dp"
+        android:layout_marginBottom="28dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="@android:string/cancel"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginsubmit" />
+        app:layout_constraintStart_toEndOf="@+id/loginsubmit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
