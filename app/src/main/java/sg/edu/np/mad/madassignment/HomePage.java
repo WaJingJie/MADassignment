@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 public class HomePage extends AppCompatActivity{
     FloatingActionButton fab;
-
     TextView hbno;
     TextView cbno;
     ImageButton logoutbutton, homebutton, profilebutton;
@@ -31,7 +30,8 @@ public class HomePage extends AppCompatActivity{
     ArrayList<String> booknameList = new ArrayList<>();
     ArrayList<String> borrowdateList = new ArrayList<>();
     ArrayList<String> duedateList = new ArrayList<>();
-
+    private static final String FILENAME = "HomePage.java";
+    private static final String TAG = "NP Library";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,16 +45,19 @@ public class HomePage extends AppCompatActivity{
         logoutbutton = findViewById(R.id.logoutbutton);
         homebutton = findViewById(R.id.homebutton);
         profilebutton = findViewById(R.id.profilebutton);
+        Log.v(TAG, FILENAME + ": Getting data from BorrowBook.java");
         //this gets the data from borrow book page
         Intent receivingEnd = getIntent();
 
+        Log.v(TAG, FILENAME + ": Getting the ArrayLists from BorrowBook.java");
         //get arraylist from borrowbook page
         isbnList = receivingEnd.getStringArrayListExtra("isbn");
         booknameList = receivingEnd.getStringArrayListExtra("bookname");
         borrowdateList = receivingEnd.getStringArrayListExtra("borrowdate");
         duedateList = receivingEnd.getStringArrayListExtra("duedate");
 
-        //test log to see if arraykist is created properly
+        Log.v(TAG, FILENAME + ": Checking if ISBNList is empty");
+        //test log to see if arraylist is created properly
         if(isbnList == null){
             //sets the maximum borrow to 9 and borrow book count to 9 when the list is empty
             hbno.setText("0");
@@ -87,6 +90,8 @@ public class HomePage extends AppCompatActivity{
             Log.d("List", borrowdateList.toString());
             Log.d("List", duedateList.toString());
         }
+
+
         //creates an onclick listener to redirect to borrow book layout when it the borrow limit is not equals to zero
         if(Integer.parseInt(cbno.getText().toString()) != 0){
             fab.setOnClickListener(new View.OnClickListener() {
@@ -100,20 +105,23 @@ public class HomePage extends AppCompatActivity{
                     data.putStringArrayList("borrowdate", borrowdateList);
                     data.putStringArrayList("duedate", duedateList);
                     toborrowpage.putExtras(data);
+                    Log.v(TAG, FILENAME + ": Redirecting to Borrow Book Page");
                     startActivity(toborrowpage);
                 }
             });
         }
+
         //creates an onclick listener to notify the user that they have reached the max amount of books they can borrow
         else if(Integer.parseInt(cbno.getText().toString()) == 0){
-
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.v(TAG, FILENAME + ": Maximum books borrowed");
                     Toast.makeText(HomePage.this, "Reached maximum number of borrowed books.", Toast.LENGTH_LONG).show();
                 }
             });
         }
+
 
 
         //this is to allow the user to log out
@@ -122,6 +130,7 @@ public class HomePage extends AppCompatActivity{
             public void onClick(View v) {
                 Intent welcomepage = new Intent(HomePage.this, MainActivity.class);
                 startActivity(welcomepage);
+                Log.v(TAG, FILENAME + ": Redirects user to Welcome Page");
             }
         });
 
@@ -131,6 +140,7 @@ public class HomePage extends AppCompatActivity{
             public void onClick(View v) {
                 Intent profilepage = new Intent(HomePage.this, ProfilePage.class);
                 startActivity(profilepage);
+                Log.v(TAG, FILENAME + ": Redirects user to Profile Page");
             }
         });
     }

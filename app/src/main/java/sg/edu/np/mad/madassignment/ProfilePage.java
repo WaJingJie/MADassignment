@@ -12,7 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ProfilePage extends AppCompatActivity {
     ImageButton logoutbutton, homebutton, profilebutton;
     TextView name, email;
-
+    private static final String FILENAME = "ProfilePage.java";
+    private static final String TAG = "NP Library";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
