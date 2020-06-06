@@ -56,10 +56,12 @@ public class HomePage extends AppCompatActivity {
 
         //test log to see if arraykist is created properly
         if(isbnList == null){
+            //sets the maximum borrow to 9 and borrow book count to 9 when the list is empty
             hbno.setText("0");
             cbno.setText("9");
             Log.d("List", "empty");
         }
+        //continue on with the rest of the code if list is not null. null list will crash the program.
         else if(isbnList != null){
             //display the no of books borrowed
             int borrowcount = isbnList.size();
@@ -85,7 +87,7 @@ public class HomePage extends AppCompatActivity {
             Log.d("List", borrowdateList.toString());
             Log.d("List", duedateList.toString());
         }
-
+        //creates an onclick listener to redirect to borrow book layout when it the borrow limit is not equals to zero
         if(Integer.parseInt(cbno.getText().toString()) != 0){
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -102,6 +104,7 @@ public class HomePage extends AppCompatActivity {
                 }
             });
         }
+        //creates an onclick listener to notify the user that they have reached the max amount of books they can borrow
         else if(Integer.parseInt(cbno.getText().toString()) == 0){
 
             fab.setOnClickListener(new View.OnClickListener() {
