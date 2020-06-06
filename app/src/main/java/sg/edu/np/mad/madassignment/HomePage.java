@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Adapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -85,20 +86,32 @@ public class HomePage extends AppCompatActivity{
             Log.d("List", duedateList.toString());
         }
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toborrowpage = new Intent(HomePage.this, BorrowBook.class);
-                Bundle data = new Bundle();
+        if(Integer.parseInt(cbno.getText().toString()) != 0){
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent toborrowpage = new Intent(HomePage.this, BorrowBook.class);
+                    Bundle data = new Bundle();
 
-                data.putStringArrayList("isbn", isbnList);
-                data.putStringArrayList("bookname", booknameList);
-                data.putStringArrayList("borrowdate", borrowdateList);
-                data.putStringArrayList("duedate", duedateList);
-                toborrowpage.putExtras(data);
-                startActivity(toborrowpage);
-            }
-        });
+                    data.putStringArrayList("isbn", isbnList);
+                    data.putStringArrayList("bookname", booknameList);
+                    data.putStringArrayList("borrowdate", borrowdateList);
+                    data.putStringArrayList("duedate", duedateList);
+                    toborrowpage.putExtras(data);
+                    startActivity(toborrowpage);
+                }
+            });
+        }
+        else if(Integer.parseInt(cbno.getText().toString()) == 0){
+
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(HomePage.this, "Reached maximum number of borrowed books.", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+
 
         //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
