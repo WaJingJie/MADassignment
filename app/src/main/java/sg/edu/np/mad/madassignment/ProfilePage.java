@@ -24,6 +24,7 @@ public class ProfilePage extends AppCompatActivity {
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         UserData userData = LoginPage.userdata;
+        //This sets the profile name and the profile email using data from the public static Userdata object
         name.setText(userData.getMyName());
         email.setText(userData.getMyEmail());
         //This method is to allow the user to log out

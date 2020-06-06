@@ -94,7 +94,7 @@ public class SignUpPage extends AppCompatActivity {
             Log.v(TAG, FILENAME + ": New user successfully created !");
             Toast.makeText(SignUpPage.this, "Account created successfully!",
                     Toast.LENGTH_SHORT).show();
-            //This saves the data into the public static Userdata object
+            //This enters the data into the public static Userdata object
             LoginPage.userdata = userdata;
             //This redirects the user to the home page
             Log.v(TAG, FILENAME + ": Go to home page");
