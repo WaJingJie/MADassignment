@@ -40,18 +40,20 @@ public class SignUpPage extends AppCompatActivity {
                 String email = signupemail.getText().toString();
                 String name = signupname.getText().toString();
                 String password = signuppassword.getText().toString();
-
                 int nofbooksborrowed = 0;
                 int canborrow = 9;
                 if(email.isEmpty() || password.isEmpty() || name.isEmpty()){
-                    Toast.makeText(SignUpPage.this, "Please complete all the details.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpPage.this, "Please complete all the details.", Toast.LENGTH_SHORT);
 
                 }
                 else{
                     dupvalidate(email, name, password, nofbooksborrowed, canborrow);
 
                 }
-
+                //redirect to home page
+                Log.v(TAG, FILENAME + ": Go to home page");
+                Intent homepage = new Intent(SignUpPage.this, HomePage.class);
+                startActivity(homepage);
             }
         });
 

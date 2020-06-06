@@ -59,32 +59,10 @@
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blackbackground"
-        app:layout_constraintVertical_bias="0.572" />
-
-    <TextView
-        android:id="@+id/phoneno"
-        android:layout_width="310dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="196dp"
-        android:background="@drawable/greybox"
-        android:fontFamily="@font/benchnine_bold"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp"
-        android:paddingRight="0dp"
-        android:paddingBottom="0dp"
-        android:text="80123456"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintVertical_bias="0.733" />
+        app:layout_constraintVertical_bias="0.291" />
 
     <TextView
         android:id="@+id/name"
@@ -100,23 +78,6 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/greycircle" />
-
-    <Button
-        android:id="@+id/editprofilebutton"
-        android:layout_width="158dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="124dp"
-        android:background="#000000"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="Edit Profile"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneno"
-        app:layout_constraintVertical_bias="0.902" />
 
     <ImageView
         android:id="@+id/bottombar"
