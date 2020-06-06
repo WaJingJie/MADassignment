@@ -19,6 +19,7 @@ public class LoginPage extends AppCompatActivity {
     DBHandler dbHandler;
     private TextView loginemail, loginpassword;
     private Button submitbutton, cancelbutton;
+    //This is a Userdata object that can be used among all the classes
     public static UserData userdata;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class LoginPage extends AppCompatActivity {
                 String email = loginemail.getText().toString();
                 String password = loginpassword.getText().toString();
                 Log.v(TAG, FILENAME + ": Logging in with: " + email + ": " + password);
+                //This occurs when the email entered is not found in the database
                 if (checkUser(email, password) == false){
                     Log.v(TAG, FILENAME + ": Invalid user!");
                     reset();

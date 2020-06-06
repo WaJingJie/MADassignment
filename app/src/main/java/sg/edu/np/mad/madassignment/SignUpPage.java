@@ -33,7 +33,7 @@ public class SignUpPage extends AppCompatActivity {
         submitbutton = findViewById(R.id.signupsubmit);
         cancelbutton = findViewById(R.id.signupcancel);
 
-        //This method is used when the submit button is clicked by the user
+        //This method occurs when the submit button is clicked by the user
         Log.v(TAG, FILENAME + ": Submit Button Clicked");
         submitbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +63,7 @@ public class SignUpPage extends AppCompatActivity {
             }
         });
 
-        //This method is used when the cancel button is clicked by the user
+        //This method occurs when the cancel button is clicked by the user
         Log.v(TAG, FILENAME + ": Cancel Button Clicked");
         cancelbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +101,7 @@ public class SignUpPage extends AppCompatActivity {
             Toast.makeText(SignUpPage.this, "Account created successfully!",
                     Toast.LENGTH_SHORT).show();
             //This saves the data into the public static Userdata object
-            LoginPage.userdata = data;
+            LoginPage.userdata = userdata;
             //This redirects the user to the home page
             Log.v(TAG, FILENAME + ": Go to home page");
             Intent homepage = new Intent(SignUpPage.this, HomePage.class);
