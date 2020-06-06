@@ -8,9 +8,8 @@
 
     <ImageView
         android:id="@+id/signupicon"
-        android:layout_width="192dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="159dp"
+        android:layout_height="130dp"
         app:layout_constraintBottom_toTopOf="@+id/signuptitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -20,12 +19,13 @@
 
     <TextView
         android:id="@+id/signuptitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="157dp"
+        android:layout_height="43dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="nplibrary"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="36sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/signupemail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -34,8 +34,8 @@
 
     <Button
         android:id="@+id/signupsubmit"
-        android:layout_width="246dp"
-        android:layout_height="56dp"
+        android:layout_width="229dp"
+        android:layout_height="50dp"
         android:layout_marginTop="11dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
@@ -49,10 +49,10 @@
 
     <Button
         android:id="@+id/signupcancel"
-        android:layout_width="246dp"
-        android:layout_height="56dp"
+        android:layout_width="229dp"
+        android:layout_height="50dp"
         android:layout_marginTop="13dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="24dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="@android:string/cancel"
@@ -66,8 +66,8 @@
 
     <EditText
         android:id="@+id/signupname"
-        android:layout_width="246dp"
-        android:layout_height="47dp"
+        android:layout_width="243dp"
+        android:layout_height="35dp"
         android:layout_marginTop="9dp"
         android:background="#FFFFFF"
         android:ems="10"
@@ -84,8 +84,8 @@
 
     <EditText
         android:id="@+id/signupconfirm"
-        android:layout_width="246dp"
-        android:layout_height="47dp"
+        android:layout_width="243dp"
+        android:layout_height="35dp"
         android:layout_marginTop="9dp"
         android:background="#FFFFFF"
         android:ems="10"
@@ -102,8 +102,8 @@
 
     <EditText
         android:id="@+id/signuppassword"
-        android:layout_width="246dp"
-        android:layout_height="47dp"
+        android:layout_width="243dp"
+        android:layout_height="35dp"
         android:layout_marginTop="9dp"
         android:background="#FFFFFF"
         android:ems="10"
@@ -120,8 +120,8 @@
 
     <EditText
         android:id="@+id/signupemail"
-        android:layout_width="246dp"
-        android:layout_height="47dp"
+        android:layout_width="243dp"
+        android:layout_height="35dp"
         android:layout_marginTop="7dp"
         android:background="#FFFFFF"
         android:ems="10"
