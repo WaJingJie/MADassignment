@@ -109,15 +109,6 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        //this is to redirect the user to the home page
-        /*homebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent homepage = new Intent(this, HomePage.class);
-                startActivity(homepage);
-            }
-        });*/
-
         //this is to redirect the user to the profile page
         profilebutton.setOnClickListener(new View.OnClickListener() {
             @Override
