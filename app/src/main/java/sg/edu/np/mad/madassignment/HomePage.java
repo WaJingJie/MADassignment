@@ -37,7 +37,6 @@ public class HomePage extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
 
-        //gets the various id of the widget in homepage.xml and stores them into the variable
         fab = findViewById(R.id.homepageadd);
 
         hbno = findViewById(R.id.hbno);
@@ -46,7 +45,6 @@ public class HomePage extends AppCompatActivity{
         logoutbutton = findViewById(R.id.logoutbutton);
         homebutton = findViewById(R.id.homebutton);
         profilebutton = findViewById(R.id.profilebutton);
-
         //this gets the data from borrow book page
         Intent receivingEnd = getIntent();
 
@@ -63,7 +61,6 @@ public class HomePage extends AppCompatActivity{
             cbno.setText("9");
             Log.d("List", "empty");
         }
-
         //continue on with the rest of the code if list is not null. null list will crash the program.
         else if(isbnList != null){
             //display the no of books borrowed
@@ -90,27 +87,23 @@ public class HomePage extends AppCompatActivity{
             Log.d("List", borrowdateList.toString());
             Log.d("List", duedateList.toString());
         }
-
         //creates an onclick listener to redirect to borrow book layout when it the borrow limit is not equals to zero
         if(Integer.parseInt(cbno.getText().toString()) != 0){
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent toborrowpage = new Intent(HomePage.this, BorrowBook.class);
-
                     Bundle data = new Bundle();
-                    //allows for multiple array to be intent to homepage in order to populate the recyclerview
+
                     data.putStringArrayList("isbn", isbnList);
                     data.putStringArrayList("bookname", booknameList);
                     data.putStringArrayList("borrowdate", borrowdateList);
                     data.putStringArrayList("duedate", duedateList);
                     toborrowpage.putExtras(data);
-
                     startActivity(toborrowpage);
                 }
             });
         }
-
         //creates an onclick listener to notify the user that they have reached the max amount of books they can borrow
         else if(Integer.parseInt(cbno.getText().toString()) == 0){
 
@@ -121,6 +114,7 @@ public class HomePage extends AppCompatActivity{
                 }
             });
         }
+
 
         //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {

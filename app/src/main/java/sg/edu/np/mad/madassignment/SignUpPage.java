@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
 
 public class SignUpPage extends AppCompatActivity {
     private static final String FILENAME = "LoginPage.java";
@@ -96,7 +94,7 @@ public class SignUpPage extends AppCompatActivity {
             Log.v(TAG, FILENAME + ": New user successfully created !");
             Toast.makeText(SignUpPage.this, "Account created successfully!",
                     Toast.LENGTH_SHORT).show();
-            //This saves the data into the public static Userdata object
+            //This enters the data into the public static Userdata object
             LoginPage.userdata = userdata;
             //This redirects the user to the home page
             Log.v(TAG, FILENAME + ": Go to home page");

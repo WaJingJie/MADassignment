@@ -1,12 +1,9 @@
 package sg.edu.np.mad.madassignment;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.widget.TextView;
 import android.os.Bundle;
 import android.util.Log;
-import java.util.ArrayList;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -32,6 +29,8 @@ public class LoginPage extends AppCompatActivity {
         loginpassword = findViewById(R.id.loginpassword);
         submitbutton = findViewById(R.id.loginsubmit);
         cancelbutton = findViewById(R.id.logincancel);
+        //This method occurs when the submit button is clicked by the user
+        Log.v(TAG, FILENAME + ": Submit Button Clicked");
         submitbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +52,8 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(homepage);
             }
         });
-
+        //This method occurs when the cancel button is clicked by the user
+        Log.v(TAG, FILENAME + ": Cancel Button Clicked");
         cancelbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,21 +65,27 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
-
+    //This method is for checking whether the user is an existing user and that the email and password used is valid
     public boolean checkUser(String e, String p){
+        //This searches the database for the entered email
         UserData data = dbHandler.findUser(e);
+        //This happens when the user is not found in the database
         if(data == null){
+            Log.v(TAG, FILENAME + ": Invalid email used!");
             Toast.makeText(getApplicationContext(), "Invalid email! Please re-enter again.",
                     Toast.LENGTH_LONG).show();
             reset();
             return false;
         }
+        //This occurs where the password entered is not the correct password
         else if(!data.getMyPassword().equals(p)) {
+            Log.v(TAG, FILENAME + ": Invalid password used!");
             Toast.makeText(getApplicationContext(), "Invalid password! Please re-enter again.",
                     Toast.LENGTH_LONG).show();
             resetPassword();
             return false;
         }
+        //This occurs when the user is found to exist in the database
         else{
             userdata = data;
             return true;
@@ -90,11 +96,13 @@ public class LoginPage extends AppCompatActivity {
         return 0;
     }
 
+    //This resets the login textboxes
     public void reset(){
         loginemail.setHint("Enter Your Email");
         loginpassword.setHint("Enter Your Password");
     }
 
+    //This resets the password textbox
     public void resetPassword(){
         loginpassword.setHint("Enter Your Password");
     }

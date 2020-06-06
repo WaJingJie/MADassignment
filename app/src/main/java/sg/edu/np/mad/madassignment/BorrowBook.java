@@ -48,7 +48,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.borrowbook);
 
-        //gets the various id of the widget in borrowbook.xml and stores them into the variable
         isbn = findViewById(R.id.isbnfield);
         bookname = findViewById(R.id.bookname);
 
@@ -66,16 +65,13 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         //gets the today date
         Calendar c = Calendar.getInstance();
         String todaydate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
-
-        //sets the default date to today
         borrowdate.setText(todaydate);
 
         //auto increment date for due date
         incrementdate();
 
-        //code to gets the data from home page
+        //this gets the data from home page
         Intent recieveingEnd = getIntent();
-
         //get arraylist from homepage
         isbnList = recieveingEnd.getStringArrayListExtra("isbn");
         booknameList = recieveingEnd.getStringArrayListExtra("bookname");
@@ -123,19 +119,15 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                 borrowdateList.add(borrowdate.getText().toString());
                 duedateList.add(duedate.getText().toString());
 
-                //log to output that items inputted into the fields have been placed into the list
-                Log.d("List", isbnList.toString());
+                /*Log.d("List", isbnList.toString());
                 Log.d("List", booknameList.toString());
                 Log.d("List", borrowdateList.toString());
-                Log.d("List", duedateList.toString());
-
-                //toast msg to show a visual to user that book has been added
-                Toast.makeText(getApplicationContext(), "Book successfully borrowed!", Toast.LENGTH_LONG).show();
-
+                Log.d("List", duedateList.toString());*/
+                Toast.makeText(getApplicationContext(), "Book successfully borrowed!",
+                        Toast.LENGTH_LONG).show();
                 //intent to go back to homepage
                 Intent backtohome = new Intent(BorrowBook.this, HomePage.class);
-
-                //allows for multiple array to be intent to homepage in order to populate the recyclerview
+                //allows for multiple data to be intent to homepage
                 Bundle data = new Bundle();
 
                 data.putStringArrayList("isbn", isbnList);
@@ -143,7 +135,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                 data.putStringArrayList("borrowdate", borrowdateList);
                 data.putStringArrayList("duedate", duedateList);
                 backtohome.putExtras(data);
-
                 //begins actitvity of homepage
                 startActivity(backtohome);
             }
@@ -177,7 +168,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         });
 
     }
-
     //method used to increase due date by 14 days
     private void incrementdate(){
         String d = borrowdate.getText().toString();
@@ -191,7 +181,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.set(year,day-1,month+14);
 
-        //formats the date to show M/dd/yy
         Date getDate = calendar.getTime();
         DateFormat sdf = new SimpleDateFormat("M/dd/yy");
 

@@ -25,6 +25,7 @@ public class DBHandler extends SQLiteOpenHelper{
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
+    //This method creates a table
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -39,12 +40,15 @@ public class DBHandler extends SQLiteOpenHelper{
 
     }
 
+    //This updates the table by dropping the old version of the table and creating the new version
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERDATA);
         onCreate(db);
     }
 
+    //This adds new user data to the table
     public void addUser(UserData userData) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_EMAIL, userData.getMyEmail());
@@ -58,6 +62,7 @@ public class DBHandler extends SQLiteOpenHelper{
         Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
     }
 
+    //This searches the table for the user using the email entered
     public UserData findUser(String email) {
         String query = "SELECT * FROM " + TABLE_USERDATA + " WHERE "
                 + COLUMN_EMAIL
@@ -65,7 +70,7 @@ public class DBHandler extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         UserData userData = new UserData();
-        Log.v(TAG, FILENAME +": Find user form database: " + query);
+        Log.v(TAG, FILENAME +": Find user from database: " + query);
         /*String password;
         int booksborrow;
         int canborrow;*/
@@ -76,9 +81,6 @@ public class DBHandler extends SQLiteOpenHelper{
             userData.setMyPassword(cursor.getString(2));
             userData.setBooksBorrowed(cursor.getInt(3));
             userData.setCanborrow(cursor.getInt(4));
-            /*password.add(cursor.getString(1));
-            booksborrow.add(cursor.getString(2));
-            canborrow.add(cursor.getString(3));*/
             cursor.close();
             Log.v(TAG, FILENAME + ": QueryData: " + userData.getBooksBorrowed() + userData.getCanborrow());
         }
@@ -90,6 +92,7 @@ public class DBHandler extends SQLiteOpenHelper{
         return userData;
     }
 
+    //This deletes the data of the user with the email entered from the table
     public boolean deleteAccount(String email) {
         boolean result = false;
 
@@ -108,6 +111,7 @@ public class DBHandler extends SQLiteOpenHelper{
             cursor.close();
             result = true;
         }
+        Log.v(TAG, FILENAME+ ": Deleting data from Database: " + query);
         db.close();
         return result;
     }

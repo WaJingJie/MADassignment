@@ -12,7 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ProfilePage extends AppCompatActivity {
     ImageButton logoutbutton, homebutton, profilebutton;
     TextView name, email;
-
+    private static final String FILENAME = "ProfilePage.java";
+    private static final String TAG = "NP Library";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class ProfilePage extends AppCompatActivity {
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         UserData userData = LoginPage.userdata;
+        //This sets the profile name and the profile email using data from the public static Userdata object
         name.setText(userData.getMyName());
         email.setText(userData.getMyEmail());
         //This method is to allow the user to log out
