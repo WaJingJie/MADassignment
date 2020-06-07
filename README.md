@@ -19,3 +19,12 @@ Wang Jing Jie: Coded borrow book function, help out with the layout, helped out 
 Fong Kai Liang: Coded HomePage, did RecyclerView, LibraryAdapter, LibraryViewHolder. <br>
 
 <b>Relevant appendices:</b><br>
+
+User Guide: <br>
+
+1. Click either on the Login button to login or the Sign Up button to Sign Up <br>
+
+2a. If the Login button is clicked, enter your account email and password on the Login Page. You can press the Submit button to log in, or the Cancel button to return to the Welcome Page. <br>
+
+2b. If the Sign Up button is clicked, enter your account email, name and password on the Login Page. You can press the Submit button to sign up, or the Cancel button to return to the Welcome Page.<br>
+
