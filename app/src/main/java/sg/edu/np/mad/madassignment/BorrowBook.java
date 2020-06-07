@@ -113,30 +113,37 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         borrowbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //adding input fields to list when btn is pressed
-                isbnList.add(isbn.getText().toString());
-                booknameList.add(bookname.getText().toString());
-                borrowdateList.add(borrowdate.getText().toString());
-                duedateList.add(duedate.getText().toString());
+                //validation to disallow empty fields for both isbn and book name field
+                if(isbn.getText().toString().isEmpty() || bookname.getText().toString().isEmpty()) {
+                    Toast.makeText(BorrowBook.this, "Please enter ISBN and book name details", Toast.LENGTH_SHORT).show();
+                }
+                //continue if all fields are filled
+                else {
+                    //adding input fields to list when btn is pressed
+                    isbnList.add(isbn.getText().toString());
+                    booknameList.add(bookname.getText().toString());
+                    borrowdateList.add(borrowdate.getText().toString());
+                    duedateList.add(duedate.getText().toString());
 
-                /*Log.d("List", isbnList.toString());
-                Log.d("List", booknameList.toString());
-                Log.d("List", borrowdateList.toString());
-                Log.d("List", duedateList.toString());*/
-                Toast.makeText(getApplicationContext(), "Book successfully borrowed!",
-                        Toast.LENGTH_LONG).show();
-                //intent to go back to homepage
-                Intent backtohome = new Intent(BorrowBook.this, HomePage.class);
-                //allows for multiple data to be intent to homepage
-                Bundle data = new Bundle();
+                    /*Log.d("List", isbnList.toString());
+                    Log.d("List", booknameList.toString());
+                    Log.d("List", borrowdateList.toString());
+                    Log.d("List", duedateList.toString());*/
+                    Toast.makeText(getApplicationContext(), "Book successfully borrowed!",
+                            Toast.LENGTH_LONG).show();
+                    //intent to go back to homepage
+                    Intent backtohome = new Intent(BorrowBook.this, HomePage.class);
+                    //allows for multiple data to be intent to homepage
+                    Bundle data = new Bundle();
 
-                data.putStringArrayList("isbn", isbnList);
-                data.putStringArrayList("bookname", booknameList);
-                data.putStringArrayList("borrowdate", borrowdateList);
-                data.putStringArrayList("duedate", duedateList);
-                backtohome.putExtras(data);
-                //begins actitvity of homepage
-                startActivity(backtohome);
+                    data.putStringArrayList("isbn", isbnList);
+                    data.putStringArrayList("bookname", booknameList);
+                    data.putStringArrayList("borrowdate", borrowdateList);
+                    data.putStringArrayList("duedate", duedateList);
+                    backtohome.putExtras(data);
+                    //begins actitvity of homepage
+                    startActivity(backtohome);
+                }
             }
         });
 

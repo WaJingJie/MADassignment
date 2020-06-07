@@ -52,15 +52,19 @@ public class SignUpPage extends AppCompatActivity {
                 if(email.isEmpty() || password.isEmpty() || name.isEmpty() || confirm.isEmpty()) {
                     Toast.makeText(SignUpPage.this, "Please complete all the details.", Toast.LENGTH_SHORT).show();
                 }
+                else if(!signuppassword.getText().toString().equals(signupconfirm.getText().toString())){
+                    Toast.makeText(SignUpPage.this, "Password must be the same.", Toast.LENGTH_SHORT).show();
+                }
                 else{
                     //This method is to check whether the email has been already used by an existing user
                     dupvalidate(email, name, password, nofbooksborrowed, canborrow);
-
+                    Toast.makeText(SignUpPage.this, "Redirecting to home page.", Toast.LENGTH_SHORT).show();
+                    //redirect to home page
+                    Log.v(TAG, FILENAME + ": Go to home page");
+                    Intent homepage = new Intent(SignUpPage.this, HomePage.class);
+                    startActivity(homepage);
                 }
-                //redirect to home page
-                Log.v(TAG, FILENAME + ": Go to home page");
-                Intent homepage = new Intent(SignUpPage.this, HomePage.class);
-                startActivity(homepage);
+
             }
         });
 
