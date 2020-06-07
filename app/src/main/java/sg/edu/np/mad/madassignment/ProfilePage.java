@@ -2,6 +2,7 @@ package sg.edu.np.mad.madassignment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ public class ProfilePage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent welcomepage = new Intent(ProfilePage.this, MainActivity.class);
                 startActivity(welcomepage);
+                Log.v(TAG, FILENAME + ": Logging out");
             }
         });
 
@@ -43,6 +45,7 @@ public class ProfilePage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent homepage = new Intent(ProfilePage.this, HomePage.class);
                 startActivity(homepage);
+                Log.v(TAG, FILENAME + ": Redirecting to Home Page");
             }
         });
     }
