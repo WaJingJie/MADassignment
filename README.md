@@ -35,3 +35,23 @@ User Guide: <br>
 5. The user's profile page can be accessed through the profile button at the bottom of the page, where the User's email and name will be displayed. <br>
 
 6. The user can log out through the left most button on the bottom of the page. <br>
+
+Storyboard: <br>
+
+#Welcome Page <br>
+![](images/welcome.png)
+
+#Sign Up Page <br>
+![](images/signup.png)
+
+#Login Page <br>
+![](images/login.png)
+
+#Home Page <br>
+![](images/home.png)
+
+#Borrow Book Page <br>
+![](images/borrow.png)
+
+#Profile Page <br>
+![](images/profile.png)
