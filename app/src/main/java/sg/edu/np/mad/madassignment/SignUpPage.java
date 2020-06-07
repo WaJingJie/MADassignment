@@ -59,7 +59,7 @@ public class SignUpPage extends AppCompatActivity {
                     //This method is to check whether the email has been already used by an existing user
                     dupvalidate(email, name, password, nofbooksborrowed, canborrow);
                     Toast.makeText(SignUpPage.this, "Redirecting to main page.", Toast.LENGTH_SHORT).show();
-                    //redirect to home page
+                    //redirect user to welcome page where user can either exit the app or login
                     Log.v(TAG, FILENAME + ": Go to main page");
                     Intent mainpage = new Intent(SignUpPage.this, MainActivity.class);
                     startActivity(mainpage);
