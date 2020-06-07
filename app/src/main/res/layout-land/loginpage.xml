@@ -32,7 +32,7 @@
         android:ems="10"
         android:fontFamily="@font/open_sans"
         android:hint="Enter Your Password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textColor="#8E8D8D"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/loginsubmit"
@@ -75,7 +75,7 @@
         android:layout_marginStart="152dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
-        android:text="Submit"
+        android:text="Login"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/logincancel"
         app:layout_constraintEnd_toStartOf="@+id/logincancel"
@@ -83,6 +83,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
+
         android:id="@+id/logincancel"
         android:layout_width="129dp"
         android:layout_height="42dp"
