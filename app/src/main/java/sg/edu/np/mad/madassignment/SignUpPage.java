@@ -58,11 +58,7 @@ public class SignUpPage extends AppCompatActivity {
                 else{
                     //This method is to check whether the email has been already used by an existing user
                     dupvalidate(email, name, password, nofbooksborrowed, canborrow);
-                    Toast.makeText(SignUpPage.this, "Redirecting to main page.", Toast.LENGTH_SHORT).show();
-                    //redirect user to welcome page where user can either exit the app or login
-                    Log.v(TAG, FILENAME + ": Go to main page");
-                    Intent mainpage = new Intent(SignUpPage.this, MainActivity.class);
-                    startActivity(mainpage);
+
                 }
 
             }
@@ -104,11 +100,11 @@ public class SignUpPage extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             //This enters the data into the public static Userdata object
             LoginPage.userdata = userdata;
-            //This redirects the user to the home page
-            Log.v(TAG, FILENAME + ": Go to home page");
-            Intent homepage = new Intent(SignUpPage.this, HomePage.class);
-            startActivity(homepage);
-            reset();
+            Toast.makeText(SignUpPage.this, "Redirecting to main page.", Toast.LENGTH_SHORT).show();
+            //redirect user to welcome page where user can either exit the app or login
+            Log.v(TAG, FILENAME + ": Go to main page");
+            Intent mainpage = new Intent(SignUpPage.this, MainActivity.class);
+            startActivity(mainpage);
         }
     }
     // This method resets the text in the textboxes in the Sign Up page
