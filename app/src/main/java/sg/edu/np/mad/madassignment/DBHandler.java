@@ -120,7 +120,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
     //This searches the table for the books borrowed by the user using the ISBN
-    public BorrowData findBook(String bookemail, String isbn) {
+    public BorrowData findBorrowedBooks(String bookemail, String isbn) {
         String query = "SELECT * FROM " + TABLE_BORROWDATA + " WHERE "
                 + COLUMN_ISBN
                 + " = \"" + isbn + "\"";
@@ -175,7 +175,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
     //This deletes the data of the user with the email entered from the table
-    public boolean deleteBook(String isbn) {
+    public boolean deleteBorrowedBook(String isbn) {
         boolean result = false;
 
         String query = "SELECT * FROM " + TABLE_BORROWDATA + " WHERE "
