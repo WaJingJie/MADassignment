@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/appbackground"
+    tools:context=".LoginPage">
+
+    <EditText
+        android:id="@+id/staffloginemail"
+        android:layout_width="246dp"
+        android:layout_height="47dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:hint="Enter Your Email"
+        android:inputType="textPersonName"
+        android:textColor="#8E8D8D"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="82dp"
+        tools:layout_editor_absoluteY="338dp" />
+
+    <EditText
+        android:id="@+id/staffloginpassword"
+        android:layout_width="246dp"
+        android:layout_height="47dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="@font/open_sans"
+        android:hint="Enter Your Password"
+        android:inputType="textPassword"
+        android:textColor="#8E8D8D"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="82dp"
+        tools:layout_editor_absoluteY="406dp" />
+
+    <ImageView
+        android:id="@+id/staffloginicon"
+        android:layout_width="170dp"
+        android:layout_height="197dp"
+        app:srcCompat="@drawable/applogo"
+        tools:layout_editor_absoluteX="120dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/stafflogintitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="nplibrary"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        tools:layout_editor_absoluteX="124dp"
+        tools:layout_editor_absoluteY="213dp" />
+
+    <Button
+        android:id="@+id/staffloginsubmit"
+        android:layout_width="191dp"
+        android:layout_height="52dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Login"
+        android:textColor="#FFFFFF"
+        tools:layout_editor_absoluteX="110dp"
+        tools:layout_editor_absoluteY="486dp" />
+
+    <Button
+        android:id="@+id/stafflogincancel"
+        android:layout_width="191dp"
+        android:layout_height="52dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="@android:string/cancel"
+        android:textColor="#FFFFFF"
+        tools:layout_editor_absoluteX="110dp"
+        tools:layout_editor_absoluteY="555dp" />
+
+    <TextView
+        android:id="@+id/stafftext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Staff"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="169dp"
+        tools:layout_editor_absoluteY="270dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
