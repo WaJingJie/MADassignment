@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".HomePage">
+
+
+    <ImageView
+        android:id="@+id/staffbottombar"
+        android:layout_width="0dp"
+        android:layout_height="76dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="#000000"/>
+
+    <ImageButton
+        android:id="@+id/stafflogoutbutton"
+        android:layout_width="46dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="#000000"
+        android:src="@drawable/logoutpic"
+        app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/staffhomebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        android:src="@drawable/homeicon"
+        app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+        app:layout_constraintStart_toEndOf="@+id/stafflogoutbutton" />
+
+    <ImageButton
+        android:id="@+id/staffprofilebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        android:src="@drawable/profilebutton"
+        app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+        app:layout_constraintStart_toEndOf="@+id/staffhomebutton" />
+
+    <TextView
+        android:id="@+id/stafftoptitle"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="nplibrary"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/staffrv"
+        android:layout_width="411dp"
+        android:layout_height="461dp"
+        app:layout_constraintBottom_toTopOf="@+id/staffbottombar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
