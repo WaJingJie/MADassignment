@@ -18,8 +18,11 @@
         android:inputType="textPersonName"
         android:textColor="#8E8D8D"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="82dp"
-        tools:layout_editor_absoluteY="338dp" />
+        app:layout_constraintBottom_toTopOf="@+id/staffloginpassword"
+        app:layout_constraintEnd_toEndOf="@+id/staffloginpassword"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffloginpassword"
+        app:layout_constraintTop_toBottomOf="@+id/stafftext" />
 
     <EditText
         android:id="@+id/staffloginpassword"
@@ -32,16 +35,22 @@
         android:inputType="textPassword"
         android:textColor="#8E8D8D"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="82dp"
-        tools:layout_editor_absoluteY="406dp" />
+        app:layout_constraintBottom_toTopOf="@+id/staffloginsubmit"
+        app:layout_constraintEnd_toEndOf="@+id/staffloginsubmit"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffloginsubmit"
+        app:layout_constraintTop_toBottomOf="@+id/staffloginemail" />
 
     <ImageView
         android:id="@+id/staffloginicon"
         android:layout_width="170dp"
         android:layout_height="197dp"
-        app:srcCompat="@drawable/applogo"
-        tools:layout_editor_absoluteX="120dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/stafflogintitle"
+        app:layout_constraintEnd_toEndOf="@+id/stafflogintitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/stafflogintitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/applogo" />
 
     <TextView
         android:id="@+id/stafflogintitle"
@@ -51,8 +60,11 @@
         android:text="nplibrary"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
-        tools:layout_editor_absoluteX="124dp"
-        tools:layout_editor_absoluteY="213dp" />
+        app:layout_constraintBottom_toTopOf="@+id/stafftext"
+        app:layout_constraintEnd_toEndOf="@+id/stafftext"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/stafftext"
+        app:layout_constraintTop_toBottomOf="@+id/staffloginicon" />
 
     <Button
         android:id="@+id/staffloginsubmit"
@@ -62,8 +74,11 @@
         android:fontFamily="@font/open_sans_bold"
         android:text="Login"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="110dp"
-        tools:layout_editor_absoluteY="486dp" />
+        app:layout_constraintBottom_toTopOf="@+id/stafflogincancel"
+        app:layout_constraintEnd_toEndOf="@+id/stafflogincancel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/stafflogincancel"
+        app:layout_constraintTop_toBottomOf="@+id/staffloginpassword" />
 
     <Button
         android:id="@+id/stafflogincancel"
@@ -73,8 +88,9 @@
         android:fontFamily="@font/open_sans_bold"
         android:text="@android:string/cancel"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="110dp"
-        tools:layout_editor_absoluteY="555dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/staffloginsubmit"
+        tools:layout_editor_absoluteX="109dp" />
 
     <TextView
         android:id="@+id/stafftext"
@@ -84,7 +100,10 @@
         android:text="Staff"
         android:textColor="#000000"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="169dp"
-        tools:layout_editor_absoluteY="270dp" />
+        app:layout_constraintBottom_toTopOf="@+id/staffloginemail"
+        app:layout_constraintEnd_toEndOf="@+id/staffloginemail"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffloginemail"
+        app:layout_constraintTop_toBottomOf="@+id/stafflogintitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

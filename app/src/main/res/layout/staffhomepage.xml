@@ -9,12 +9,13 @@
 
 
     <SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/staffsearchview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
         android:queryHint="Search Here"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stafftoptitle" />
 
@@ -22,11 +23,11 @@
         android:id="@+id/staffbottombar"
         android:layout_width="0dp"
         android:layout_height="76dp"
+        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="#000000"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/stafflogoutbutton"
@@ -43,23 +44,23 @@
         android:id="@+id/staffhomebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="40dp"
         android:layout_marginBottom="16dp"
         android:background="#000000"
         android:src="@drawable/homeicon"
         app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
-        app:layout_constraintStart_toEndOf="@+id/stafflogoutbutton" />
+        app:layout_constraintStart_toEndOf="@+id/staffprofilebutton" />
 
     <ImageButton
         android:id="@+id/staffprofilebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
+        android:layout_marginStart="36dp"
         android:layout_marginBottom="16dp"
         android:background="#000000"
         android:src="@drawable/profilebutton"
         app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
-        app:layout_constraintStart_toEndOf="@+id/staffhomebutton" />
+        app:layout_constraintStart_toEndOf="@+id/stafflogoutbutton" />
 
     <TextView
         android:id="@+id/stafftoptitle"
@@ -85,20 +86,24 @@
         app:layout_constraintTop_toBottomOf="@+id/staffsearchview" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/addbookicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="16dp"
         android:background="#000000"
-        app:srcCompat="@drawable/addbookicon"
-        tools:layout_editor_absoluteX="209dp"
-        tools:layout_editor_absoluteY="598dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+        app:layout_constraintStart_toEndOf="@+id/staffhomebutton"
+        app:srcCompat="@drawable/addbookicon" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/deletebookicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="16dp"
         android:background="#000000"
-        app:srcCompat="@drawable/deleteicon"
-        tools:layout_editor_absoluteX="267dp"
-        tools:layout_editor_absoluteY="597dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addbookicon"
+        app:srcCompat="@drawable/deleteicon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

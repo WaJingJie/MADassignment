@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/loginemail" />
 
     <ImageView
-        android:id="@+id/staffloginicon"
+        android:id="@+id/loginicon"
         android:layout_width="137dp"
         android:layout_height="114dp"
         app:layout_constraintBottom_toTopOf="@+id/logintitle"
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/loginicon" />
 
     <Button
-        android:id="@+id/staffloginsubmit"
+        android:id="@+id/loginsubmit"
         android:layout_width="129dp"
         android:layout_height="42dp"
         android:layout_marginStart="152dp"
@@ -84,7 +84,7 @@
 
     <Button
 
-        android:id="@+id/stafflogincancel"
+        android:id="@+id/logincancel"
         android:layout_width="129dp"
         android:layout_height="42dp"
         android:layout_marginStart="33dp"

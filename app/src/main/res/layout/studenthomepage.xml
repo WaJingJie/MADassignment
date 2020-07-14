@@ -9,11 +9,12 @@
 
 
     <SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/studentsearchview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
         android:queryHint="Search Here"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/studenttoptitle" />
@@ -23,11 +24,11 @@
         android:id="@+id/studentbottombar"
         android:layout_width="0dp"
         android:layout_height="76dp"
+        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="#000000"/>
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/studentlogoutbutton"
@@ -44,23 +45,23 @@
         android:id="@+id/studenthomebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="40dp"
         android:layout_marginBottom="16dp"
         android:background="#000000"
         android:src="@drawable/homeicon"
-        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
-        app:layout_constraintStart_toEndOf="@+id/studentlogoutbutton" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/studentprofilebutton" />
 
     <ImageButton
         android:id="@+id/studentprofilebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
+        android:layout_marginStart="36dp"
         android:layout_marginBottom="16dp"
         android:background="#000000"
         android:src="@drawable/profilebutton"
         app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
-        app:layout_constraintStart_toEndOf="@+id/studenthomebutton" />
+        app:layout_constraintStart_toEndOf="@+id/studentlogoutbutton" />
 
     <TextView
         android:id="@+id/studenttoptitle"
@@ -78,29 +79,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="409dp"
-        android:layout_height="460dp"
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/studentbottombar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/studentsearchview" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/viewborrowicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/colorAccent"
-        app:srcCompat="@drawable/viewbookicon"
-        tools:layout_editor_absoluteX="201dp"
-        tools:layout_editor_absoluteY="595dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintStart_toEndOf="@+id/studenthomebutton"
+        app:srcCompat="@drawable/viewbookicon" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/overdueicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="16dp"
         android:background="#000000"
-        app:srcCompat="@drawable/overdueicon"
-        tools:layout_editor_absoluteX="275dp"
-        tools:layout_editor_absoluteY="594dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintStart_toEndOf="@+id/viewborrowicon"
+        app:srcCompat="@drawable/overdueicon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

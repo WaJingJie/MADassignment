@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="@+id/bookname"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/bookname"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/borrowbooktitle" />
 
     <EditText
         android:id="@+id/dateborrowed"
@@ -88,10 +88,10 @@
         app:layout_constraintBottom_toTopOf="@+id/bottombar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bookname"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/borrowbooktitle" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/borrowbooktitle"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:background="#000000"
