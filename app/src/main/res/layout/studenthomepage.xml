@@ -8,6 +8,17 @@
     tools:context=".HomePage">
 
 
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Here"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studenttoptitle" />
+
+
     <ImageView
         android:id="@+id/studentbottombar"
         android:layout_width="0dp"
@@ -67,11 +78,29 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/studentrv"
-        android:layout_width="411dp"
-        android:layout_height="461dp"
+        android:layout_width="409dp"
+        android:layout_height="460dp"
         app:layout_constraintBottom_toTopOf="@+id/studentbottombar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        app:srcCompat="@drawable/viewbookicon"
+        tools:layout_editor_absoluteX="201dp"
+        tools:layout_editor_absoluteY="595dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        app:srcCompat="@drawable/overdueicon"
+        tools:layout_editor_absoluteX="275dp"
+        tools:layout_editor_absoluteY="594dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
