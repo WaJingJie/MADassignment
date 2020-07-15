@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "82647320928",
+    "firebase_url": "https://nplibrary-1594623847588.firebaseio.com",
+    "project_id": "nplibrary-1594623847588",
+    "storage_bucket": "nplibrary-1594623847588.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82647320928:android:92655ff133a12784aff605",
+        "android_client_info": {
+          "package_name": "sg.edu.np.mad.madassignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82647320928-f49r7sjnf5vvk11k20433ircmuthbht5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5ZMcKl30RT79SqMVbtR4uuqBx6629ZYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82647320928-f49r7sjnf5vvk11k20433ircmuthbht5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

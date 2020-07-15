@@ -47,7 +47,7 @@ public class StaffLoginPage extends AppCompatActivity {
                 Log.v(TAG, FILENAME + ": Valid User! Logging in");
                 // redirect to home page
                 Log.v(TAG, FILENAME + ": Redirecting to Home Page");
-                Intent homepage = new Intent(StaffLoginPage.this, HomePage.class);
+                Intent homepage = new Intent(StaffLoginPage.this, StaffHomePage.class);
                 startActivity(homepage);
             }
         });

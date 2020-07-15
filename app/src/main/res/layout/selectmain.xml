@@ -7,7 +7,7 @@
     android:background="@drawable/appbackground">
 
     <Button
-        android:id="@+id/staffwelcomelogin2"
+        android:id="@+id/selectstudent"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="191dp"
         android:layout_height="52dp"
@@ -30,7 +30,7 @@
         tools:layout_editor_absoluteY="388dp" />
 
     <Button
-        android:id="@+id/staffwelcomesignup2"
+        android:id="@+id/selectstaff"
         android:layout_width="187dp"
         android:layout_height="49dp"
         android:layout_marginBottom="172dp"

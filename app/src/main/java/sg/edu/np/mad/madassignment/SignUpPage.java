@@ -12,7 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 
 public class SignUpPage extends AppCompatActivity {
     private static final String FILENAME = "LoginPage.java";
@@ -25,7 +28,9 @@ public class SignUpPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signuppage);
-
+        GoogleSignInOptions gso = new GoogleSignInOptions(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        // Build a GoogleSignInClient with the options specified by gso.
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         dbHandler = new DBHandler(this,null,null,1);
 
         signupemail = findViewById(R.id.signupemail);
@@ -64,6 +69,8 @@ public class SignUpPage extends AppCompatActivity {
             }
         });
 
+
+
         //This method occurs when the cancel button is clicked by the user
         Log.v(TAG, FILENAME + ": Cancel Button Clicked");
         cancelbutton.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +84,15 @@ public class SignUpPage extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check for existing Google Sign In account, if the user is already signed in
+// the GoogleSignInAccount will be non-null.
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        updateUI(account);
     }
 
     //This method is to check whether the email has been already used by an existing user
