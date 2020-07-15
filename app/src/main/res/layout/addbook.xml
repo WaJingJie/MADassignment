@@ -1,6 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="25dp">
+
+    <SearchView
+        android:id="@+id/addsearchview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Here"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addbooktitle" />
+
+
+    <EditText
+        android:id="@+id/addisbnfield"
+        android:layout_width="283dp"
+        android:layout_height="49dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:hint="Enter ISBN"
+        android:includeFontPadding="false"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/addbookname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookid" />
+
+    <EditText
+        android:id="@+id/addbookname"
+        android:layout_width="283dp"
+        android:layout_height="49dp"
+        android:background="@drawable/greybox"
+        android:fontFamily="@font/benchnine_bold"
+        android:hint="Book Name"
+        android:paddingLeft="20dp"
+        android:paddingTop="6dp"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/addbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addisbnfield" />
+
+    <EditText
+        android:id="@+id/bookid"
+        android:layout_width="283dp"
+        android:layout_height="49dp"
+        android:background="@drawable/greybox"
+        android:fontFamily="@font/benchnine_bold"
+        android:hint="Book ID"
+        android:paddingLeft="20dp"
+        android:paddingTop="6dp"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/addisbnfield"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addsearchview"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <Button
+        android:id="@+id/addbutton"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Add Book"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/studentbottombar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addbookname" />
+
+    <TextView
+        android:id="@+id/addbooktitle"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="add book"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/studentbottombar"
+        android:layout_width="0dp"
+        android:layout_height="76dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/studentlogoutbutton"
+        android:layout_width="46dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="12dp"
+        android:background="#000000"
+        android:src="@drawable/logoutpic"
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/studenthomebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        android:src="@drawable/homeicon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/studentprofilebutton" />
+
+    <ImageButton
+        android:id="@+id/studentprofilebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        android:src="@drawable/profilebutton"
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintStart_toEndOf="@+id/studentlogoutbutton" />
+
+    <ImageButton
+        android:id="@+id/viewborrowicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintStart_toEndOf="@+id/studenthomebutton"
+        app:srcCompat="@drawable/viewbookicon" />
+
+    <ImageButton
+        android:id="@+id/overdueicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintStart_toEndOf="@+id/viewborrowicon"
+        app:srcCompat="@drawable/overdueicon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
