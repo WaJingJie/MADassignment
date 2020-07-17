@@ -27,6 +27,15 @@ public class DBHandler extends SQLiteOpenHelper{
     public static final String COLUMN_BORROWDATE = "borrowdate";
     public static final String COLUMN_DUEDATE= "duedate";
 
+    //db for books
+
+    public static final String TABLE_BOOKS = "books";
+    public static final String COLUMN_BID = "ID";
+    public static final String COLUMN_BISBN = "isbn";
+    public static final String COLUMN_BNAME = "book name";
+    public static final String COLUMN_STATUS = "status";
+
+
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
@@ -34,7 +43,6 @@ public class DBHandler extends SQLiteOpenHelper{
     //This method creates a table
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         String CREATE_USERDATA_TABLE = "CREATE TABLE " + TABLE_USERDATA +
                 "(" + COLUMN_EMAIL + " TEXT," + COLUMN_NAME
                 + " TEXT," + COLUMN_PASSWORD + " TEXT,"
@@ -47,18 +55,26 @@ public class DBHandler extends SQLiteOpenHelper{
                 "(" + COLUMN_BOOKEMAIL + " TEXT," + COLUMN_ISBN + " INTEGER,"
                 + COLUMN_BOOKNAME + " TEXT," + COLUMN_BORROWDATE + " TEXT,"
                 + COLUMN_DUEDATE + " TEXT" + ")";
-
         db.execSQL(CREATE_BORROWDATA_TABLE);
         Log.v(TAG, "DB Created: " + CREATE_BORROWDATA_TABLE);
 
+        //db for books
+        String CREATE_BOOKS_TABLE = "CREATE TABLE " + TABLE_BOOKS +
+                "("
+                + COLUMN_BID + " INTEGER,"
+                + COLUMN_BISBN + " TEXT,"
+                + COLUMN_BNAME + " TEXT,"
+                + COLUMN_STATUS + " TEXT," +")";
+        db.execSQL(CREATE_BOOKS_TABLE);
+        Log.v(TAG, "DB Created: " + CREATE_BOOKS_TABLE);
     }
 
     //This updates the table by dropping the old version of the table and creating the new version
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERDATA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BORROWDATA);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKS);
         onCreate(db);
     }
 

@@ -21,7 +21,7 @@ public class Select extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selectmain);
-        studentbtn = findViewById(R.id.selectstudent;
+        studentbtn = findViewById(R.id.selectstudent);
         staffbtn = findViewById(R.id.selectstaff);
 
         //This method is to redirect the user to the student welcome page

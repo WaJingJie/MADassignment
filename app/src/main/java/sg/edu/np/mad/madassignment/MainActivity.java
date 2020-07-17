@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     Button loginbtn, signupbtn;
     SignInButton googlebtn;
     GoogleSignInClient mGoogleSignInClient;
+    DBHandler dbHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +110,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    }
+
+    //create inital catalog for bookdb
+    public void addtobookdb(){
+        dbHandler = new DBHandler(this,null,null,1);
+        String[] bookisbn = new String[]{"978-1-4028-9463-6","978-1-4028-9461-6","978-1-4028-9462-6"};
+        String[] bookname = new String[]{"Introduction to programming","Introduction to android","Introduction to IOS"};
+
+        for (int i=0; i< bookname.length;i++){
+            //boolean inserted =
+        }
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
