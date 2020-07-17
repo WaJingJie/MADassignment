@@ -28,11 +28,10 @@ public class DBHandler extends SQLiteOpenHelper{
     public static final String COLUMN_DUEDATE= "duedate";
 
     //db for books
-
     public static final String TABLE_BOOKS = "books";
     public static final String COLUMN_BID = "ID";
     public static final String COLUMN_BISBN = "isbn";
-    public static final String COLUMN_BNAME = "book name";
+    public static final String COLUMN_BNAME = "bookname";
     public static final String COLUMN_STATUS = "status";
 
 
@@ -61,10 +60,10 @@ public class DBHandler extends SQLiteOpenHelper{
         //db for books
         String CREATE_BOOKS_TABLE = "CREATE TABLE " + TABLE_BOOKS +
                 "("
-                + COLUMN_BID + " INTEGER,"
+                + COLUMN_BID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_BISBN + " TEXT,"
                 + COLUMN_BNAME + " TEXT,"
-                + COLUMN_STATUS + " TEXT," +")";
+                + COLUMN_STATUS + " TEXT" +")";
         db.execSQL(CREATE_BOOKS_TABLE);
         Log.v(TAG, "DB Created: " + CREATE_BOOKS_TABLE);
     }
@@ -103,6 +102,19 @@ public class DBHandler extends SQLiteOpenHelper{
         db.insert(TABLE_USERDATA, null, values);
         db.close();
         Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
+    }
+
+    //method to add books
+    public void addbook(String isbn, String bookname, String status){
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_BISBN, isbn);
+        values.put(COLUMN_BNAME, bookname);
+        values.put(COLUMN_STATUS, status);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_BOOKS, null, values);
+        db.close();
+        Log.v(TAG, FILENAME + ": Adding data for book db: " + values.toString());
     }
 
        //This searches the table for the user using the email entered

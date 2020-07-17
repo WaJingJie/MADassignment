@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     SignInButton googlebtn;
     GoogleSignInClient mGoogleSignInClient;
     DBHandler dbHandler;
+    String[] bookisbn = new String[]{"978-1-4028-9463-6","978-1-4028-9461-6","978-1-4028-9462-6"};
+    String[] bookname = new String[]{"Introduction to programming","Introduction to android","Introduction to IOS"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         loginbtn = findViewById(R.id.welcomelogin);
         signupbtn = findViewById(R.id.welcomesignup);
+        dbHandler = new DBHandler(this,null,null,1);
+
+        //create initial catalog
+        for (int i=0; i< bookname.length;i++){
+            dbHandler.addbook(bookisbn[i],bookname[i],"Available");
+        }
+        //create initial catalog end
+
         signupbtn.setVisibility(View.VISIBLE);
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -109,18 +119,7 @@ public class MainActivity extends AppCompatActivity {
             googlebtn.setVisibility(View.INVISIBLE);
         }
     }
-
-    }
-
-    //create inital catalog for bookdb
-    public void addtobookdb(){
-        dbHandler = new DBHandler(this,null,null,1);
-        String[] bookisbn = new String[]{"978-1-4028-9463-6","978-1-4028-9461-6","978-1-4028-9462-6"};
-        String[] bookname = new String[]{"Introduction to programming","Introduction to android","Introduction to IOS"};
-
-        for (int i=0; i< bookname.length;i++){
-            //boolean inserted =
-        }
+    
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
