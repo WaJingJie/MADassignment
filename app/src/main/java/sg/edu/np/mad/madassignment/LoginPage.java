@@ -56,7 +56,7 @@ public class LoginPage extends AppCompatActivity {
                 Log.v(TAG, FILENAME + ": Valid User! Logging in");
                 // redirect to home page
                 Log.v(TAG, FILENAME + ": Redirecting to Home Page");
-                Intent homepage = new Intent(LoginPage.this, HomePage.class);
+                Intent homepage = new Intent(LoginPage.this, StaffHomePage.class);
                 startActivity(homepage);
             }
         });
@@ -65,7 +65,7 @@ public class LoginPage extends AppCompatActivity {
         cancelbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent welcomepage = new Intent(LoginPage.this, MainActivity.class);
+                Intent welcomepage = new Intent(LoginPage.this, Select.class);
                 startActivity(welcomepage);
                 reset();
             }
