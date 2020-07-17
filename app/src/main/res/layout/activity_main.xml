@@ -83,4 +83,10 @@
         app:layout_constraintStart_toStartOf="@+id/welcomelogin"
         app:layout_constraintTop_toBottomOf="@+id/welcomeicon" />
 
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/googlebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

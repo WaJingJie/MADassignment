@@ -10,78 +10,57 @@
 
     <ImageView
         android:id="@+id/selecticon"
-        android:layout_width="170dp"
-        android:layout_height="197dp"
-        android:layout_marginTop="72dp"
-        app:layout_constraintBottom_toTopOf="@+id/selecttitle"
-        app:layout_constraintEnd_toEndOf="@+id/selecttitle"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/selecttitle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/applogo" />
+        android:layout_width="149dp"
+        android:layout_height="119dp"
+        app:srcCompat="@drawable/applogo"
+        tools:layout_editor_absoluteX="267dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <Button
         android:id="@+id/selectstudent"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="191dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="20dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="Student"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/selecttext"
-        app:layout_constraintEnd_toEndOf="@+id/selecttext"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/selecttext"
-        app:layout_constraintTop_toBottomOf="@+id/selecttitle" />
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="212dp" />
 
     <TextView
         android:id="@+id/selecttext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
         android:fontFamily="@font/open_sans"
         android:text="OR"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/selectstaff"
-        app:layout_constraintEnd_toEndOf="@+id/selectstaff"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/selectstaff"
-        app:layout_constraintTop_toBottomOf="@+id/selectstudent" />
+        tools:layout_editor_absoluteX="329dp"
+        tools:layout_editor_absoluteY="275dp" />
 
     <Button
         android:id="@+id/selectstaff"
         android:layout_width="187dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="136dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="Staff"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selecttext" />
+        tools:layout_editor_absoluteX="248dp"
+        tools:layout_editor_absoluteY="310dp" />
 
     <TextView
         android:id="@+id/selecttitle"
         android:layout_width="168dp"
         android:layout_height="63dp"
-        android:layout_marginBottom="12dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="nplibrary"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/selectstudent"
-        app:layout_constraintEnd_toEndOf="@+id/selectstudent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/selectstudent"
-        app:layout_constraintTop_toBottomOf="@+id/selecticon" />
+        tools:layout_editor_absoluteX="257dp"
+        tools:layout_editor_absoluteY="149dp" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googlebutton"
