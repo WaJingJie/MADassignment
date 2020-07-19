@@ -23,13 +23,14 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private static final String FILENAME = "MainActivity.java";
     private static final String TAG = "NP Library";
-    private static final int RC_SIGN_IN = ;
+    //private static final int RC_SIGN_IN = ;
     Button loginbtn, signupbtn;
     SignInButton googlebtn;
     GoogleSignInClient mGoogleSignInClient;
-    DBHandler dbHandler;
+    /*DBHandler dbHandler;
+
     String[] bookisbn = new String[]{"978-1-4028-9463-6","978-1-4028-9461-6","978-1-4028-9462-6"};
-    String[] bookname = new String[]{"Introduction to programming","Introduction to android","Introduction to IOS"};
+    String[] bookname = new String[]{"Introduction to programming","Introduction to android","Hello world"};*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +38,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         loginbtn = findViewById(R.id.welcomelogin);
         signupbtn = findViewById(R.id.welcomesignup);
-        dbHandler = new DBHandler(this,null,null,1);
 
-        //create initial catalog
-        for (int i=0; i< bookname.length;i++){
-            dbHandler.addbook(bookisbn[i],bookname[i],"Available");
-        }
-        //create initial catalog end
+//        dbHandler = new DBHandler(this,null,null,1);
+//
+//        //create initial catalog
+//        for (int i=0; i< bookname.length;i++){
+//            dbHandler.addbook(bookisbn[i],bookname[i],"Available");
+//        }
+//        //create initial catalog end
 
         signupbtn.setVisibility(View.VISIBLE);
         // Configure sign-in to request the user's ID, email address, and basic
@@ -102,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
+        //if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
+            //Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            //handleSignInResult(task);
+        //}
     }
 
     private void updateUI(GoogleSignInAccount account) {
@@ -119,10 +121,10 @@ public class MainActivity extends AppCompatActivity {
             googlebtn.setVisibility(View.INVISIBLE);
         }
     }
-    
+
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        //startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {

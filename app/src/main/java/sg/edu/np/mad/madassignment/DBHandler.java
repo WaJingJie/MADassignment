@@ -4,10 +4,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
+
 public class DBHandler extends SQLiteOpenHelper{
     private static final String FILENAME = "DBHandler.java";
     public static final String DATABASE_NAME = "NPLibrary.db";
@@ -65,7 +68,13 @@ public class DBHandler extends SQLiteOpenHelper{
                 + COLUMN_BNAME + " TEXT,"
                 + COLUMN_STATUS + " TEXT" +")";
         db.execSQL(CREATE_BOOKS_TABLE);
+        //initial catalog of books
+        db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-6','Introduction to programming','Available');");
+        db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-5','Introduction to android','Available');");
+        db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-4','Hello world','Available');");
+        //end of initial catalog of books
         Log.v(TAG, "DB Created: " + CREATE_BOOKS_TABLE);
+
     }
 
     //This updates the table by dropping the old version of the table and creating the new version
@@ -104,7 +113,7 @@ public class DBHandler extends SQLiteOpenHelper{
         Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
     }
 
-    //method to add books
+    //method to add books and search books
     public void addbook(String isbn, String bookname, String status){
 
         ContentValues values = new ContentValues();
@@ -116,6 +125,79 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
         Log.v(TAG, FILENAME + ": Adding data for book db: " + values.toString());
     }
+    //function to get all books
+    public List<book> getBook(){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"ID, isbn, bookname, status"};
+        String tablename = "books";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,null,null,null,null,null);
+        List<book> result = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                book booklist= new book();
+                booklist.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+                booklist.setIsbn(cursor.getString(cursor.getColumnIndex("isbn")));
+                booklist.setBookname(cursor.getString(cursor.getColumnIndex("bookname")));
+                booklist.setStatus(cursor.getString(cursor.getColumnIndex("status")));
+                result.add(booklist);
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+
+    //get book name
+    public List<String> getBookname(){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"bookname"};
+        String tablename = "books";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,null,null,null,null,null);
+        List<String> result = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                result.add(cursor.getString(cursor.getColumnIndex("bookname")));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+
+    //get book by name
+    public List<book> getBookByName(String bookname){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"ID, isbn, bookname, status"};
+        String tablename = "books";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"bookname LIKE ?",new String[]{"%"+bookname+"%"},null,null,null);
+        List<book> result = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                book booklist= new book();
+                booklist.setId(cursor.getInt(cursor.getColumnIndex("ID")));
+                booklist.setIsbn(cursor.getString(cursor.getColumnIndex("isbn")));
+                booklist.setBookname(cursor.getString(cursor.getColumnIndex("bookname")));
+                booklist.setStatus(cursor.getString(cursor.getColumnIndex("status")));
+                result.add(booklist);
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+    //end of code for add books and search books
 
        //This searches the table for the user using the email entered
     public UserData findUser(String email) {
