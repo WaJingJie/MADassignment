@@ -23,6 +23,11 @@ public class DBHandler extends SQLiteOpenHelper{
     public static final String COLUMN_NO_OF_BOOKS_BORROWED= "noofbooksborrowed";
     public static final String COLUMN_NO_OF_BOOKS_USER_CAN_BORROW = "canborrow";
 
+    public static final String TABLE_STAFFDATA= "staff";
+    public static final String COLUMN_STAFFEMAIL = "staffemail";
+    public static final String COLUMN_STAFFNAME = "staffname";
+    public static final String COLUMN_STAFFPASSWORD = "staffpassword";
+
     public static final String TABLE_BORROWDATA= "borrowed";
     public static final String COLUMN_BOOKEMAIL = "email";
     public static final String COLUMN_ISBN = "isbn";
@@ -53,6 +58,16 @@ public class DBHandler extends SQLiteOpenHelper{
         db.execSQL(CREATE_USERDATA_TABLE);
         Log.v(TAG, "DB Created: " + CREATE_USERDATA_TABLE);
 
+        String CREATE_STAFFDATA_TABLE = "CREATE TABLE " + TABLE_STAFFDATA +
+                "(" + COLUMN_STAFFEMAIL + " TEXT," + COLUMN_STAFFNAME
+                + " TEXT," + COLUMN_STAFFPASSWORD + " TEXT" + ")";
+        //initial catalog of staff
+        db.execSQL("INSERT INTO staff ('staffemail','staffname','staffpassword') VALUES('npstaff123@gmail.com','April Lim','passwordstaff');");
+        db.execSQL("INSERT INTO staff ('staffemail','staffname','staffpassword') VALUES('npstaff234@gmail.com','Steven Tan','passwordstaff');");
+        db.execSQL("INSERT INTO staff ('staffemail','staffname','staffpassword') VALUES('npstaff345@gmail.com','Kenny Wong','passwordstaff');");
+        db.execSQL(CREATE_STAFFDATA_TABLE);
+        Log.v(TAG, "DB Created: " + CREATE_STAFFDATA_TABLE);
+
         String CREATE_BORROWDATA_TABLE = "CREATE TABLE " + TABLE_BORROWDATA +
                 "(" + COLUMN_BOOKEMAIL + " TEXT," + COLUMN_ISBN + " INTEGER,"
                 + COLUMN_BOOKNAME + " TEXT," + COLUMN_BORROWDATE + " TEXT,"
@@ -81,6 +96,7 @@ public class DBHandler extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERDATA);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STAFFDATA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BORROWDATA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKS);
         onCreate(db);
@@ -99,6 +115,18 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
         Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
     }
+
+    public void addStaff(StaffData staffData){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_STAFFEMAIL, staffData.getMyStaffEmail());
+        values.put(COLUMN_STAFFNAME, staffData.getMyStaffName());
+        values.put(COLUMN_STAFFPASSWORD, staffData.getMyStaffPassword());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_STAFFDATA, null, values);
+        db.close();
+        Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
+    }
+
 
     public void addBorrowedBook(BorrowData borrowData) {
         ContentValues values = new ContentValues();

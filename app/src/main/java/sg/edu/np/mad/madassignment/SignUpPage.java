@@ -16,6 +16,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.database.DatabaseReference;
+
+import java.lang.reflect.Member;
 
 public class SignUpPage extends AppCompatActivity {
     private static final String FILENAME = "LoginPage.java";
@@ -23,7 +26,8 @@ public class SignUpPage extends AppCompatActivity {
     DBHandler dbHandler;
     private EditText signupemail, signupname, signuppassword, signupconfirm;
     private Button submitbutton, cancelbutton;
-
+    DatabaseReference databaseReference;
+    Member member;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
