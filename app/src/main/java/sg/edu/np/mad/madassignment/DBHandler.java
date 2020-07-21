@@ -257,6 +257,31 @@ public class DBHandler extends SQLiteOpenHelper{
         return userData;
     }
 
+    //This searches the table for the staff using the email entered
+    public StaffData findStaff(String email) {
+        String query = "SELECT * FROM " + TABLE_STAFFDATA + " WHERE "
+                + COLUMN_STAFFEMAIL
+                + " = \"" + email + "\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        StaffData staffData = new StaffData();
+        Log.v(TAG, FILENAME +": Find user from database: " + query);
+
+        if(cursor.moveToFirst()){
+            staffData.setMyStaffEmail(cursor.getString(0));
+            staffData.setMyStaffName(cursor.getString(1));
+            staffData.setMyStaffPassword(cursor.getString(2));
+            cursor.close();
+            Log.v(TAG, FILENAME + ": QueryData: " + staffData.getMyStaffName() + staffData.getMyStaffPassword());
+        }
+        else{
+            staffData = null;
+            Log.v(TAG, FILENAME+ ": No data found!");
+        }
+        db.close();
+        return staffData;
+    }
+
     //This searches the table for the books borrowed by the user using the ISBN
     public BorrowData findBorrowedBooks(String bookemail, String isbn) {
         String query = "SELECT * FROM " + TABLE_BORROWDATA + " WHERE "
