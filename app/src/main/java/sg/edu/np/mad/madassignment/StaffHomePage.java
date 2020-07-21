@@ -28,7 +28,7 @@ public class StaffHomePage extends AppCompatActivity{
 
     List<String> suggestion = new ArrayList<>();
     List<book> booklist = new ArrayList<>();
-    ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
+    ImageButton logoutbutton, homebutton, profilebutton, addbutton, deletebutton;
     DBHandler dbHandler;
 
     @Override
@@ -43,8 +43,8 @@ public class StaffHomePage extends AppCompatActivity{
         logoutbutton = findViewById(R.id.studentlogoutbutton);
         homebutton = findViewById(R.id.studenthomebutton);
         profilebutton = findViewById(R.id.studentprofilebutton);
-        viewbutton = findViewById(R.id.viewborrowicon);
-        overduebutton = findViewById(R.id.overdueicon);
+        addbutton = findViewById(R.id.addbookicon);
+        deletebutton = findViewById(R.id.deletebookicon);
 
         materialSearchBar = findViewById(R.id.staffsearchview);
 
@@ -120,18 +120,18 @@ public class StaffHomePage extends AppCompatActivity{
             }
         });
 
-        viewbutton.setOnClickListener(new View.OnClickListener() {
+        addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent viewpage = new Intent(StaffHomePage.this, HomePage.class);
+                Intent viewpage = new Intent(StaffHomePage.this, AddBook.class);
                 startActivity(viewpage);
             }
         });
 
-        overduebutton.setOnClickListener(new View.OnClickListener() {
+        deletebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent overduepage = new Intent(StaffHomePage.this, OverduePage.class);
+                Intent overduepage = new Intent(StaffHomePage.this, DeleteBook.class);
                 startActivity(overduepage);
             }
         });
