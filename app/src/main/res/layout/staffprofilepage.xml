@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
+        <Button
+            android:id="@+id/editstaffbtn"
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="39dp"
+            android:layout_marginBottom="140dp"
+            android:background="#000000"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="Edit Profile"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phoneno" />
+
+        <ScrollView
+            android:id="@+id/blackbackground"
+            android:layout_width="0dp"
+            android:layout_height="304dp"
+            android:background="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/greycircle"
+            android:layout_width="161dp"
+            android:layout_height="115dp"
+            android:layout_marginTop="44dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/greyoutline" />
+
+        <ImageView
+            android:id="@+id/blueprofile"
+            android:layout_width="129dp"
+            android:layout_height="99dp"
+            android:layout_marginTop="52dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/blueprofile" />
+
+        <TextView
+            android:id="@+id/staffemail"
+            android:layout_width="310dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/greybox"
+            android:fontFamily="@font/benchnine_bold"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="johntan12@gmail.com"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/blackbackground" />
+
+        <TextView
+            android:id="@+id/phoneno"
+            android:layout_width="310dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="31dp"
+            android:background="@drawable/greybox"
+            android:fontFamily="@font/benchnine_bold"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp"
+            android:text="Add Phone Number"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/staffemail" />
+
+        <TextView
+            android:id="@+id/staffname"
+            android:layout_width="197dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/benchnine_bold"
+            android:text="John Tan"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/greycircle" />
+
+        <ImageView
+            android:id="@+id/staffbottombar"
+            android:layout_width="0dp"
+            android:layout_height="76dp"
+            android:background="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/stafflogoutbutton"
+            android:layout_width="46dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="12dp"
+            android:background="#000000"
+            android:src="@drawable/logoutpic"
+            app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/staffhomebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="16dp"
+            android:background="#000000"
+            android:src="@drawable/homeicon"
+            app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+            app:layout_constraintStart_toEndOf="@+id/staffprofilebutton" />
+
+        <ImageButton
+            android:id="@+id/staffprofilebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginBottom="16dp"
+            android:background="#000000"
+            android:src="@drawable/profilebutton"
+            app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+            app:layout_constraintStart_toEndOf="@+id/stafflogoutbutton" />
+
+        <ImageButton
+            android:id="@+id/addbookicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="16dp"
+            android:background="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+            app:layout_constraintStart_toEndOf="@+id/staffhomebutton"
+            app:srcCompat="@drawable/addbookicon" />
+
+        <ImageButton
+            android:id="@+id/deletebookicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginBottom="16dp"
+            android:background="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/addbookicon"
+            app:srcCompat="@drawable/deleteicon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

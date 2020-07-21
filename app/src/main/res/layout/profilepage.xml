@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <Button
+        android:id="@+id/editprofilebtn"
+        android:layout_width="310dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginBottom="140dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Edit Profile"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneno" />
+
     <ScrollView
         android:id="@+id/blackbackground"
         android:layout_width="0dp"
@@ -46,7 +62,7 @@
         android:id="@+id/email"
         android:layout_width="310dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="264dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/greybox"
         android:fontFamily="@font/benchnine_bold"
         android:paddingLeft="0dp"
@@ -57,12 +73,30 @@
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blackbackground"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintTop_toBottomOf="@+id/blackbackground" />
+
+    <TextView
+        android:id="@+id/phoneno"
+        android:layout_width="310dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/greybox"
+        android:fontFamily="@font/benchnine_bold"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:text="Add Phone Number"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <TextView
         android:id="@+id/name"
@@ -80,47 +114,70 @@
         app:layout_constraintTop_toBottomOf="@+id/greycircle" />
 
     <ImageView
-        android:id="@+id/bottombar"
+        android:id="@+id/studentbottombar"
         android:layout_width="0dp"
         android:layout_height="76dp"
+        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="#000000"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/logoutbutton"
+        android:id="@+id/studentlogoutbutton"
         android:layout_width="46dp"
         android:layout_height="51dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="12dp"
         android:background="#000000"
         android:src="@drawable/logoutpic"
-        app:layout_constraintBottom_toBottomOf="@+id/bottombar"
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/homebutton"
+        android:id="@+id/studenthomebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="40dp"
         android:layout_marginBottom="16dp"
         android:background="#000000"
         android:src="@drawable/homeicon"
-        app:layout_constraintBottom_toBottomOf="@+id/bottombar"
-        app:layout_constraintStart_toEndOf="@+id/logoutbutton" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/studentprofilebutton" />
 
     <ImageButton
-        android:id="@+id/profilebutton"
+        android:id="@+id/studentprofilebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
+        android:layout_marginStart="36dp"
         android:layout_marginBottom="16dp"
         android:background="#000000"
         android:src="@drawable/profilebutton"
-        app:layout_constraintBottom_toBottomOf="@+id/bottombar"
-        app:layout_constraintStart_toEndOf="@+id/homebutton" />
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintStart_toEndOf="@+id/studentlogoutbutton" />
+
+    <ImageButton
+        android:id="@+id/viewborrowicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintStart_toEndOf="@+id/studenthomebutton"
+        app:srcCompat="@drawable/viewbookicon" />
+
+    <ImageButton
+        android:id="@+id/overdueicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintEnd_toEndOf="@+id/studentbottombar"
+        app:layout_constraintStart_toEndOf="@+id/viewborrowicon"
+        app:srcCompat="@drawable/overdueicon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
