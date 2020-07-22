@@ -1,8 +1,11 @@
 package sg.edu.np.mad.madassignment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
@@ -20,7 +23,7 @@ public class StudentHomePage extends AppCompatActivity {
     RecyclerView rv;
     RecyclerView.LayoutManager layoutManager;
     Searchbookadapter adapter;
-
+    ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
     MaterialSearchBar materialSearchBar;
 
     List<String> suggestion = new ArrayList<>();
@@ -35,6 +38,12 @@ public class StudentHomePage extends AppCompatActivity {
 
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
+
+        logoutbutton = findViewById(R.id.studentlogoutbutton);
+        homebutton = findViewById(R.id.studenthomebutton);
+        profilebutton = findViewById(R.id.studentprofilebutton);
+        viewbutton = findViewById(R.id.viewborrowicon);
+        overduebutton = findViewById(R.id.overdueicon);
 
         materialSearchBar = findViewById(R.id.studentsearch);
 
@@ -91,6 +100,40 @@ public class StudentHomePage extends AppCompatActivity {
         });
         adapter = new Searchbookadapter(this,dbHandler.getBook());
         rv.setAdapter(adapter);
+
+        //this is to allow the user to log out
+        logoutbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent welcomepage = new Intent(StudentHomePage.this, MainActivity.class);
+                startActivity(welcomepage);
+            }
+        });
+
+        //this is to redirect the user to the profile page
+        profilebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilepage = new Intent(StudentHomePage.this, ProfilePage.class);
+                startActivity(profilepage);
+            }
+        });
+
+        viewbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent viewpage = new Intent(StudentHomePage.this, HomePage.class);
+                startActivity(viewpage);
+            }
+        });
+
+        overduebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent overduepage = new Intent(StudentHomePage.this, OverdueLoan.class);
+                startActivity(overduepage);
+            }
+        });
 
     }
 

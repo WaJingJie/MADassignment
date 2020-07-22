@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfilePage extends AppCompatActivity {
-    ImageButton logoutbutton, homebutton, profilebutton;
+    ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
     TextView name, email;
     private static final String FILENAME = "ProfilePage.java";
     private static final String TAG = "NP Library";
@@ -20,9 +20,11 @@ public class ProfilePage extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profilepage);
-        logoutbutton = findViewById(R.id.logoutbutton);
-        homebutton = findViewById(R.id.homebutton);
-        profilebutton = findViewById(R.id.profilebutton);
+        logoutbutton = findViewById(R.id.studentlogoutbutton);
+        homebutton = findViewById(R.id.studenthomebutton);
+        profilebutton = findViewById(R.id.studentprofilebutton);
+        viewbutton = findViewById(R.id.viewborrowicon);
+        overduebutton = findViewById(R.id.overdueicon);
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         UserData userData = LoginPage.userdata;

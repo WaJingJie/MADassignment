@@ -26,7 +26,7 @@ public class HomePage extends AppCompatActivity{
 
     TextView hbno;
     TextView cbno;
-    ImageButton logoutbutton, homebutton, profilebutton;
+    ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
     ArrayList<String> isbnList = new ArrayList<>();
     ArrayList<String> booknameList = new ArrayList<>();
     ArrayList<String> borrowdateList = new ArrayList<>();
@@ -42,9 +42,11 @@ public class HomePage extends AppCompatActivity{
         hbno = findViewById(R.id.hbno);
         cbno = findViewById(R.id.cbno);
 
-        logoutbutton = findViewById(R.id.logoutbutton);
-        homebutton = findViewById(R.id.homebutton);
-        profilebutton = findViewById(R.id.profilebutton);
+        logoutbutton = findViewById(R.id.studentlogoutbutton);
+        homebutton = findViewById(R.id.studenthomebutton);
+        profilebutton = findViewById(R.id.studentprofilebutton);
+        viewbutton = findViewById(R.id.viewborrowicon);
+        overduebutton = findViewById(R.id.overdueicon);
         //this gets the data from borrow book page
         Intent receivingEnd = getIntent();
 
@@ -131,6 +133,22 @@ public class HomePage extends AppCompatActivity{
             public void onClick(View v) {
                 Intent profilepage = new Intent(HomePage.this, ProfilePage.class);
                 startActivity(profilepage);
+            }
+        });
+
+        homebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homepage = new Intent(HomePage.this, StudentHomePage.class);
+                startActivity(homepage);
+            }
+        });
+
+        overduebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent overduepage = new Intent(HomePage.this, OverduePage.class);
+                startActivity(overduepage);
             }
         });
     }

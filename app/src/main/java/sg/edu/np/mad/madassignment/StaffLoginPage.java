@@ -15,8 +15,8 @@ public class StaffLoginPage extends AppCompatActivity {
     DBHandler dbHandler;
     private TextView loginemail, loginpassword;
     private Button submitbutton, cancelbutton;
-    //This is a Userdata object that can be used among all the classes
-    public static UserData userdata;
+    //This is a StaffData object that can be used among all the classes
+    public static StaffData staffdata;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +56,7 @@ public class StaffLoginPage extends AppCompatActivity {
         cancelbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent welcomepage = new Intent(StaffLoginPage.this, MainActivity.class);
+                Intent welcomepage = new Intent(StaffLoginPage.this, Select.class);
                 startActivity(welcomepage);
                 reset();
             }
@@ -67,7 +67,7 @@ public class StaffLoginPage extends AppCompatActivity {
     //This method is for checking whether the user is an existing user and that the email and password used is valid
     public boolean checkStaff(String e, String p){
         //This searches the database for the entered email
-        UserData data = dbHandler.findUser(e);
+        StaffData data = dbHandler.findStaff(e);
         //This happens when the user is not found in the database
         if(data == null){
             Log.v(TAG, FILENAME + ": Invalid email used!");
@@ -77,7 +77,7 @@ public class StaffLoginPage extends AppCompatActivity {
             return false;
         }
         //This occurs where the password entered is not the correct password
-        else if(!data.getMyPassword().equals(p)) {
+        else if(!data.getMyStaffPassword().equals(p)) {
             Log.v(TAG, FILENAME + ": Invalid password used!");
             Toast.makeText(getApplicationContext(), "Invalid password! Please re-enter again.",
                     Toast.LENGTH_LONG).show();
@@ -86,7 +86,7 @@ public class StaffLoginPage extends AppCompatActivity {
         }
         //This occurs when the user is found to exist in the database
         else{
-            userdata = data;
+            staffdata = data;
             return true;
         }
     }

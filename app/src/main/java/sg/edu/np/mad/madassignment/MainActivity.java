@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String FILENAME = "MainActivity.java";
     private static final String TAG = "NP Library";
     //private static final int RC_SIGN_IN = ;
-    Button loginbtn, signupbtn;
+    Button loginbtn, signupbtn, returnselectbtn;
     SignInButton googlebtn;
     GoogleSignInClient mGoogleSignInClient;
     /*DBHandler dbHandler;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         loginbtn = findViewById(R.id.welcomelogin);
         signupbtn = findViewById(R.id.welcomesignup);
-
+        returnselectbtn = findViewById(R.id.returnstudent);
 //        dbHandler = new DBHandler(this,null,null,1);
 //
 //        //create initial catalog
@@ -78,6 +78,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //This method is to redirect the user to the sign up page
+        Log.v(TAG, FILENAME + ": Redirecting to Select Page");
+        returnselectbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent returnpage = new Intent(MainActivity.this, Select.class);
+                startActivity(returnpage);
+            }
+        });
+
         googlebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onStart() {

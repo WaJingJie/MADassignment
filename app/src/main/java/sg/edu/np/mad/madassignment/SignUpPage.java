@@ -121,9 +121,9 @@ public class SignUpPage extends AppCompatActivity {
             //This enters the data into the public static Userdata object
             LoginPage.userdata = userdata;
             Toast.makeText(SignUpPage.this, "Redirecting to main page.", Toast.LENGTH_SHORT).show();
-            //redirect user to welcome page where user can either exit the app or login
+            //redirect user to login page where user can either exit the app or login
             Log.v(TAG, FILENAME + ": Go to main page");
-            Intent mainpage = new Intent(SignUpPage.this, MainActivity.class);
+            Intent mainpage = new Intent(SignUpPage.this, LoginPage.class);
             startActivity(mainpage);
         }
     }
