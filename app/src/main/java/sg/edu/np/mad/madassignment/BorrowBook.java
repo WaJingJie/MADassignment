@@ -7,10 +7,13 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class BorrowBook extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     EditText isbn;
@@ -31,6 +35,10 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
 
     ImageButton logoutbutton, homebutton, profilebutton;
     Button borrowbtn;
+
+    Spinner spinner;
+
+    DBHandler dbHandler;
 
     ArrayList<String> isbnList = new ArrayList<>();
     ArrayList<String> booknameList = new ArrayList<>();
@@ -55,6 +63,11 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         profilebutton = findViewById(R.id.profilebutton);
         borrowbtn = findViewById(R.id.btnchangepwd);
 
+        spinner = findViewById(R.id.isbnlist);
+
+        //initialize database
+        dbHandler = new DBHandler(this,null,null,1);
+
         //gets the today date
         Calendar c = Calendar.getInstance();
         String todaydate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
@@ -63,13 +76,13 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         //auto increment date for due date
         incrementdate();
 
-        //this gets the data from home page
+        /*//this gets the data from home page
         Intent recieveingEnd = getIntent();
         //get arraylist from homepage
         isbnList = recieveingEnd.getStringArrayListExtra("isbn");
         booknameList = recieveingEnd.getStringArrayListExtra("bookname");
         borrowdateList = recieveingEnd.getStringArrayListExtra("borrowdate");
-        duedateList = recieveingEnd.getStringArrayListExtra("duedate");
+        duedateList = recieveingEnd.getStringArrayListExtra("duedate");*/
 
         //statement to detect if the list is null
         if(isbnList == null){
@@ -79,6 +92,27 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
             borrowdateList= new ArrayList<String>();
             duedateList= new ArrayList<String>();
         }
+
+        //database version
+        ArrayList<String> isbnlist = dbHandler.getIsbn();
+        ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(this,R.layout.spinnerlayout, R.id.tvspinner, isbnlist);
+        spinner.setAdapter(spinneradapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedisbn = parent.getItemAtPosition(position).toString();
+                String book = dbHandler.getBookByISBN(selectedisbn);
+                bookname.setText(book);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //end of database version
 
         //shows date picker when the text box is click
         borrowdate.setOnClickListener(new View.OnClickListener() {
@@ -141,33 +175,34 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         });
 
         //this is to allow the user to log out
-        logoutbutton.setOnClickListener(new View.OnClickListener() {
+        /*logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent welcomepage = new Intent(BorrowBook.this, MainActivity.class);
                 startActivity(welcomepage);
             }
-        });
+        });*/
 
         //this is to redirect the user to the home page
-        homebutton.setOnClickListener(new View.OnClickListener() {
+        /*homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent homepage = new Intent(BorrowBook.this, HomePage.class);
                 startActivity(homepage);
             }
-        });
+        });*/
 
         //this is to redirect the user to the profile page
-        profilebutton.setOnClickListener(new View.OnClickListener() {
+        /*profilebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent profilepage = new Intent(BorrowBook.this, ProfilePage.class);
                 startActivity(profilepage);
             }
-        });
+        });*/
 
     }
+
     //method used to increase due date by 14 days
     private void incrementdate(){
         String d = borrowdate.getText().toString();

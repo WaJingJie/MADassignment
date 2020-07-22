@@ -66,8 +66,8 @@ public class ProfilePage extends AppCompatActivity {
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent overduepage = new Intent(ProfilePage.this, OverdueLoan.class);
-                startActivity(overduepage);
+                /*Intent overduepage = new Intent(ProfilePage.this, OverdueLoan.class);
+                startActivity(overduepage);*/
             }
         });
 

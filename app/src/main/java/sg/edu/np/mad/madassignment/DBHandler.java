@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,6 +93,7 @@ public class DBHandler extends SQLiteOpenHelper{
         db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-6','Introduction to programming','Available');");
         db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-5','Introduction to android','Available');");
         db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-4','Hello world','Available');");
+        db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-3','Hello','Inavailable');");
         //end of initial catalog of books
         Log.v(TAG, "DB Created: " + CREATE_BOOKS_TABLE);
 
@@ -139,18 +142,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
 
-    public void addBorrowedBook(BorrowData borrowData) {
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_BOOKEMAIL, borrowData.getMyBookEmail());
-        values.put(COLUMN_ISBN, borrowData.getISBN());
-        values.put(COLUMN_BOOKNAME, borrowData.getMyBookName());
-        values.put(COLUMN_BORROWDATE, borrowData.getBorrowDate());
-        values.put(COLUMN_DUEDATE, borrowData.getDueDate());
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_USERDATA, null, values);
-        db.close();
-        Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
-    }
+
 
     //method to add books and search books
     public void addbook(String isbn, String bookname, String status){
@@ -237,6 +229,64 @@ public class DBHandler extends SQLiteOpenHelper{
         return result;
     }
     //end of code for add books and search books
+
+    //get the list of isbn
+    public ArrayList<String> getIsbn(){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"isbn"};
+        String tablename = "books";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"status ='Available'",null,null,null,null);
+        ArrayList<String> result = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                result.add(cursor.getString(cursor.getColumnIndex("isbn")));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+    //end
+
+    //get book name from the select isbn
+    public String getBookByISBN(String isbn){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"bookname"};
+        String tablename = "books";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"isbn = ? AND status ='Available'",new String[]{isbn},null,null,null);
+        String result ="";
+        if(cursor.moveToFirst()){
+            do{
+                result = cursor.getString(cursor.getColumnIndex("bookname"));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+    //end
+
+    //adding borrow book function
+    public void addBorrowedBook(BorrowData borrowData) {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_BOOKEMAIL, borrowData.getMyBookEmail());
+        values.put(COLUMN_ISBN, borrowData.getISBN());
+        values.put(COLUMN_BOOKNAME, borrowData.getMyBookName());
+        values.put(COLUMN_BORROWDATE, borrowData.getBorrowDate());
+        values.put(COLUMN_DUEDATE, borrowData.getDueDate());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_USERDATA, null, values);
+        db.close();
+        Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
+    }
+    //adding borrow book function end
 
     //add/update phone number function goes here
     public boolean updatePhonenum(String email, String phoneno){
