@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <EditText
-        android:id="@+id/tvpwd"
+        android:id="@+id/borrowdate"
         android:layout_width="310dp"
         android:layout_height="49dp"
         android:background="@drawable/greybox"
@@ -36,14 +36,14 @@
         android:hint="Enter borrow date"
         android:inputType="date"
         android:paddingLeft="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/tvcfmpwd"
-        app:layout_constraintEnd_toEndOf="@+id/tvcfmpwd"
+        app:layout_constraintBottom_toTopOf="@+id/duedate"
+        app:layout_constraintEnd_toEndOf="@+id/duedate"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/tvcfmpwd"
+        app:layout_constraintStart_toStartOf="@+id/duedate"
         app:layout_constraintTop_toBottomOf="@+id/bookname" />
 
     <EditText
-        android:id="@+id/tvcfmpwd"
+        android:id="@+id/duedate"
         android:layout_width="310dp"
         android:layout_height="49dp"
         android:background="@drawable/greybox"
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.319"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvpwd" />
+        app:layout_constraintTop_toBottomOf="@+id/borrowdate" />
 
     <EditText
         android:id="@+id/bookname"
@@ -70,10 +70,10 @@
         android:paddingTop="6dp"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvpwd"
-        app:layout_constraintEnd_toEndOf="@+id/tvpwd"
+        app:layout_constraintBottom_toTopOf="@+id/borrowdate"
+        app:layout_constraintEnd_toEndOf="@+id/borrowdate"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/tvpwd"
+        app:layout_constraintStart_toStartOf="@+id/borrowdate"
         app:layout_constraintTop_toBottomOf="@+id/isbnfield" />
 
     <Button

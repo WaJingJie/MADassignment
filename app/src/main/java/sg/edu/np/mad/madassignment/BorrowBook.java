@@ -44,10 +44,10 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         isbn = findViewById(R.id.isbnfield);
         bookname = findViewById(R.id.bookname);
 
-        borrowdate = findViewById(R.id.tvpwd);
+        borrowdate = findViewById(R.id.borrowdate);
         borrowdate.setInputType(InputType.TYPE_NULL);
 
-        duedate = findViewById(R.id.tvcfmpwd);
+        duedate = findViewById(R.id.duedate);
         duedate.setInputType(InputType.TYPE_NULL);
 
         logoutbutton = findViewById(R.id.logoutbutton);
@@ -196,7 +196,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
 
-        borrowdate = findViewById(R.id.tvpwd);
+        borrowdate = findViewById(R.id.borrowdate);
         borrowdate.setText(currentDateString);
     }
 

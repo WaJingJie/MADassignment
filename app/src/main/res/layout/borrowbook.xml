@@ -13,7 +13,7 @@
         android:text="Date Borrowed"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvpwd"
+        app:layout_constraintBottom_toTopOf="@+id/borrowdate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,14 +67,14 @@
         android:text="Due Date"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvcfmpwd"
+        app:layout_constraintBottom_toTopOf="@+id/duedate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvpwd" />
+        app:layout_constraintTop_toBottomOf="@+id/borrowdate" />
 
     <EditText
-        android:id="@+id/tvcfmpwd"
+        android:id="@+id/duedate"
         android:layout_width="310dp"
         android:layout_height="49dp"
         android:layout_marginBottom="24dp"
@@ -104,10 +104,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvcfmpwd" />
+        app:layout_constraintTop_toBottomOf="@+id/duedate" />
 
     <EditText
-        android:id="@+id/tvpwd"
+        android:id="@+id/borrowdate"
         android:layout_width="310dp"
         android:layout_height="49dp"
         android:background="@drawable/greybox"
