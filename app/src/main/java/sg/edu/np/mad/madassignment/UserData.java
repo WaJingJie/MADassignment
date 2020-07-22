@@ -7,14 +7,13 @@ import java.util.Comparator;
 import java.util.Date;
 
 public class UserData {
-    private String email;
-    private String name;
-    private String password;
+    private String email, name, phoneno, password;
     private int booksborrowed;
     private int canborrow;
     public static final String TABLE_NAME = "Users";
     public static final String COLUMN_EMAIL = "Email";
     public static final String COLUMN_NAME = "Name";
+    public static final String COLUMN_PHONENUMBER = "Phone Number";
     public static final String COLUMN_PASSWORD = "Password";
     public static final String COLUMN_BOOKSBORROWED = "No Of Books Borrowed";
     public static final String COLUMN_CANBORROW = "No of Books User Can Borrow";
@@ -29,10 +28,11 @@ public class UserData {
     {
     }
 
-    public UserData(String myEmail, String myName, String myPassword,
+    public UserData(String myEmail, String myName, String phoneNumber, String myPassword,
                     int booksBorrowed, int canBorrow) {
         this.email = myEmail;
         this.name = myName;
+        this.phoneno = phoneNumber;
         this.password = myPassword;
         this.booksborrowed = booksBorrowed;
         this.canborrow = canBorrow;
@@ -55,6 +55,10 @@ public class UserData {
     public void setMyName(String myName) { this.name = myName; }
 
     public String getMyName() { return this.name; }
+
+    public void setMyPhoneNo(String phoneNumber) { this.phoneno = phoneNumber; }
+
+    public String getMyPhoneNo() { return this.phoneno; }
 
     public void setBooksBorrowed(int booksBorrowed) { this.booksborrowed = booksBorrowed; }
 

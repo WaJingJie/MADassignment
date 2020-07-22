@@ -106,7 +106,7 @@ public class StaffHomePage extends AppCompatActivity{
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent welcomepage = new Intent(StaffHomePage.this, MainActivity.class);
+                Intent welcomepage = new Intent(StaffHomePage.this, StaffLoginPage.class);
                 startActivity(welcomepage);
             }
         });
@@ -115,7 +115,7 @@ public class StaffHomePage extends AppCompatActivity{
         profilebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent profilepage = new Intent(StaffHomePage.this, ProfilePage.class);
+                Intent profilepage = new Intent(StaffHomePage.this, StaffProfilePage.class);
                 startActivity(profilepage);
             }
         });

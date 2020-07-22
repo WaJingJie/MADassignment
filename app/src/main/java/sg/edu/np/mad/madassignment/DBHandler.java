@@ -14,11 +14,12 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper{
     private static final String FILENAME = "DBHandler.java";
     public static final String DATABASE_NAME = "NPLibrary.db";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
     private static final String TAG = "NP Library!";
     public static final String TABLE_USERDATA= "users";
     public static final String COLUMN_EMAIL = "useremail";
     public static final String COLUMN_NAME = "username";
+    public static final String COLUMN_PHONENUMBER = "userphoneno";
     public static final String COLUMN_PASSWORD = "userpassword";
     public static final String COLUMN_NO_OF_BOOKS_BORROWED= "noofbooksborrowed";
     public static final String COLUMN_NO_OF_BOOKS_USER_CAN_BORROW = "canborrow";
@@ -26,6 +27,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public static final String TABLE_STAFFDATA= "staff";
     public static final String COLUMN_STAFFEMAIL = "staffemail";
     public static final String COLUMN_STAFFNAME = "staffname";
+    public static final String COLUMN_STAFFPHONENO = "staffphoneno";
     public static final String COLUMN_STAFFPASSWORD = "staffpassword";
 
     public static final String TABLE_BORROWDATA= "borrowed";
@@ -52,6 +54,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         String CREATE_USERDATA_TABLE = "CREATE TABLE " + TABLE_USERDATA +
                 "(" + COLUMN_EMAIL + " TEXT," + COLUMN_NAME
+                + " TEXT," + COLUMN_PHONENUMBER
                 + " TEXT," + COLUMN_PASSWORD + " TEXT,"
                 + COLUMN_NO_OF_BOOKS_BORROWED + " INTEGER,"
                 + COLUMN_NO_OF_BOOKS_USER_CAN_BORROW + " INTEGER" + ")";
@@ -60,11 +63,12 @@ public class DBHandler extends SQLiteOpenHelper{
 
         String CREATE_STAFFDATA_TABLE = "CREATE TABLE " + TABLE_STAFFDATA +
                 "(" + COLUMN_STAFFEMAIL + " TEXT," + COLUMN_STAFFNAME
+                + " TEXT," + COLUMN_STAFFPHONENO
                 + " TEXT," + COLUMN_STAFFPASSWORD + " TEXT" + ")";
         //initial catalog of staff
-        db.execSQL("INSERT INTO staff ('staffemail','staffname','staffpassword') VALUES('npstaff123@gmail.com','April Lim','passwordstaff');");
-        db.execSQL("INSERT INTO staff ('staffemail','staffname','staffpassword') VALUES('npstaff234@gmail.com','Steven Tan','passwordstaff');");
-        db.execSQL("INSERT INTO staff ('staffemail','staffname','staffpassword') VALUES('npstaff345@gmail.com','Kenny Wong','passwordstaff');");
+        db.execSQL("INSERT INTO staff ('staffemail','staffname', 'staffphoneno','staffpassword') VALUES('npstaff123@gmail.com','April Lim', '87132638','passwordstaff');");
+        db.execSQL("INSERT INTO staff ('staffemail','staffname','staffphoneno','staffpassword') VALUES('npstaff234@gmail.com','Steven Tan','8562471','passwordstaff');");
+        db.execSQL("INSERT INTO staff ('staffemail','staffname','staffphoneno','staffpassword') VALUES('npstaff345@gmail.com','Kenny Wong','94372821','passwordstaff');");
         db.execSQL(CREATE_STAFFDATA_TABLE);
         Log.v(TAG, "DB Created: " + CREATE_STAFFDATA_TABLE);
 
@@ -107,6 +111,12 @@ public class DBHandler extends SQLiteOpenHelper{
         ContentValues values = new ContentValues();
         values.put(COLUMN_EMAIL, userData.getMyEmail());
         values.put(COLUMN_NAME, userData.getMyName());
+        if(userData.getMyPhoneNo().equals(null)){
+            values.put(COLUMN_PHONENUMBER, "Add Phone Number");
+        }
+        else{
+            values.put(COLUMN_PHONENUMBER, userData.getMyPhoneNo());
+        }
         values.put(COLUMN_PASSWORD, userData.getMyPassword());
         values.put(COLUMN_NO_OF_BOOKS_BORROWED, userData.getBooksBorrowed());
         values.put(COLUMN_NO_OF_BOOKS_USER_CAN_BORROW, userData.getCanborrow());
@@ -120,6 +130,12 @@ public class DBHandler extends SQLiteOpenHelper{
         ContentValues values = new ContentValues();
         values.put(COLUMN_STAFFEMAIL, staffData.getMyStaffEmail());
         values.put(COLUMN_STAFFNAME, staffData.getMyStaffName());
+        if(staffData.getMyStaffPhoneNo().equals(null)){
+            values.put(COLUMN_STAFFPHONENO, "Add Phone Number");
+        }
+        else{
+            values.put(COLUMN_STAFFPHONENO, staffData.getMyStaffPhoneNo());
+        }
         values.put(COLUMN_STAFFPASSWORD, staffData.getMyStaffPassword());
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_STAFFDATA, null, values);
@@ -243,9 +259,10 @@ public class DBHandler extends SQLiteOpenHelper{
         if(cursor.moveToFirst()){
             userData.setMyEmail(cursor.getString(0));
             userData.setMyName(cursor.getString(1));
-            userData.setMyPassword(cursor.getString(2));
-            userData.setBooksBorrowed(cursor.getInt(3));
-            userData.setCanborrow(cursor.getInt(4));
+            userData.setMyPhoneNo(cursor.getString(2));
+            userData.setMyPassword(cursor.getString(3));
+            userData.setBooksBorrowed(cursor.getInt(4));
+            userData.setCanborrow(cursor.getInt(5));
             cursor.close();
             Log.v(TAG, FILENAME + ": QueryData: " + userData.getBooksBorrowed() + userData.getCanborrow());
         }
@@ -270,7 +287,8 @@ public class DBHandler extends SQLiteOpenHelper{
         if(cursor.moveToFirst()){
             staffData.setMyStaffEmail(cursor.getString(0));
             staffData.setMyStaffName(cursor.getString(1));
-            staffData.setMyStaffPassword(cursor.getString(2));
+            staffData.setMyStaffPhoneNo(cursor.getString(2));
+            staffData.setMyStaffPassword(cursor.getString(3));
             cursor.close();
             Log.v(TAG, FILENAME + ": QueryData: " + staffData.getMyStaffName() + staffData.getMyStaffPassword());
         }
