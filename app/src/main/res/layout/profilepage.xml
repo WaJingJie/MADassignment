@@ -46,7 +46,6 @@
         android:id="@+id/email"
         android:layout_width="310dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="264dp"
         android:background="@drawable/greybox"
         android:fontFamily="@font/benchnine_bold"
         android:paddingLeft="0dp"
@@ -57,12 +56,20 @@
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnpw"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blackbackground"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintTop_toBottomOf="@+id/blackbackground" />
+
+    <Button
+        android:id="@+id/btnpw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:text="Change password"
+        app:layout_constraintBottom_toTopOf="@+id/bottombar"
+        app:layout_constraintEnd_toEndOf="@+id/email"
+        app:layout_constraintStart_toStartOf="@+id/email" />
 
     <TextView
         android:id="@+id/name"
@@ -83,11 +90,11 @@
         android:id="@+id/bottombar"
         android:layout_width="0dp"
         android:layout_height="76dp"
+        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="#000000"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/logoutbutton"

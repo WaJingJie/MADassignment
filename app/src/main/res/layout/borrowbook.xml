@@ -13,7 +13,7 @@
         android:text="Date Borrowed"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/dateborrowed"
+        app:layout_constraintBottom_toTopOf="@+id/tvpwd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/borrowbooktitle"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -67,14 +67,14 @@
         android:text="Due Date"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/duedatefield"
+        app:layout_constraintBottom_toTopOf="@+id/tvcfmpwd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateborrowed" />
+        app:layout_constraintTop_toBottomOf="@+id/tvpwd" />
 
     <EditText
-        android:id="@+id/duedatefield"
+        android:id="@+id/tvcfmpwd"
         android:layout_width="310dp"
         android:layout_height="49dp"
         android:layout_marginBottom="24dp"
@@ -84,14 +84,14 @@
         android:fontFamily="@font/benchnine_bold"
         android:inputType="date"
         android:paddingLeft="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/borrowbutton"
+        app:layout_constraintBottom_toTopOf="@+id/btnchangepwd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <Button
-        android:id="@+id/borrowbutton"
+        android:id="@+id/btnchangepwd"
         android:layout_width="158dp"
         android:layout_height="43dp"
         android:layout_marginBottom="64dp"
@@ -104,10 +104,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duedatefield" />
+        app:layout_constraintTop_toBottomOf="@+id/tvcfmpwd" />
 
     <EditText
-        android:id="@+id/dateborrowed"
+        android:id="@+id/tvpwd"
         android:layout_width="310dp"
         android:layout_height="49dp"
         android:background="@drawable/greybox"
@@ -123,7 +123,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
-        android:id="@+id/borrowbooktitle"
+        android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:background="#000000"

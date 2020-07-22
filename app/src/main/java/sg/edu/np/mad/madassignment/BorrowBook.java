@@ -6,29 +6,22 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 public class BorrowBook extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     EditText isbn;
@@ -51,16 +44,16 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         isbn = findViewById(R.id.isbnfield);
         bookname = findViewById(R.id.bookname);
 
-        borrowdate = findViewById(R.id.dateborrowed);
+        borrowdate = findViewById(R.id.tvpwd);
         borrowdate.setInputType(InputType.TYPE_NULL);
 
-        duedate = findViewById(R.id.duedatefield);
+        duedate = findViewById(R.id.tvcfmpwd);
         duedate.setInputType(InputType.TYPE_NULL);
 
         logoutbutton = findViewById(R.id.logoutbutton);
         homebutton = findViewById(R.id.homebutton);
         profilebutton = findViewById(R.id.profilebutton);
-        borrowbtn = findViewById(R.id.borrowbutton);
+        borrowbtn = findViewById(R.id.btnchangepwd);
 
         //gets the today date
         Calendar c = Calendar.getInstance();
@@ -203,7 +196,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDateString = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
 
-        borrowdate = findViewById(R.id.dateborrowed);
+        borrowdate = findViewById(R.id.tvpwd);
         borrowdate.setText(currentDateString);
     }
 

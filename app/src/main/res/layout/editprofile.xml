@@ -83,7 +83,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editphoneno" />
 
     <Button
-        android:id="@+id/borrowbutton"
+        android:id="@+id/btnchangepwd"
         android:layout_width="158dp"
         android:layout_height="43dp"
         android:layout_marginTop="60dp"
@@ -107,9 +107,9 @@
         android:text="Confirm"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/borrowbutton"
+        app:layout_constraintBottom_toBottomOf="@+id/btnchangepwd"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/borrowbutton"
+        app:layout_constraintTop_toTopOf="@+id/btnchangepwd"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
