@@ -36,22 +36,38 @@ public class ProfilePage extends AppCompatActivity {
         name.setText(userData.getMyName());
         email.setText(userData.getMyEmail());
         //This method is to allow the user to log out
+
+        //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent welcomepage = new Intent(ProfilePage.this, MainActivity.class);
                 startActivity(welcomepage);
-                Log.v(TAG, FILENAME + ": Logging out");
             }
         });
 
-        //this is to redirect the user to the home page
-        homebutton.setOnClickListener(new View.OnClickListener() {
+        //this is to redirect the user to the profile page
+        profilebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent homepage = new Intent(ProfilePage.this, HomePage.class);
-                startActivity(homepage);
-                Log.v(TAG, FILENAME + ": Redirecting to Home Page");
+                Intent profilepage = new Intent(ProfilePage.this, ProfilePage.class);
+                startActivity(profilepage);
+            }
+        });
+
+        viewbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent viewpage = new Intent(ProfilePage.this, HomePage.class);
+                startActivity(viewpage);
+            }
+        });
+
+        overduebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent overduepage = new Intent(ProfilePage.this, OverdueLoan.class);
+                startActivity(overduepage);
             }
         });
 
