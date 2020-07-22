@@ -330,6 +330,17 @@ public class DBHandler extends SQLiteOpenHelper{
         return borrowData;
     }
 
+    public boolean staffUpdate(String email, String name, String phoneno, String password){
+        boolean result = true;
+        String query = "SELECT * FROM " + TABLE_USERDATA + " WHERE "
+                + COLUMN_EMAIL + " = \""
+                + email + "\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        StaffData staffData = new StaffData();
+    }
+
 
     //This deletes the data of the user with the email entered from the table
     public boolean deleteAccount(String email) {
