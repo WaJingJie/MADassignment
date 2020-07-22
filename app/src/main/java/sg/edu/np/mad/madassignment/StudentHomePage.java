@@ -130,8 +130,8 @@ public class StudentHomePage extends AppCompatActivity {
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent overduepage = new Intent(StudentHomePage.this, OverdueLoan.class);
-                startActivity(overduepage);
+                //Intent overduepage = new Intent(StudentHomePage.this, OverdueLoan.class);
+                //startActivity(overduepage);
             }
         });
 

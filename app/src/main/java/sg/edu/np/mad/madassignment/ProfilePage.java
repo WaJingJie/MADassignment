@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ProfilePage extends AppCompatActivity {
     ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
     TextView name, email;
+    Button changepwd, addphone;
     private static final String FILENAME = "ProfilePage.java";
     private static final String TAG = "NP Library";
 
@@ -25,6 +27,8 @@ public class ProfilePage extends AppCompatActivity {
         profilebutton = findViewById(R.id.studentprofilebutton);
         viewbutton = findViewById(R.id.viewborrowicon);
         overduebutton = findViewById(R.id.overdueicon);
+        changepwd = findViewById(R.id.btnchangepwd);
+        addphone = findViewById(R.id.btnaddphoneno);
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         UserData userData = LoginPage.userdata;
@@ -48,6 +52,26 @@ public class ProfilePage extends AppCompatActivity {
                 Intent homepage = new Intent(ProfilePage.this, HomePage.class);
                 startActivity(homepage);
                 Log.v(TAG, FILENAME + ": Redirecting to Home Page");
+            }
+        });
+
+        //intent to edit profile page
+        addphone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent editprofile = new Intent(ProfilePage.this, EditProfile.class);
+                startActivity(editprofile);
+                Log.v(TAG, FILENAME + ": Redirecting to Edit Profile Page");
+            }
+        });
+
+        //intent to edit password page
+        changepwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent editpwd = new Intent(ProfilePage.this, EditPwd.class);
+                startActivity(editpwd);
+                Log.v(TAG, FILENAME + ": Redirecting to Edit Profile Page");
             }
         });
     }

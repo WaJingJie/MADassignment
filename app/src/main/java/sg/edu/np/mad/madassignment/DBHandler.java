@@ -66,10 +66,10 @@ public class DBHandler extends SQLiteOpenHelper{
                 + " TEXT," + COLUMN_STAFFPHONENO
                 + " TEXT," + COLUMN_STAFFPASSWORD + " TEXT" + ")";
         //initial catalog of staff
+        db.execSQL(CREATE_STAFFDATA_TABLE);
         db.execSQL("INSERT INTO staff ('staffemail','staffname', 'staffphoneno','staffpassword') VALUES('npstaff123@gmail.com','April Lim', '87132638','passwordstaff');");
         db.execSQL("INSERT INTO staff ('staffemail','staffname','staffphoneno','staffpassword') VALUES('npstaff234@gmail.com','Steven Tan','8562471','passwordstaff');");
         db.execSQL("INSERT INTO staff ('staffemail','staffname','staffphoneno','staffpassword') VALUES('npstaff345@gmail.com','Kenny Wong','94372821','passwordstaff');");
-        db.execSQL(CREATE_STAFFDATA_TABLE);
         Log.v(TAG, "DB Created: " + CREATE_STAFFDATA_TABLE);
 
         String CREATE_BORROWDATA_TABLE = "CREATE TABLE " + TABLE_BORROWDATA +
@@ -111,12 +111,7 @@ public class DBHandler extends SQLiteOpenHelper{
         ContentValues values = new ContentValues();
         values.put(COLUMN_EMAIL, userData.getMyEmail());
         values.put(COLUMN_NAME, userData.getMyName());
-        if(userData.getMyPhoneNo().equals(null)){
-            values.put(COLUMN_PHONENUMBER, "Add Phone Number");
-        }
-        else{
-            values.put(COLUMN_PHONENUMBER, userData.getMyPhoneNo());
-        }
+        values.put(COLUMN_PHONENUMBER, userData.getMyPhoneNo());
         values.put(COLUMN_PASSWORD, userData.getMyPassword());
         values.put(COLUMN_NO_OF_BOOKS_BORROWED, userData.getBooksBorrowed());
         values.put(COLUMN_NO_OF_BOOKS_USER_CAN_BORROW, userData.getCanborrow());
@@ -243,7 +238,33 @@ public class DBHandler extends SQLiteOpenHelper{
     }
     //end of code for add books and search books
 
-       //This searches the table for the user using the email entered
+    //add/update phone number function goes here
+    public boolean updatePhonenum(String email, String phoneno){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_EMAIL, email);
+        values.put(COLUMN_PHONENUMBER, phoneno);
+
+        db.update(TABLE_USERDATA, values, "useremail =?",new String[]{email});
+        return true;
+    }
+    //add/update phone number function end
+
+    //update user password function
+    public boolean updatePwd(String email, String pwd){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_EMAIL, email);
+        values.put(COLUMN_PASSWORD, pwd);
+
+        db.update(TABLE_USERDATA, values, "useremail =?",new String[]{email});
+        return true;
+    }
+    //update user password end
+
+    //This searches the table for the user using the email entered
     public UserData findUser(String email) {
         String query = "SELECT * FROM " + TABLE_USERDATA + " WHERE "
                 + COLUMN_EMAIL
