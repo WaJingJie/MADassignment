@@ -330,17 +330,28 @@ public class DBHandler extends SQLiteOpenHelper{
         return borrowData;
     }
 
-    public boolean staffUpdate(String email, String name, String phoneno, String password){
-        boolean result = true;
-        String query = "SELECT * FROM " + TABLE_USERDATA + " WHERE "
-                + COLUMN_EMAIL + " = \""
-                + email + "\"";
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
+    //This updates staff update to the table
+    public boolean staffUpdate(String e, String n, String pn, String pwd) {
+        ContentValues values = new ContentValues();
         StaffData staffData = new StaffData();
-    }
+        staffData = findStaff(e);
 
+        values.put(COLUMN_EMAIL, staffData.getMyEmail());
+        values.put(COLUMN_NAME, staffData.getMyName());
+        if(staffData.getMyPhoneNo().equals(null)){
+            values.put(COLUMN_PHONENUMBER, "Add Phone Number");
+        }
+        else{
+            values.put(COLUMN_PHONENUMBER, userData.getMyPhoneNo());
+        }
+        values.put(COLUMN_PASSWORD, userData.getMyPassword());
+        values.put(COLUMN_NO_OF_BOOKS_BORROWED, userData.getBooksBorrowed());
+        values.put(COLUMN_NO_OF_BOOKS_USER_CAN_BORROW, userData.getCanborrow());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_USERDATA, null, values);
+        db.close();
+        Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
+    }
 
     //This deletes the data of the user with the email entered from the table
     public boolean deleteAccount(String email) {
