@@ -42,12 +42,17 @@ public class EditProfile extends AppCompatActivity {
         cfm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean updated = dbHandler.updatePhonenum(userData.getMyEmail(), phoneno.getText().toString());
-                if(updated == true){
-                    Toast.makeText(getApplicationContext(), "Phone number successfully updated!", Toast.LENGTH_LONG).show();
+                if(phoneno.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Enter phone number", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Phone number unsuccessfully updated", Toast.LENGTH_LONG).show();
+                    boolean updated = dbHandler.updatePhonenum(userData.getMyEmail(), phoneno.getText().toString());
+                    if(updated == true){
+                        Toast.makeText(getApplicationContext(), "Phone number successfully updated!", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Phone number unsuccessfully updated", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });

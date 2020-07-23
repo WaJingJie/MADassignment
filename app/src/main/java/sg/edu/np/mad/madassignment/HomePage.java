@@ -137,7 +137,7 @@ public class HomePage extends AppCompatActivity{
                 @Override
                 public void onClick(View v) {
                     Intent toborrowpage = new Intent(HomePage.this, BorrowBook.class);
-                    Bundle data = new Bundle();
+                    //Bundle data = new Bundle();
 //                    data.putStringArrayList("isbn", isbnList);
 //                    data.putStringArrayList("bookname", booknameList);
 //                    data.putStringArrayList("borrowdate", borrowdateList);

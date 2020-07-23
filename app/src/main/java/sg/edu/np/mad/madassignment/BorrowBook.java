@@ -61,7 +61,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         logoutbutton = findViewById(R.id.logoutbutton);
         homebutton = findViewById(R.id.homebutton);
         profilebutton = findViewById(R.id.profilebutton);
-        borrowbtn = findViewById(R.id.btnchangepwd);
+        borrowbtn = findViewById(R.id.btnborrow);
 
         spinner = findViewById(R.id.isbnlist);
 
@@ -86,14 +86,14 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         borrowdateList = recieveingEnd.getStringArrayListExtra("borrowdate");
         duedateList = recieveingEnd.getStringArrayListExtra("duedate");*/
 
-        //statement to detect if the list is null
-        if(isbnList == null){
-            //recreates the list to not make it null
-            isbnList= new ArrayList<String>();
-            booknameList= new ArrayList<String>();
-            borrowdateList= new ArrayList<String>();
-            duedateList= new ArrayList<String>();
-        }
+//        //statement to detect if the list is null
+//        if(isbnList == null){
+//            //recreates the list to not make it null
+//            isbnList= new ArrayList<String>();
+//            booknameList= new ArrayList<String>();
+//            borrowdateList= new ArrayList<String>();
+//            duedateList= new ArrayList<String>();
+//        }
 
         //database version
         ArrayList<String> isbnlist = dbHandler.getIsbn();
