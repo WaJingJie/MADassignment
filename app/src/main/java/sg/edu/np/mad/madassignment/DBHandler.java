@@ -93,7 +93,7 @@ public class DBHandler extends SQLiteOpenHelper{
         db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-6','Introduction to programming','Available');");
         db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-5','Introduction to android','Available');");
         db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-4','Hello world','Available');");
-        db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-3','Hello','Inavailable');");
+        db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-3','Hello','Unavailable');");
         //end of initial catalog of books
         Log.v(TAG, "DB Created: " + CREATE_BOOKS_TABLE);
 
@@ -274,19 +274,59 @@ public class DBHandler extends SQLiteOpenHelper{
     //end
 
     //adding borrow book function
-    public void addBorrowedBook(BorrowData borrowData) {
+    public void addBorrowedBook(String email, String isbn, String bookname, String borrowdate, String duedate) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_BOOKEMAIL, borrowData.getMyBookEmail());
-        values.put(COLUMN_ISBN, borrowData.getISBN());
-        values.put(COLUMN_BOOKNAME, borrowData.getMyBookName());
-        values.put(COLUMN_BORROWDATE, borrowData.getBorrowDate());
-        values.put(COLUMN_DUEDATE, borrowData.getDueDate());
+        values.put(COLUMN_BOOKEMAIL, email);
+        values.put(COLUMN_ISBN, isbn);
+        values.put(COLUMN_BOOKNAME, bookname);
+        values.put(COLUMN_BORROWDATE, borrowdate);
+        values.put(COLUMN_DUEDATE, duedate);
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_USERDATA, null, values);
+        db.insert(TABLE_BORROWDATA, null, values);
         db.close();
         Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
     }
     //adding borrow book function end
+
+    //updating book status
+    public boolean updatebookStatus(String isbn){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_ISBN, isbn);
+        values.put(COLUMN_STATUS, "Unavaliable");
+
+        db.update(TABLE_BOOKS, values, "isbn =?",new String[]{isbn});
+        return true;
+    }
+    //end
+
+    //select all book borrowed based on the user's email
+    public List<BorrowData> getborrowbyEmail(String email){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"isbn, bookname, borrowdate, duedate"};
+        String tablename = "borrowed";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"email =?",new String[]{email},null,null,null);
+        List<BorrowData> result = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                BorrowData borrowlist = new BorrowData();
+                borrowlist.setISBN(cursor.getString(cursor.getColumnIndex("isbn")));
+                borrowlist.setMyBookName(cursor.getString(cursor.getColumnIndex("bookname")));
+                borrowlist.setBorrowDate(cursor.getString(cursor.getColumnIndex("borrowdate")));
+                borrowlist.setDueDate(cursor.getString(cursor.getColumnIndex("duedate")));
+                result.add(borrowlist);
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+    //end
 
     //add/update phone number function goes here
     public boolean updatePhonenum(String email, String phoneno){
@@ -386,7 +426,7 @@ public class DBHandler extends SQLiteOpenHelper{
 
         if(cursor.moveToFirst()){
             borrowData.setMyBookEmail(cursor.getString(0));
-            borrowData.setISBN(cursor.getInt(1));
+            borrowData.setISBN(cursor.getString(1));
             borrowData.setMyBookName(cursor.getString(2));
             borrowData.setBorrowDate(cursor.getString(3));
             borrowData.setDueDate(cursor.getString(4));
@@ -410,6 +450,7 @@ public class DBHandler extends SQLiteOpenHelper{
         Cursor cursor = db.rawQuery(query, null);
 
         StaffData staffData = new StaffData();
+        return true;
     }
 
 

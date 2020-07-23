@@ -27,10 +27,17 @@ public class HomePage extends AppCompatActivity{
     TextView hbno;
     TextView cbno;
     ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
+
+    RecyclerView rv;
+    RecyclerView.LayoutManager layoutManager;
+    LibraryAdapter adapter;
+
     ArrayList<String> isbnList = new ArrayList<>();
     ArrayList<String> booknameList = new ArrayList<>();
     ArrayList<String> borrowdateList = new ArrayList<>();
     ArrayList<String> duedateList = new ArrayList<>();
+
+    DBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,67 +54,83 @@ public class HomePage extends AppCompatActivity{
         profilebutton = findViewById(R.id.studentprofilebutton);
         viewbutton = findViewById(R.id.viewborrowicon);
         overduebutton = findViewById(R.id.overdueicon);
-        //this gets the data from borrow book page
-        Intent receivingEnd = getIntent();
 
-        //get arraylist from borrowbook page
-        isbnList = receivingEnd.getStringArrayListExtra("isbn");
-        booknameList = receivingEnd.getStringArrayListExtra("bookname");
-        borrowdateList = receivingEnd.getStringArrayListExtra("borrowdate");
-        duedateList = receivingEnd.getStringArrayListExtra("duedate");
+        UserData userData = LoginPage.userdata;
 
-        //test log to see if arraykist is created properly
-        if(isbnList == null){
-            //sets the maximum borrow to 9 and borrow book count to 9 when the list is empty
-            hbno.setText("0");
-            cbno.setText("9");
-            Log.d("List", "empty");
-        }
-        //continue on with the rest of the code if list is not null. null list will crash the program.
-        else if(isbnList != null){
-            //display the no of books borrowed
-            int borrowcount = isbnList.size();
-            hbno.setText(Integer.toString(borrowcount));
+        //initialize db
+        dbHandler = new DBHandler(this,null,null,1);
 
-            //display the remaining borrow count(9 is max)
-            int remainingcount = 9-borrowcount;
-            cbno.setText(Integer.toString(remainingcount));
-
-            //recyclerview code goes here
-            RecyclerView rv = findViewById(R.id.homepageview);
-
-            LibraryAdapter adapter = new LibraryAdapter(isbnList, booknameList, borrowdateList, duedateList);
-            rv.setAdapter(adapter);
-
-            LinearLayoutManager layout = new LinearLayoutManager(this);
-            rv.setLayoutManager(layout);
-            rv.setItemAnimator(new DefaultItemAnimator());
-            adapter.notifyDataSetChanged();
-
-            Log.d("List", isbnList.toString());
-            Log.d("List", booknameList.toString());
-            Log.d("List", borrowdateList.toString());
-            Log.d("List", duedateList.toString());
-        }
-        //creates an onclick listener to redirect to borrow book layout when it the borrow limit is not equals to zero
+//        //this gets the data from borrow book page
+//        Intent receivingEnd = getIntent();
+//
+//        //get arraylist from borrowbook page
+//        isbnList = receivingEnd.getStringArrayListExtra("isbn");
+//        booknameList = receivingEnd.getStringArrayListExtra("bookname");
+//        borrowdateList = receivingEnd.getStringArrayListExtra("borrowdate");
+//        duedateList = receivingEnd.getStringArrayListExtra("duedate");
+//
+//        //test log to see if arraykist is created properly
+//        if(isbnList == null){
+//            //sets the maximum borrow to 9 and borrow book count to 9 when the list is empty
+//            hbno.setText("0");
+//            cbno.setText("9");
+//            Log.d("List", "empty");
+//        }
+//        //continue on with the rest of the code if list is not null. null list will crash the program.
+//        else if(isbnList != null){
+//            //display the no of books borrowed
+//            int borrowcount = isbnList.size();
+//            hbno.setText(Integer.toString(borrowcount));
+//
+//            //display the remaining borrow count(9 is max)
+//            int remainingcount = 9-borrowcount;
+//            cbno.setText(Integer.toString(remainingcount));
+//
+//            //recyclerview code goes here
+//            RecyclerView rv = findViewById(R.id.homepageview);
+//
+//            LibraryAdapter adapter = new LibraryAdapter(isbnList, booknameList, borrowdateList, duedateList);
+//            rv.setAdapter(adapter);
+//
+//            LinearLayoutManager layout = new LinearLayoutManager(this);
+//            rv.setLayoutManager(layout);
+//            rv.setItemAnimator(new DefaultItemAnimator());
+//            adapter.notifyDataSetChanged();
+//
+//            Log.d("List", isbnList.toString());
+//            Log.d("List", booknameList.toString());
+//            Log.d("List", borrowdateList.toString());
+//            Log.d("List", duedateList.toString());
+//        }
+//        //creates an onclick listener to redirect to borrow book layout when it the borrow limit is not equals to zero
         if(Integer.parseInt(cbno.getText().toString()) != 0){
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
+           fab.setOnClickListener(new View.OnClickListener() {
+               @Override
                 public void onClick(View v) {
-                    Intent toborrowpage = new Intent(HomePage.this, BorrowBook.class);
-                    Bundle data = new Bundle();
-
-                    data.putStringArrayList("isbn", isbnList);
-                    data.putStringArrayList("bookname", booknameList);
-                    data.putStringArrayList("borrowdate", borrowdateList);
-                    data.putStringArrayList("duedate", duedateList);
-                    toborrowpage.putExtras(data);
+                   Intent toborrowpage = new Intent(HomePage.this, BorrowBook.class);
+                   Bundle data = new Bundle();
+//                    data.putStringArrayList("isbn", isbnList);
+//                    data.putStringArrayList("bookname", booknameList);
+//                    data.putStringArrayList("borrowdate", borrowdateList);
+//                    data.putStringArrayList("duedate", duedateList);
+//                    toborrowpage.putExtras(data);
                     startActivity(toborrowpage);
-                }
+               }
             });
         }
+        //initialize rv
+        rv = findViewById(R.id.homepageview);
+        layoutManager = new LinearLayoutManager(this);
+        rv.setLayoutManager(layoutManager);
+        rv.setHasFixedSize(true);
+
+        //retrieves borrowbooks from db and display it in rv
+        adapter = new LibraryAdapter(this,dbHandler.getborrowbyEmail(userData.getMyEmail()));
+        rv.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
         //creates an onclick listener to notify the user that they have reached the max amount of books they can borrow
-        else if(Integer.parseInt(cbno.getText().toString()) == 0){
+        if(Integer.parseInt(cbno.getText().toString()) == 0){
 
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -116,6 +139,8 @@ public class HomePage extends AppCompatActivity{
                 }
             });
         }
+
+
 
 
         //this is to allow the user to log out

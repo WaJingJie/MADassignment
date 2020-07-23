@@ -100,7 +100,7 @@ public class StudentHomePage extends AppCompatActivity {
         });
         adapter = new Searchbookadapter(this,dbHandler.getBook());
         rv.setAdapter(adapter);
-
+        adapter.notifyDataSetChanged();
         //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
