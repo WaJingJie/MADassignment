@@ -102,22 +102,7 @@ public class HomePage extends AppCompatActivity{
 //            Log.d("List", borrowdateList.toString());
 //            Log.d("List", duedateList.toString());
 //        }
-//        //creates an onclick listener to redirect to borrow book layout when it the borrow limit is not equals to zero
-        if(Integer.parseInt(cbno.getText().toString()) != 0){
-           fab.setOnClickListener(new View.OnClickListener() {
-               @Override
-                public void onClick(View v) {
-                   Intent toborrowpage = new Intent(HomePage.this, BorrowBook.class);
-                   Bundle data = new Bundle();
-//                    data.putStringArrayList("isbn", isbnList);
-//                    data.putStringArrayList("bookname", booknameList);
-//                    data.putStringArrayList("borrowdate", borrowdateList);
-//                    data.putStringArrayList("duedate", duedateList);
-//                    toborrowpage.putExtras(data);
-                    startActivity(toborrowpage);
-               }
-            });
-        }
+
         //initialize rv
         rv = findViewById(R.id.homepageview);
         layoutManager = new LinearLayoutManager(this);
@@ -129,8 +114,15 @@ public class HomePage extends AppCompatActivity{
         rv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
+        //display the no of books borrowed
+        hbno.setText(Integer.toString(adapter.getItemCount()));
+
+        //display the remaining borrow count(9 is max)
+        int remainingcount = 9- adapter.getItemCount();
+        cbno.setText(Integer.toString(remainingcount));
+
         //creates an onclick listener to notify the user that they have reached the max amount of books they can borrow
-        if(Integer.parseInt(cbno.getText().toString()) == 0){
+        if(Integer.parseInt(cbno.getText().toString()) == adapter.getItemCount()){
 
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -140,8 +132,21 @@ public class HomePage extends AppCompatActivity{
             });
         }
 
-
-
+        else{
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent toborrowpage = new Intent(HomePage.this, BorrowBook.class);
+                    Bundle data = new Bundle();
+//                    data.putStringArrayList("isbn", isbnList);
+//                    data.putStringArrayList("bookname", booknameList);
+//                    data.putStringArrayList("borrowdate", borrowdateList);
+//                    data.putStringArrayList("duedate", duedateList);
+//                    toborrowpage.putExtras(data);
+                    startActivity(toborrowpage);
+                }
+            });
+        }
 
         //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {

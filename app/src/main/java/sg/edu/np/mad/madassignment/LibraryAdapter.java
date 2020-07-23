@@ -69,7 +69,9 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryViewHolder> {
     @Override
     public int getItemCount() {
         Log.v(TAG, FILENAME +": Getting number of items from ISBN List");
-        return borrowdata.size();
-
+        if (borrowdata != null){
+            return borrowdata.size();
+        }
+        return 0;
     }
 }
