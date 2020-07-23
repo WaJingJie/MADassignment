@@ -1,46 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editprofilename"
-        android:layout_width="310dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/greybox"
-        android:ems="10"
-        android:fontFamily="@font/benchnine_bold"
-        android:includeFontPadding="false"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:text="Edit Profile Name"
-        android:textColor="#8E8D8D"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editprofiletitle" />
-
-    <EditText
         android:id="@+id/editphoneno"
         android:layout_width="310dp"
         android:layout_height="42dp"
-        android:layout_marginTop="32dp"
         android:background="@drawable/greybox"
         android:ems="10"
         android:fontFamily="@font/benchnine_bold"
+        android:hint="Phone number"
         android:includeFontPadding="false"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
-        android:text="Edit Phone Number"
         android:textColor="#8E8D8D"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnchangepwd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editprofileemail" />
 
@@ -48,9 +27,10 @@
         android:id="@+id/editprofileemail"
         android:layout_width="310dp"
         android:layout_height="49dp"
-        android:layout_marginTop="32dp"
         android:background="@drawable/greybox"
+        android:editable="false"
         android:ems="10"
+        android:enabled="false"
         android:fontFamily="@font/benchnine_bold"
         android:includeFontPadding="false"
         android:inputType="textPersonName"
@@ -58,59 +38,41 @@
         android:text="Edit Profile Email"
         android:textColor="#8E8D8D"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editprofilename" />
-
-    <EditText
-        android:id="@+id/editpassword"
-        android:layout_width="310dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/greybox"
-        android:ems="10"
-        android:fontFamily="@font/benchnine_bold"
-        android:includeFontPadding="false"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:text="Edit Password"
-        android:textColor="#8E8D8D"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editphoneno" />
+        app:layout_constraintBottom_toTopOf="@+id/editphoneno"
+        app:layout_constraintEnd_toEndOf="@+id/editphoneno"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/editphoneno"
+        app:layout_constraintTop_toBottomOf="@+id/editprofiletitle" />
 
     <Button
-        android:id="@+id/borrowbutton"
+        android:id="@+id/btnchangepwd"
         android:layout_width="158dp"
         android:layout_height="43dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="28dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="@android:string/cancel"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/studentbottombar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editpassword" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editprofileconfirm"
+        app:layout_constraintTop_toBottomOf="@+id/editphoneno" />
 
     <Button
         android:id="@+id/editprofileconfirm"
         android:layout_width="158dp"
         android:layout_height="43dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginBottom="128dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="Confirm"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/borrowbutton"
+        app:layout_constraintBottom_toBottomOf="@+id/btnchangepwd"
+        app:layout_constraintEnd_toStartOf="@+id/btnchangepwd"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/borrowbutton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/btnchangepwd" />
 
     <TextView
         android:id="@+id/editprofiletitle"
@@ -118,7 +80,7 @@
         android:layout_height="72dp"
         android:background="@color/design_default_color_on_secondary"
         android:fontFamily="@font/open_sans_bold"
-        android:text="edit profile"
+        android:text="Add phone number"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="36sp"

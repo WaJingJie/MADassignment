@@ -100,7 +100,7 @@ public class StudentHomePage extends AppCompatActivity {
         });
         adapter = new Searchbookadapter(this,dbHandler.getBook());
         rv.setAdapter(adapter);
-
+        adapter.notifyDataSetChanged();
         //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,8 +130,8 @@ public class StudentHomePage extends AppCompatActivity {
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent overduepage = new Intent(StudentHomePage.this, OverdueLoan.class);
-                startActivity(overduepage);
+                //Intent overduepage = new Intent(StudentHomePage.this, OverdueLoan.class);
+                //startActivity(overduepage);
             }
         });
 

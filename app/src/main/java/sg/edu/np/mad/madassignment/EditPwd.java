@@ -11,23 +11,24 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class EditProfile extends AppCompatActivity {
+public class EditPwd extends AppCompatActivity {
 
     TextView email;
-    EditText phoneno;
+    EditText password, cfmpassword;
     Button cfm, cancel;
     DBHandler dbHandler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.editprofile);
+        setContentView(R.layout.changepwd);
 
         //get user's email
         final UserData userData = LoginPage.userdata;
 
         email = findViewById(R.id.editprofileemail);
-        phoneno = findViewById(R.id.editphoneno);
+        password = findViewById(R.id.etpassword);
+        cfmpassword = findViewById(R.id.etcfmpassword);
 
         cfm = findViewById(R.id.editprofileconfirm);
         cancel = findViewById(R.id.btnchangepwd);
@@ -42,16 +43,16 @@ public class EditProfile extends AppCompatActivity {
         cfm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(phoneno.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Enter phone number", Toast.LENGTH_LONG).show();
+                if(password.getText().toString().isEmpty()|| password.getText().toString() == cfmpassword.getText().toString()){
+                    Toast.makeText(getApplicationContext(), "Please enter the field correctly! Hint password must be the same.", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    boolean updated = dbHandler.updatePhonenum(userData.getMyEmail(), phoneno.getText().toString());
+                    boolean updated = dbHandler.updatePwd(userData.getMyEmail(), password.getText().toString());
                     if(updated == true){
-                        Toast.makeText(getApplicationContext(), "Phone number successfully updated!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
                     }
                     else{
-                        Toast.makeText(getApplicationContext(), "Phone number unsuccessfully updated", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Password unsuccessfully updated", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -61,11 +62,9 @@ public class EditProfile extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cancel = new Intent(EditProfile.this, ProfilePage.class);
+                Intent cancel = new Intent(EditPwd.this, ProfilePage.class);
                 startActivity(cancel);
             }
         });
     }
 }
-
-

@@ -3,108 +3,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnchangepwd"
+    <EditText
+        android:id="@+id/etpassword"
         android:layout_width="310dp"
-        android:layout_height="50dp"
-        android:background="#000000"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="Change password"
-        android:textColor="#FFFFFF"
+        android:layout_height="42dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:hint="Password"
+        android:includeFontPadding="false"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp"
+        android:textColor="#8E8D8D"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/studentbottombar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnaddphoneno" />
+        app:layout_constraintBottom_toTopOf="@+id/etcfmpassword"
+        app:layout_constraintEnd_toEndOf="@+id/etcfmpassword"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/etcfmpassword"
+        app:layout_constraintTop_toBottomOf="@+id/editprofileemail" />
 
-    <Button
-        android:id="@+id/btnaddphoneno"
+    <EditText
+        android:id="@+id/etcfmpassword"
         android:layout_width="310dp"
-        android:layout_height="50dp"
-        android:background="#000000"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="Add Phone number"
-        android:textColor="#FFFFFF"
+        android:layout_height="42dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:hint="Confirm password"
+        android:includeFontPadding="false"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp"
+        android:textColor="#8E8D8D"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/btnchangepwd"
-        app:layout_constraintEnd_toEndOf="@+id/btnchangepwd"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/btnchangepwd"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etpassword" />
 
-    <TextView
-        android:id="@+id/email"
+    <EditText
+        android:id="@+id/editprofileemail"
         android:layout_width="310dp"
         android:layout_height="49dp"
         android:background="@drawable/greybox"
+        android:editable="false"
+        android:ems="10"
+        android:enabled="false"
         android:fontFamily="@font/benchnine_bold"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp"
-        android:paddingRight="0dp"
-        android:paddingBottom="0dp"
-        android:text="johntan12@gmail.com"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnaddphoneno"
-        app:layout_constraintEnd_toEndOf="@+id/btnaddphoneno"
+        android:includeFontPadding="false"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:text="Edit Profile Email"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/etpassword"
+        app:layout_constraintEnd_toEndOf="@+id/etpassword"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/btnaddphoneno"
-        app:layout_constraintTop_toBottomOf="@+id/blackbackground" />
+        app:layout_constraintStart_toStartOf="@+id/etpassword"
+        app:layout_constraintTop_toBottomOf="@+id/editprofiletitle" />
 
-    <ScrollView
-        android:id="@+id/blackbackground"
-        android:layout_width="0dp"
-        android:layout_height="304dp"
+    <Button
+        android:id="@+id/btnchangepwd"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
         android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="@android:string/cancel"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/studentbottombar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editprofileconfirm"
+        app:layout_constraintTop_toBottomOf="@+id/etcfmpassword" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
-    <ImageView
-        android:id="@+id/greycircle"
-        android:layout_width="161dp"
-        android:layout_height="115dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:id="@+id/editprofileconfirm"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Confirm"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnchangepwd"
+        app:layout_constraintEnd_toStartOf="@+id/btnchangepwd"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/greyoutline" />
-
-    <ImageView
-        android:id="@+id/blueprofile"
-        android:layout_width="129dp"
-        android:layout_height="99dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/blueprofile" />
+        app:layout_constraintTop_toTopOf="@+id/btnchangepwd" />
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="197dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/benchnine_bold"
-        android:text="John Tan"
+        android:id="@+id/editprofiletitle"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:background="@color/design_default_color_on_secondary"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Add phone number"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="40sp"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greycircle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/studentbottombar"

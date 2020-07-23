@@ -54,6 +54,7 @@ public class SignUpPage extends AppCompatActivity {
                 String name = signupname.getText().toString();
                 String password = signuppassword.getText().toString();
                 String confirm = signupconfirm.getText().toString();
+                String phonenumber = "";
                 int nofbooksborrowed = 0;
                 int canborrow = 9;
                 Log.v(TAG, FILENAME + ": Redirecting to Login Page");
@@ -66,7 +67,7 @@ public class SignUpPage extends AppCompatActivity {
                 }
                 else{
                     //This method is to check whether the email has been already used by an existing user
-                    dupvalidate(email, name, password, nofbooksborrowed, canborrow);
+                    dupvalidate(email, name, phonenumber, password, nofbooksborrowed, canborrow);
 
                 }
 
@@ -100,19 +101,18 @@ public class SignUpPage extends AppCompatActivity {
     }
 
     //This method is to check whether the email has been already used by an existing user
-    public void dupvalidate(String e, String n, String p, int b, int c){
+    public void dupvalidate(String email, String name, String phoneno, String password, int b, int c){
         DBHandler dbHandler = new DBHandler(this, null, null, 1);
         //This searches the database for the entered email
         Log.v(TAG, FILENAME + ": Searching database for email!");
-        UserData data = dbHandler.findUser(e);
+        UserData data = dbHandler.findUser(email);
         //This occurs when the email has been found in the database
         if(data != null){
             Toast.makeText(SignUpPage.this, "User already exists! Please enter another email.",
                     Toast.LENGTH_LONG).show();
         }
         else{
-
-            UserData userdata = new UserData(e, n, p, b, c);
+            UserData userdata = new UserData(email, name, phoneno, password, b, c);
             //This adds the new user information into the database
             dbHandler.addUser(userdata);
             Log.v(TAG, FILENAME + ": New user successfully created !");

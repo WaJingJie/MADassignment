@@ -2,7 +2,7 @@ package sg.edu.np.mad.madassignment;
 
 public class BorrowData {
     private String bookemail;
-    private int isbn;
+    private String isbn;
     private String bookname;
     private String borrowdate;
     private String duedate;
@@ -19,7 +19,7 @@ public class BorrowData {
     {
     }
 
-    public BorrowData(String myBookEmail, int ISBN,
+    public BorrowData(String myBookEmail, String ISBN,
                       String bookName, String borrowDate, String dueDate) {
         this.bookemail = myBookEmail;
         this.isbn = ISBN;
@@ -34,11 +34,11 @@ public class BorrowData {
 
     public String getMyBookEmail(){ return this.bookemail; }
 
-    public void setISBN(int ISBN) {
+    public void setISBN(String ISBN) {
         this.isbn = ISBN;
     }
 
-    public int getISBN(){
+    public String getISBN(){
         return this.isbn;
     }
 

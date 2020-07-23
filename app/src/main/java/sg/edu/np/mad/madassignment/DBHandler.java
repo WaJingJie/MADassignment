@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,10 +68,10 @@ public class DBHandler extends SQLiteOpenHelper{
                 + " TEXT," + COLUMN_STAFFPHONENO
                 + " TEXT," + COLUMN_STAFFPASSWORD + " TEXT" + ")";
         //initial catalog of staff
+        db.execSQL(CREATE_STAFFDATA_TABLE);
         db.execSQL("INSERT INTO staff ('staffemail','staffname', 'staffphoneno','staffpassword') VALUES('npstaff123@gmail.com','April Lim', '87132638','passwordstaff');");
         db.execSQL("INSERT INTO staff ('staffemail','staffname','staffphoneno','staffpassword') VALUES('npstaff234@gmail.com','Steven Tan','8562471','passwordstaff');");
         db.execSQL("INSERT INTO staff ('staffemail','staffname','staffphoneno','staffpassword') VALUES('npstaff345@gmail.com','Kenny Wong','94372821','passwordstaff');");
-        db.execSQL(CREATE_STAFFDATA_TABLE);
         Log.v(TAG, "DB Created: " + CREATE_STAFFDATA_TABLE);
 
         String CREATE_BORROWDATA_TABLE = "CREATE TABLE " + TABLE_BORROWDATA +
@@ -91,6 +93,7 @@ public class DBHandler extends SQLiteOpenHelper{
         db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-6','Introduction to programming','Available');");
         db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-5','Introduction to android','Available');");
         db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-4','Hello world','Available');");
+        db.execSQL("INSERT INTO books ('isbn','bookname','status') VALUES('978-1-4028-9463-3','Hello','Unavailable');");
         //end of initial catalog of books
         Log.v(TAG, "DB Created: " + CREATE_BOOKS_TABLE);
 
@@ -111,12 +114,7 @@ public class DBHandler extends SQLiteOpenHelper{
         ContentValues values = new ContentValues();
         values.put(COLUMN_EMAIL, userData.getMyEmail());
         values.put(COLUMN_NAME, userData.getMyName());
-        if(userData.getMyPhoneNo().equals(null)){
-            values.put(COLUMN_PHONENUMBER, "Add Phone Number");
-        }
-        else{
-            values.put(COLUMN_PHONENUMBER, userData.getMyPhoneNo());
-        }
+        values.put(COLUMN_PHONENUMBER, userData.getMyPhoneNo());
         values.put(COLUMN_PASSWORD, userData.getMyPassword());
         values.put(COLUMN_NO_OF_BOOKS_BORROWED, userData.getBooksBorrowed());
         values.put(COLUMN_NO_OF_BOOKS_USER_CAN_BORROW, userData.getCanborrow());
@@ -144,18 +142,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
 
-    public void addBorrowedBook(BorrowData borrowData) {
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_BOOKEMAIL, borrowData.getMyBookEmail());
-        values.put(COLUMN_ISBN, borrowData.getISBN());
-        values.put(COLUMN_BOOKNAME, borrowData.getMyBookName());
-        values.put(COLUMN_BORROWDATE, borrowData.getBorrowDate());
-        values.put(COLUMN_DUEDATE, borrowData.getDueDate());
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_USERDATA, null, values);
-        db.close();
-        Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
-    }
+
 
     //method to add books and search books
     public void addbook(String isbn, String bookname, String status){
@@ -243,7 +230,131 @@ public class DBHandler extends SQLiteOpenHelper{
     }
     //end of code for add books and search books
 
-       //This searches the table for the user using the email entered
+    //get the list of isbn
+    public ArrayList<String> getIsbn(){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"isbn"};
+        String tablename = "books";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"status ='Available'",null,null,null,null);
+        ArrayList<String> result = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                result.add(cursor.getString(cursor.getColumnIndex("isbn")));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+    //end
+
+    //get book name from the select isbn
+    public String getBookByISBN(String isbn){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"bookname"};
+        String tablename = "books";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"isbn = ? AND status ='Available'",new String[]{isbn},null,null,null);
+        String result ="";
+        if(cursor.moveToFirst()){
+            do{
+                result = cursor.getString(cursor.getColumnIndex("bookname"));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+    //end
+
+    //adding borrow book function
+    public void addBorrowedBook(String email, String isbn, String bookname, String borrowdate, String duedate) {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_BOOKEMAIL, email);
+        values.put(COLUMN_ISBN, isbn);
+        values.put(COLUMN_BOOKNAME, bookname);
+        values.put(COLUMN_BORROWDATE, borrowdate);
+        values.put(COLUMN_DUEDATE, duedate);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_BORROWDATA, null, values);
+        db.close();
+        Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
+    }
+    //adding borrow book function end
+
+    //updating book status
+    public boolean updatebookStatus(String isbn){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_ISBN, isbn);
+        values.put(COLUMN_STATUS, "Unavaliable");
+
+        db.update(TABLE_BOOKS, values, "isbn =?",new String[]{isbn});
+        return true;
+    }
+    //end
+
+    //select all book borrowed based on the user's email
+    public List<BorrowData> getborrowbyEmail(String email){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"isbn, bookname, borrowdate, duedate"};
+        String tablename = "borrowed";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"email =?",new String[]{email},null,null,null);
+        List<BorrowData> result = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                BorrowData borrowlist = new BorrowData();
+                borrowlist.setISBN(cursor.getString(cursor.getColumnIndex("isbn")));
+                borrowlist.setMyBookName(cursor.getString(cursor.getColumnIndex("bookname")));
+                borrowlist.setBorrowDate(cursor.getString(cursor.getColumnIndex("borrowdate")));
+                borrowlist.setDueDate(cursor.getString(cursor.getColumnIndex("duedate")));
+                result.add(borrowlist);
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+    //end
+
+    //add/update phone number function goes here
+    public boolean updatePhonenum(String email, String phoneno){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_EMAIL, email);
+        values.put(COLUMN_PHONENUMBER, phoneno);
+
+        db.update(TABLE_USERDATA, values, "useremail =?",new String[]{email});
+        return true;
+    }
+    //add/update phone number function end
+
+    //update user password function
+    public boolean updatePwd(String email, String pwd){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_EMAIL, email);
+        values.put(COLUMN_PASSWORD, pwd);
+
+        db.update(TABLE_USERDATA, values, "useremail =?",new String[]{email});
+        return true;
+    }
+    //update user password end
+
+    //This searches the table for the user using the email entered
     public UserData findUser(String email) {
         String query = "SELECT * FROM " + TABLE_USERDATA + " WHERE "
                 + COLUMN_EMAIL
@@ -315,7 +426,7 @@ public class DBHandler extends SQLiteOpenHelper{
 
         if(cursor.moveToFirst()){
             borrowData.setMyBookEmail(cursor.getString(0));
-            borrowData.setISBN(cursor.getInt(1));
+            borrowData.setISBN(cursor.getString(1));
             borrowData.setMyBookName(cursor.getString(2));
             borrowData.setBorrowDate(cursor.getString(3));
             borrowData.setDueDate(cursor.getString(4));
@@ -335,6 +446,8 @@ public class DBHandler extends SQLiteOpenHelper{
         ContentValues values = new ContentValues();
         StaffData staffData = new StaffData();
         staffData = findStaff(e);
+        return true;
+    }
 
         values.put(COLUMN_EMAIL, staffData.getMyEmail());
         values.put(COLUMN_NAME, staffData.getMyName());
