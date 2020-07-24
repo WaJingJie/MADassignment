@@ -9,7 +9,7 @@
         android:id="@+id/editstaffname"
         android:layout_width="310dp"
         android:layout_height="49dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/greybox"
         android:ems="10"
         android:fontFamily="@font/benchnine_bold"
@@ -21,13 +21,13 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editprofiletitle" />
+        app:layout_constraintTop_toBottomOf="@+id/editstaffemail" />
 
     <EditText
         android:id="@+id/editstaffphone"
         android:layout_width="310dp"
         android:layout_height="42dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/greybox"
         android:ems="10"
         android:fontFamily="@font/benchnine_bold"
@@ -40,44 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editstaffemail" />
-
-    <EditText
-        android:id="@+id/editstaffemail"
-        android:layout_width="310dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/greybox"
-        android:ems="10"
-        android:fontFamily="@font/benchnine_bold"
-        android:includeFontPadding="false"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:text="Edit Profile Email"
-        android:textColor="#8E8D8D"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editstaffname" />
-
-    <EditText
-        android:id="@+id/editstaffpassword"
-        android:layout_width="310dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/greybox"
-        android:ems="10"
-        android:fontFamily="@font/benchnine_bold"
-        android:includeFontPadding="false"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:text="Edit Password"
-        android:textColor="#8E8D8D"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editstaffphone" />
 
     <Button
         android:id="@+id/staffcancelbtn"
@@ -91,7 +54,7 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editstaffpassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editstaffphone" />
 
     <Button
         android:id="@+id/editstaffconfirm"
@@ -188,6 +151,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addbookicon"
         app:srcCompat="@drawable/deleteicon" />
+
+    <TextView
+        android:id="@+id/editstaffemail"
+        android:layout_width="310dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:paddingLeft="20dp"
+        android:paddingTop="7dp"
+        android:text="Profile Email"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editprofiletitle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

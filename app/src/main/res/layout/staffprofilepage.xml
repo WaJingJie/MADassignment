@@ -1,36 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF">
+        android:background="#FFFFFF"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="227dp">
 
         <Button
             android:id="@+id/editstaffbtn"
             android:layout_width="310dp"
             android:layout_height="50dp"
-            android:layout_marginTop="39dp"
-            android:layout_marginBottom="140dp"
             android:background="#000000"
             android:fontFamily="@font/open_sans_bold"
             android:text="Edit Profile"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/staffchangepwd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phoneno" />
 
+        <Button
+            android:id="@+id/staffchangepwd"
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:background="#000000"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="Change Password"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/staffbottombar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editstaffbtn" />
+
         <ScrollView
             android:id="@+id/blackbackground"
             android:layout_width="0dp"
-            android:layout_height="304dp"
+            android:layout_height="253dp"
             android:background="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -67,7 +82,6 @@
             android:id="@+id/staffemail"
             android:layout_width="310dp"
             android:layout_height="49dp"
-            android:layout_marginTop="24dp"
             android:background="@drawable/greybox"
             android:fontFamily="@font/benchnine_bold"
             android:paddingLeft="0dp"
@@ -78,8 +92,8 @@
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@+id/phoneno"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.475"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/blackbackground" />
 
@@ -87,7 +101,6 @@
             android:id="@+id/phoneno"
             android:layout_width="310dp"
             android:layout_height="49dp"
-            android:layout_marginTop="31dp"
             android:background="@drawable/greybox"
             android:fontFamily="@font/benchnine_bold"
             android:paddingLeft="0dp"
@@ -98,8 +111,8 @@
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="32sp"
+            app:layout_constraintBottom_toTopOf="@+id/editstaffbtn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.475"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/staffemail" />
 

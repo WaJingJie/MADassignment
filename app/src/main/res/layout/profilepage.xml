@@ -26,14 +26,13 @@
         android:layout_height="50dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
-        android:text="Add Phone number"
+        android:text="Edit Profile"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/btnchangepwd"
-        app:layout_constraintEnd_toEndOf="@+id/btnchangepwd"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/btnchangepwd"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneno" />
 
     <TextView
         android:id="@+id/email"
@@ -49,16 +48,34 @@
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnaddphoneno"
-        app:layout_constraintEnd_toEndOf="@+id/btnaddphoneno"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/btnaddphoneno"
+        app:layout_constraintBottom_toTopOf="@+id/phoneno"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blackbackground" />
+
+    <TextView
+        android:id="@+id/phoneno"
+        android:layout_width="310dp"
+        android:layout_height="49dp"
+        android:background="@drawable/greybox"
+        android:fontFamily="@font/benchnine_bold"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:text="Add Phone Number"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnaddphoneno"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <ScrollView
         android:id="@+id/blackbackground"
         android:layout_width="0dp"
-        android:layout_height="304dp"
+        android:layout_height="253dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

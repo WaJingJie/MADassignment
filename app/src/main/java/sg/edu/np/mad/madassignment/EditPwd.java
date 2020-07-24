@@ -26,11 +26,11 @@ public class EditPwd extends AppCompatActivity {
         //get user's email
         final UserData userData = LoginPage.userdata;
 
-        email = findViewById(R.id.editprofileemail);
+        email = findViewById(R.id.changepwdemail);
         password = findViewById(R.id.etpassword);
         cfmpassword = findViewById(R.id.etcfmpassword);
 
-        cfm = findViewById(R.id.editprofileconfirm);
+        cfm = findViewById(R.id.editpwdconfirm);
         cancel = findViewById(R.id.btnchangepwd);
 
         //initialize database

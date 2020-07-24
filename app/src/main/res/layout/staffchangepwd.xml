@@ -6,25 +6,44 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editphoneno"
+        android:id="@+id/staffetpassword"
         android:layout_width="310dp"
         android:layout_height="42dp"
         android:background="@drawable/greybox"
         android:ems="10"
         android:fontFamily="@font/benchnine_bold"
-        android:hint="Phone Number"
+        android:hint="Password"
         android:includeFontPadding="false"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:paddingLeft="20dp"
         android:textColor="#8E8D8D"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnchangepwd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editprofileemail" />
+        app:layout_constraintBottom_toTopOf="@+id/staffetcfmpassword"
+        app:layout_constraintEnd_toEndOf="@+id/staffetcfmpassword"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffetcfmpassword"
+        app:layout_constraintTop_toBottomOf="@+id/staffprofileemail" />
 
     <EditText
-        android:id="@+id/editprofileemail"
+        android:id="@+id/staffetcfmpassword"
+        android:layout_width="310dp"
+        android:layout_height="42dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:hint="Confirm Password"
+        android:includeFontPadding="false"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/staffcancelpwdbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/staffetpassword" />
+
+    <EditText
+        android:id="@+id/staffprofileemail"
         android:layout_width="310dp"
         android:layout_height="49dp"
         android:background="@drawable/greybox"
@@ -35,17 +54,17 @@
         android:includeFontPadding="false"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
-        android:text="Edit Profile Email"
+        android:text="Staff Profile Email"
         android:textColor="#8E8D8D"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/editphoneno"
-        app:layout_constraintEnd_toEndOf="@+id/editphoneno"
+        app:layout_constraintBottom_toTopOf="@+id/staffetpassword"
+        app:layout_constraintEnd_toEndOf="@+id/staffetpassword"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/editphoneno"
+        app:layout_constraintStart_toStartOf="@+id/staffetpassword"
         app:layout_constraintTop_toBottomOf="@+id/editprofiletitle" />
 
     <Button
-        android:id="@+id/btncanceledit"
+        android:id="@+id/staffcancelpwdbtn"
         android:layout_width="158dp"
         android:layout_height="43dp"
         android:background="#000000"
@@ -53,14 +72,14 @@
         android:text="@android:string/cancel"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/studentbottombar"
+        app:layout_constraintBottom_toTopOf="@+id/staffbottombar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editprofileconfirm"
-        app:layout_constraintTop_toBottomOf="@+id/editphoneno" />
+        app:layout_constraintStart_toEndOf="@+id/staffpwdconfirm"
+        app:layout_constraintTop_toBottomOf="@+id/staffetcfmpassword" />
 
     <Button
-        android:id="@+id/editprofileconfirm"
+        android:id="@+id/staffpwdconfirm"
         android:layout_width="158dp"
         android:layout_height="43dp"
         android:background="#000000"
@@ -68,11 +87,11 @@
         android:text="Confirm"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btncanceledit"
-        app:layout_constraintEnd_toStartOf="@+id/btncanceledit"
+        app:layout_constraintBottom_toBottomOf="@+id/staffcancelpwdbtn"
+        app:layout_constraintEnd_toStartOf="@+id/staffcancelpwdbtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btncanceledit" />
+        app:layout_constraintTop_toTopOf="@+id/staffcancelpwdbtn" />
 
     <TextView
         android:id="@+id/editprofiletitle"
@@ -80,7 +99,7 @@
         android:layout_height="72dp"
         android:background="@color/design_default_color_on_secondary"
         android:fontFamily="@font/open_sans_bold"
-        android:text="add phone number"
+        android:text="change password"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
@@ -90,70 +109,69 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/studentbottombar"
+        android:id="@+id/staffbottombar"
         android:layout_width="0dp"
         android:layout_height="76dp"
         android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/studentlogoutbutton"
+        android:id="@+id/stafflogoutbutton"
         android:layout_width="46dp"
         android:layout_height="51dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="12dp"
         android:background="#000000"
         android:src="@drawable/logoutpic"
-        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/studenthomebutton"
+        android:id="@+id/staffhomebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginBottom="16dp"
         android:background="#000000"
         android:src="@drawable/homeicon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/studentprofilebutton" />
+        app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+        app:layout_constraintStart_toEndOf="@+id/staffprofilebutton" />
 
     <ImageButton
-        android:id="@+id/studentprofilebutton"
+        android:id="@+id/staffprofilebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginBottom="16dp"
         android:background="#000000"
         android:src="@drawable/profilebutton"
-        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
-        app:layout_constraintStart_toEndOf="@+id/studentlogoutbutton" />
+        app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+        app:layout_constraintStart_toEndOf="@+id/stafflogoutbutton" />
 
     <ImageButton
-        android:id="@+id/viewborrowicon"
+        android:id="@+id/addbookicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
-        app:layout_constraintStart_toEndOf="@+id/studenthomebutton"
-        app:srcCompat="@drawable/viewbookicon" />
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+        app:layout_constraintStart_toEndOf="@+id/staffhomebutton"
+        app:srcCompat="@drawable/addbookicon" />
 
     <ImageButton
-        android:id="@+id/overdueicon"
+        android:id="@+id/deletebookicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginBottom="16dp"
         android:background="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
-        app:layout_constraintEnd_toEndOf="@+id/studentbottombar"
-        app:layout_constraintStart_toEndOf="@+id/viewborrowicon"
-        app:srcCompat="@drawable/overdueicon" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addbookicon"
+        app:srcCompat="@drawable/deleteicon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

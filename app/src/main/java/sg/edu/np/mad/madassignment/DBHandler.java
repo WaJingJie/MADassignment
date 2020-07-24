@@ -442,30 +442,36 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
     //This updates staff update to the table
-    public boolean staffUpdate(String e, String n, String pn, String pwd) {
+    public boolean staffUpdateName(String e, String n) {
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        StaffData staffData = new StaffData();
-        staffData = findStaff(e);
+        values.put(COLUMN_STAFFEMAIL, e);
+        values.put(COLUMN_STAFFNAME, n);
+        db.update(TABLE_STAFFDATA, values, "staffemail =?",new String[]{e});
+        Log.v(TAG, FILENAME + ": Updating data for Database: " + values.toString());
         return true;
     }
 
-        values.put(COLUMN_EMAIL, staffData.getMyEmail());
-        values.put(COLUMN_NAME, staffData.getMyName());
-        if(staffData.getMyPhoneNo().equals(null)){
-            values.put(COLUMN_PHONENUMBER, "Add Phone Number");
-        }
-        else{
-            values.put(COLUMN_PHONENUMBER, userData.getMyPhoneNo());
-        }
-        values.put(COLUMN_PASSWORD, userData.getMyPassword());
-        values.put(COLUMN_NO_OF_BOOKS_BORROWED, userData.getBooksBorrowed());
-        values.put(COLUMN_NO_OF_BOOKS_USER_CAN_BORROW, userData.getCanborrow());
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_USERDATA, null, values);
-        db.close();
-        Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
+    //add/update phone number function goes here
+    public boolean staffUpdatePhonenum(String e, String pn){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_EMAIL, e);
+        values.put(COLUMN_PHONENUMBER, pn);
+        db.update(TABLE_USERDATA, values, "useremail =?",new String[]{e});
+        Log.v(TAG, FILENAME + ": Updating data for Database: " + values.toString());
+        return true;
     }
-
+    //update phone number function end
+    //update user password function
+    public boolean staffUpdatePwd(String e, String pwd){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_EMAIL, e);
+        values.put(COLUMN_PASSWORD, pwd);
+        db.update(TABLE_USERDATA, values, "useremail =?",new String[]{e});
+        return true;
+    }
     //This deletes the data of the user with the email entered from the table
     public boolean deleteAccount(String email) {
         boolean result = false;

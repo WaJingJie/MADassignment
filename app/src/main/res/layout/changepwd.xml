@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="@+id/etcfmpassword"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/etcfmpassword"
-        app:layout_constraintTop_toBottomOf="@+id/editprofileemail" />
+        app:layout_constraintTop_toBottomOf="@+id/changepwdemail" />
 
     <EditText
         android:id="@+id/etcfmpassword"
@@ -31,7 +31,7 @@
         android:background="@drawable/greybox"
         android:ems="10"
         android:fontFamily="@font/benchnine_bold"
-        android:hint="Confirm password"
+        android:hint="Confirm Password"
         android:includeFontPadding="false"
         android:inputType="textPassword"
         android:paddingLeft="20dp"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etpassword" />
 
     <EditText
-        android:id="@+id/editprofileemail"
+        android:id="@+id/changepwdemail"
         android:layout_width="310dp"
         android:layout_height="49dp"
         android:background="@drawable/greybox"
@@ -75,11 +75,11 @@
         app:layout_constraintBottom_toTopOf="@+id/studentbottombar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editprofileconfirm"
+        app:layout_constraintStart_toEndOf="@+id/editpwdconfirm"
         app:layout_constraintTop_toBottomOf="@+id/etcfmpassword" />
 
     <Button
-        android:id="@+id/editprofileconfirm"
+        android:id="@+id/editpwdconfirm"
         android:layout_width="158dp"
         android:layout_height="43dp"
         android:background="#000000"
@@ -99,7 +99,7 @@
         android:layout_height="72dp"
         android:background="@color/design_default_color_on_secondary"
         android:fontFamily="@font/open_sans_bold"
-        android:text="Add phone number"
+        android:text="change password"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
