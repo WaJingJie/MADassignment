@@ -9,16 +9,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Select">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".MainActivity">
+
+        </activity>
+
+        <activity android:name=".StaffHomePage">
+
+        </activity>
+
+        <activity android:name=".AddBook">
+
+        </activity>
+
+        <activity android:name=".DeleteBook">
+
+        </activity>
+
         <activity android:name=".LoginPage">
 
         </activity>
+
+        <activity android:name=".StaffLoginPage">
+
+        </activity>
+
         <activity android:name=".HomePage">
 
         </activity>
@@ -27,6 +49,10 @@
         </activity>
         <activity android:name=".EditProfile">
         </activity>
+
+        <activity android:name=".EditStaffProfile">
+        </activity>
+
         <activity android:name=".ProfilePage">
 
         </activity>
@@ -40,6 +66,10 @@
         </activity>
 
         <activity android:name=".EditPwd">
+
+        </activity>
+
+        <activity android:name=".StaffEditPwd">
 
         </activity>
 
