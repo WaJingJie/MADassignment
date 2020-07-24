@@ -56,6 +56,8 @@ public class EditProfile extends AppCompatActivity {
                     boolean updated = dbHandler.updatePhonenum(userData.getMyEmail(), phoneno.getText().toString());
                     if(updated == true){
                         Toast.makeText(getApplicationContext(), "Phone number successfully updated!", Toast.LENGTH_LONG).show();
+                        Intent confirm = new Intent(EditProfile.this, ProfilePage.class);
+                        startActivity(confirm);
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "Phone number unsuccessfully updated", Toast.LENGTH_LONG).show();

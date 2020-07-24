@@ -8,16 +8,15 @@
     tools:context=".HomePage">
 
 
-    <SearchView
-        android:id="@+id/staffsearchview"
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:id="@+id/staffsearch"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search Here"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stafftoptitle" />
+        app:layout_constraintTop_toBottomOf="@+id/stafftoptitle"
+        app:mt_hint="Search"
+        app:mt_speechMode="false" />
 
     <ImageView
         android:id="@+id/staffbottombar"
@@ -45,22 +44,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginBottom="16dp"
         android:background="#000000"
         android:src="@drawable/homeicon"
-        app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
-        app:layout_constraintStart_toEndOf="@+id/staffprofilebutton" />
+        app:layout_constraintBottom_toBottomOf="@+id/staffprofilebutton"
+        app:layout_constraintStart_toEndOf="@+id/staffprofilebutton"
+        app:layout_constraintTop_toTopOf="@+id/staffprofilebutton" />
 
     <ImageButton
         android:id="@+id/staffprofilebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginBottom="16dp"
         android:background="#000000"
         android:src="@drawable/profilebutton"
-        app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
-        app:layout_constraintStart_toEndOf="@+id/stafflogoutbutton" />
+        app:layout_constraintBottom_toBottomOf="@+id/stafflogoutbutton"
+        app:layout_constraintStart_toEndOf="@+id/stafflogoutbutton"
+        app:layout_constraintTop_toTopOf="@+id/stafflogoutbutton" />
 
     <TextView
         android:id="@+id/stafftoptitle"
@@ -79,22 +78,23 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/staffRV"
-        android:layout_width="409dp"
-        android:layout_height="460dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/staffbottombar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/staffsearchview" />
+        app:layout_constraintTop_toBottomOf="@+id/staffsearch" />
 
     <ImageButton
         android:id="@+id/addbookicon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="30dp"
         android:background="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+        app:layout_constraintBottom_toBottomOf="@+id/staffhomebutton"
         app:layout_constraintStart_toEndOf="@+id/staffhomebutton"
+        app:layout_constraintTop_toTopOf="@+id/staffhomebutton"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/addbookicon" />
 
     <ImageButton
@@ -102,9 +102,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginBottom="16dp"
         android:background="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/addbookicon"
         app:layout_constraintStart_toEndOf="@+id/addbookicon"
+        app:layout_constraintTop_toTopOf="@+id/addbookicon"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/deleteicon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,6 +49,8 @@ public class StaffEditPwd extends AppCompatActivity{
                     boolean updated = dbHandler.updatePwd(staffData.getMyStaffEmail(), pwd.getText().toString());
                     if(updated == true){
                         Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
+                        Intent confirm = new Intent(StaffEditPwd.this, StaffProfilePage.class);
+                        startActivity(confirm);
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "Password unsuccessfully updated", Toast.LENGTH_LONG).show();

@@ -56,6 +56,8 @@ public class EditPwd extends AppCompatActivity {
                     boolean updated = dbHandler.updatePwd(userData.getMyEmail(), password.getText().toString());
                     if(updated == true){
                         Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
+                        Intent confirm = new Intent(EditPwd.this, ProfilePage.class);
+                        startActivity(confirm);
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "Password unsuccessfully updated", Toast.LENGTH_LONG).show();

@@ -29,7 +29,7 @@ public class Select extends AppCompatActivity {
         studentbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent studentpage = new Intent(Select.this, StaffLoginPage.class);
+                Intent studentpage = new Intent(Select.this, MainActivity.class);
                 startActivity(studentpage);
             }
         });
@@ -39,7 +39,7 @@ public class Select extends AppCompatActivity {
         staffbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent staffpage = new Intent(Select.this, MainActivity.class);
+                Intent staffpage = new Intent(Select.this, StaffLoginPage.class);
                 startActivity(staffpage);
             }
         });

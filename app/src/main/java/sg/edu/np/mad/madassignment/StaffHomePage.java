@@ -40,13 +40,13 @@ public class StaffHomePage extends AppCompatActivity{
         dbHandler = new DBHandler(this,null,null,1);
 
 
-        logoutbutton = findViewById(R.id.studentlogoutbutton);
-        homebutton = findViewById(R.id.studenthomebutton);
-        profilebutton = findViewById(R.id.studentprofilebutton);
+        logoutbutton = findViewById(R.id.stafflogoutbutton);
+        homebutton = findViewById(R.id.staffhomebutton);
+        profilebutton = findViewById(R.id.staffprofilebutton);
         addbutton = findViewById(R.id.addbookicon);
         deletebutton = findViewById(R.id.deletebookicon);
 
-        materialSearchBar = findViewById(R.id.staffsearchview);
+        materialSearchBar = findViewById(R.id.staffsearch);
 
         rv = findViewById(R.id.staffRV);
         layoutManager = new LinearLayoutManager(this);
