@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +17,7 @@ public class StaffEditPwd extends AppCompatActivity{
     EditText pwd, cfmpwd;
     Button cfm, cancel;
     DBHandler dbHandler;
-
+    ImageButton logoutbutton, homebutton, profilebutton, addbutton, deletebutton;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,11 @@ public class StaffEditPwd extends AppCompatActivity{
         cfmpwd = findViewById(R.id.staffetcfmpassword);
         cfm = findViewById(R.id.staffpwdconfirm);
         cancel = findViewById(R.id.staffcancelpwdbtn);
-
+        logoutbutton = findViewById(R.id.studentlogoutbutton);
+        homebutton = findViewById(R.id.studenthomebutton);
+        profilebutton = findViewById(R.id.studentprofilebutton);
+        addbutton = findViewById(R.id.addbookicon);
+        deletebutton = findViewById(R.id.deletebookicon);
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
         //set user's email into textview email
@@ -58,6 +63,48 @@ public class StaffEditPwd extends AppCompatActivity{
             public void onClick(View v) {
                 Intent cancel = new Intent(StaffEditPwd.this, StaffProfilePage.class);
                 startActivity(cancel);
+            }
+        });
+
+        //this is to allow the user to log out
+        logoutbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent welcomepage = new Intent(StaffEditPwd.this, StaffLoginPage.class);
+                startActivity(welcomepage);
+            }
+        });
+
+        //this is to redirect the user to the profile page
+        profilebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilepage = new Intent(StaffEditPwd.this, StaffProfilePage.class);
+                startActivity(profilepage);
+            }
+        });
+
+        homebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homepage = new Intent(StaffEditPwd.this, StaffHomePage.class);
+                startActivity(homepage);
+            }
+        });
+
+        addbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent viewpage = new Intent(StaffEditPwd.this, AddBook.class);
+                startActivity(viewpage);
+            }
+        });
+
+        deletebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent overduepage = new Intent(StaffEditPwd.this, DeleteBook.class);
+                startActivity(overduepage);
             }
         });
     }

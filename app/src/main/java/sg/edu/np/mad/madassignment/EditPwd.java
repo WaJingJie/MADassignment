@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +18,7 @@ public class EditPwd extends AppCompatActivity {
     EditText password, cfmpassword;
     Button cfm, cancel;
     DBHandler dbHandler;
-
+    ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +30,14 @@ public class EditPwd extends AppCompatActivity {
         email = findViewById(R.id.changepwdemail);
         password = findViewById(R.id.etpassword);
         cfmpassword = findViewById(R.id.etcfmpassword);
-
         cfm = findViewById(R.id.editpwdconfirm);
         cancel = findViewById(R.id.btnchangepwd);
+
+        logoutbutton = findViewById(R.id.studentlogoutbutton);
+        homebutton = findViewById(R.id.studenthomebutton);
+        profilebutton = findViewById(R.id.studentprofilebutton);
+        viewbutton = findViewById(R.id.viewborrowicon);
+        overduebutton = findViewById(R.id.overdueicon);
 
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
@@ -64,6 +70,47 @@ public class EditPwd extends AppCompatActivity {
             public void onClick(View v) {
                 Intent cancel = new Intent(EditPwd.this, ProfilePage.class);
                 startActivity(cancel);
+            }
+        });
+
+        //this is to allow the user to log out
+        logoutbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent welcomepage = new Intent(EditPwd.this, MainActivity.class);
+                startActivity(welcomepage);
+            }
+        });
+
+        //this is to redirect the user to the profile page
+        profilebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilepage = new Intent(EditPwd.this, ProfilePage.class);
+                startActivity(profilepage);
+            }
+        });
+
+        homebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homepage = new Intent(EditPwd.this, StudentHomePage.class);
+            }
+        });
+
+        viewbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent viewpage = new Intent(EditPwd.this, HomePage.class);
+                startActivity(viewpage);
+            }
+        });
+
+        overduebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent overduepage = new Intent(StudentHomePage.this, OverdueLoan.class);
+                //startActivity(overduepage);
             }
         });
     }
