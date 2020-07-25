@@ -441,6 +441,32 @@ public class DBHandler extends SQLiteOpenHelper{
         return borrowData;
     }
 
+    //This searches the table for the book selected by the staff
+    public book findBook(String id, String isbn) {
+        String query = "SELECT * FROM " + TABLE_BOOKS + " WHERE "
+                + COLUMN_BID
+                + " = \"" + id + "\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        book bookdata = new book();
+        Log.v(TAG, FILENAME +": Find user from database: " + query);
+
+        if(cursor.moveToFirst()){
+            bookdata.setId(cursor.getInt(0));
+            bookdata.setIsbn(cursor.getString(1));
+            bookdata.setBookname(cursor.getString(2));
+            bookdata.setStatus(cursor.getString(3));
+            cursor.close();
+            Log.v(TAG, FILENAME + ": QueryData: " + bookdata.getBookname() + bookdata.getStatus());
+        }
+        else{
+            bookdata = null;
+            Log.v(TAG, FILENAME+ ": No data found!");
+        }
+        db.close();
+        return bookdata;
+    }
+
     //This updates staff update to the table
     public boolean staffUpdateName(String e, String n) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -520,4 +546,26 @@ public class DBHandler extends SQLiteOpenHelper{
         return result;
     }
 
+    //This deletes the data of the book entered by the user
+    public boolean deleteBook(String id, String isbn) {
+        boolean result = false;
+        String query = "SELECT * FROM " + TABLE_BOOKS + " WHERE "
+                + COLUMN_BID + " = \""
+                + id + "\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        book bookData = new book();
+        if (cursor.moveToFirst()) {
+            bookData.setId(cursor.getInt(0));
+            db.delete(TABLE_BOOKS, COLUMN_BID + " = ?",
+                    new String[] { String.valueOf(bookData.getId()) });
+            cursor.close();
+            result = true;
+        }
+        Log.v(TAG, FILENAME+ ": Deleting data from Database: " + query);
+        db.close();
+        return result;
+    }
 }

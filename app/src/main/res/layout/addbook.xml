@@ -34,7 +34,7 @@
         app:layout_constraintBottom_toTopOf="@+id/addbookname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookid" />
+        app:layout_constraintTop_toBottomOf="@+id/addsearchview" />
 
     <EditText
         android:id="@+id/addbookname"
@@ -51,23 +51,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addisbnfield" />
-
-    <EditText
-        android:id="@+id/bookid"
-        android:layout_width="283dp"
-        android:layout_height="49dp"
-        android:background="@drawable/greybox"
-        android:fontFamily="@font/benchnine_bold"
-        android:hint="Book ID"
-        android:paddingLeft="20dp"
-        android:paddingTop="6dp"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/addisbnfield"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addsearchview"
-        app:layout_constraintVertical_chainStyle="spread" />
 
     <Button
         android:id="@+id/addbutton"

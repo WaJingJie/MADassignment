@@ -67,7 +67,7 @@ public class AddBook extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 //validation to disallow empty fields for both isbn and book name field
-                if(addisbn.getText().toString().isEmpty() || addbookname.getText().toString().isEmpty() || bookid.getText().toString().isEmpty()) {
+                if(addisbn.getText().toString().isEmpty() || addbookname.getText().toString().isEmpty()) {
                     Toast.makeText(AddBook.this, "Please enter all details", Toast.LENGTH_SHORT).show();
                 }
                 //continue if all fields are filled
@@ -143,11 +143,21 @@ public class AddBook extends AppCompatActivity{
             }
         });
 
+        addbook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addbook = new Intent(AddBook.this, AddBook.class);
+                startActivity(addbook);
+            }
+        });
+
+
+
         deletebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent overduepage = new Intent(AddBook.this, DeleteBook.class);
-                startActivity(overduepage);
+                Intent deletebook = new Intent(AddBook.this, DeleteBook.class);
+                startActivity(deletebook);
             }
         });
 
