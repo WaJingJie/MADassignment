@@ -13,11 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfilePage extends AppCompatActivity {
     ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
-    TextView name, email;
+    TextView name, email, phone;
     Button changepwd, addphone;
     private static final String FILENAME = "ProfilePage.java";
     private static final String TAG = "NP Library";
-
+    DBHandler dbHandler;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +31,14 @@ public class ProfilePage extends AppCompatActivity {
         addphone = findViewById(R.id.btnaddphoneno);
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
+        phone = findViewById(R.id.phoneno);
         UserData userData = LoginPage.userdata;
+
+        dbHandler = new DBHandler(this,null,null,1);
         //This sets the profile name and the profile email using data from the public static Userdata object
         name.setText(userData.getMyName());
         email.setText(userData.getMyEmail());
+        phone.setText(dbHandler.getphonebyemail(userData.getMyEmail()));
         //This method is to allow the user to log out
 
         //this is to allow the user to log out
