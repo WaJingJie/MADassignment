@@ -1,33 +1,34 @@
 package sg.edu.np.mad.madassignment;
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
+
 import android.app.AlertDialog;
+
+import com.mancj.materialsearchbar.MaterialSearchBar;
+
 import java.util.ArrayList;
 
 public class DeleteBook extends AppCompatActivity {
     private static final String TAG = "NPLibrary";
     EditText deleteisbn;
     EditText deletebookname;
-    EditText deletebookid;
-
+    EditText deletebookstatus;
+    DBHandler dbHandler;
+    Spinner spinner;
+    Integer bookid;
     private ImageButton logoutbutton, homebutton, profilebutton, addbook, deletebook;
     private Button deletebtn;
 
@@ -41,9 +42,9 @@ public class DeleteBook extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deletebook);
-        deleteisbn = findViewById(R.id.deleteisbnfield);
+        deleteisbn = findViewById(R.id.deleteisbn);
         deletebookname = findViewById(R.id.deletebookname);
-        deletebookid = findViewById(R.id.deletebookid);
+        deletebookstatus = findViewById(R.id.deletebookstatus);
 
         logoutbutton = findViewById(R.id.stafflogoutbutton);
         homebutton = findViewById(R.id.staffhomebutton);
@@ -52,27 +53,54 @@ public class DeleteBook extends AppCompatActivity {
         deletebook = findViewById(R.id.deletebookicon);
         deletebtn = findViewById(R.id.deletebutton);
 
+        spinner = findViewById(R.id.deleteisbnlist);
+
+        dbHandler = new DBHandler(this,null,null,1);
+
+
         //this gets the data from home page
         Intent recieveingEnd = getIntent();
         //get arraylist from homepage
-        bookidList = recieveingEnd.getStringArrayListExtra("bookid");
+        /*bookidList = recieveingEnd.getStringArrayListExtra("bookid");
         deleteisbnList = recieveingEnd.getStringArrayListExtra("isbn");
         deletebooknameList = recieveingEnd.getStringArrayListExtra("bookname");
         copiesList = recieveingEnd.getIntegerArrayListExtra("copies");
-        statusList = recieveingEnd.getStringArrayListExtra("status");
+        statusList = recieveingEnd.getStringArrayListExtra("status");*/
+
+        //database version
+        ArrayList<String> isbnlist = dbHandler.getIsbn();
+        ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(this,R.layout.spinnerlayout, R.id.tvspinner, isbnlist);
+        spinner.setAdapter(spinneradapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedisbn = parent.getItemAtPosition(position).toString();
+                bookid = dbHandler.getBookID(selectedisbn);
+                String bookisbn = dbHandler.getBookISBN(selectedisbn);
+                String bookname = dbHandler.getBookName(selectedisbn);
+                String bookstatus = dbHandler.getBookStatus(selectedisbn);
+                deleteisbn.setText(bookisbn);
+                deletebookname.setText(bookname);
+                deletebookstatus.setText(bookstatus);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         deletebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //validation to disallow empty fields for both isbn and book name field
-                if(deleteisbn.getText().toString().isEmpty() || deletebookname.getText().toString().isEmpty() || deletebookid.getText().toString().isEmpty()) {
+                if(deleteisbn.getText().toString().isEmpty() || deletebookname.getText().toString().isEmpty() || deletebookstatus.getText().toString().isEmpty()) {
                     Toast.makeText(DeleteBook.this, "Please ensure all details are filled", Toast.LENGTH_LONG).show();
                 }
                 //continue if all fields are filled
                 else{
-                    Integer bookid = Integer.parseInt(deletebookid.getText().toString());;
-                    for(int i = 0; i < bookidList.size(); i++){
-
+                    /*for(int i = 0; i < bookidList.size(); i++){
                         if(copiesList.get(i) == 1){
                             deleteisbnList.remove(deleteisbn.getText().toString());
                             deletebooknameList.remove(deletebookname.getText().toString());
@@ -87,11 +115,14 @@ public class DeleteBook extends AppCompatActivity {
                         Log.d("List", bookidList.toString());
                         Log.d("List", copiesList.toString());
                         Log.d("List", statusList.toString());
-
-                        Toast.makeText(getApplicationContext(), "Book successfully deleted",
-                                Toast.LENGTH_LONG).show();
                         returnQuery();
-                    }
+                    }*/
+
+                    dbHandler.deleteBook(bookid);
+                    Toast.makeText(getApplicationContext(), "Book successfully deleted",
+                            Toast.LENGTH_LONG).show();
+                    Intent homepage = new Intent(DeleteBook.this, StaffHomePage.class);
+                    startActivity(homepage);
 
                 }
             }

@@ -6,35 +6,6 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="25dp">
 
-    <SearchView
-        android:id="@+id/deletesearchview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search Here"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletebooktitle" />
-
-
-    <EditText
-        android:id="@+id/deleteisbnfield"
-        android:layout_width="283dp"
-        android:layout_height="49dp"
-        android:background="@drawable/greybox"
-        android:ems="10"
-        android:fontFamily="@font/benchnine_bold"
-        android:hint="Enter ISBN"
-        android:includeFontPadding="false"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/deletebookname"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletebookid" />
 
     <EditText
         android:id="@+id/deletebookname"
@@ -47,27 +18,42 @@
         android:paddingTop="6dp"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/deletebutton"
+        app:layout_constraintBottom_toTopOf="@+id/deletebookstatus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deleteisbnfield" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteisbn" />
 
     <EditText
-        android:id="@+id/deletebookid"
+        android:id="@+id/deleteisbn"
         android:layout_width="283dp"
         android:layout_height="49dp"
         android:background="@drawable/greybox"
         android:fontFamily="@font/benchnine_bold"
-        android:hint="Book ID"
+        android:hint="ISBN"
         android:paddingLeft="20dp"
         android:paddingTop="6dp"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/deleteisbnfield"
+        app:layout_constraintBottom_toTopOf="@+id/deletebookname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletesearchview"
-        app:layout_constraintVertical_chainStyle="spread" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteisbnlist" />
+
+    <EditText
+        android:id="@+id/deletebookstatus"
+        android:layout_width="283dp"
+        android:layout_height="49dp"
+        android:background="@drawable/greybox"
+        android:fontFamily="@font/benchnine_bold"
+        android:hint="Status"
+        android:paddingLeft="20dp"
+        android:paddingTop="6dp"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/deletebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deletebookname" />
 
     <Button
         android:id="@+id/deletebutton"
@@ -81,7 +67,7 @@
         app:layout_constraintBottom_toTopOf="@+id/staffbottombar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletebookname" />
+        app:layout_constraintTop_toBottomOf="@+id/deletebookstatus" />
 
     <TextView
         android:id="@+id/deletebooktitle"
@@ -97,6 +83,15 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/deleteisbnlist"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/deleteisbn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deletebooktitle" />
 
     <ImageView
         android:id="@+id/staffbottombar"

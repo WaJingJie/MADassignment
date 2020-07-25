@@ -28,7 +28,7 @@ public class AddBook extends AppCompatActivity{
     EditText addisbn;
     EditText addbookname;
     EditText bookid;
-
+    DBHandler dbHandler;
 
     private ImageButton logoutbutton, homebutton, profilebutton, addbook, deletebook;
     private Button addbtn;
@@ -45,8 +45,6 @@ public class AddBook extends AppCompatActivity{
         setContentView(R.layout.addbook);
         addisbn = findViewById(R.id.addisbnfield);
         addbookname = findViewById(R.id.addbookname);
-        bookid = findViewById(R.id.bookid);
-
         logoutbutton = findViewById(R.id.stafflogoutbutton);
         homebutton = findViewById(R.id.staffhomebutton);
         profilebutton = findViewById(R.id.staffprofilebutton);
@@ -63,17 +61,21 @@ public class AddBook extends AppCompatActivity{
         copiesList = recieveingEnd.getIntegerArrayListExtra("copies");
         statusList = recieveingEnd.getStringArrayListExtra("status");
 
+        dbHandler = new DBHandler(this,null,null,1);
+        final String status = "Available";
+
         addbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //validation to disallow empty fields for both isbn and book name field
-                if(addisbn.getText().toString().isEmpty() || addbookname.getText().toString().isEmpty()) {
+                String isbn = addisbn.getText().toString();
+                String bookname = addbookname.getText().toString();
+                if(isbn.isEmpty() || bookname.isEmpty()) {
                     Toast.makeText(AddBook.this, "Please enter all details", Toast.LENGTH_SHORT).show();
                 }
                 //continue if all fields are filled
                 else{
-                    String isbn = addisbn.getText().toString();
-                    for(int i = 0; i < addisbnList.size(); i++){
+                    /*for(int i = 0; i < addisbnList.size(); i++){
                         if(isbn == addisbnList.get(i)){
                             bookidList.add(bookidList.get(bookidList.size() - 1) + 1);
                             Integer copy = copiesList.get(copiesList.size() - 1);
@@ -85,7 +87,7 @@ public class AddBook extends AppCompatActivity{
                             Log.d("List", bookidList.toString());
                             Log.d("List", copiesList.toString());
                             Log.d("List", statusList.toString());
-
+                            dbHandler.addBook(isbn, bookname, status);
                             Toast.makeText(getApplicationContext(), "Book successfully added!",
                                     Toast.LENGTH_LONG).show();
                         }
@@ -102,15 +104,15 @@ public class AddBook extends AppCompatActivity{
                             Log.d("List", bookidList.toString());
                             Log.d("List", copiesList.toString());
                             Log.d("List", statusList.toString());
-
+                            dbHandler.addBook(isbn, bookname, status);
                             Toast.makeText(getApplicationContext(), "Book successfully added!",
                                     Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    Toast.makeText(getApplicationContext(), "Book successfully borrowed!",
+                        }*/
+                    dbHandler.addBook(isbn, bookname, status);
+                    Toast.makeText(getApplicationContext(), "Book successfully added!",
                             Toast.LENGTH_LONG).show();
-                    returnQuery();
+                    Intent homepage = new Intent(AddBook.this, StaffHomePage.class);
+                    startActivity(homepage);
                 }
             }
         });

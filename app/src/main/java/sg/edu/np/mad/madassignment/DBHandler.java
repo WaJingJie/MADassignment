@@ -141,12 +141,20 @@ public class DBHandler extends SQLiteOpenHelper{
         Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
     }
 
-
-
+    //method to add books and search books
+    /*public void addBook(book bookData){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_BISBN, bookData.getIsbn());
+        values.put(COLUMN_BNAME, bookData.getBookname());
+        values.put(COLUMN_STATUS, bookData.getStatus());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_BOOKS, null, values);
+        db.close();
+        Log.v(TAG, FILENAME + ": Adding data for book db: " + values.toString());
+    }*/
 
     //method to add books and search books
-    public void addbook(String isbn, String bookname, String status){
-
+    public void addBook(String isbn, String bookname, String status){
         ContentValues values = new ContentValues();
         values.put(COLUMN_BISBN, isbn);
         values.put(COLUMN_BNAME, bookname);
@@ -156,6 +164,8 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
         Log.v(TAG, FILENAME + ": Adding data for book db: " + values.toString());
     }
+
+
     //function to get all books
     public List<book> getBook(){
         SQLiteDatabase db = getReadableDatabase();
@@ -272,6 +282,86 @@ public class DBHandler extends SQLiteOpenHelper{
         return result;
     }
     //end
+
+    //get book name from the select isbn
+    public String getBookName(String isbn){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"bookname"};
+        String tablename = "books";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"isbn = ?",new String[]{isbn},null,null,null);
+        String result ="";
+        if(cursor.moveToFirst()){
+            do{
+                result = cursor.getString(cursor.getColumnIndex("bookname"));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+
+    //get book isbn from the select isbn
+    public Integer getBookID(String isbn){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"ID"};
+        String tablename = "books";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"isbn = ?",new String[]{isbn},null,null,null);
+        Integer result = 0;
+        if(cursor.moveToFirst()){
+            do{
+                result = cursor.getInt(cursor.getColumnIndex("ID"));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+
+    //get book isbn from the select isbn
+    public String getBookISBN(String isbn){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"isbn"};
+        String tablename = "books";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"isbn = ?",new String[]{isbn},null,null,null);
+        String result ="";
+        if(cursor.moveToFirst()){
+            do{
+                result = cursor.getString(cursor.getColumnIndex("isbn"));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+
+    //get book status from the select isbn
+    public String getBookStatus(String isbn){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"status"};
+        String tablename = "books";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"isbn = ?",new String[]{isbn},null,null,null);
+        String result ="";
+        if(cursor.moveToFirst()){
+            do{
+                result = cursor.getString(cursor.getColumnIndex("status"));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
 
     //adding borrow book function
     public void addBorrowedBook(String email, String isbn, String bookname, String borrowdate, String duedate) {
@@ -442,7 +532,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
     //This searches the table for the book selected by the staff
-    public book findBook(String id, String isbn) {
+    public book findBook(Integer id) {
         String query = "SELECT * FROM " + TABLE_BOOKS + " WHERE "
                 + COLUMN_BID
                 + " = \"" + id + "\"";
@@ -547,7 +637,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
     //This deletes the data of the book entered by the user
-    public boolean deleteBook(String id, String isbn) {
+    public boolean deleteBook(Integer id) {
         boolean result = false;
         String query = "SELECT * FROM " + TABLE_BOOKS + " WHERE "
                 + COLUMN_BID + " = \""
