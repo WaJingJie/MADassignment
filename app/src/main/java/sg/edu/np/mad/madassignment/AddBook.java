@@ -45,7 +45,6 @@ public class AddBook extends AppCompatActivity{
         setContentView(R.layout.addbook);
         addisbn = findViewById(R.id.addisbnfield);
         addbookname = findViewById(R.id.addbookname);
-        bookid = findViewById(R.id.bookid);
 
         logoutbutton = findViewById(R.id.stafflogoutbutton);
         homebutton = findViewById(R.id.staffhomebutton);

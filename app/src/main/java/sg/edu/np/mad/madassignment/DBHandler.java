@@ -278,7 +278,7 @@ public class DBHandler extends SQLiteOpenHelper{
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
-        String[] sqlSelect ={"useremail"};
+        String[] sqlSelect ={"userphoneno"};
         String tablename = "users";
 
         qb.setTables(tablename);
