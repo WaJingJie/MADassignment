@@ -75,44 +75,10 @@ public class AddBook extends AppCompatActivity{
                 }
                 //continue if all fields are filled
                 else{
-                    /*for(int i = 0; i < addisbnList.size(); i++){
-                        if(isbn == addisbnList.get(i)){
-                            bookidList.add(bookidList.get(bookidList.size() - 1) + 1);
-                            Integer copy = copiesList.get(copiesList.size() - 1);
-                            copiesList.set(i, (copy + 1));
-                            statusList.add("Available");
-
-                            Log.d("List", addisbnList.toString());
-                            Log.d("List", addbooknameList.toString());
-                            Log.d("List", bookidList.toString());
-                            Log.d("List", copiesList.toString());
-                            Log.d("List", statusList.toString());
-                            dbHandler.addBook(isbn, bookname, status);
-                            Toast.makeText(getApplicationContext(), "Book successfully added!",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        else{
-                            //adding input fields to list when btn is pressed
-                            addisbnList.add(addisbn.getText().toString());
-                            addbooknameList.add(addbookname.getText().toString());
-                            bookidList.add(bookid.getText().toString());
-                            copiesList.add(1);
-                            statusList.add("Available");
-
-                            Log.d("List", addisbnList.toString());
-                            Log.d("List", addbooknameList.toString());
-                            Log.d("List", bookidList.toString());
-                            Log.d("List", copiesList.toString());
-                            Log.d("List", statusList.toString());
-                            dbHandler.addBook(isbn, bookname, status);
-                            Toast.makeText(getApplicationContext(), "Book successfully added!",
-                                    Toast.LENGTH_LONG).show();
-                        }*/
                     dbHandler.addBook(isbn, bookname, status);
                     Toast.makeText(getApplicationContext(), "Book successfully added!",
                             Toast.LENGTH_LONG).show();
-                    Intent homepage = new Intent(AddBook.this, StaffHomePage.class);
-                    startActivity(homepage);
+                    returnQuery();
                 }
             }
         });
@@ -169,7 +135,7 @@ public class AddBook extends AppCompatActivity{
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Return to Home Page?");
         Log.v(TAG, "Return option given to user!");
-        builder.setMessage("Would you like to return to the home page or continue adding books?");
+        builder.setMessage("Select 'Yes' to return to the home page and 'No' to continue adding books.");
         builder.setCancelable(false);
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int id){

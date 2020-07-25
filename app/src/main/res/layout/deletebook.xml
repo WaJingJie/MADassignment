@@ -21,15 +21,15 @@
         app:layout_constraintBottom_toTopOf="@+id/deletebookstatus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deleteisbn" />
+        app:layout_constraintTop_toBottomOf="@+id/deletebookid" />
 
     <EditText
-        android:id="@+id/deleteisbn"
+        android:id="@+id/deletebookid"
         android:layout_width="283dp"
         android:layout_height="49dp"
         android:background="@drawable/greybox"
         android:fontFamily="@font/benchnine_bold"
-        android:hint="ISBN"
+        android:hint="Book ID"
         android:paddingLeft="20dp"
         android:paddingTop="6dp"
         android:textColor="#000000"
@@ -88,7 +88,7 @@
         android:id="@+id/deleteisbnlist"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/deleteisbn"
+        app:layout_constraintBottom_toTopOf="@+id/deletebookid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deletebooktitle" />

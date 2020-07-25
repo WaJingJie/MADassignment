@@ -262,6 +262,28 @@ public class DBHandler extends SQLiteOpenHelper{
     }
     //end
 
+    //get the list of isbn
+    public ArrayList<String> getAllIsbn(){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"isbn"};
+        String tablename = "books";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"",null,null,null,null);
+        ArrayList<String> result = new ArrayList<>();
+
+        if(cursor.moveToFirst()){
+            do{
+                result.add(cursor.getString(cursor.getColumnIndex("isbn")));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+    //end
+
     //get book name from the select isbn
     public String getBookByISBN(String isbn){
         SQLiteDatabase db = getReadableDatabase();
@@ -460,7 +482,6 @@ public class DBHandler extends SQLiteOpenHelper{
 
         values.put(COLUMN_EMAIL, email);
         values.put(COLUMN_PASSWORD, pwd);
-
         db.update(TABLE_USERDATA, values, "useremail =?",new String[]{email});
         return true;
     }

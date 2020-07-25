@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class DeleteBook extends AppCompatActivity {
     private static final String TAG = "NPLibrary";
-    EditText deleteisbn;
+    EditText deleteid;
     EditText deletebookname;
     EditText deletebookstatus;
     DBHandler dbHandler;
@@ -42,7 +42,7 @@ public class DeleteBook extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deletebook);
-        deleteisbn = findViewById(R.id.deleteisbn);
+        deleteid = findViewById(R.id.deletebookid);
         deletebookname = findViewById(R.id.deletebookname);
         deletebookstatus = findViewById(R.id.deletebookstatus);
 
@@ -68,7 +68,7 @@ public class DeleteBook extends AppCompatActivity {
         statusList = recieveingEnd.getStringArrayListExtra("status");*/
 
         //database version
-        ArrayList<String> isbnlist = dbHandler.getIsbn();
+        ArrayList<String> isbnlist = dbHandler.getAllIsbn();
         ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(this,R.layout.spinnerlayout, R.id.tvspinner, isbnlist);
         spinner.setAdapter(spinneradapter);
 
@@ -77,10 +77,10 @@ public class DeleteBook extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedisbn = parent.getItemAtPosition(position).toString();
                 bookid = dbHandler.getBookID(selectedisbn);
-                String bookisbn = dbHandler.getBookISBN(selectedisbn);
+                String stringid = bookid.toString();
                 String bookname = dbHandler.getBookName(selectedisbn);
                 String bookstatus = dbHandler.getBookStatus(selectedisbn);
-                deleteisbn.setText(bookisbn);
+                deleteid.setText(stringid);
                 deletebookname.setText(bookname);
                 deletebookstatus.setText(bookstatus);
             }
@@ -95,7 +95,7 @@ public class DeleteBook extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //validation to disallow empty fields for both isbn and book name field
-                if(deleteisbn.getText().toString().isEmpty() || deletebookname.getText().toString().isEmpty() || deletebookstatus.getText().toString().isEmpty()) {
+                if(deleteid.getText().toString().isEmpty() || deletebookname.getText().toString().isEmpty() || deletebookstatus.getText().toString().isEmpty()) {
                     Toast.makeText(DeleteBook.this, "Please ensure all details are filled", Toast.LENGTH_LONG).show();
                 }
                 //continue if all fields are filled
@@ -121,9 +121,7 @@ public class DeleteBook extends AppCompatActivity {
                     dbHandler.deleteBook(bookid);
                     Toast.makeText(getApplicationContext(), "Book successfully deleted",
                             Toast.LENGTH_LONG).show();
-                    Intent homepage = new Intent(DeleteBook.this, StaffHomePage.class);
-                    startActivity(homepage);
-
+                    returnQuery();
                 }
             }
         });
@@ -168,7 +166,7 @@ public class DeleteBook extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Return to Home Page?");
         Log.v(TAG, "Return option given to user!");
-        builder.setMessage("Would you like to return to the home page or continue deleting books?");
+        builder.setMessage("Select 'Yes' to return to the home page and 'No' to continue deleting books.");
         builder.setCancelable(false);
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int id){
