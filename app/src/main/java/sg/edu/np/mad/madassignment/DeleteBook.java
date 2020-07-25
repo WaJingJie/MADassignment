@@ -101,8 +101,33 @@ public class DeleteBook extends AppCompatActivity {
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent welcomepage = new Intent(DeleteBook.this, MainActivity.class);
+                Intent welcomepage = new Intent(DeleteBook.this, StaffLoginPage.class);
                 startActivity(welcomepage);
+            }
+        });
+
+        //this is to redirect the user to the profile page
+        profilebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilepage = new Intent(DeleteBook.this, StaffProfilePage.class);
+                startActivity(profilepage);
+            }
+        });
+
+        homebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homepage = new Intent(DeleteBook.this, StaffHomePage.class);
+                startActivity(homepage);
+            }
+        });
+
+        addbook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent viewpage = new Intent(DeleteBook.this, AddBook.class);
+                startActivity(viewpage);
             }
         });
 

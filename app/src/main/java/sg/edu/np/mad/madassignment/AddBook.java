@@ -121,10 +121,36 @@ public class AddBook extends AppCompatActivity{
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent welcomepage = new Intent(AddBook.this, MainActivity.class);
+                Intent welcomepage = new Intent(AddBook.this, StaffLoginPage.class);
                 startActivity(welcomepage);
             }
         });
+
+        //this is to redirect the user to the profile page
+        profilebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilepage = new Intent(AddBook.this, StaffProfilePage.class);
+                startActivity(profilepage);
+            }
+        });
+
+        homebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homepage = new Intent(AddBook.this, StaffHomePage.class);
+                startActivity(homepage);
+            }
+        });
+
+        deletebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent overduepage = new Intent(AddBook.this, DeleteBook.class);
+                startActivity(overduepage);
+            }
+        });
+
     }
 
     private void returnQuery(){
