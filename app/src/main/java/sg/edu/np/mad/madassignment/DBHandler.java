@@ -273,6 +273,27 @@ public class DBHandler extends SQLiteOpenHelper{
     }
     //end
 
+    //get phone number
+    public String getphonebyemail(String email){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"useremail"};
+        String tablename = "users";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"useremail = ?",new String[]{email},null,null,null);
+        String result ="";
+        if(cursor.moveToFirst()){
+            do{
+                result = cursor.getString(cursor.getColumnIndex("userphoneno"));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+    //end
+
     //adding borrow book function
     public void addBorrowedBook(String email, String isbn, String bookname, String borrowdate, String duedate) {
         ContentValues values = new ContentValues();
