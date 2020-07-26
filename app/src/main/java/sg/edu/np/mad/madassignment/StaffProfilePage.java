@@ -16,35 +16,32 @@ public class StaffProfilePage extends AppCompatActivity{
     TextView name, email, phoneno;
     private static final String FILENAME = "StaffProfilePage.java";
     private static final String TAG = "NP Library";
+    DBHandler dbHandler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        logoutbutton = findViewById(R.id.studentlogoutbutton);
-        homebutton = findViewById(R.id.studenthomebutton);
-        profilebutton = findViewById(R.id.studentprofilebutton);
+        setContentView(R.layout.staffprofilepage);
+        logoutbutton = findViewById(R.id.stafflogoutbutton);
+        homebutton = findViewById(R.id.staffhomebutton);
+        profilebutton = findViewById(R.id.staffprofilebutton);
         addbutton = findViewById(R.id.addbookicon);
         deletebutton = findViewById(R.id.deletebookicon);
 
         name = findViewById(R.id.staffname);
         email = findViewById(R.id.staffemail);
-        phoneno = findViewById(R.id.editstaffphone);
+        phoneno = findViewById(R.id.phoneno);
 
         editbutton = findViewById(R.id.editstaffbtn);
         editpwd = findViewById(R.id.staffchangepwd);
         StaffData staffData = StaffLoginPage.staffdata;
+
+        dbHandler = new DBHandler(this,null,null,1);
+
         //This sets the profile name and the profile email using data from the public static Staffdata object
-
-        String n = staffData.getMyStaffName();
-        String e = staffData.getMyStaffEmail();
-        String p = staffData.getMyStaffPhoneNo();
-
-        name.setText(n);
-        email.setText(e);
-        if(p != null){
-            phoneno.setText(p);
-        }
-
+        name.setText(staffData.getMyStaffName());
+        email.setText(staffData.getMyStaffEmail());
+        phoneno.setText(dbHandler.getphonebystaffemail(staffData.getMyStaffEmail()));
 
         editbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,38 +59,38 @@ public class StaffProfilePage extends AppCompatActivity{
             }
         });
 
-        //this is to allow the user to log out
+//        //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent welcomepage = new Intent(StaffProfilePage.this, StaffLoginPage.class);
-                startActivity(welcomepage);
-            }
+               startActivity(welcomepage);
+           }
         });
 
         //this is to redirect the user to the profile page
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+          public void onClick(View v) {
                 Intent profilepage = new Intent(StaffProfilePage.this, StaffHomePage.class);
-                startActivity(profilepage);
-            }
-        });
+              startActivity(profilepage);
+           }
+       });
 
-        addbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent viewpage = new Intent(StaffProfilePage.this, AddBook.class);
-                startActivity(viewpage);
-            }
-        });
+       addbutton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent viewpage = new Intent(StaffProfilePage.this, AddBook.class);
+               startActivity(viewpage);
+           }
+       });
 
-        deletebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent overduepage = new Intent(StaffProfilePage.this, DeleteBook.class);
-                startActivity(overduepage);
-            }
-        });
+       deletebutton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+              Intent overduepage = new Intent(StaffProfilePage.this, DeleteBook.class);
+              startActivity(overduepage);
+         }
+       });
     }
 }

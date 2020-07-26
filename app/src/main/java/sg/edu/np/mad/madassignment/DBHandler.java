@@ -326,6 +326,27 @@ public class DBHandler extends SQLiteOpenHelper{
     }
     //end
 
+    //get staff phone number
+    public String getphonebystaffemail(String email){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"staffphoneno"};
+        String tablename = "staff";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"staffemail = ?",new String[]{email},null,null,null);
+        String result ="";
+        if(cursor.moveToFirst()){
+            do{
+                result = cursor.getString(cursor.getColumnIndex("staffphoneno"));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+    //end
+
     //get book name from the select isbn
     public String getBookName(String isbn){
         SQLiteDatabase db = getReadableDatabase();
