@@ -34,9 +34,17 @@ public class StaffProfilePage extends AppCompatActivity{
         editpwd = findViewById(R.id.staffchangepwd);
         StaffData staffData = StaffLoginPage.staffdata;
         //This sets the profile name and the profile email using data from the public static Staffdata object
-        name.setText(staffData.getMyStaffName());
-        email.setText(staffData.getMyStaffEmail());
-        phoneno.setText(staffData.getMyStaffPhoneNo());
+
+        String n = staffData.getMyStaffName();
+        String e = staffData.getMyStaffEmail();
+        String p = staffData.getMyStaffPhoneNo();
+
+        name.setText(n);
+        email.setText(e);
+        if(p != null){
+            phoneno.setText(p);
+        }
+
 
         editbutton.setOnClickListener(new View.OnClickListener() {
             @Override
