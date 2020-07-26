@@ -46,7 +46,7 @@ public class StaffEditPwd extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), "Please enter the field correctly! Hint password must be the same.", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    boolean updated = dbHandler.updatePwd(staffData.getMyStaffEmail(), pwd.getText().toString());
+                    boolean updated = dbHandler.staffUpdatePwd(staffData.getMyStaffEmail(), pwd.getText().toString());
                     if(updated == true){
                         Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
                         Intent confirm = new Intent(StaffEditPwd.this, StaffProfilePage.class);
