@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,7 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 class EditStaffProfile extends AppCompatActivity{
-    TextView email, name, phoneno, password;
+    TextView email;
+    EditText name, phoneno;
     Button confirm, cancel;
     DBHandler dbHandler;
     StaffData staffData = StaffLoginPage.staffdata;
@@ -39,11 +41,12 @@ class EditStaffProfile extends AppCompatActivity{
         //set user's email into textview email
         email.setText(staffData.getMyStaffEmail());
 
-        final String n = name.getText().toString();
-        final String pn = phoneno.getText().toString();
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String n = name.getText().toString();
+                String pn = phoneno.getText().toString();
                 //validation to disallow empty fields
                 if(n.isEmpty() && pn.isEmpty()) {
                     Toast.makeText(EditStaffProfile.this, "Please enter details", Toast.LENGTH_LONG).show();
@@ -84,6 +87,7 @@ class EditStaffProfile extends AppCompatActivity{
                 }
             }
         });
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -19,9 +19,8 @@
         android:textColor="#8E8D8D"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/staffetcfmpassword"
-        app:layout_constraintEnd_toEndOf="@+id/staffetcfmpassword"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/staffetcfmpassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/staffprofileemail" />
 
     <EditText
@@ -42,31 +41,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/staffetpassword" />
 
-    <EditText
-        android:id="@+id/staffprofileemail"
-        android:layout_width="310dp"
-        android:layout_height="49dp"
-        android:background="@drawable/greybox"
-        android:editable="false"
-        android:ems="10"
-        android:enabled="false"
-        android:fontFamily="@font/benchnine_bold"
-        android:includeFontPadding="false"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:text="Staff Profile Email"
-        android:textColor="#8E8D8D"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/staffetpassword"
-        app:layout_constraintEnd_toEndOf="@+id/staffetpassword"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/staffetpassword"
-        app:layout_constraintTop_toBottomOf="@+id/editprofiletitle" />
-
     <Button
         android:id="@+id/staffcancelpwdbtn"
         android:layout_width="158dp"
         android:layout_height="43dp"
+        android:layout_marginBottom="72dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="@android:string/cancel"
@@ -75,8 +54,7 @@
         app:layout_constraintBottom_toTopOf="@+id/staffbottombar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/staffpwdconfirm"
-        app:layout_constraintTop_toBottomOf="@+id/staffetcfmpassword" />
+        app:layout_constraintStart_toEndOf="@+id/staffpwdconfirm" />
 
     <Button
         android:id="@+id/staffpwdconfirm"
@@ -91,7 +69,8 @@
         app:layout_constraintEnd_toStartOf="@+id/staffcancelpwdbtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/staffcancelpwdbtn" />
+        app:layout_constraintTop_toTopOf="@+id/staffcancelpwdbtn"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/editprofiletitle"
@@ -172,6 +151,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addbookicon"
         app:srcCompat="@drawable/deleteicon" />
+
+    <TextView
+        android:id="@+id/staffprofileemail"
+        android:layout_width="310dp"
+        android:layout_height="49dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:paddingLeft="20dp"
+        android:paddingTop="7dp"
+        android:text="Staff Profile Email"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/staffetpassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editprofiletitle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
