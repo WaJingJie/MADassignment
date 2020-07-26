@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-class EditStaffProfile extends AppCompatActivity{
+public class EditStaffProfile extends AppCompatActivity{
     TextView email;
     EditText name, phoneno;
     Button confirm, cancel;

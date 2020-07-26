@@ -634,11 +634,11 @@ public class DBHandler extends SQLiteOpenHelper{
 
     //add/update phone number function goes here
     public boolean staffUpdatePhonenum(String e, String pn){
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_EMAIL, e);
-        values.put(COLUMN_PHONENUMBER, pn);
-        db.update(TABLE_USERDATA, values, "useremail =?",new String[]{e});
+        values.put(COLUMN_STAFFEMAIL, e);
+        values.put(COLUMN_STAFFPHONENO, pn);
+        db.update(TABLE_STAFFDATA, values, "staffemail =?",new String[]{e});
         Log.v(TAG, FILENAME + ": Updating data for Database: " + values.toString());
         return true;
     }
