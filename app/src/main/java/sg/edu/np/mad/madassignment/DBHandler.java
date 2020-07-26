@@ -652,6 +652,27 @@ public class DBHandler extends SQLiteOpenHelper{
         db.update(TABLE_STAFFDATA, values, "staffemail =?",new String[]{e});
         return true;
     }
+
+    //get staff name
+    public String getstaffname(String email){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"staffname"};
+        String tablename = "staff";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"staffemail = ?",new String[]{email},null,null,null);
+        String result ="";
+        if(cursor.moveToFirst()){
+            do{
+                result = cursor.getString(cursor.getColumnIndex("staffname"));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+
     //This deletes the data of the user with the email entered from the table
     public boolean deleteAccount(String email) {
         boolean result = false;
