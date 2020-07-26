@@ -647,9 +647,9 @@ public class DBHandler extends SQLiteOpenHelper{
     public boolean staffUpdatePwd(String e, String pwd){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_EMAIL, e);
-        values.put(COLUMN_PASSWORD, pwd);
-        db.update(TABLE_USERDATA, values, "useremail =?",new String[]{e});
+        values.put(COLUMN_STAFFEMAIL, e);
+        values.put(COLUMN_STAFFPASSWORD, pwd);
+        db.update(TABLE_STAFFDATA, values, "staffemail =?",new String[]{e});
         return true;
     }
     //This deletes the data of the user with the email entered from the table

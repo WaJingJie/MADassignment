@@ -29,9 +29,9 @@ class EditStaffProfile extends AppCompatActivity{
         confirm = findViewById(R.id.editstaffconfirm);
         cancel = findViewById(R.id.staffcancelbtn);
 
-        logoutbutton = findViewById(R.id.studentlogoutbutton);
-        homebutton = findViewById(R.id.studenthomebutton);
-        profilebutton = findViewById(R.id.studentprofilebutton);
+        logoutbutton = findViewById(R.id.stafflogoutbutton);
+        homebutton = findViewById(R.id.staffhomebutton);
+        profilebutton = findViewById(R.id.staffprofilebutton);
         addbutton = findViewById(R.id.addbookicon);
         deletebutton = findViewById(R.id.deletebookicon);
 
