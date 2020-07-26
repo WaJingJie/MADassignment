@@ -39,7 +39,7 @@ public class StaffProfilePage extends AppCompatActivity{
         dbHandler = new DBHandler(this,null,null,1);
 
         //This sets the profile name and the profile email using data from the public static Staffdata object
-        name.setText(staffData.getMyStaffName());
+        name.setText(dbHandler.getstaffname(staffData.getMyStaffEmail()));
         email.setText(staffData.getMyStaffEmail());
         phoneno.setText(dbHandler.getphonebystaffemail(staffData.getMyStaffEmail()));
 
