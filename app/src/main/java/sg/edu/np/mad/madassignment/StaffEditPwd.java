@@ -23,14 +23,14 @@ public class StaffEditPwd extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.staffchangepwd);
         final StaffData staffData = StaffLoginPage.staffdata;
-        e = findViewById(R.id.editstaffemail);
+        e = findViewById(R.id.staffprofileemail);
         pwd = findViewById(R.id.staffetpassword);
         cfmpwd = findViewById(R.id.staffetcfmpassword);
         cfm = findViewById(R.id.staffpwdconfirm);
         cancel = findViewById(R.id.staffcancelpwdbtn);
-        logoutbutton = findViewById(R.id.studentlogoutbutton);
-        homebutton = findViewById(R.id.studenthomebutton);
-        profilebutton = findViewById(R.id.studentprofilebutton);
+        logoutbutton = findViewById(R.id.stafflogoutbutton);
+        homebutton = findViewById(R.id.staffhomebutton);
+        profilebutton = findViewById(R.id.staffprofilebutton);
         addbutton = findViewById(R.id.addbookicon);
         deletebutton = findViewById(R.id.deletebookicon);
         //initialize database

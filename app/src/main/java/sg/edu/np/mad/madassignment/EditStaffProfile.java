@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,7 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 class EditStaffProfile extends AppCompatActivity{
-    TextView email, name, phoneno, password;
+    TextView email;
+    EditText name, phoneno;
     Button confirm, cancel;
     DBHandler dbHandler;
     StaffData staffData = StaffLoginPage.staffdata;
@@ -27,9 +29,9 @@ class EditStaffProfile extends AppCompatActivity{
         confirm = findViewById(R.id.editstaffconfirm);
         cancel = findViewById(R.id.staffcancelbtn);
 
-        logoutbutton = findViewById(R.id.studentlogoutbutton);
-        homebutton = findViewById(R.id.studenthomebutton);
-        profilebutton = findViewById(R.id.studentprofilebutton);
+        logoutbutton = findViewById(R.id.stafflogoutbutton);
+        homebutton = findViewById(R.id.staffhomebutton);
+        profilebutton = findViewById(R.id.staffprofilebutton);
         addbutton = findViewById(R.id.addbookicon);
         deletebutton = findViewById(R.id.deletebookicon);
 
