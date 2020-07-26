@@ -16,28 +16,34 @@
         android:text="Staff"
         android:textColor="#000000"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="169dp"
-        tools:layout_editor_absoluteY="276dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/staffwelcometitle" />
 
     <ImageView
         android:id="@+id/staffwelcomeicon"
         android:layout_width="170dp"
         android:layout_height="197dp"
-        app:srcCompat="@drawable/applogo"
-        tools:layout_editor_absoluteX="120dp"
-        tools:layout_editor_absoluteY="25dp" />
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/applogo" />
 
     <Button
         android:id="@+id/staffwelcomelogin"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="191dp"
         android:layout_height="52dp"
+        android:layout_marginTop="24dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="Login"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="108dp"
-        tools:layout_editor_absoluteY="341dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stafftext3" />
 
     <TextView
         android:id="@+id/staffwelcometext"
@@ -65,7 +71,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcometext" />
+        app:layout_constraintTop_toBottomOf="@+id/staffwelcometext" />
 
     <TextView
         android:id="@+id/staffwelcometitle"
@@ -76,7 +82,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
-        tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="214dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/staffwelcomeicon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
