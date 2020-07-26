@@ -41,7 +41,7 @@ public class EditStaffProfile extends AppCompatActivity{
         //set staff's email into textview email
         email.setText(staffData.getMyStaffEmail());
 
-
+        //when the confirm button is pressed
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,32 +51,35 @@ public class EditStaffProfile extends AppCompatActivity{
                 if(n.isEmpty() && pn.isEmpty()) {
                     Toast.makeText(EditStaffProfile.this, "Please enter details", Toast.LENGTH_LONG).show();
                 }
+                //when only name is filled
                 else if(pn.isEmpty()){
                     boolean updated = dbHandler.staffUpdateName(staffData.getMyStaffEmail(), n);
                     if(updated == true){
-                        name.setText(n);
                         Toast.makeText(getApplicationContext(), "Name successfully updated!", Toast.LENGTH_LONG).show();
+                        Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
+                        startActivity(confirm);
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "Name unsuccessfully updated", Toast.LENGTH_LONG).show();
                     }
                 }
+                //when only phone number is filled
                 else if(n.isEmpty()){
                     boolean updated = dbHandler.staffUpdatePhonenum(staffData.getMyStaffEmail(), pn);
                     if(updated == true){
-                        phoneno.setText(pn);
                         Toast.makeText(getApplicationContext(), "Phone number successfully updated!", Toast.LENGTH_LONG).show();
+                        Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
+                        startActivity(confirm);
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "Phone number unsuccessfully updated", Toast.LENGTH_LONG).show();
                     }
                 }
+                //when both name and phone number fields are filled
                 else{
                     boolean pnupdate = dbHandler.staffUpdatePhonenum(staffData.getMyStaffEmail(), pn);
                     boolean nupdate = dbHandler.staffUpdateName(staffData.getMyStaffEmail(), n);
                     if(pnupdate == true && nupdate == true){
-                        phoneno.setText(pn);
-                        name.setText(n);
                         Toast.makeText(getApplicationContext(), "Profile successfully updated!", Toast.LENGTH_LONG).show();
                         Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
                         startActivity(confirm);
@@ -88,6 +91,7 @@ public class EditStaffProfile extends AppCompatActivity{
             }
         });
 
+        //when the cancel button is pressed
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +100,7 @@ public class EditStaffProfile extends AppCompatActivity{
             }
         });
 
-        //this is to allow the user to log out
+        //this is to allow the staff to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +109,7 @@ public class EditStaffProfile extends AppCompatActivity{
             }
         });
 
-        //this is to redirect the user to the profile page
+        //this is to redirect the staff to the profile page
         profilebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,6 +118,7 @@ public class EditStaffProfile extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the staff to the home page
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,6 +127,7 @@ public class EditStaffProfile extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the staff to the add book page
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,6 +136,7 @@ public class EditStaffProfile extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the staff to the delete book page
         deletebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

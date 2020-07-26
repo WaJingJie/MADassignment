@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "NP Library";
     //private static final int RC_SIGN_IN = ;
     Button loginbtn, signupbtn, returnselectbtn;
-    SignInButton googlebtn;
-    GoogleSignInClient mGoogleSignInClient;
+    //SignInButton googlebtn;
+    //GoogleSignInClient mGoogleSignInClient;
     /*DBHandler dbHandler;
 
     String[] bookisbn = new String[]{"978-1-4028-9463-6","978-1-4028-9461-6","978-1-4028-9462-6"};
@@ -47,17 +47,17 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //        //create initial catalog end
 
-        signupbtn.setVisibility(View.VISIBLE);
+       // signupbtn.setVisibility(View.VISIBLE);
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        //GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+       // mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         // Set the dimensions of the sign-in button.
 
-        googlebtn = findViewById(R.id.googlebutton);
-        googlebtn.setSize(SignInButton.SIZE_STANDARD);
-        googlebtn.setVisibility(View.VISIBLE);
+        //googlebtn = findViewById(R.id.googlebutton);
+        //googlebtn.setSize(SignInButton.SIZE_STANDARD);
+        //googlebtn.setVisibility(View.VISIBLE);
         //This method is to redirect the user to the login page
         Log.v(TAG, FILENAME + ": Redirecting to Login Page");
         loginbtn.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        googlebtn.setOnClickListener(new View.OnClickListener() {
+        /*googlebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()){
@@ -97,11 +97,11 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
             }
-        });
+        });*/
     }
 
 
-    @Override
+    /*@Override
     protected void onStart() {
         super.onStart();
         // Check for existing Google Sign In account, if the user is already signed in
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         //}
     }
 
-    private void updateUI(GoogleSignInAccount account) {
+    /*private void updateUI(GoogleSignInAccount account) {
         if(account == null){
             signupbtn.setVisibility(View.VISIBLE);
             googlebtn.setVisibility(View.VISIBLE);
@@ -150,5 +150,5 @@ public class MainActivity extends AppCompatActivity {
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             updateUI(null);
         }
-    }
+    }*/
 }

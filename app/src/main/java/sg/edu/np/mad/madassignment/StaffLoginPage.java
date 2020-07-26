@@ -28,7 +28,7 @@ public class StaffLoginPage extends AppCompatActivity {
         loginpassword = findViewById(R.id.staffloginpassword);
         submitbutton = findViewById(R.id.staffloginsubmit);
         cancelbutton = findViewById(R.id.stafflogincancel);
-        //This method occurs when the submit button is clicked by the user
+        //This method occurs when the submit button is clicked by the staff
         Log.v(TAG, FILENAME + ": Submit Button Clicked");
         submitbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +51,7 @@ public class StaffLoginPage extends AppCompatActivity {
                 startActivity(homepage);
             }
         });
-        //This method occurs when the cancel button is clicked by the user
+        //This method occurs when the cancel button is clicked by the staff
         Log.v(TAG, FILENAME + ": Cancel Button Clicked");
         cancelbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,11 +64,11 @@ public class StaffLoginPage extends AppCompatActivity {
 
     }
 
-    //This method is for checking whether the user is an existing user and that the email and password used is valid
+    //This method is for checking whether the staff is an existing user and that the email and password used is valid
     public boolean checkStaff(String e, String p){
         //This searches the database for the entered email
         StaffData data = dbHandler.findStaff(e);
-        //This happens when the user is not found in the database
+        //This happens when the staff is not found in the database
         if(data == null){
             Log.v(TAG, FILENAME + ": Invalid email used!");
             Toast.makeText(getApplicationContext(), "Invalid email! Please re-enter again.",
@@ -84,7 +84,7 @@ public class StaffLoginPage extends AppCompatActivity {
             resetPassword();
             return false;
         }
-        //This occurs when the user is found to exist in the database
+        //This occurs when the staff is found to exist in the database
         else{
             staffdata = data;
             return true;

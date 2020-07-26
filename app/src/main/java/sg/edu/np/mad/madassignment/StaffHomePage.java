@@ -102,7 +102,7 @@ public class StaffHomePage extends AppCompatActivity{
         adapter = new Searchbookadapter(this,dbHandler.getBook());
         rv.setAdapter(adapter);
 
-        //this is to allow the user to log out
+        //this is to allow the staff to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +111,7 @@ public class StaffHomePage extends AppCompatActivity{
             }
         });
 
-        //this is to redirect the user to the profile page
+        //this is to redirect the staff to the profile page
         profilebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,6 +120,16 @@ public class StaffHomePage extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the staff to the home page
+        homebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilepage = new Intent(StaffHomePage.this, StaffHomePage.class);
+                startActivity(profilepage);
+            }
+        });
+
+        //this is to redirect the staff to the add book page
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +138,7 @@ public class StaffHomePage extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the staff to the delete book page
         deletebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

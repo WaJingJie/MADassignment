@@ -1,7 +1,6 @@
 package sg.edu.np.mad.madassignment;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,16 +8,6 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.firebase.database.DatabaseReference;
-
-import java.lang.reflect.Member;
 
 public class SignUpPage extends AppCompatActivity {
     private static final String FILENAME = "LoginPage.java";
@@ -26,15 +15,11 @@ public class SignUpPage extends AppCompatActivity {
     DBHandler dbHandler;
     private EditText signupemail, signupname, signuppassword, signupconfirm;
     private Button submitbutton, cancelbutton;
-    DatabaseReference databaseReference;
-    Member member;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signuppage);
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        // Build a GoogleSignInClient with the options specified by gso.
-        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         dbHandler = new DBHandler(this,null,null,1);
 
         signupemail = findViewById(R.id.signupemail);
@@ -62,6 +47,7 @@ public class SignUpPage extends AppCompatActivity {
                 if(email.isEmpty() || password.isEmpty() || name.isEmpty() || confirm.isEmpty()) {
                     Toast.makeText(SignUpPage.this, "Please complete all the details.", Toast.LENGTH_SHORT).show();
                 }
+                //This method checks the two password fields match
                 else if(!signuppassword.getText().toString().equals(signupconfirm.getText().toString())){
                     Toast.makeText(SignUpPage.this, "Password must be the same.", Toast.LENGTH_SHORT).show();
                 }
@@ -91,14 +77,6 @@ public class SignUpPage extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // Check for existing Google Sign In account, if the user is already signed in
-// the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        //updateUI(account);
-    }
 
     //This method is to check whether the email has been already used by an existing user
     public void dupvalidate(String email, String name, String phoneno, String password, int b, int c){

@@ -91,6 +91,7 @@ public class DeleteBook extends AppCompatActivity {
             }
         });
 
+        //this is to delete the book from the database
         deletebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,7 +127,7 @@ public class DeleteBook extends AppCompatActivity {
             }
         });
 
-        //this is to allow the user to log out
+        //this is to allow the staff to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,7 +136,7 @@ public class DeleteBook extends AppCompatActivity {
             }
         });
 
-        //this is to redirect the user to the profile page
+        //this is to redirect the staff to the profile page
         profilebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,6 +145,7 @@ public class DeleteBook extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the staff to the home page
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,6 +154,7 @@ public class DeleteBook extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the staff to the add book page
         addbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,8 +163,18 @@ public class DeleteBook extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the staff to the delete book page
+        deletebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent deletebook = new Intent(DeleteBook.this, DeleteBook.class);
+                startActivity(deletebook);
+            }
+        });
+
     }
 
+    //this asks the staff whether they want to continue deleting books
     private void returnQuery(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Return to Home Page?");
@@ -182,6 +195,8 @@ public class DeleteBook extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+    //this returns the staff to the home page
     private void returnHomePage(){
         //intent to go back to homepage
         Intent backtohome = new Intent(DeleteBook.this, StaffHomePage.class);

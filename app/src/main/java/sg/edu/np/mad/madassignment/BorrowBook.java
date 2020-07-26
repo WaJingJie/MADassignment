@@ -33,7 +33,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
     EditText borrowdate;
     EditText duedate;
 
-    ImageButton logoutbutton, homebutton, profilebutton;
+    ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
     Button borrowbtn;
 
     Spinner spinner;
@@ -61,6 +61,8 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         logoutbutton = findViewById(R.id.logoutbutton);
         homebutton = findViewById(R.id.homebutton);
         profilebutton = findViewById(R.id.profilebutton);
+        viewbutton = findViewById(R.id.viewborrowicon);
+        overduebutton = findViewById(R.id.overdueicon);
         borrowbtn = findViewById(R.id.btnborrow);
 
         spinner = findViewById(R.id.isbnlist);
@@ -140,6 +142,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
+        //this allows the user to borrow book
         borrowbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,31 +189,49 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         });
 
         //this is to allow the user to log out
-        /*logoutbutton.setOnClickListener(new View.OnClickListener() {
+        logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent welcomepage = new Intent(BorrowBook.this, MainActivity.class);
                 startActivity(welcomepage);
             }
-        });*/
-
-        //this is to redirect the user to the home page
-        /*homebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent homepage = new Intent(BorrowBook.this, HomePage.class);
-                startActivity(homepage);
-            }
-        });*/
+        });
 
         //this is to redirect the user to the profile page
-        /*profilebutton.setOnClickListener(new View.OnClickListener() {
+        profilebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent profilepage = new Intent(BorrowBook.this, ProfilePage.class);
                 startActivity(profilepage);
             }
-        });*/
+        });
+
+        //this is to redirect the user to the home page
+        homebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homepage = new Intent(BorrowBook.this, StudentHomePage.class);
+                startActivity(homepage);
+            }
+        });
+
+        //this is to redirect the user to the view borrowed books page
+        viewbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent viewpage = new Intent(BorrowBook.this, HomePage.class);
+                startActivity(viewpage);
+            }
+        });
+
+        //this is to redirect the user to the overdue page
+        overduebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Intent overduepage = new Intent(HomePage.this, OverduePage.class);
+                startActivity(overduepage);*/
+            }
+        });
 
     }
 

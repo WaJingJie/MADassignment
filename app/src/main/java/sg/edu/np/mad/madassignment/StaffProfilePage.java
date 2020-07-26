@@ -43,6 +43,7 @@ public class StaffProfilePage extends AppCompatActivity{
         email.setText(staffData.getMyStaffEmail());
         phoneno.setText(dbHandler.getphonebystaffemail(staffData.getMyStaffEmail()));
 
+        //this is to redirect the staff to the edit profile page
         editbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +52,7 @@ public class StaffProfilePage extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the staff to the edit password page
         editpwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +61,7 @@ public class StaffProfilePage extends AppCompatActivity{
             }
         });
 
-//        //this is to allow the user to log out
+        //this is to allow the staff to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,15 +70,25 @@ public class StaffProfilePage extends AppCompatActivity{
            }
         });
 
-        //this is to redirect the user to the profile page
+        //this is to redirect the staff to the home page
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
           public void onClick(View v) {
                 Intent profilepage = new Intent(StaffProfilePage.this, StaffHomePage.class);
               startActivity(profilepage);
            }
-       });
+        });
 
+        //this is to redirect the staff to the profile page
+        profilebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilepage = new Intent(StaffProfilePage.this, StaffProfilePage.class);
+                startActivity(profilepage);
+            }
+        });
+
+       //this is to redirect the staff to the add book page
        addbutton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -85,6 +97,7 @@ public class StaffProfilePage extends AppCompatActivity{
            }
        });
 
+        //this is to redirect the staff to the delete book page
        deletebutton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {

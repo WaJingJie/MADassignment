@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ProfilePage extends AppCompatActivity {
     ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
     TextView name, email, phone;
-    Button changepwd, addphone;
+    Button changepwd, editprofile;
     private static final String FILENAME = "ProfilePage.java";
     private static final String TAG = "NP Library";
     DBHandler dbHandler;
@@ -28,7 +28,7 @@ public class ProfilePage extends AppCompatActivity {
         viewbutton = findViewById(R.id.viewborrowicon);
         overduebutton = findViewById(R.id.overdueicon);
         changepwd = findViewById(R.id.btnchangepwd);
-        addphone = findViewById(R.id.btnaddphoneno);
+        editprofile = findViewById(R.id.btnaddphoneno);
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         phone = findViewById(R.id.phoneno);
@@ -36,7 +36,7 @@ public class ProfilePage extends AppCompatActivity {
 
         dbHandler = new DBHandler(this,null,null,1);
         //This sets the profile name and the profile email using data from the public static Userdata object
-        name.setText(userData.getMyName());
+        name.setText(dbHandler.getnamebyemail(userData.getMyEmail()));
         email.setText(userData.getMyEmail());
         phone.setText(dbHandler.getphonebyemail(userData.getMyEmail()));
         //This method is to allow the user to log out
@@ -59,6 +59,16 @@ public class ProfilePage extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the user to the home page
+        homebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homepage = new Intent(ProfilePage.this, StudentHomePage.class);
+                startActivity(homepage);
+            }
+        });
+
+        //this is to redirect the user to the view borrowed books page
         viewbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +77,7 @@ public class ProfilePage extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the user to the overdue page
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +87,7 @@ public class ProfilePage extends AppCompatActivity {
         });
 
         //intent to edit profile page
-        addphone.setOnClickListener(new View.OnClickListener() {
+        editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent editprofile = new Intent(ProfilePage.this, EditProfile.class);

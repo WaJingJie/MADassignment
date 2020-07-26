@@ -49,6 +49,7 @@ public class EditPwd extends AppCompatActivity {
         cfm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //this validates that the two password fields are the same
                 if(password.getText().toString().isEmpty()|| password.getText().toString() == cfmpassword.getText().toString()){
                     Toast.makeText(getApplicationContext(), "Please enter the field correctly! Hint password must be the same.", Toast.LENGTH_LONG).show();
                 }
@@ -93,6 +94,7 @@ public class EditPwd extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the user to the home page
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +102,7 @@ public class EditPwd extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the user to the view borrowed books page
         viewbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +111,7 @@ public class EditPwd extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the user to the overdue page
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

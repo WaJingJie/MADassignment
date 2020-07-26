@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class EditProfile extends AppCompatActivity {
 
     TextView email;
-    EditText phoneno;
+    EditText phoneno, name;
     Button cfm, cancel;
     DBHandler dbHandler;
     ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
@@ -30,6 +30,7 @@ public class EditProfile extends AppCompatActivity {
 
         email = findViewById(R.id.editprofileemail);
         phoneno = findViewById(R.id.editphoneno);
+        name = findViewById(R.id.editname);
         cfm = findViewById(R.id.editprofileconfirm);
         cancel = findViewById(R.id.btncanceledit);
 
@@ -49,18 +50,45 @@ public class EditProfile extends AppCompatActivity {
         cfm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(phoneno.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Enter phone number", Toast.LENGTH_LONG).show();
+                //this validates whether the details are empty
+                if(phoneno.getText().toString().isEmpty() && name.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Please enter details.", Toast.LENGTH_LONG).show();
                 }
-                else{
-                    boolean updated = dbHandler.updatePhonenum(userData.getMyEmail(), phoneno.getText().toString());
-                    if(updated == true){
+                //this updates only the name field
+                else if(phoneno.getText().toString().isEmpty()){
+                    boolean nupdated = dbHandler.updateName(userData.getMyEmail(), name.getText().toString());
+                    if(nupdated == true){
+                        Toast.makeText(getApplicationContext(), "Name successfully updated!", Toast.LENGTH_LONG).show();
+                        Intent confirm = new Intent(EditProfile.this, ProfilePage.class);
+                        startActivity(confirm);
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Name unsuccessfully updated", Toast.LENGTH_LONG).show();
+                    }
+                }
+                //this updates only the phone no field
+                else if(name.getText().toString().isEmpty()){
+                    boolean pnupdated = dbHandler.updatePhonenum(userData.getMyEmail(), phoneno.getText().toString());
+                    if(pnupdated == true){
                         Toast.makeText(getApplicationContext(), "Phone number successfully updated!", Toast.LENGTH_LONG).show();
                         Intent confirm = new Intent(EditProfile.this, ProfilePage.class);
                         startActivity(confirm);
                     }
                     else{
                         Toast.makeText(getApplicationContext(), "Phone number unsuccessfully updated", Toast.LENGTH_LONG).show();
+                    }
+                }
+                //this updates both the name and phone number of the user
+                else{
+                    boolean nupdated = dbHandler.updateName(userData.getMyEmail(), name.getText().toString());
+                    boolean pnupdated = dbHandler.updatePhonenum(userData.getMyEmail(), phoneno.getText().toString());
+                    if(nupdated == true && pnupdated == true){
+                        Toast.makeText(getApplicationContext(), "Profile successfully updated!", Toast.LENGTH_LONG).show();
+                        Intent confirm = new Intent(EditProfile.this, ProfilePage.class);
+                        startActivity(confirm);
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Profile unsuccessfully updated", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -93,6 +121,7 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the user to the home page
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +129,7 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the user to the view borrowed books page
         viewbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +138,7 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the user to the overdue page
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

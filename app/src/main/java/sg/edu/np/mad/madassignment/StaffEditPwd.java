@@ -42,10 +42,12 @@ public class StaffEditPwd extends AppCompatActivity{
         cfm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //this ensures the two password field matches
                 if(pwd.getText().toString().isEmpty()|| pwd.getText().toString() == cfmpwd.getText().toString()){
                     Toast.makeText(getApplicationContext(), "Please enter the field correctly! Hint password must be the same.", Toast.LENGTH_LONG).show();
                 }
                 else{
+                    //this updates the password of the staff
                     boolean updated = dbHandler.staffUpdatePwd(staffData.getMyStaffEmail(), pwd.getText().toString());
                     if(updated == true){
                         Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
@@ -68,7 +70,7 @@ public class StaffEditPwd extends AppCompatActivity{
             }
         });
 
-        //this is to allow the user to log out
+        //this is to allow the staff to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +79,7 @@ public class StaffEditPwd extends AppCompatActivity{
             }
         });
 
-        //this is to redirect the user to the profile page
+        //this is to redirect the staff to the profile page
         profilebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +88,7 @@ public class StaffEditPwd extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the staff to the home page
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +97,7 @@ public class StaffEditPwd extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the staff to the add book page
         addbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +106,7 @@ public class StaffEditPwd extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the staff to the delete book page
         deletebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

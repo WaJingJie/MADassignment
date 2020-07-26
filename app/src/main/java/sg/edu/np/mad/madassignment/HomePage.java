@@ -166,6 +166,7 @@ public class HomePage extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the user to the home page
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -174,6 +175,16 @@ public class HomePage extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the user to the view borrowed books page
+        viewbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent viewpage = new Intent(HomePage.this, HomePage.class);
+                startActivity(viewpage);
+            }
+        });
+
+        //this is to redirect the user to the overdue page
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

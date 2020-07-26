@@ -2,7 +2,7 @@ package sg.edu.np.mad.madassignment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ public class Select extends AppCompatActivity {
         studentbtn = findViewById(R.id.selectstudent);
         staffbtn = findViewById(R.id.selectstaff);
 
-        //This method is to redirect the user to the student welcome page
+        //This method is to redirect the staff to the student welcome page
         Log.v(TAG, FILENAME + ": Redirecting to Student Welcome Page");
         studentbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +34,7 @@ public class Select extends AppCompatActivity {
             }
         });
 
-        //This method is to redirect the user to the staff welcome page
+        //This method is to redirect the staff to the staff welcome page
         Log.v(TAG, FILENAME + ": Redirecting to Staff Welcome Page");
         staffbtn.setOnClickListener(new View.OnClickListener() {
             @Override

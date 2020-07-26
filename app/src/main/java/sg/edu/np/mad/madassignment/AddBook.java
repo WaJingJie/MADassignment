@@ -64,6 +64,7 @@ public class AddBook extends AppCompatActivity{
         dbHandler = new DBHandler(this,null,null,1);
         final String status = "Available";
 
+        //this is to add the book to the database
         addbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +86,7 @@ public class AddBook extends AppCompatActivity{
 
 
 
-        //this is to allow the user to log out
+        //this is to allow the staff to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +95,7 @@ public class AddBook extends AppCompatActivity{
             }
         });
 
-        //this is to redirect the user to the profile page
+        //this is to redirect the staff to the profile page
         profilebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +104,7 @@ public class AddBook extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the staff to the home page
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +113,7 @@ public class AddBook extends AppCompatActivity{
             }
         });
 
+        //this is to redirect the staff to the add book page
         addbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,8 +122,7 @@ public class AddBook extends AppCompatActivity{
             }
         });
 
-
-
+        //this is to redirect the staff to the delete book page
         deletebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,6 +133,7 @@ public class AddBook extends AppCompatActivity{
 
     }
 
+    //this asks the staff whether they want to continue adding books
     private void returnQuery(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Return to Home Page?");
@@ -152,6 +155,7 @@ public class AddBook extends AppCompatActivity{
         alert.show();
     }
 
+    //this returns the staff to the home page
     private void returnHomePage(){
         //intent to go back to homepage
         Intent backtohome = new Intent(AddBook.this, StaffHomePage.class);

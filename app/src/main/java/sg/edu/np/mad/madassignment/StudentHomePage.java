@@ -101,6 +101,7 @@ public class StudentHomePage extends AppCompatActivity {
         adapter = new Searchbookadapter(this,dbHandler.getBook());
         rv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
         //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +120,16 @@ public class StudentHomePage extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the user to the home page
+        homebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homepage = new Intent(StudentHomePage.this, StudentHomePage.class);
+                startActivity(homepage);
+            }
+        });
+
+        //this is to redirect the user to the view borrowed books page
         viewbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,6 +138,7 @@ public class StudentHomePage extends AppCompatActivity {
             }
         });
 
+        //this is to redirect the user to the overdue page
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -124,7 +124,8 @@ public class DBHandler extends SQLiteOpenHelper{
         Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
     }
 
-    public void addStaff(StaffData staffData){
+    //This adds new staff data to the table
+    /*public void addStaff(StaffData staffData){
         ContentValues values = new ContentValues();
         values.put(COLUMN_STAFFEMAIL, staffData.getMyStaffEmail());
         values.put(COLUMN_STAFFNAME, staffData.getMyStaffName());
@@ -139,18 +140,6 @@ public class DBHandler extends SQLiteOpenHelper{
         db.insert(TABLE_STAFFDATA, null, values);
         db.close();
         Log.v(TAG, FILENAME + ": Adding data for Database: " + values.toString());
-    }
-
-    //method to add books and search books
-    /*public void addBook(book bookData){
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_BISBN, bookData.getIsbn());
-        values.put(COLUMN_BNAME, bookData.getBookname());
-        values.put(COLUMN_STATUS, bookData.getStatus());
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_BOOKS, null, values);
-        db.close();
-        Log.v(TAG, FILENAME + ": Adding data for book db: " + values.toString());
     }*/
 
     //method to add books and search books
@@ -299,6 +288,27 @@ public class DBHandler extends SQLiteOpenHelper{
         if(cursor.moveToFirst()){
             do{
                 result = cursor.getString(cursor.getColumnIndex("bookname"));
+            }while(cursor.moveToNext());
+        }
+        return result;
+    }
+    //end
+
+    //get name number
+    public String getnamebyemail(String email){
+        SQLiteDatabase db = getReadableDatabase();
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+
+        String[] sqlSelect ={"username"};
+        String tablename = "users";
+
+        qb.setTables(tablename);
+
+        Cursor cursor = qb.query(db, sqlSelect,"useremail = ?",new String[]{email},null,null,null);
+        String result ="";
+        if(cursor.moveToFirst()){
+            do{
+                result = cursor.getString(cursor.getColumnIndex("username"));
             }while(cursor.moveToNext());
         }
         return result;
@@ -482,6 +492,19 @@ public class DBHandler extends SQLiteOpenHelper{
         return result;
     }
     //end
+
+    //add/update name function goes here
+    public boolean updateName(String email, String name){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_EMAIL, email);
+        values.put(COLUMN_NAME, name);
+
+        db.update(TABLE_USERDATA, values, "useremail =?",new String[]{email});
+        return true;
+    }
+    //add/update name function end
 
     //add/update phone number function goes here
     public boolean updatePhonenum(String email, String phoneno){
