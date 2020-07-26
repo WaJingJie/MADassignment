@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StaffProfilePage extends AppCompatActivity{
     ImageButton logoutbutton, homebutton, profilebutton, addbutton, deletebutton;
-    Button editbutton;
+    Button editbutton, editpwd;
     TextView name, email, phoneno;
     private static final String FILENAME = "StaffProfilePage.java";
     private static final String TAG = "NP Library";
@@ -25,11 +25,34 @@ public class StaffProfilePage extends AppCompatActivity{
         profilebutton = findViewById(R.id.studentprofilebutton);
         addbutton = findViewById(R.id.addbookicon);
         deletebutton = findViewById(R.id.deletebookicon);
+
+        name = findViewById(R.id.staffname);
+        email = findViewById(R.id.staffemail);
+        phoneno = findViewById(R.id.editstaffphone);
+
+        editbutton = findViewById(R.id.editstaffbtn);
+        editpwd = findViewById(R.id.staffchangepwd);
         StaffData staffData = StaffLoginPage.staffdata;
         //This sets the profile name and the profile email using data from the public static Staffdata object
         name.setText(staffData.getMyStaffName());
         email.setText(staffData.getMyStaffEmail());
         phoneno.setText(staffData.getMyStaffPhoneNo());
+
+        editbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent editpage = new Intent(StaffProfilePage.this, EditStaffProfile.class);
+                startActivity(editpage);
+            }
+        });
+
+        editpwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent editpwdpage = new Intent(StaffProfilePage.this, StaffEditPwd.class);
+                startActivity(editpwdpage);
+            }
+        });
 
         //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
