@@ -58,9 +58,9 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         duedate = findViewById(R.id.duedate);
         duedate.setInputType(InputType.TYPE_NULL);
 
-        logoutbutton = findViewById(R.id.logoutbutton);
-        homebutton = findViewById(R.id.homebutton);
-        profilebutton = findViewById(R.id.profilebutton);
+        logoutbutton = findViewById(R.id.studentlogoutbutton);
+        homebutton = findViewById(R.id.studenthomebutton);
+        profilebutton = findViewById(R.id.studentprofilebutton);
         viewbutton = findViewById(R.id.viewborrowicon);
         overduebutton = findViewById(R.id.overdueicon);
         borrowbtn = findViewById(R.id.btnborrow);
