@@ -28,7 +28,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class BorrowBook extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    EditText isbn;
     EditText bookname;
     EditText borrowdate;
     EditText duedate;
@@ -49,7 +48,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.borrowbook);
 
-        isbn = findViewById(R.id.isbnfield);
         bookname = findViewById(R.id.bookname);
 
         borrowdate = findViewById(R.id.borrowdate);
