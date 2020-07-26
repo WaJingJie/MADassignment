@@ -38,7 +38,7 @@ public class StaffEditPwd extends AppCompatActivity{
         //set user's email into textview email
         e.setText(staffData.getMyStaffEmail());
 
-        //updates phone number when user clicks on the button
+        //updates password when user clicks on the button
         cfm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

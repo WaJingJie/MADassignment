@@ -38,7 +38,7 @@ public class EditStaffProfile extends AppCompatActivity{
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
 
-        //set user's email into textview email
+        //set staff's email into textview email
         email.setText(staffData.getMyStaffEmail());
 
 
