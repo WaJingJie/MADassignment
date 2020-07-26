@@ -5,42 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/isbnfield"
-        android:layout_width="310dp"
-        android:layout_height="49dp"
-        android:background="@drawable/greybox"
-        android:ems="10"
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/benchnine_bold"
-        android:hint="Enter ISBN"
-        android:includeFontPadding="false"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
+        android:text="Date Borrowed"
         android:textColor="#000000"
-        android:textSize="24sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/bookname"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/borrowdate"
         app:layout_constraintEnd_toEndOf="@+id/bookname"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/bookname"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/bookname" />
 
     <EditText
-        android:id="@+id/borrowdate"
-        android:layout_width="310dp"
+        android:id="@+id/bookname"
+        android:layout_width="283dp"
         android:layout_height="49dp"
         android:background="@drawable/greybox"
-        android:ems="10"
-        android:focusable="false"
         android:fontFamily="@font/benchnine_bold"
-        android:hint="Enter borrow date"
-        android:inputType="date"
+        android:hint="Book Name"
         android:paddingLeft="20dp"
+        android:paddingTop="6dp"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="@+id/isbnlist"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="@+id/isbnlist"
+        app:layout_constraintTop_toBottomOf="@+id/isbnlist" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/benchnine_bold"
+        android:text="Due Date"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/duedate"
-        app:layout_constraintEnd_toEndOf="@+id/duedate"
+        app:layout_constraintEnd_toEndOf="@+id/borrowdate"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/duedate"
-        app:layout_constraintTop_toBottomOf="@+id/bookname" />
+        app:layout_constraintStart_toStartOf="@+id/borrowdate"
+        app:layout_constraintTop_toBottomOf="@+id/borrowdate" />
 
     <EditText
         android:id="@+id/duedate"
@@ -50,34 +58,16 @@
         android:ems="10"
         android:focusable="false"
         android:fontFamily="@font/benchnine_bold"
-        android:hint="Enter due date"
         android:inputType="date"
         android:paddingLeft="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottombar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.319"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/borrowdate" />
-
-    <EditText
-        android:id="@+id/bookname"
-        android:layout_width="310dp"
-        android:layout_height="49dp"
-        android:background="@drawable/greybox"
-        android:fontFamily="@font/benchnine_bold"
-        android:hint="Book Name"
-        android:paddingLeft="20dp"
-        android:paddingTop="6dp"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/borrowdate"
-        app:layout_constraintEnd_toEndOf="@+id/borrowdate"
+        app:layout_constraintBottom_toTopOf="@+id/btnborrow"
+        app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/borrowdate"
-        app:layout_constraintTop_toBottomOf="@+id/isbnfield" />
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <Button
-        android:id="@+id/btnchangepwd"
+        android:id="@+id/btnborrow"
         android:layout_width="158dp"
         android:layout_height="43dp"
         android:background="#000000"
@@ -85,13 +75,30 @@
         android:text="Borrow Book"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/bottombar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/bookname"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintBottom_toTopOf="@+id/studentbottombar"
+        app:layout_constraintEnd_toEndOf="@+id/duedate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/duedate"
+        app:layout_constraintTop_toBottomOf="@+id/duedate" />
+
+    <EditText
+        android:id="@+id/borrowdate"
+        android:layout_width="310dp"
+        android:layout_height="49dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:focusable="false"
+        android:fontFamily="@font/benchnine_bold"
+        android:inputType="date"
+        android:paddingLeft="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
-        android:id="@+id/addbooktitle"
+        android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:background="#000000"
@@ -101,53 +108,82 @@
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/bottombar"
+        android:id="@+id/studentbottombar"
         android:layout_width="0dp"
-        android:layout_height="62dp"
+        android:layout_height="76dp"
         android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/logoutbutton"
-        android:layout_width="42dp"
-        android:layout_height="43dp"
+        android:id="@+id/studentlogoutbutton"
+        android:layout_width="46dp"
+        android:layout_height="51dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="12dp"
         android:background="#000000"
         android:src="@drawable/logoutpic"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/homebutton"
-        android:layout_width="45dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="16dp"
+        android:id="@+id/studenthomebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="16dp"
         android:background="#000000"
         android:src="@drawable/homeicon"
-        app:layout_constraintBottom_toBottomOf="@+id/logoutbutton"
-        app:layout_constraintStart_toEndOf="@+id/logoutbutton"
-        app:layout_constraintTop_toTopOf="@+id/logoutbutton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/studentprofilebutton" />
 
     <ImageButton
-        android:id="@+id/profilebutton"
-        android:layout_width="46dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="16dp"
+        android:id="@+id/studentprofilebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="16dp"
         android:background="#000000"
         android:src="@drawable/profilebutton"
-        app:layout_constraintBottom_toBottomOf="@+id/logoutbutton"
-        app:layout_constraintStart_toEndOf="@+id/homebutton"
-        app:layout_constraintTop_toTopOf="@+id/logoutbutton"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintStart_toEndOf="@+id/studentlogoutbutton" />
 
+    <ImageButton
+        android:id="@+id/viewborrowicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintStart_toEndOf="@+id/studenthomebutton"
+        app:srcCompat="@drawable/viewbookicon" />
+
+    <ImageButton
+        android:id="@+id/overdueicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/studentbottombar"
+        app:layout_constraintStart_toEndOf="@+id/viewborrowicon"
+        app:srcCompat="@drawable/overdueicon" />
+
+    <Spinner
+        android:id="@+id/isbnlist"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/bookname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
