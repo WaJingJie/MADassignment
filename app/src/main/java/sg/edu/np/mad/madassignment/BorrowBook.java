@@ -39,10 +39,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
 
     DBHandler dbHandler;
 
-    ArrayList<String> isbnList = new ArrayList<>();
-    ArrayList<String> booknameList = new ArrayList<>();
-    ArrayList<String> borrowdateList = new ArrayList<>();
-    ArrayList<String> duedateList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,24 +74,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         //auto increment date for due date
         incrementdate();
 
-        /*//this gets the data from home page
-        Intent recieveingEnd = getIntent();
-        //get arraylist from homepage
-        isbnList = recieveingEnd.getStringArrayListExtra("isbn");
-        booknameList = recieveingEnd.getStringArrayListExtra("bookname");
-        borrowdateList = recieveingEnd.getStringArrayListExtra("borrowdate");
-        duedateList = recieveingEnd.getStringArrayListExtra("duedate");*/
-
-//        //statement to detect if the list is null
-//        if(isbnList == null){
-//            //recreates the list to not make it null
-//            isbnList= new ArrayList<String>();
-//            booknameList= new ArrayList<String>();
-//            borrowdateList= new ArrayList<String>();
-//            duedateList= new ArrayList<String>();
-//        }
-
-        //database version
         ArrayList<String> isbnlist = dbHandler.getIsbn();
         ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(this,R.layout.spinnerlayout, R.id.tvspinner, isbnlist);
         spinner.setAdapter(spinneradapter);
@@ -144,36 +122,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         borrowbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                //validation to disallow empty fields for both isbn and book name field
-//                if(isbn.getText().toString().isEmpty() || bookname.getText().toString().isEmpty()) {
-//                    Toast.makeText(BorrowBook.this, "Please enter ISBN and book name details", Toast.LENGTH_SHORT).show();
-//                }
-//                //continue if all fields are filled
-//                else {
-//                    //adding input fields to list when btn is pressed
-//                    isbnList.add(isbn.getText().toString());
-//                    booknameList.add(bookname.getText().toString());
-//                    borrowdateList.add(borrowdate.getText().toString());
-//                    duedateList.add(duedate.getText().toString());
-//
-//                    /*Log.d("List", isbnList.toString());
-//                    Log.d("List", booknameList.toString());
-//                    Log.d("List", borrowdateList.toString());
-//                    Log.d("List", duedateList.toString());*/
-//                    Toast.makeText(getApplicationContext(), "Book successfully borrowed!",
-//                            Toast.LENGTH_LONG).show();
-//
-//                    //allows for multiple data to be intent to homepage
-//                    Bundle data = new Bundle();
-//
-//                    data.putStringArrayList("isbn", isbnList);
-//                    data.putStringArrayList("bookname", booknameList);
-//                    data.putStringArrayList("borrowdate", borrowdateList);
-//                    data.putStringArrayList("duedate", duedateList);
-//                    backtohome.putExtras(data);
-//                    //begins actitvity of homepage
-//                    startActivity(backtohome);
-//                }
                 addtodb(userData.getMyEmail(), spinner.getSelectedItem().toString(), bookname.getText().toString(), borrowdate.getText().toString(), duedate.getText().toString());
                 //updates book status to unavailable
                 dbHandler.updatebookStatus(spinner.getSelectedItem().toString());
