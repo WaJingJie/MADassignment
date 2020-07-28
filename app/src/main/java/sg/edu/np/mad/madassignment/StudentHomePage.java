@@ -63,13 +63,7 @@ public class StudentHomePage extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                List<String> suggest = new ArrayList<>();
-                for(String search:suggestion){
-                    if(search.toLowerCase().contains(materialSearchBar.getText().toLowerCase())){
-                        suggest.add(search);
-                    }
-                    materialSearchBar.setLastSuggestions(suggest);
-                }
+
             }
 
             @Override
