@@ -33,8 +33,9 @@ public class Overdueloandadapter extends RecyclerView.Adapter<OverdueloanViewHol
         this.context = context;
         this.borrowData = borrowData;
     }
+
     @Override
-    public OverdueloanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OverdueloanViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.overdueloancv, parent,false);
         return new OverdueloanViewHolder(itemView);
     }

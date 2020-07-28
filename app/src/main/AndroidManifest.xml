@@ -76,6 +76,8 @@
         <activity android:name=".StaffEditPwd">
 
         </activity>
+        <activity android:name=".Overduepayment" />
+
 
         <meta-data
             android:name="preloaded_fonts"
