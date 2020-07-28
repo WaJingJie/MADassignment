@@ -195,7 +195,7 @@
         android:layout_marginStart="256dp"
         android:background="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/viewborrowicon"
-        app:layout_constraintEnd_toEndOf="@+id/studentbottombar"
+        app:layout_constraintEnd_toEndOf="@+id/homepageview"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/studentlogoutbutton"
         app:layout_constraintTop_toTopOf="@+id/viewborrowicon"
