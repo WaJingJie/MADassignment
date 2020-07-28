@@ -54,7 +54,7 @@ public class EditStaffProfile extends AppCompatActivity{
                 //when only name is filled
                 else if(pn.isEmpty()){
                     boolean updated = dbHandler.staffUpdateName(staffData.getMyStaffEmail(), n);
-                    if(updated == true){
+                    if(updated){
                         Toast.makeText(getApplicationContext(), "Name successfully updated!", Toast.LENGTH_LONG).show();
                         Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
                         startActivity(confirm);
@@ -66,7 +66,7 @@ public class EditStaffProfile extends AppCompatActivity{
                 //when only phone number is filled
                 else if(n.isEmpty()){
                     boolean updated = dbHandler.staffUpdatePhonenum(staffData.getMyStaffEmail(), pn);
-                    if(updated == true){
+                    if(updated){
                         Toast.makeText(getApplicationContext(), "Phone number successfully updated!", Toast.LENGTH_LONG).show();
                         Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
                         startActivity(confirm);
@@ -79,7 +79,7 @@ public class EditStaffProfile extends AppCompatActivity{
                 else{
                     boolean pnupdate = dbHandler.staffUpdatePhonenum(staffData.getMyStaffEmail(), pn);
                     boolean nupdate = dbHandler.staffUpdateName(staffData.getMyStaffEmail(), n);
-                    if(pnupdate == true && nupdate == true){
+                    if(pnupdate && nupdate){
                         Toast.makeText(getApplicationContext(), "Profile successfully updated!", Toast.LENGTH_LONG).show();
                         Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
                         startActivity(confirm);

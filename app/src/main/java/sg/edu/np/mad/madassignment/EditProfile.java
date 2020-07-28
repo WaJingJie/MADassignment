@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class EditProfile extends AppCompatActivity {
 
     TextView email;
@@ -107,6 +109,7 @@ public class EditProfile extends AppCompatActivity {
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 Intent welcomepage = new Intent(EditProfile.this, MainActivity.class);
                 startActivity(welcomepage);
             }
@@ -133,7 +136,7 @@ public class EditProfile extends AppCompatActivity {
         viewbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent viewpage = new Intent(EditProfile.this, HomePage.class);
+                Intent viewpage = new Intent(EditProfile.this, ViewBorrow.class);
                 startActivity(viewpage);
             }
         });

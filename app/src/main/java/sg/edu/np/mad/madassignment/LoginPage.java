@@ -8,7 +8,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class LoginPage extends AppCompatActivity {
@@ -17,6 +32,8 @@ public class LoginPage extends AppCompatActivity {
     DBHandler dbHandler;
     private TextView loginemail, loginpassword;
     private Button submitbutton, cancelbutton;
+    private FirebaseAuth mAuth;
+    private DatabaseReference ref;
     //This is a Userdata object that can be used among all the classes
     public static UserData userdata;
     @Override
@@ -24,6 +41,10 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginpage);
 
+// ...
+// Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+        ref = FirebaseDatabase.getInstance().getReference();
         dbHandler = new DBHandler(this,null,null,1);
 
         loginemail = findViewById(R.id.loginemail);
@@ -39,18 +60,64 @@ public class LoginPage extends AppCompatActivity {
                 String email = loginemail.getText().toString();
                 String password = loginpassword.getText().toString();
                 Log.v(TAG, FILENAME + ": Logging in with: " + email + ": " + password);
-                //This occurs when the email entered is not found in the database
-                if (checkUser(email, password) == false){
-                    Log.v(TAG, FILENAME + ": Invalid user!");
-                    reset();
-                    return;
-                }
+                //This searches the database for the entered email
+                UserData data = dbHandler.findUser(email);
+                userdata = data;
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "signInWithEmail:success");
+                                    FirebaseUser user = mAuth.getCurrentUser();
 
-                Log.v(TAG, FILENAME + ": Valid User! Logging in");
-                // redirect to home page
-                Log.v(TAG, FILENAME + ": Redirecting to Home Page");
-                Intent homepage = new Intent(LoginPage.this, StudentHomePage.class);
-                startActivity(homepage);
+                                    ref.child("users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if(snapshot.getValue() != null) {
+                                                Log.v(TAG, FILENAME + ": Valid User! Logging in");
+                                                // redirect to home page
+                                                Log.v(TAG, FILENAME + ": Redirecting to Home Page");
+                                                Intent homepage = new Intent(LoginPage.this, StudentHomePage.class);
+                                                startActivity(homepage);
+                                                //updateUI(user);
+                                            } else {
+                                                // Invalid user
+                                                Toast.makeText(LoginPage.this, "Invalid user!",
+                                                        Toast.LENGTH_SHORT).show();
+                                                mAuth.signOut();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) { }
+                                    });
+
+
+                                } else {
+                                    try {
+                                        throw task.getException();
+
+                                    } catch (FirebaseAuthInvalidCredentialsException invalidEmail) {
+                                        Toast.makeText(LoginPage.this, "Invalid email.",
+                                        Toast.LENGTH_SHORT).show();
+                                    } catch (Exception e) {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                        Toast.makeText(LoginPage.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    //updateUI(null);
+                                    // ...
+                                }
+
+                                // ...
+                            }
+                        });
+
+
             }
         });
         //This method occurs when the cancel button is clicked by the user
@@ -66,31 +133,12 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
-    //This method is for checking whether the user is an existing user and that the email and password used is valid
-    public boolean checkUser(String e, String p){
-        //This searches the database for the entered email
-        UserData data = dbHandler.findUser(e);
-        //This happens when the user is not found in the database
-        if(data == null){
-            Log.v(TAG, FILENAME + ": Invalid email used!");
-            Toast.makeText(getApplicationContext(), "Invalid email! Please re-enter again.",
-                    Toast.LENGTH_LONG).show();
-            reset();
-            return false;
-        }
-        //This occurs where the password entered is not the correct password
-        else if(!data.getMyPassword().equals(p)) {
-            Log.v(TAG, FILENAME + ": Invalid password used!");
-            Toast.makeText(getApplicationContext(), "Invalid password! Please re-enter again.",
-                    Toast.LENGTH_LONG).show();
-            resetPassword();
-            return false;
-        }
-        //This occurs when the user is found to exist in the database
-        else{
-            userdata = data;
-            return true;
-        }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
     }
 
     //This resets the login textboxes

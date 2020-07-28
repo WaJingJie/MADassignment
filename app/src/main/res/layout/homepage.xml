@@ -137,71 +137,56 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
-        android:id="@+id/studentlogoutbutton"
-        android:layout_width="46dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="32dp"
-        android:background="#000000"
-        android:src="@drawable/logoutpic"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/studentbottombar"
-        app:layout_constraintTop_toBottomOf="@+id/homepageview" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/studentbottombar">
 
-    <ImageButton
-        android:id="@+id/studenthomebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:background="#000000"
-        android:src="@drawable/homeicon"
-        app:layout_constraintBottom_toBottomOf="@+id/studentprofilebutton"
-        app:layout_constraintEnd_toStartOf="@+id/viewborrowicon"
-        app:layout_constraintHorizontal_bias="0.214"
-        app:layout_constraintStart_toEndOf="@+id/studentlogoutbutton"
-        app:layout_constraintTop_toTopOf="@+id/studentprofilebutton"
-        app:layout_constraintVertical_bias="0.0" />
+        <ImageButton
+            android:id="@+id/studentlogoutbutton"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:src="@drawable/logoutpic" />
 
-    <ImageButton
-        android:id="@+id/studentprofilebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#000000"
-        android:src="@drawable/profilebutton"
-        app:layout_constraintBottom_toBottomOf="@+id/studentlogoutbutton"
-        app:layout_constraintEnd_toStartOf="@+id/studenthomebutton"
-        app:layout_constraintHorizontal_bias="0.43"
-        app:layout_constraintStart_toEndOf="@+id/studentlogoutbutton"
-        app:layout_constraintTop_toTopOf="@+id/studentlogoutbutton" />
+        <ImageButton
+            android:id="@+id/studentprofilebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:src="@drawable/profilebutton" />
 
-    <ImageButton
-        android:id="@+id/viewborrowicon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:background="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@+id/studenthomebutton"
-        app:layout_constraintEnd_toStartOf="@+id/overdueicon"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/studentlogoutbutton"
-        app:layout_constraintTop_toTopOf="@+id/studenthomebutton"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/viewbookicon" />
+        <ImageButton
+            android:id="@+id/studenthomebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:src="@drawable/homeicon" />
 
-    <ImageButton
-        android:id="@+id/overdueicon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="256dp"
-        android:background="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/viewborrowicon"
-        app:layout_constraintEnd_toEndOf="@+id/studentbottombar"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/studentlogoutbutton"
-        app:layout_constraintTop_toTopOf="@+id/viewborrowicon"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/overdueicon" />
+        <ImageButton
+            android:id="@+id/viewborrowicon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#0003DAC5"
+            app:srcCompat="@drawable/viewbookicon" />
 
+        <ImageButton
+            android:id="@+id/overdueicon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            app:srcCompat="@drawable/overdueicon" />
+
+    </LinearLayout>
     <TextView
         android:id="@+id/toptitle"
         android:layout_width="0dp"

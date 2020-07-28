@@ -6,10 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -156,7 +153,7 @@ public class DBHandler extends SQLiteOpenHelper{
 
 
     //function to get all books
-    public List<book> getBook(){
+    public List<Book> getBook(){
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
@@ -166,11 +163,11 @@ public class DBHandler extends SQLiteOpenHelper{
         qb.setTables(tablename);
 
         Cursor cursor = qb.query(db, sqlSelect,null,null,null,null,null);
-        List<book> result = new ArrayList<>();
+        List<Book> result = new ArrayList<>();
 
         if(cursor.moveToFirst()){
             do{
-                book booklist= new book();
+                Book booklist= new Book();
                 booklist.setId(cursor.getInt(cursor.getColumnIndex("ID")));
                 booklist.setIsbn(cursor.getString(cursor.getColumnIndex("isbn")));
                 booklist.setBookname(cursor.getString(cursor.getColumnIndex("bookname")));
@@ -203,7 +200,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
     //get book by name
-    public List<book> getBookByName(String bookname){
+    public List<Book> getBookByName(String bookname){
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
@@ -213,11 +210,11 @@ public class DBHandler extends SQLiteOpenHelper{
         qb.setTables(tablename);
 
         Cursor cursor = qb.query(db, sqlSelect,"bookname LIKE ?",new String[]{"%"+bookname+"%"},null,null,null);
-        List<book> result = new ArrayList<>();
+        List<Book> result = new ArrayList<>();
 
         if(cursor.moveToFirst()){
             do{
-                book booklist= new book();
+                Book booklist= new Book();
                 booklist.setId(cursor.getInt(cursor.getColumnIndex("ID")));
                 booklist.setIsbn(cursor.getString(cursor.getColumnIndex("isbn")));
                 booklist.setBookname(cursor.getString(cursor.getColumnIndex("bookname")));
@@ -619,13 +616,13 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
     //This searches the table for the book selected by the staff
-    public book findBook(Integer id) {
+    public Book findBook(Integer id) {
         String query = "SELECT * FROM " + TABLE_BOOKS + " WHERE "
                 + COLUMN_BID
                 + " = \"" + id + "\"";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        book bookdata = new book();
+        Book bookdata = new Book();
         Log.v(TAG, FILENAME +": Find user from database: " + query);
 
         if(cursor.moveToFirst()){
@@ -754,7 +751,7 @@ public class DBHandler extends SQLiteOpenHelper{
 
         Cursor cursor = db.rawQuery(query, null);
 
-        book bookData = new book();
+        Book bookData = new Book();
         if (cursor.moveToFirst()) {
             bookData.setId(cursor.getInt(0));
             db.delete(TABLE_BOOKS, COLUMN_BID + " = ?",

@@ -50,12 +50,12 @@ public class EditPwd extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //this validates that the two password fields are the same
-                if(password.getText().toString().isEmpty()|| password.getText().toString() == cfmpassword.getText().toString()){
+                if(password.getText().toString().isEmpty() || !password.getText().toString().equals(cfmpassword.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Please enter the field correctly! Hint password must be the same.", Toast.LENGTH_LONG).show();
                 }
                 else{
                     boolean updated = dbHandler.updatePwd(userData.getMyEmail(), password.getText().toString());
-                    if(updated == true){
+                    if(updated){
                         Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
                         Intent confirm = new Intent(EditPwd.this, ProfilePage.class);
                         startActivity(confirm);
@@ -99,6 +99,7 @@ public class EditPwd extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent homepage = new Intent(EditPwd.this, StudentHomePage.class);
+                startActivity(homepage);
             }
         });
 
@@ -106,7 +107,7 @@ public class EditPwd extends AppCompatActivity {
         viewbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent viewpage = new Intent(EditPwd.this, HomePage.class);
+                Intent viewpage = new Intent(EditPwd.this, ViewBorrow.class);
                 startActivity(viewpage);
             }
         });

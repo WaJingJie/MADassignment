@@ -1,17 +1,17 @@
 package sg.edu.np.mad.madassignment;
 
-public class book {
+public class Book {
     public int id;
     public String isbn, bookname, status;
 
-    public book(int id, String isbn, String bookname, String status){
+    public Book(int id, String isbn, String bookname, String status){
         this.id = id;
         this.isbn = isbn;
         this.bookname = bookname;
         this.status = status;
     }
 
-    public book(){
+    public Book(){
 
     }
 

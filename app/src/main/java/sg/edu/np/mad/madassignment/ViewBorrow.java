@@ -1,19 +1,12 @@
 package sg.edu.np.mad.madassignment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Adapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class HomePage extends AppCompatActivity{
+public class ViewBorrow extends AppCompatActivity{
     FloatingActionButton fab;
 
     TextView hbno;
@@ -127,7 +120,7 @@ public class HomePage extends AppCompatActivity{
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(HomePage.this, "Reached maximum number of borrowed books.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ViewBorrow.this, "Reached maximum number of borrowed books.", Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -136,7 +129,7 @@ public class HomePage extends AppCompatActivity{
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent toborrowpage = new Intent(HomePage.this, BorrowBook.class);
+                    Intent toborrowpage = new Intent(ViewBorrow.this, BorrowBook.class);
                     //Bundle data = new Bundle();
 //                    data.putStringArrayList("isbn", isbnList);
 //                    data.putStringArrayList("bookname", booknameList);
@@ -152,7 +145,7 @@ public class HomePage extends AppCompatActivity{
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent welcomepage = new Intent(HomePage.this, MainActivity.class);
+                Intent welcomepage = new Intent(ViewBorrow.this, MainActivity.class);
                 startActivity(welcomepage);
             }
         });
@@ -161,7 +154,7 @@ public class HomePage extends AppCompatActivity{
         profilebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent profilepage = new Intent(HomePage.this, ProfilePage.class);
+                Intent profilepage = new Intent(ViewBorrow.this, ProfilePage.class);
                 startActivity(profilepage);
             }
         });
@@ -170,7 +163,7 @@ public class HomePage extends AppCompatActivity{
         homebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent homepage = new Intent(HomePage.this, StudentHomePage.class);
+                Intent homepage = new Intent(ViewBorrow.this, StudentHomePage.class);
                 startActivity(homepage);
             }
         });
@@ -179,7 +172,7 @@ public class HomePage extends AppCompatActivity{
         viewbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent viewpage = new Intent(HomePage.this, HomePage.class);
+                Intent viewpage = new Intent(ViewBorrow.this, ViewBorrow.class);
                 startActivity(viewpage);
             }
         });

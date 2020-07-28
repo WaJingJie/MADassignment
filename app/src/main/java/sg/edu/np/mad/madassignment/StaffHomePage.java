@@ -6,11 +6,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.SearchView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.ListViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +25,7 @@ public class StaffHomePage extends AppCompatActivity{
     MaterialSearchBar materialSearchBar;
 
     List<String> suggestion = new ArrayList<>();
-    List<book> booklist = new ArrayList<>();
+    List<Book> booklist = new ArrayList<>();
     ImageButton logoutbutton, homebutton, profilebutton, addbutton, deletebutton;
     DBHandler dbHandler;
 

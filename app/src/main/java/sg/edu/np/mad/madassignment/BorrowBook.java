@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 public class BorrowBook extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     EditText bookname;
@@ -181,7 +180,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                 Toast.makeText(getApplicationContext(), "Book successfully borrowed!", Toast.LENGTH_LONG).show();
 
                 //intent to go back to homepage
-                Intent backtohome = new Intent(BorrowBook.this, HomePage.class);
+                Intent backtohome = new Intent(BorrowBook.this, ViewBorrow.class);
                 startActivity(backtohome);
             }
         });
@@ -217,7 +216,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         viewbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent viewpage = new Intent(BorrowBook.this, HomePage.class);
+                Intent viewpage = new Intent(BorrowBook.this, ViewBorrow.class);
                 startActivity(viewpage);
             }
         });

@@ -20,6 +20,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import android.app.AlertDialog;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class AddBook extends AppCompatActivity{
@@ -32,7 +37,7 @@ public class AddBook extends AppCompatActivity{
 
     private ImageButton logoutbutton, homebutton, profilebutton, addbook, deletebook;
     private Button addbtn;
-
+    private DatabaseReference mDatabase;
     private ArrayList<String> bookidList = new ArrayList<>();
     private ArrayList<String> addisbnList = new ArrayList<>();
     private ArrayList<String> addbooknameList = new ArrayList<>();
@@ -64,6 +69,8 @@ public class AddBook extends AppCompatActivity{
         dbHandler = new DBHandler(this,null,null,1);
         final String status = "Available";
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         //this is to add the book to the database
         addbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +97,7 @@ public class AddBook extends AppCompatActivity{
         logoutbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 Intent welcomepage = new Intent(AddBook.this, StaffLoginPage.class);
                 startActivity(welcomepage);
             }

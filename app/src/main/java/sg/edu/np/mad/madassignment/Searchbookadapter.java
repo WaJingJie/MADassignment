@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -25,9 +24,9 @@ class SearchViewHolder extends RecyclerView.ViewHolder{
 }
 public class Searchbookadapter extends RecyclerView.Adapter<SearchViewHolder>{
     private Context context;
-    private List<book> books;
+    private List<Book> books;
 
-    public Searchbookadapter(Context context, List<book> books){
+    public Searchbookadapter(Context context, List<Book> books){
         this.context = context;
         this.books = books;
     }
