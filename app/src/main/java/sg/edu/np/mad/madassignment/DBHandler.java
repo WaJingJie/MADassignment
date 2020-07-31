@@ -13,7 +13,7 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper{
     private static final String FILENAME = "DBHandler.java";
     public static final String DATABASE_NAME = "NPLibrary.db";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
     private static final String TAG = "NP Library!";
     public static final String TABLE_USERDATA= "users";
     public static final String COLUMN_EMAIL = "useremail";
@@ -38,7 +38,6 @@ public class DBHandler extends SQLiteOpenHelper{
 
     //db for books
     public static final String TABLE_BOOKS = "books";
-    public static final String COLUMN_BID = "ID";
     public static final String COLUMN_BISBN = "isbn";
     public static final String COLUMN_BNAME = "bookname";
     public static final String COLUMN_STATUS = "status";
@@ -81,7 +80,6 @@ public class DBHandler extends SQLiteOpenHelper{
         //db for books
         String CREATE_BOOKS_TABLE = "CREATE TABLE " + TABLE_BOOKS +
                 "("
-                + COLUMN_BID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_BISBN + " TEXT,"
                 + COLUMN_BNAME + " TEXT,"
                 + COLUMN_STATUS + " TEXT" +")";
@@ -168,7 +166,6 @@ public class DBHandler extends SQLiteOpenHelper{
         if(cursor.moveToFirst()){
             do{
                 Book booklist= new Book();
-                booklist.setId(cursor.getInt(cursor.getColumnIndex("ID")));
                 booklist.setIsbn(cursor.getString(cursor.getColumnIndex("isbn")));
                 booklist.setBookname(cursor.getString(cursor.getColumnIndex("bookname")));
                 booklist.setStatus(cursor.getString(cursor.getColumnIndex("status")));
@@ -215,7 +212,6 @@ public class DBHandler extends SQLiteOpenHelper{
         if(cursor.moveToFirst()){
             do{
                 Book booklist= new Book();
-                booklist.setId(cursor.getInt(cursor.getColumnIndex("ID")));
                 booklist.setIsbn(cursor.getString(cursor.getColumnIndex("isbn")));
                 booklist.setBookname(cursor.getString(cursor.getColumnIndex("bookname")));
                 booklist.setStatus(cursor.getString(cursor.getColumnIndex("status")));
@@ -616,7 +612,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
     //This searches the table for the book selected by the staff
-    public Book findBook(Integer id) {
+    /*public Book findBook(Integer id) {
         String query = "SELECT * FROM " + TABLE_BOOKS + " WHERE "
                 + COLUMN_BID
                 + " = \"" + id + "\"";
@@ -626,10 +622,9 @@ public class DBHandler extends SQLiteOpenHelper{
         Log.v(TAG, FILENAME +": Find user from database: " + query);
 
         if(cursor.moveToFirst()){
-            bookdata.setId(cursor.getInt(0));
-            bookdata.setIsbn(cursor.getString(1));
-            bookdata.setBookname(cursor.getString(2));
-            bookdata.setStatus(cursor.getString(3));
+            bookdata.setIsbn(cursor.getString(0));
+            bookdata.setBookname(cursor.getString(1));
+            bookdata.setStatus(cursor.getString(2));
             cursor.close();
             Log.v(TAG, FILENAME + ": QueryData: " + bookdata.getBookname() + bookdata.getStatus());
         }
@@ -639,7 +634,7 @@ public class DBHandler extends SQLiteOpenHelper{
         }
         db.close();
         return bookdata;
-    }
+    }*/
 
     //This updates staff update to the table
     public boolean staffUpdateName(String e, String n) {
@@ -742,7 +737,7 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
     //This deletes the data of the book entered by the user
-    public boolean deleteBook(Integer id) {
+    /*public boolean deleteBook(Integer id) {
         boolean result = false;
         String query = "SELECT * FROM " + TABLE_BOOKS + " WHERE "
                 + COLUMN_BID + " = \""
@@ -762,5 +757,5 @@ public class DBHandler extends SQLiteOpenHelper{
         Log.v(TAG, FILENAME+ ": Deleting data from Database: " + query);
         db.close();
         return result;
-    }
+    }*/
 }

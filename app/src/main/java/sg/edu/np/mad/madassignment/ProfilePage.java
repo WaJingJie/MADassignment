@@ -8,8 +8,17 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ProfilePage extends AppCompatActivity {
     ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
@@ -18,6 +27,9 @@ public class ProfilePage extends AppCompatActivity {
     private static final String FILENAME = "ProfilePage.java";
     private static final String TAG = "NP Library";
     DBHandler dbHandler;
+    private FirebaseAuth firebaseAuth;
+    DatabaseReference ref;
+    private FirebaseUser firebaseUser;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +46,39 @@ public class ProfilePage extends AppCompatActivity {
         phone = findViewById(R.id.phoneno);
         UserData userData = LoginPage.userdata;
 
+        ref = FirebaseDatabase.getInstance().getReference();
+        //ref = FirebaseDatabase.getInstance().getReference().child(firebaseUser.getUid());
+        firebaseAuth = FirebaseAuth.getInstance();
+
+
         dbHandler = new DBHandler(this,null,null,1);
         //This sets the profile name and the profile email using data from the public static Userdata object
-        name.setText(dbHandler.getnamebyemail(userData.getMyEmail()));
-        email.setText(userData.getMyEmail());
-        phone.setText(dbHandler.getphonebyemail(userData.getMyEmail()));
+        firebaseUser = firebaseAuth.getCurrentUser();
+        ref.child("users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String n = snapshot.child("username").getValue().toString();
+                String e = snapshot.child("email").getValue().toString();
+                if(snapshot.child("phoneno").getValue().equals("")){
+                    phone.setText("Add Phone Number");
+                }
+                else{
+                    String pn = snapshot.child("phoneno").getValue().toString();
+                    phone.setText(pn);
+                }
+                name.setText(n);
+                email.setText(e);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //name.setText(dbHandler.getnamebyemail(userData.getMyEmail()));
+        //email.setText(userData.getMyEmail());
+        //phone.setText(dbHandler.getphonebyemail(userData.getMyEmail()));
         //This method is to allow the user to log out
 
         //this is to allow the user to log out

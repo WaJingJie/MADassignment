@@ -9,8 +9,19 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class StaffEditPwd extends AppCompatActivity{
     TextView e;
@@ -18,6 +29,9 @@ public class StaffEditPwd extends AppCompatActivity{
     Button cfm, cancel;
     DBHandler dbHandler;
     ImageButton logoutbutton, homebutton, profilebutton, addbutton, deletebutton;
+    DatabaseReference ref;
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,31 +49,54 @@ public class StaffEditPwd extends AppCompatActivity{
         deletebutton = findViewById(R.id.deletebookicon);
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
-        //set user's email into textview email
-        e.setText(staffData.getMyStaffEmail());
 
-        //updates password when user clicks on the button
-        cfm.setOnClickListener(new View.OnClickListener() {
+        ref = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
+        ref.child("staff").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                //this ensures the two password field matches
-                if(pwd.getText().toString().isEmpty()|| pwd.getText().toString() == cfmpwd.getText().toString()){
-                    Toast.makeText(getApplicationContext(), "Please enter the field correctly! Hint password must be the same.", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    //this updates the password of the staff
-                    boolean updated = dbHandler.staffUpdatePwd(staffData.getMyStaffEmail(), pwd.getText().toString());
-                    if(updated == true){
-                        Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
-                        Intent confirm = new Intent(StaffEditPwd.this, StaffProfilePage.class);
-                        startActivity(confirm);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //set staff's email into textview email
+                String staffemail = snapshot.child("email").getValue().toString();
+                e.setText(staffemail);
+                //updates password when staff clicks on the button
+                cfm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String password = pwd.getText().toString();
+                        String confirmpwd = cfmpwd.getText().toString();
+                        //this ensures the two password field matches
+                        if(password.isEmpty()|| password == confirmpwd){
+                            Toast.makeText(getApplicationContext(), "Please enter the field correctly! Hint password must be the same.", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            firebaseUser.updatePassword(password).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
+                                        finish();
+                                        Intent confirm = new Intent(StaffEditPwd.this, StaffProfilePage.class);
+                                        startActivity(confirm);
+                                    }
+                                }
+                            });
+                            //ref.child("staff").child(firebaseUser.getUid()).child("password").setValue();
+
+
+                        }
                     }
-                    else{
-                        Toast.makeText(getApplicationContext(), "Password unsuccessfully updated", Toast.LENGTH_LONG).show();
-                    }
-                }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
+
 
         //intent back to profile if user cancels
         cancel.setOnClickListener(new View.OnClickListener() {

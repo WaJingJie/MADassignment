@@ -7,11 +7,18 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
@@ -29,6 +36,8 @@ public class StaffHomePage extends AppCompatActivity{
     ImageButton logoutbutton, homebutton, profilebutton, addbutton, deletebutton;
     DBHandler dbHandler;
 
+    DatabaseReference ref;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +46,6 @@ public class StaffHomePage extends AppCompatActivity{
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
 
-
         logoutbutton = findViewById(R.id.stafflogoutbutton);
         homebutton = findViewById(R.id.staffhomebutton);
         profilebutton = findViewById(R.id.staffprofilebutton);
@@ -45,7 +53,7 @@ public class StaffHomePage extends AppCompatActivity{
         deletebutton = findViewById(R.id.deletebookicon);
 
         materialSearchBar = findViewById(R.id.staffsearch);
-
+        ref = FirebaseDatabase.getInstance().getReference();
         rv = findViewById(R.id.staffRV);
         layoutManager = new LinearLayoutManager(this);
         rv.setLayoutManager(layoutManager);
@@ -97,8 +105,28 @@ public class StaffHomePage extends AppCompatActivity{
 
             }
         });
-        adapter = new Searchbookadapter(this,dbHandler.getBook());
+
+        adapter = new Searchbookadapter(this, new ArrayList<Book>());
         rv.setAdapter(adapter);
+        ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot child : snapshot.getChildren()) {
+
+                    String isbn = (String) child.child("isbn").getValue();
+                    String bookname = (String) child.child("bookname").getValue();
+                    String status = (String) child.child("status").getValue();
+                    Book book = new Book(isbn, bookname, status);
+                    adapter.books.add(book);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         //this is to allow the staff to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +172,8 @@ public class StaffHomePage extends AppCompatActivity{
                 startActivity(overduepage);
             }
         });
+
+
     }
 
     private void loadSuggestList(){
@@ -155,4 +185,5 @@ public class StaffHomePage extends AppCompatActivity{
         adapter = new Searchbookadapter(this, dbHandler.getBookByName(text));
         rv.setAdapter(adapter);
     }
+
 }

@@ -66,7 +66,7 @@ public class StaffLoginPage extends AppCompatActivity {
                                     Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
 
-                                    ref.child("staff").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    ref.child("users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                                             if(snapshot.getValue() == null) {

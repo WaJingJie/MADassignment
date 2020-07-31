@@ -1,11 +1,9 @@
 package sg.edu.np.mad.madassignment;
 
 public class Book {
-    public int id;
     public String isbn, bookname, status;
 
-    public Book(int id, String isbn, String bookname, String status){
-        this.id = id;
+    public Book(String isbn, String bookname, String status){
         this.isbn = isbn;
         this.bookname = bookname;
         this.status = status;
@@ -13,14 +11,6 @@ public class Book {
 
     public Book(){
 
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getIsbn() {

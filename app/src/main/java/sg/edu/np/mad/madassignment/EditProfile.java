@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class EditProfile extends AppCompatActivity {
 
@@ -21,6 +23,9 @@ public class EditProfile extends AppCompatActivity {
     Button cfm, cancel;
     DBHandler dbHandler;
     ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
+    private DatabaseReference mDatabase;
+
+    public EditProfile(){}
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class EditProfile extends AppCompatActivity {
         viewbutton = findViewById(R.id.viewborrowicon);
         overduebutton = findViewById(R.id.overdueicon);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
 
@@ -150,6 +156,12 @@ public class EditProfile extends AppCompatActivity {
             }
         });
     }
+
+    public EditProfile(String id, String email, String name, String password, String phoneno){
+
+    }
+
+
 }
 
 

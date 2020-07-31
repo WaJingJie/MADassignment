@@ -22,8 +22,12 @@ import androidx.fragment.app.DialogFragment;
 import android.app.AlertDialog;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -37,13 +41,12 @@ public class AddBook extends AppCompatActivity{
 
     private ImageButton logoutbutton, homebutton, profilebutton, addbook, deletebook;
     private Button addbtn;
-    private DatabaseReference mDatabase;
+    private DatabaseReference ref;
     private ArrayList<String> bookidList = new ArrayList<>();
     private ArrayList<String> addisbnList = new ArrayList<>();
     private ArrayList<String> addbooknameList = new ArrayList<>();
     private ArrayList<Integer> copiesList = new ArrayList<>();
     private ArrayList<String> statusList = new ArrayList<>();
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,29 +72,32 @@ public class AddBook extends AppCompatActivity{
         dbHandler = new DBHandler(this,null,null,1);
         final String status = "Available";
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        ref = FirebaseDatabase.getInstance().getReference();
 
         //this is to add the book to the database
         addbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //validation to disallow empty fields for both isbn and book name field
-                String isbn = addisbn.getText().toString();
-                String bookname = addbookname.getText().toString();
+                final String isbn = addisbn.getText().toString();
+                final String bookname = addbookname.getText().toString();
                 if(isbn.isEmpty() || bookname.isEmpty()) {
                     Toast.makeText(AddBook.this, "Please enter all details", Toast.LENGTH_SHORT).show();
                 }
                 //continue if all fields are filled
                 else{
                     dbHandler.addBook(isbn, bookname, status);
+                    // My top posts by number of stars
+                    // My top posts by number of stars
+                    //String myUserId = getUid();
+                    String id = ref.child("books").push().getKey();
+                    writeNewBook(id, isbn, bookname);
                     Toast.makeText(getApplicationContext(), "Book successfully added!",
                             Toast.LENGTH_LONG).show();
                     returnQuery();
                 }
             }
         });
-
-
 
         //this is to allow the staff to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +146,13 @@ public class AddBook extends AppCompatActivity{
         });
 
     }
+
+    private void writeNewBook(String id, String isbn, String name) {
+        ref.child("books").child(id).child("isbn").setValue(isbn);
+        ref.child("books").child(id).child("bookname").setValue(name);
+        ref.child("books").child(id).child("status").setValue("Available");
+    }
+
 
     //this asks the staff whether they want to continue adding books
     private void returnQuery(){

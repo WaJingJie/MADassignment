@@ -10,6 +10,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +28,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryViewHolder> {
 //    ArrayList<String> duedateList;
     private List<BorrowData> borrowdata;
     private Context context;
+    private DatabaseReference ref;
 
 //    public LibraryAdapter(ArrayList<String> isbnList, ArrayList<String> booknameList, ArrayList<String> borrowdateList, ArrayList<String> duedateList)
 //    {
@@ -34,6 +41,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryViewHolder> {
     public LibraryAdapter(Context context, List<BorrowData> borrowdata){
         this.context = context;
         this.borrowdata = borrowdata;
+
     }
 
     @Override
@@ -51,7 +59,9 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull LibraryViewHolder holder, int position) {
         Log.v(TAG, FILENAME +": Retrieving data from the list");
+        ref = FirebaseDatabase.getInstance().getReference();
         //retrieves data from the list
+
         String isbn = borrowdata.get(position).getISBN();
         String bname = borrowdata.get(position).getMyBookName();
         String borrowd = borrowdata.get(position).getBorrowDate();

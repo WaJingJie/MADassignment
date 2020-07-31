@@ -9,14 +9,26 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class EditStaffProfile extends AppCompatActivity{
     TextView email;
     EditText name, phoneno;
     Button confirm, cancel;
     DBHandler dbHandler;
+    DatabaseReference ref;
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
     StaffData staffData = StaffLoginPage.staffdata;
     ImageButton logoutbutton, homebutton, profilebutton, addbutton, deletebutton;
     @Override
@@ -38,58 +50,73 @@ public class EditStaffProfile extends AppCompatActivity{
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
 
-        //set staff's email into textview email
-        email.setText(staffData.getMyStaffEmail());
+        ref = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
-        //when the confirm button is pressed
-        confirm.setOnClickListener(new View.OnClickListener() {
+
+
+        //validation to disallow empty fields
+        ref.child("staff").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                String n = name.getText().toString();
-                String pn = phoneno.getText().toString();
-                //validation to disallow empty fields
-                if(n.isEmpty() && pn.isEmpty()) {
-                    Toast.makeText(EditStaffProfile.this, "Please enter details", Toast.LENGTH_LONG).show();
-                }
-                //when only name is filled
-                else if(pn.isEmpty()){
-                    boolean updated = dbHandler.staffUpdateName(staffData.getMyStaffEmail(), n);
-                    if(updated){
-                        Toast.makeText(getApplicationContext(), "Name successfully updated!", Toast.LENGTH_LONG).show();
-                        Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
-                        startActivity(confirm);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //set staff's email into textview email
+                String staffemail = snapshot.child("email").getValue().toString();
+                email.setText(staffemail);
+                //when the confirm button is pressed
+                confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final String n = name.getText().toString();
+                        final String pn = phoneno.getText().toString();
+                        if (n.isEmpty() && pn.isEmpty()) {
+                            Toast.makeText(EditStaffProfile.this, "Please enter details", Toast.LENGTH_LONG).show();
+
+                        }
+                        //when only name is filled
+                        else if (pn.isEmpty()) {
+                            //boolean updated = dbHandler.staffUpdateName(staffData.getMyStaffEmail(), n);
+                            ref.child("staff").child(firebaseUser.getUid()).child("name").setValue(n);
+                            Toast.makeText(getApplicationContext(), "Name successfully updated!", Toast.LENGTH_LONG).show();
+                            Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
+                            startActivity(confirm);
+                        }
+                        //when only phone number is filled
+                        else if (n.isEmpty()) {
+                            //boolean updated = dbHandler.staffUpdatePhonenum(staffData.getMyStaffEmail(), pn);
+                            ref.child("staff").child(firebaseUser.getUid()).child("phoneno").setValue(pn);
+                            Toast.makeText(getApplicationContext(), "Phone number successfully updated!", Toast.LENGTH_LONG).show();
+                            Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
+                            startActivity(confirm);
+                        }
+                        //when both name and phone number fields are filled
+                        else {
+                            //boolean pnupdate = dbHandler.staffUpdatePhonenum(staffData.getMyStaffEmail(), pn);
+                            //boolean nupdate = dbHandler.staffUpdateName(staffData.getMyStaffEmail(), n);
+                            ref.child("staff").child(firebaseUser.getUid()).child("name").setValue(n);
+                            ref.child("staff").child(firebaseUser.getUid()).child("phoneno").setValue(pn);
+                            Toast.makeText(getApplicationContext(), "Profile successfully updated!", Toast.LENGTH_LONG).show();
+                            Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
+                            startActivity(confirm);
+                        }
+                        //name.setText(staffname);
+                        //email.setText(staffemail);
+
                     }
-                    else{
-                        Toast.makeText(getApplicationContext(), "Name unsuccessfully updated", Toast.LENGTH_LONG).show();
-                    }
-                }
-                //when only phone number is filled
-                else if(n.isEmpty()){
-                    boolean updated = dbHandler.staffUpdatePhonenum(staffData.getMyStaffEmail(), pn);
-                    if(updated){
-                        Toast.makeText(getApplicationContext(), "Phone number successfully updated!", Toast.LENGTH_LONG).show();
-                        Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
-                        startActivity(confirm);
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), "Phone number unsuccessfully updated", Toast.LENGTH_LONG).show();
-                    }
-                }
-                //when both name and phone number fields are filled
-                else{
-                    boolean pnupdate = dbHandler.staffUpdatePhonenum(staffData.getMyStaffEmail(), pn);
-                    boolean nupdate = dbHandler.staffUpdateName(staffData.getMyStaffEmail(), n);
-                    if(pnupdate && nupdate){
-                        Toast.makeText(getApplicationContext(), "Profile successfully updated!", Toast.LENGTH_LONG).show();
-                        Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
-                        startActivity(confirm);
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), "Profile unsuccessfully updated", Toast.LENGTH_LONG).show();
-                    }
-                }
+
+
+
+                });
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
+
 
         //when the cancel button is pressed
         cancel.setOnClickListener(new View.OnClickListener() {

@@ -146,7 +146,7 @@ public class SignUpPage extends AppCompatActivity {
         mDatabase.child("users").child(userId).child("username").setValue(name);
         mDatabase.child("users").child(userId).child("phoneno").setValue("");
         mDatabase.child("users").child(userId).child("email").setValue(email);
-        mDatabase.child("users").child(userId).child("role").setValue("student");
+        //mDatabase.child("users").child(userId).child("role").setValue("student");
     }
 
     @Override

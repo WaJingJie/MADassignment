@@ -103,7 +103,7 @@ public class ViewBorrow extends AppCompatActivity{
         rv.setHasFixedSize(true);
 
         //retrieves borrowbooks from db and display it in rv
-        adapter = new LibraryAdapter(this,dbHandler.getborrowbyEmail(userData.getMyEmail()));
+        adapter = new LibraryAdapter(this, new ArrayList<BorrowData>());
         rv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 

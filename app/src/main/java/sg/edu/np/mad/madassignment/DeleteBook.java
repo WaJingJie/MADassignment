@@ -12,17 +12,25 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
 
 public class DeleteBook extends AppCompatActivity {
     private static final String TAG = "NPLibrary";
+    String selectedisbn;
     EditText deleteid;
     EditText deletebookname;
     EditText deletebookstatus;
@@ -31,7 +39,7 @@ public class DeleteBook extends AppCompatActivity {
     Integer bookid;
     private ImageButton logoutbutton, homebutton, profilebutton, addbook, deletebook;
     private Button deletebtn;
-
+    private DatabaseReference ref;
     private ArrayList<String> bookidList = new ArrayList<>();
     private ArrayList<String> deleteisbnList = new ArrayList<>();
     private ArrayList<String> deletebooknameList = new ArrayList<>();
@@ -56,7 +64,7 @@ public class DeleteBook extends AppCompatActivity {
         spinner = findViewById(R.id.deleteisbnlist);
 
         dbHandler = new DBHandler(this,null,null,1);
-
+        ref = FirebaseDatabase.getInstance().getReference();
 
         //this gets the data from home page
         Intent recieveingEnd = getIntent();
@@ -75,7 +83,7 @@ public class DeleteBook extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedisbn = parent.getItemAtPosition(position).toString();
+                selectedisbn = parent.getItemAtPosition(position).toString();
                 bookid = dbHandler.getBookID(selectedisbn);
                 String stringid = bookid.toString();
                 String bookname = dbHandler.getBookName(selectedisbn);
@@ -118,8 +126,25 @@ public class DeleteBook extends AppCompatActivity {
                         Log.d("List", statusList.toString());
                         returnQuery();
                     }*/
+                    ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    dbHandler.deleteBook(bookid);
+                            for(DataSnapshot child : snapshot.getChildren()) {
+                                String isbn = (String) child.child("isbn").getValue();
+                                if(isbn.equals(selectedisbn)){
+                                    ref.child("books").child(child.getKey()).setValue(null);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
                     Toast.makeText(getApplicationContext(), "Book successfully deleted",
                             Toast.LENGTH_LONG).show();
                     returnQuery();
@@ -172,6 +197,12 @@ public class DeleteBook extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void writeDeleteBook(String id) {
+        ref.child("books").child(id).child("isbn").setValue(null);
+        ref.child("books").child(id).child("bookname").setValue(null);
+        ref.child("books").child(id).child("status").setValue(null);
     }
 
     //this asks the staff whether they want to continue deleting books
