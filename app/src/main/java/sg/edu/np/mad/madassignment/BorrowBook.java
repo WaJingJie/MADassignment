@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,7 +38,10 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class BorrowBook extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    EditText bookname;
+    private static final String FILENAME = "BorrowBook.java";
+    private static final String TAG = "NP Library";
+
+    TextView bookname;
     EditText borrowdate;
     EditText duedate;
 
@@ -107,7 +112,15 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                             String bookisbn = (String) child.child("isbn").getValue();
                             if(bookisbn.equals(selectedisbn)){
                                 b = (String) child.child("bookname").getValue();
-                                bookname.setText(b);}
+                                Log.d(TAG, b);
+                                bookname.setText(b);
+                                //gets the today date
+                                Calendar c = Calendar.getInstance();
+                                String todaydate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
+                                borrowdate.setText(todaydate);
+                                //auto increment date for due date
+                                incrementdate();
+                            }
                         }
                     }
 
@@ -182,7 +195,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                         for(DataSnapshot child : snapshot.getChildren()) {
                             String bookisbn = (String) child.child("isbn").getValue();
                             if(bookisbn.equals(selectedisbn)){
-                                ref.child("books").child("status").setValue("Unavailable");
+                                ref.child("books").child(firebaseUser.getUid()).child("status").setValue("Unavailable");
                             }
                         }
                     }
