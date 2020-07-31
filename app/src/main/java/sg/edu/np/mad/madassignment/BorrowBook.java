@@ -16,8 +16,17 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -37,7 +46,15 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
     Spinner spinner;
 
     DBHandler dbHandler;
-
+    private DatabaseReference ref;
+    FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
+    String selectedisbn;
+    String textname;
+    String borrowdatetext;
+    String duedatetext;
+    String email;
+    String b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +78,9 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         spinner = findViewById(R.id.isbnlist);
 
         final UserData userData = LoginPage.userdata;
-
+        ref = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
 
@@ -80,9 +99,25 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedisbn = parent.getItemAtPosition(position).toString();
-                String book = dbHandler.getBookByISBN(selectedisbn);
-                bookname.setText(book);
+                selectedisbn = parent.getItemAtPosition(position).toString();
+                ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot child : snapshot.getChildren()) {
+                            String bookisbn = (String) child.child("isbn").getValue();
+                            if(bookisbn.equals(selectedisbn)){
+                                b = (String) child.child("bookname").getValue();
+                                bookname.setText(b);}
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
 
             }
 
@@ -117,14 +152,50 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
+        ref.child("users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                email = snapshot.child("email").getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         //this allows the user to borrow book
         borrowbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addtodb(userData.getMyEmail(), spinner.getSelectedItem().toString(), bookname.getText().toString(), borrowdate.getText().toString(), duedate.getText().toString());
+                textname = bookname.getText().toString();
+                borrowdatetext = borrowdate.getText().toString();
+                duedatetext = duedate.getText().toString();
+                String id = ref.child("books").push().getKey();
+
+                writeNewBorrowBook(id, selectedisbn, textname, borrowdatetext, duedatetext, email);
+                ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot child : snapshot.getChildren()) {
+                            String bookisbn = (String) child.child("isbn").getValue();
+                            if(bookisbn.equals(selectedisbn)){
+                                ref.child("books").child("status").setValue("Unavailable");
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                //addtodb(userData.getMyEmail(), spinner.getSelectedItem().toString(), bookname.getText().toString(), borrowdate.getText().toString(), duedate.getText().toString());
                 //updates book status to unavailable
                 dbHandler.updatebookStatus(spinner.getSelectedItem().toString());
-
+                //ref.child("books").child(id).child("status").setValue("Unavailable");
                 Toast.makeText(getApplicationContext(), "Book successfully borrowed!", Toast.LENGTH_LONG).show();
 
                 //intent to go back to homepage
@@ -183,6 +254,14 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
     private void addtodb(String email, String isbn, String bookname, String borrowdate, String duedate){
         dbHandler.addBorrowedBook(email, isbn, bookname, borrowdate, duedate);
 
+    }
+
+    private void writeNewBorrowBook(String id, String isbn, String name, String borrowdate, String duedate, String email) {
+        ref.child("borrowedbooks").child(id).child("email").setValue(email);
+        ref.child("borrowedbooks").child(id).child("isbn").setValue(isbn);
+        ref.child("borrowedbooks").child(id).child("bookname").setValue(name);
+        ref.child("borrowedbooks").child(id).child("borrowdate").setValue(borrowdate);
+        ref.child("borrowedbooks").child(id).child("duedate").setValue(duedate);
     }
 
     //method used to increase due date by 14 days
