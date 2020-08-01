@@ -244,8 +244,8 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent overduepage = new Intent(HomePage.this, OverduePage.class);
-                startActivity(overduepage);*/
+                Intent overduepage = new Intent(BorrowBook.this, OverDueLoan.class);
+                startActivity(overduepage);
             }
         });
 

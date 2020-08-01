@@ -1,6 +1,8 @@
 package sg.edu.np.mad.madassignment;
 
-public class BorrowData {
+import java.io.Serializable;
+
+public class BorrowData implements Serializable {
     private String bookemail;
     private String isbn;
     private String bookname;

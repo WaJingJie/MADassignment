@@ -725,9 +725,9 @@ public class DBHandler extends SQLiteOpenHelper{
 
         BorrowData borrowData = new BorrowData();
         if (cursor.moveToFirst()) {
-            borrowData.setMyBookEmail(cursor.getString(0));
-            db.delete(TABLE_BORROWDATA, COLUMN_BOOKEMAIL + " = ?",
-                    new String[] { String.valueOf(borrowData.getMyBookEmail()) });
+            borrowData.setISBN(cursor.getString(1));
+            db.delete(TABLE_BORROWDATA, COLUMN_ISBN + " = ?",
+                    new String[] { String.valueOf(borrowData.getISBN()) });
             cursor.close();
             result = true;
         }

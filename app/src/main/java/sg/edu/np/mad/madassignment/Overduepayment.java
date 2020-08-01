@@ -1,6 +1,7 @@
 package sg.edu.np.mad.madassignment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -12,17 +13,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.braintreepayments.cardform.view.CardForm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Overduepayment extends AppCompatActivity {
 
     CardForm cardForm;
     Button buy;
     AlertDialog.Builder alertBuilder;
+    List<BorrowData> overdueList = new ArrayList<>();
+    DBHandler dbHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.overduepayment);
 
+        if(getIntent().getExtras() != null){
+            overdueList = (List<BorrowData>) getIntent().getSerializableExtra("list");
+        }
+        dbHandler = new DBHandler(this,null,null,1);
         cardForm = findViewById(R.id.card_form);
         buy = findViewById(R.id.btnPay);
         cardForm.cardRequired(true)
@@ -47,8 +58,17 @@ public class Overduepayment extends AppCompatActivity {
                     alertBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            Toast.makeText(Overduepayment.this, "Thank you for your payment", Toast.LENGTH_LONG).show();
+                            boolean result = false;
+                            for(int k=0; k< overdueList.size(); k++){
+                                result = dbHandler.deleteBorrowedBook(overdueList.get(k).getISBN());
+                            }
+                            if (result){
+                                dialogInterface.dismiss();
+                                Toast.makeText(Overduepayment.this, "Thank you for your payment", Toast.LENGTH_LONG).show();
+                                Intent homepage = new Intent(Overduepayment.this, StudentHomePage.class);
+                                startActivity(homepage);
+                            }
+
                         }
                     });
                     alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
