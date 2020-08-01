@@ -31,7 +31,6 @@ public class EditProfile extends AppCompatActivity {
     private DatabaseReference ref;
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
-    public EditProfile(){}
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,8 +58,6 @@ public class EditProfile extends AppCompatActivity {
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
 
-        //set user's email into textview email
-        email.setText(userData.getMyEmail());
 
         ref.child("users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -79,7 +76,7 @@ public class EditProfile extends AppCompatActivity {
                         }
                         //this updates only the name field
                         else if(pn.isEmpty()){
-                            ref.child("users").child(firebaseUser.getUid()).child("name").setValue(n);
+                            ref.child("users").child(firebaseUser.getUid()).child("username").setValue(n);
                             Toast.makeText(getApplicationContext(), "Name successfully updated!", Toast.LENGTH_LONG).show();
                             Intent confirm = new Intent(EditProfile.this, ProfilePage.class);
                             startActivity(confirm);
@@ -93,7 +90,7 @@ public class EditProfile extends AppCompatActivity {
                         }
                         //this updates both the name and phone number of the user
                         else{
-                            ref.child("users").child(firebaseUser.getUid()).child("name").setValue(n);
+                            ref.child("users").child(firebaseUser.getUid()).child("username").setValue(n);
                             ref.child("users").child(firebaseUser.getUid()).child("phoneno").setValue(pn);
                             Toast.makeText(getApplicationContext(), "Profile successfully updated!", Toast.LENGTH_LONG).show();
                             Intent confirm = new Intent(EditProfile.this, ProfilePage.class);

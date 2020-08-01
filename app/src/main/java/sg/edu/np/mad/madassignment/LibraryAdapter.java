@@ -26,7 +26,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryViewHolder> {
 //    ArrayList<String> booknameList;
 //    ArrayList<String> borrowdateList;
 //    ArrayList<String> duedateList;
-    private List<BorrowData> borrowdata;
+    public List<BorrowData> borrowdata;
     private Context context;
     private DatabaseReference ref;
 

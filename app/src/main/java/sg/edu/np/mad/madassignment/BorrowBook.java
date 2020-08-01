@@ -49,7 +49,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
     Button borrowbtn;
 
     Spinner spinner;
-
+    ArrayAdapter<String> spinneradapter;
     DBHandler dbHandler;
     private DatabaseReference ref;
     FirebaseUser firebaseUser;
@@ -60,6 +60,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
     String duedatetext;
     String email;
     String b;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +87,8 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         ref = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
+
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
 
@@ -97,9 +100,33 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         //auto increment date for due date
         incrementdate();
 
-        ArrayList<String> isbnlist = dbHandler.getIsbn();
-        ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(this,R.layout.spinnerlayout, R.id.tvspinner, isbnlist);
-        spinner.setAdapter(spinneradapter);
+
+        ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<String> booklist = new ArrayList<>();
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    String bookisbn = (String) child.child("isbn").getValue();
+                    String bookstatus = (String) child.child("status").getValue();
+                    if(bookstatus.equals("Available")){
+                        booklist.add(bookisbn);
+                    }
+                    spinneradapter = new ArrayAdapter<>(BorrowBook.this, R.layout.spinnerlayout, R.id.tvspinner, booklist);
+                    spinner.setAdapter(spinneradapter);
+
+                    //b = (String) child.child("bookname").getValue();
+                    //Log.d(TAG, b);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //ArrayList<String> isbnlist = dbHandler.getIsbn();
+
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -110,7 +137,8 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for(DataSnapshot child : snapshot.getChildren()) {
                             String bookisbn = (String) child.child("isbn").getValue();
-                            if(bookisbn.equals(selectedisbn)){
+                            String bookstatus = (String) child.child("status").getValue();
+                            if(bookisbn.equals(selectedisbn) && bookstatus.equals("Available")){
                                 b = (String) child.child("bookname").getValue();
                                 Log.d(TAG, b);
                                 bookname.setText(b);
@@ -195,7 +223,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                         for(DataSnapshot child : snapshot.getChildren()) {
                             String bookisbn = (String) child.child("isbn").getValue();
                             if(bookisbn.equals(selectedisbn)){
-                                ref.child("books").child(firebaseUser.getUid()).child("status").setValue("Unavailable");
+                                ref.child("books").child(child.getKey()).child("status").setValue("Unavailable");
                             }
                         }
                     }
@@ -207,7 +235,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                 });
                 //addtodb(userData.getMyEmail(), spinner.getSelectedItem().toString(), bookname.getText().toString(), borrowdate.getText().toString(), duedate.getText().toString());
                 //updates book status to unavailable
-                dbHandler.updatebookStatus(spinner.getSelectedItem().toString());
+                //dbHandler.updatebookStatus(spinner.getSelectedItem().toString());
                 //ref.child("books").child(id).child("status").setValue("Unavailable");
                 Toast.makeText(getApplicationContext(), "Book successfully borrowed!", Toast.LENGTH_LONG).show();
 

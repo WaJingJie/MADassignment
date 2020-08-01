@@ -1,22 +1,32 @@
 package sg.edu.np.mad.madassignment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class ViewBorrow extends AppCompatActivity{
     FloatingActionButton fab;
-
+    private static final String TAG = "NP Library";
     TextView hbno;
     TextView cbno;
     ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
@@ -24,13 +34,19 @@ public class ViewBorrow extends AppCompatActivity{
     RecyclerView rv;
     RecyclerView.LayoutManager layoutManager;
     LibraryAdapter adapter;
-
+    Integer borrowcount;
+    Integer maxcount;
+    String email;
     ArrayList<String> isbnList = new ArrayList<>();
     ArrayList<String> booknameList = new ArrayList<>();
     ArrayList<String> borrowdateList = new ArrayList<>();
     ArrayList<String> duedateList = new ArrayList<>();
 
     DBHandler dbHandler;
+
+    DatabaseReference ref;
+    FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,17 +118,73 @@ public class ViewBorrow extends AppCompatActivity{
         rv.setLayoutManager(layoutManager);
         rv.setHasFixedSize(true);
 
+        borrowcount = 0;
+        maxcount = 9;
+        ref = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
         //retrieves borrowbooks from db and display it in rv
         adapter = new LibraryAdapter(this, new ArrayList<BorrowData>());
         rv.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+
+        ref.child("users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                email = (String)snapshot.child("email").getValue();
+                Log.d(TAG, email);
+                ref.child("borrowedbooks").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        for (DataSnapshot child : snapshot.getChildren()) {
+                            String e = (String) child.child("email").getValue();
+                            if(e.equals(email)){
+                                String isbn = (String) child.child("isbn").getValue();
+                                String bookname = (String) child.child("bookname").getValue();
+                                String borrowdate = (String) child.child("borrowdate").getValue();
+                                String duedate = (String) child.child("duedate").getValue();
+                                BorrowData borrowData = new BorrowData(email, isbn, bookname, borrowdate, duedate);
+                                adapter.borrowdata.add(borrowData);
+                                borrowcount += 1;
+                                maxcount -= 1;
+
+                            }
+
+                            //b = (String) child.child("bookname").getValue();
+                            //Log.d(TAG, b);
+                        }
+                        String borrowno = borrowcount.toString();
+                        String maxno = maxcount.toString();
+                        hbno.setText(borrowno);
+                        cbno.setText(maxno);
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
 
         //display the no of books borrowed
-        hbno.setText(Integer.toString(adapter.getItemCount()));
+        //hbno.setText(borrowcount);
 
         //display the remaining borrow count(9 is max)
-        int remainingcount = 9- adapter.getItemCount();
-        cbno.setText(Integer.toString(remainingcount));
+        //int remainingcount = 9- adapter.getItemCount();
+        //cbno.setText(maxcount);
 
         //creates an onclick listener to notify the user that they have reached the max amount of books they can borrow
         if(Integer.parseInt(cbno.getText().toString()) == adapter.getItemCount()){
