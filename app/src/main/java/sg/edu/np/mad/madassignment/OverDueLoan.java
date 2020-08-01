@@ -14,6 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +34,10 @@ public class OverDueLoan extends AppCompatActivity{
     RecyclerView homepageview;
     String currentDate;
     Button payloan;
+    DatabaseReference ref;
+    FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth;
+    Overdueloandadapter overdueloandadapter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +62,18 @@ public class OverDueLoan extends AppCompatActivity{
         homepageview.setLayoutManager(new LinearLayoutManager(this));
 
         dbHandler = new DBHandler(this,null,null,1);
+
         UserData userData = LoginPage.userdata;
         Log.e("email :",""+userData.getMyEmail());
         borrowDataList = dbHandler.getborrowbyEmail(userData.getMyEmail());
         Log.e("borrow list  :",""+borrowDataList.toString());
+
+        overdueloandadapter = new Overdueloandadapter(OverDueLoan.this,borrowList);
+        homepageview.setAdapter(overdueloandadapter);
+
+
+        overdueloandadapter.notifyDataSetChanged();
+
         if(!borrowDataList.isEmpty()){
             for(int i=0; i< borrowDataList.size(); i++){
                 if(DateUtil.checkTimeElapseOrNot(borrowDataList.get(i).getDueDate(),currentDate)){
@@ -79,9 +95,7 @@ public class OverDueLoan extends AppCompatActivity{
                     int totalPrice = totalDayElapsed * 50;
                     totalCoast.setText("Total Overdue Fee: $ "+ totalPrice +".00");
                 }
-                Overdueloandadapter overdueloandadapter = new Overdueloandadapter(OverDueLoan.this,borrowList);
-                homepageview.setAdapter(overdueloandadapter);
-                overdueloandadapter.notifyDataSetChanged();
+
             }
 
 
@@ -121,7 +135,7 @@ public class OverDueLoan extends AppCompatActivity{
         viewbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent viewpage = new Intent(OverDueLoan.this, HomePage.class);
+                Intent viewpage = new Intent(OverDueLoan.this, ViewBorrow.class);
                 startActivity(viewpage);
             }
         });
@@ -137,4 +151,14 @@ public class OverDueLoan extends AppCompatActivity{
 
 
     }
+
+    private void writeNewLoan(String id, String email, String isbn, String name, String duedate, String days, String fee) {
+        ref.child("overdueloans").child(id).child("email").setValue(email);
+        ref.child("overdueloans").child(id).child("isbn").setValue(isbn);
+        ref.child("overdueloans").child(id).child("bookname").setValue(name);
+        ref.child("overdueloans").child(id).child("duedate").setValue(duedate);
+        ref.child("overdueloans").child(id).child("days").setValue(days);
+        ref.child("overdueloans").child(id).child("fees").setValue(fee);
+    }
+
 }
