@@ -1,113 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/greybox">
+    app:cardElevation="8dp"
+    android:layout_margin="8dp">
 
-    <TextView
-        android:id="@+id/isbnview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/benchnine_bold"
-        android:text="ISBN:"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_margin="8dp"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/nameview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="92dp"
-        android:fontFamily="@font/benchnine_bold"
-        android:text="Name:"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/dateborrowedview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="152dp"
-        android:fontFamily="@font/benchnine_bold"
-        android:text="Date Borrowed:"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/bkisbn"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical|start"
+                android:textAllCaps="true"
+                android:text="isbn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
 
-    <TextView
-        android:id="@+id/duedateview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="204dp"
-        android:fontFamily="@font/benchnine_bold"
-        android:paddingBottom="30dp"
-        android:text="Due Date:"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/bkname"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical|start"
+                android:textAllCaps="true"
+                android:text="bookname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
 
-    <TextView
-        android:id="@+id/bkname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/benchnine_bold"
-        android:text="One of Us Is Lying"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/nameview"
-        app:layout_constraintStart_toStartOf="@+id/borrowdate"
-        app:layout_constraintTop_toTopOf="@+id/nameview" />
+            <TextView
+                android:id="@+id/borrowdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical|start"
+                android:text="borrowdate"
+                android:textAllCaps="true"></TextView>
 
-    <TextView
-        android:id="@+id/duedate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="58dp"
-        android:fontFamily="@font/benchnine_bold"
-        android:text="18/06/2020"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/duedateview"
-        app:layout_constraintStart_toEndOf="@+id/duedateview"
-        app:layout_constraintTop_toTopOf="@+id/duedateview"
-        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/bkisbn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/benchnine_bold"
-        android:text="9781234568763"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/isbnview"
-        app:layout_constraintStart_toStartOf="@+id/bkname"
-        app:layout_constraintTop_toTopOf="@+id/isbnview" />
+            <TextView
+                android:id="@+id/duedate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical|start"
+                android:text="duedate"
+                android:textAllCaps="true"></TextView>
 
-    <TextView
-        android:id="@+id/borrowdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/benchnine_bold"
-        android:text="27/05/2020"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/dateborrowedview"
-        app:layout_constraintStart_toStartOf="@+id/duedate"
-        app:layout_constraintTop_toTopOf="@+id/dateborrowedview" />
+        </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -93,9 +93,9 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         dbHandler = new DBHandler(this,null,null,1);
 
         //gets the today date
-        Calendar c = Calendar.getInstance();
-        String todaydate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
-        borrowdate.setText(todaydate);
+        //Calendar c = Calendar.getInstance();
+        //String todaydate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
+        //borrowdate.setText(todaydate);
 
         //auto increment date for due date
         incrementdate();

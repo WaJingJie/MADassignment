@@ -70,8 +70,8 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryViewHolder> {
         //display the info from the list to the ui
         holder.bookisbn.setText(isbn);
         holder.bookname.setText(bname);
-        holder.borrowdate.setText(borrowd);
-        holder.duedate.setText(dued);
+        holder.borrowdate.setText("Borrow Date: " + borrowd);
+        holder.duedate.setText("Due Date: " + dued);
     }
 
     ;
