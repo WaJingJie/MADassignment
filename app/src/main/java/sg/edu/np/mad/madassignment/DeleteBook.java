@@ -28,6 +28,8 @@ import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
 
+import javax.crypto.spec.DESKeySpec;
+
 public class DeleteBook extends AppCompatActivity {
     private static final String TAG = "NPLibrary";
     String selectedisbn;
@@ -36,6 +38,7 @@ public class DeleteBook extends AppCompatActivity {
     EditText deletebookstatus;
     DBHandler dbHandler;
     Spinner spinner;
+    ArrayAdapter<String> spinneradapter;
     Integer bookid;
     private ImageButton logoutbutton, homebutton, profilebutton, addbook, deletebook;
     private Button deletebtn;
@@ -75,10 +78,29 @@ public class DeleteBook extends AppCompatActivity {
         copiesList = recieveingEnd.getIntegerArrayListExtra("copies");
         statusList = recieveingEnd.getStringArrayListExtra("status");*/
 
-        //database version
-        ArrayList<String> isbnlist = dbHandler.getAllIsbn();
-        ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(this,R.layout.spinnerlayout, R.id.tvspinner, isbnlist);
-        spinner.setAdapter(spinneradapter);
+        ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<String> booklist = new ArrayList<>();
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    String bookisbn = (String) child.child("isbn").getValue();
+                    String bookstatus = (String) child.child("status").getValue();
+                    if(bookstatus.equals("Available")){
+                        booklist.add(bookisbn);
+                    }
+                    spinneradapter = new ArrayAdapter<>(DeleteBook.this, R.layout.spinnerlayout, R.id.tvspinner, booklist);
+                    spinner.setAdapter(spinneradapter);
+
+                    //b = (String) child.child("bookname").getValue();
+                    //Log.d(TAG, b);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

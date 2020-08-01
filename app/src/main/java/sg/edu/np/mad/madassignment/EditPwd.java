@@ -9,8 +9,19 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class EditPwd extends AppCompatActivity {
 
@@ -19,6 +30,10 @@ public class EditPwd extends AppCompatActivity {
     Button cfm, cancel;
     DBHandler dbHandler;
     ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
+    DatabaseReference ref;
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,33 +54,53 @@ public class EditPwd extends AppCompatActivity {
         viewbutton = findViewById(R.id.viewborrowicon);
         overduebutton = findViewById(R.id.overdueicon);
 
+        ref = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
 
-        //set user's email into textview email
-        email.setText(userData.getMyEmail());
-
-        //updates phone number when user clicks on the button
-        cfm.setOnClickListener(new View.OnClickListener() {
+        ref.child("users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                //this validates that the two password fields are the same
-                if(password.getText().toString().isEmpty() || !password.getText().toString().equals(cfmpassword.getText().toString())){
-                    Toast.makeText(getApplicationContext(), "Please enter the field correctly! Hint password must be the same.", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    boolean updated = dbHandler.updatePwd(userData.getMyEmail(), password.getText().toString());
-                    if(updated){
-                        Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
-                        Intent confirm = new Intent(EditPwd.this, ProfilePage.class);
-                        startActivity(confirm);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //set staff's email into textview email
+                String useremail = snapshot.child("email").getValue().toString();
+                email.setText(useremail);
+                //updates phone number when user clicks on the button
+                cfm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String pwd = password.getText().toString();
+                        String confirmpwd = cfmpassword.getText().toString();
+                        //this validates that the two password fields are the same
+                        if(pwd.isEmpty() || !pwd.equals(confirmpwd)){
+                            Toast.makeText(getApplicationContext(), "Please enter the field correctly! Hint password must be the same.", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            firebaseUser.updatePassword(pwd).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
+                                        finish();
+                                        Intent confirm = new Intent(EditPwd.this, ProfilePage.class);
+                                        startActivity(confirm);
+                                    }
+                                }
+                            });
+
+                        }
                     }
-                    else{
-                        Toast.makeText(getApplicationContext(), "Password unsuccessfully updated", Toast.LENGTH_LONG).show();
-                    }
-                }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
 
         //intent back to profile if user cancels
         cancel.setOnClickListener(new View.OnClickListener() {

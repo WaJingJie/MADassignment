@@ -5,79 +5,106 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/etpassword"
+        android:layout_width="310dp"
+        android:layout_height="42dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
         android:fontFamily="@font/benchnine_bold"
-        android:text="Due Date"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/duedate"
-        app:layout_constraintEnd_toEndOf="@+id/borrowdate"
+        android:hint="Password"
+        android:includeFontPadding="false"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/etcfmpassword"
+        app:layout_constraintEnd_toEndOf="@+id/etcfmpassword"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/borrowdate"
-        app:layout_constraintTop_toBottomOf="@+id/borrowdate" />
+        app:layout_constraintStart_toStartOf="@+id/etcfmpassword"
+        app:layout_constraintTop_toBottomOf="@+id/changepwdemail" />
 
     <EditText
-        android:id="@+id/duedate"
+        android:id="@+id/etcfmpassword"
+        android:layout_width="310dp"
+        android:layout_height="42dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:hint="Confirm Password"
+        android:includeFontPadding="false"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnchangepwd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etpassword" />
+
+    <EditText
+        android:id="@+id/changepwdemail"
         android:layout_width="310dp"
         android:layout_height="49dp"
         android:background="@drawable/greybox"
+        android:editable="false"
         android:ems="10"
-        android:focusable="false"
+        android:enabled="false"
         android:fontFamily="@font/benchnine_bold"
-        android:inputType="date"
+        android:includeFontPadding="false"
+        android:inputType="textPersonName"
         android:paddingLeft="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnborrow"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Edit Profile Email"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/etpassword"
+        app:layout_constraintEnd_toEndOf="@+id/etpassword"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintStart_toStartOf="@+id/etpassword"
+        app:layout_constraintTop_toBottomOf="@+id/editprofiletitle" />
 
     <Button
-        android:id="@+id/btnborrow"
+        android:id="@+id/btnchangepwd"
         android:layout_width="158dp"
         android:layout_height="43dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
-        android:text="Borrow Book"
+        android:text="@android:string/cancel"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/studentbottombar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duedate" />
+        app:layout_constraintStart_toEndOf="@+id/editpwdconfirm"
+        app:layout_constraintTop_toBottomOf="@+id/etcfmpassword" />
 
-    <EditText
-        android:id="@+id/borrowdate"
-        android:layout_width="310dp"
-        android:layout_height="49dp"
-        android:background="@drawable/greybox"
-        android:ems="10"
-        android:focusable="false"
-        android:fontFamily="@font/benchnine_bold"
-        android:inputType="date"
-        android:paddingLeft="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="72dp"
+    <Button
+        android:id="@+id/editpwdconfirm"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
-        android:text="borrow a book"
+        android:text="Confirm"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnchangepwd"
+        app:layout_constraintEnd_toStartOf="@+id/btnchangepwd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnchangepwd" />
+
+    <TextView
+        android:id="@+id/editprofiletitle"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:background="@color/design_default_color_on_secondary"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="change password"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,18 +115,8 @@
         android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/isbnlist"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -152,33 +169,5 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/bookname"
-        android:layout_width="310dp"
-        android:layout_height="49dp"
-        android:background="@drawable/greybox"
-        android:fontFamily="@font/benchnine_bold"
-        android:paddingLeft="20dp"
-        android:paddingTop="7dp"
-        android:text="Book Name"
-        android:textColor="#8E8D8D"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/isbnlist" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/benchnine_bold"
-        android:text="Date Borrowed"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/borrowdate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

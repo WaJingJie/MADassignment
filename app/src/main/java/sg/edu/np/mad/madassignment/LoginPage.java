@@ -61,8 +61,6 @@ public class LoginPage extends AppCompatActivity {
                 String password = loginpassword.getText().toString();
                 Log.v(TAG, FILENAME + ": Logging in with: " + email + ": " + password);
                 //This searches the database for the entered email
-                UserData data = dbHandler.findUser(email);
-                userdata = data;
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginPage.this, new OnCompleteListener<AuthResult>() {
                             @Override

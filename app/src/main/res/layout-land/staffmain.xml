@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/backgroundlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/appbackground"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/stafftext3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Staff"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/staffwelcometitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffwelcometitle"
+        app:layout_constraintTop_toBottomOf="@+id/staffwelcometitle" />
+
+    <ImageView
+        android:id="@+id/staffwelcomeicon"
+        android:layout_width="128dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/staffwelcometitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/applogo" />
+
+    <Button
+        android:id="@+id/staffwelcomelogin"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="191dp"
+        android:layout_height="52dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Login"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/staffwelcometext"
+        app:layout_constraintEnd_toEndOf="@+id/staffwelcometext"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffwelcometext"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <TextView
+        android:id="@+id/staffwelcometext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
+        android:text="Or if you don't have an account,"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/staffwelcomesignup"
+        app:layout_constraintEnd_toEndOf="@+id/staffwelcomesignup"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffwelcomesignup"
+        app:layout_constraintTop_toBottomOf="@+id/staffwelcomelogin" />
+
+    <Button
+        android:id="@+id/staffwelcomesignup"
+        android:layout_width="187dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="156dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Sign Up"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toEndOf="@+id/stafftext3"
+        app:layout_constraintTop_toBottomOf="@+id/staffwelcometext" />
+
+    <TextView
+        android:id="@+id/staffwelcometitle"
+        android:layout_width="168dp"
+        android:layout_height="63dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="nplibrary"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/stafftext3"
+        app:layout_constraintEnd_toEndOf="@+id/staffwelcomeicon"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffwelcomeicon"
+        app:layout_constraintTop_toBottomOf="@+id/staffwelcomeicon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

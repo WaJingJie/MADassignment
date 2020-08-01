@@ -61,7 +61,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/bookname"
+        android:id="@+id/bkname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/benchnine_bold"
@@ -87,7 +87,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/bookisbn"
+        android:id="@+id/bkisbn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/benchnine_bold"
@@ -95,7 +95,7 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/isbnview"
-        app:layout_constraintStart_toStartOf="@+id/bookname"
+        app:layout_constraintStart_toStartOf="@+id/bkname"
         app:layout_constraintTop_toTopOf="@+id/isbnview" />
 
     <TextView

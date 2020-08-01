@@ -51,6 +51,7 @@
         <activity android:name=".BorrowBook">
 
         </activity>
+
         <activity android:name=".EditProfile">
         </activity>
 
