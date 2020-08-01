@@ -163,10 +163,6 @@ public class EditProfile extends AppCompatActivity {
         });
     }
 
-    public EditProfile(String id, String email, String name, String password, String phoneno){
-
-    }
-
 
 }
 
