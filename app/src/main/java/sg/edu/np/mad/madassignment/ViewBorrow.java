@@ -253,7 +253,7 @@ public class ViewBorrow extends AppCompatActivity{
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent overduepage = new Intent(HomePage.this, OverDueLoan.class);
+                Intent overduepage = new Intent(ViewBorrow.this, OverDueLoan.class);
                 startActivity(overduepage);
             }
         });
