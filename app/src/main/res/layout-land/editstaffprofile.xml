@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editstaffname"
+        android:layout_width="266dp"
+        android:layout_height="35dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:hint="Edit Profile Name"
+        android:includeFontPadding="false"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/editstaffphone"
+        app:layout_constraintEnd_toEndOf="@+id/editstaffphone"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/editstaffphone"
+        app:layout_constraintTop_toBottomOf="@+id/editstaffemail" />
+
+    <EditText
+        android:id="@+id/editstaffphone"
+        android:layout_width="266dp"
+        android:layout_height="35dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:hint="Edit Phone Number"
+        android:includeFontPadding="false"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/staffcancelbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editstaffname" />
+
+    <Button
+        android:id="@+id/editstaffconfirm"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Confirm"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/staffcancelbtn"
+        app:layout_constraintEnd_toStartOf="@+id/staffcancelbtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/staffcancelbtn" />
+
+    <Button
+        android:id="@+id/staffcancelbtn"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="@android:string/cancel"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/staffbottombar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editstaffconfirm"
+        app:layout_constraintTop_toBottomOf="@+id/editstaffphone"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/editprofiletitle"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:background="@color/design_default_color_on_secondary"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="edit profile"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/staffbottombar"
+        android:layout_width="0dp"
+        android:layout_height="76dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/staffbottombar"
+        app:layout_constraintEnd_toEndOf="@+id/staffbottombar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/staffbottombar">
+
+        <ImageButton
+            android:id="@+id/stafflogoutbutton"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:src="@drawable/logoutpic" />
+
+        <ImageButton
+            android:id="@+id/staffprofilebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:src="@drawable/profilebutton" />
+
+        <ImageButton
+            android:id="@+id/staffhomebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:src="@drawable/homeicon" />
+
+        <ImageButton
+            android:id="@+id/addbookicon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            app:srcCompat="@drawable/addbookicon" />
+
+        <ImageButton
+            android:id="@+id/deletebookicon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            app:srcCompat="@drawable/deleteicon" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/editstaffemail"
+        android:layout_width="266dp"
+        android:layout_height="35dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:paddingLeft="20dp"
+        android:paddingTop="7dp"
+        android:text="Profile Email"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/editstaffname"
+        app:layout_constraintEnd_toEndOf="@+id/editstaffname"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/editstaffname"
+        app:layout_constraintTop_toBottomOf="@+id/editprofiletitle" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

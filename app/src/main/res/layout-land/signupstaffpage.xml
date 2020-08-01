@@ -14,21 +14,21 @@
         android:text="Staff"
         android:textColor="#000000"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/staffsignupemail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/staffsignuptitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffsignuptitle"
         app:layout_constraintTop_toBottomOf="@+id/staffsignuptitle" />
 
     <ImageView
         android:id="@+id/staffsignupicon"
-        android:layout_width="192dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="146dp"
+        android:layout_height="132dp"
+        android:layout_marginStart="24dp"
         app:layout_constraintBottom_toTopOf="@+id/staffsignuptitle"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintVertical_chainStyle="packed"
         app:srcCompat="@drawable/applogo" />
 
     <TextView
@@ -40,35 +40,40 @@
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/stafftext2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/staffsignupicon"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffsignupicon"
         app:layout_constraintTop_toBottomOf="@+id/staffsignupicon" />
 
     <Button
-        android:id="@+id/staffsignupsubmit"
-        android:layout_width="246dp"
-        android:layout_height="56dp"
-        android:background="#000000"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="Sign up"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/staffsignupcancel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/staffsignupname" />
-
-    <Button
         android:id="@+id/staffsignupcancel"
-        android:layout_width="246dp"
-        android:layout_height="56dp"
+        android:layout_width="160dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="96dp"
         android:background="#000000"
         android:fontFamily="@font/open_sans_bold"
         android:text="@android:string/cancel"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/staffsignupsubmit"
+        app:layout_constraintEnd_toStartOf="@+id/staffsignupsubmit"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/staffsignupsubmit"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/staffsignupsubmit"
+        android:layout_width="160dp"
+        android:layout_height="36dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Sign up"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/staffsignupsubmit" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/staffsignupcancel"
+        app:layout_constraintTop_toBottomOf="@+id/staffsignupconfirm" />
 
     <EditText
         android:id="@+id/staffsignupname"
@@ -81,10 +86,11 @@
         android:inputType="textPersonName"
         android:textColor="#8E8D8D"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/staffsignupsubmit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/staffsignupconfirm" />
+        app:layout_constraintBottom_toTopOf="@+id/staffsignuppassword"
+        app:layout_constraintEnd_toEndOf="@+id/staffsignuppassword"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffsignuppassword"
+        app:layout_constraintTop_toBottomOf="@+id/staffsignupemail" />
 
     <EditText
         android:id="@+id/staffsignupconfirm"
@@ -97,9 +103,10 @@
         android:inputType="textPassword"
         android:textColor="#8E8D8D"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/staffsignupname"
+        app:layout_constraintBottom_toTopOf="@+id/staffsignupsubmit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.354"
+        app:layout_constraintStart_toEndOf="@+id/staffsignuptitle"
         app:layout_constraintTop_toBottomOf="@+id/staffsignuppassword" />
 
     <EditText
@@ -114,9 +121,10 @@
         android:textColor="#8E8D8D"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/staffsignupconfirm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/staffsignupemail" />
+        app:layout_constraintEnd_toEndOf="@+id/staffsignupconfirm"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffsignupconfirm"
+        app:layout_constraintTop_toBottomOf="@+id/staffsignupname" />
 
     <EditText
         android:id="@+id/staffsignupemail"
@@ -129,9 +137,10 @@
         android:inputType="textPersonName"
         android:textColor="#8E8D8D"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/staffsignuppassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stafftext2" />
+        app:layout_constraintBottom_toTopOf="@+id/staffsignupname"
+        app:layout_constraintEnd_toEndOf="@+id/staffsignupname"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/staffsignupname"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
