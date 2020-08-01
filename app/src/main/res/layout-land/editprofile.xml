@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/editprofileconfirm"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Confirm"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btncanceledit"
+        app:layout_constraintEnd_toStartOf="@+id/btncanceledit"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btncanceledit"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btncanceledit"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="@android:string/cancel"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/studentbottombar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/editprofileconfirm"
+        app:layout_constraintTop_toBottomOf="@+id/editphoneno" />
+
+    <TextView
+        android:id="@+id/editprofiletitle"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:background="@color/design_default_color_on_secondary"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="edit profile"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/studentbottombar"
+        android:layout_width="0dp"
+        android:layout_height="76dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/studentbottombar">
+
+        <ImageButton
+            android:id="@+id/studentlogoutbutton"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:src="@drawable/logoutpic" />
+
+        <ImageButton
+            android:id="@+id/studentprofilebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:src="@drawable/profilebutton" />
+
+        <ImageButton
+            android:id="@+id/studenthomebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:src="@drawable/homeicon" />
+
+        <ImageButton
+            android:id="@+id/viewborrowicon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#0003DAC5"
+            app:srcCompat="@drawable/viewbookicon" />
+
+        <ImageButton
+            android:id="@+id/overdueicon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#000000"
+            app:srcCompat="@drawable/overdueicon" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/editprofileemail"
+        android:layout_width="266dp"
+        android:layout_height="35dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:paddingLeft="20dp"
+        android:paddingTop="7dp"
+        android:text="Profile Email"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/editname"
+        app:layout_constraintEnd_toEndOf="@+id/editname"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/editname"
+        app:layout_constraintTop_toBottomOf="@+id/editprofiletitle" />
+
+    <EditText
+        android:id="@+id/editphoneno"
+        android:layout_width="266dp"
+        android:layout_height="35dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:hint="Edit Phone Number"
+        android:includeFontPadding="false"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btncanceledit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editname" />
+
+    <EditText
+        android:id="@+id/editname"
+        android:layout_width="266dp"
+        android:layout_height="35dp"
+        android:background="@drawable/greybox"
+        android:ems="10"
+        android:fontFamily="@font/benchnine_bold"
+        android:hint="Edit Name"
+        android:includeFontPadding="false"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="#8E8D8D"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/editphoneno"
+        app:layout_constraintEnd_toEndOf="@+id/editphoneno"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/editphoneno"
+        app:layout_constraintTop_toBottomOf="@+id/editprofileemail" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
