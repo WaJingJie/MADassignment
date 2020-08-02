@@ -44,23 +44,4 @@ User Guide: <br>
 
 Storyboard: <br>
 
-#Welcome Page <br>
-![](images/welcome.png)
-
-#Sign Up Page <br>
-![](images/signup.png)
-
-#Login Page <br>
-![](images/login.png)
-
-#Home Page <br>
-![](images/npstudentmain.png)
-
-#Borrow Book Page <br>
-![](images/borrow.png)
-
-#Profile Page <br>
-![](images/profile.png)
-
-#Edit Profile Page <br>
-![](images/editprofile.png)
+See images in images file.
