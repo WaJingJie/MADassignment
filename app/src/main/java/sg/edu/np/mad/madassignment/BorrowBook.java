@@ -87,14 +87,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-
-        //initialize database
-        dbHandler = new DBHandler(this,null,null,1);
-
-        //auto increment date for due date
-        incrementdate();
-
-
         ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -146,6 +138,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                                 //this sets the borrow date field to the borrow date
                                 borrowdate.setText(todaydate);
                                 //auto increment date for due date
+                                //String d = borrowdate.getText().toString();
                                 incrementdate();
                             }
                         }
@@ -299,7 +292,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
     //method used to increase due date by 14 days
     private void incrementdate(){
         String d = borrowdate.getText().toString();
-
         String[] dsplit = d.split("/");
 
         int day = Integer.parseInt(dsplit[0]);

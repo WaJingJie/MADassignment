@@ -80,14 +80,14 @@ public class Overdueloandadapter extends RecyclerView.Adapter<OverdueloanViewHol
             holder.overduefee.setText("$ 0.0");
         }
 
-        holder.frame.setOnClickListener(new View.OnClickListener() {
+        /*holder.frame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Overdueloandadapter.this.context,Overduepayment.class);
                 intent.putExtra("list", (Serializable) loanData);
-                Overdueloandadapter.this.context.startActivity(intent);
+                context.startActivity(intent);
             }
-        });
+        });*/
 
     }
 

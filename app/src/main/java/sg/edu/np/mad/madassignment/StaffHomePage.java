@@ -27,7 +27,7 @@ public class StaffHomePage extends AppCompatActivity{
     RecyclerView rv;
     RecyclerView.LayoutManager layoutManager;
     Searchbookadapter adapter;
-
+    List<String> booknameList = new ArrayList<>();
     MaterialSearchBar materialSearchBar;
 
     List<String> suggestion = new ArrayList<>();
@@ -55,7 +55,7 @@ public class StaffHomePage extends AppCompatActivity{
         //search bar setup
         materialSearchBar.setHint("Search");
         materialSearchBar.setCardViewElevation(10);
-        loadSuggestList();
+        loadSuggestList(booknameList);
 
         materialSearchBar.addTextChangeListener(new TextWatcher() {
             @Override
@@ -76,7 +76,26 @@ public class StaffHomePage extends AppCompatActivity{
 
             @Override
             public void afterTextChanged(Editable s) {
+                adapter = new Searchbookadapter(StaffHomePage.this, new ArrayList<Book>());
+                rv.setAdapter(adapter);
+                ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot child : snapshot.getChildren()) {
+                            String isbn = (String) child.child("isbn").getValue();
+                            String bookname = (String) child.child("bookname").getValue();
+                            String status = (String) child.child("status").getValue();
+                            Book book = new Book(isbn, bookname, status);
+                            adapter.books.add(book);
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
@@ -90,6 +109,7 @@ public class StaffHomePage extends AppCompatActivity{
 
             @Override
             public void onSearchConfirmed(CharSequence text) {
+                suggestionList(text.toString(), booknameList);
                 startSearch(text.toString());
             }
 
@@ -168,16 +188,11 @@ public class StaffHomePage extends AppCompatActivity{
 
     }
 
-    private void loadSuggestList(){
+    private void loadSuggestList(final List<String> nameList){
         ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<String> booknameList = new ArrayList<>();
-                for(DataSnapshot child : snapshot.getChildren()) {
-                    String name = (String) child.child("bookname").getValue();
-                    booknameList.add(name);
-                }
-                suggestion = booknameList;
+                suggestion = nameList;
                 materialSearchBar.setLastSuggestions(suggestion);
             }
 
@@ -198,7 +213,7 @@ public class StaffHomePage extends AppCompatActivity{
                 for(DataSnapshot child : snapshot.getChildren()) {
                     String name = (String) child.child("bookname").getValue();
                     //this validates whether the text equals the name
-                    if(name.equals(text)){
+                    if(name != null && name.toLowerCase().contains(text.toLowerCase())){
                         String isbn = (String) child.child("isbn").getValue();
                         String status = (String) child.child("status").getValue();
                         //this creates a new book object
@@ -217,5 +232,28 @@ public class StaffHomePage extends AppCompatActivity{
         });
 
     }
+
+    private void suggestionList(final String text, final List<String> nameList){
+        ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //this creates a new book list
+                for(DataSnapshot child : snapshot.getChildren()) {
+                    String name = (String) child.child("bookname").getValue();
+                    //this validates whether the text equals the name
+                    if(name != null && name.toLowerCase().contains(text.toLowerCase())){
+                        nameList.add(name.toLowerCase());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
 
 }
