@@ -44,4 +44,4 @@ User Guide: <br>
 
 Storyboard: <br>
 
-See images in images file.
+[]images.
