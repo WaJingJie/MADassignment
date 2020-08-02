@@ -42,6 +42,4 @@ User Guide: <br>
 
 6. The user can log out through the left most button on the bottom of the page. <br>
 
-Storyboard: <br>
-
-[]images.
+Storyboard: [link](https://github.com/WaJingJie/MADassignment/blob/master/images/NP%20Library%20Storyboard.pdf)
