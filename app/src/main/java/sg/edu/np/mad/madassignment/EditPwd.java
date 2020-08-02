@@ -39,9 +39,6 @@ public class EditPwd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.changepwd);
 
-        //get user's email
-        final UserData userData = LoginPage.userdata;
-
         email = findViewById(R.id.changepwdemail);
         password = findViewById(R.id.etpassword);
         cfmpassword = findViewById(R.id.etcfmpassword);
@@ -67,7 +64,7 @@ public class EditPwd extends AppCompatActivity {
                 //set staff's email into textview email
                 String useremail = snapshot.child("email").getValue().toString();
                 email.setText(useremail);
-                //updates phone number when user clicks on the button
+
                 cfm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -78,10 +75,12 @@ public class EditPwd extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Please enter the field correctly! Hint password must be the same.", Toast.LENGTH_LONG).show();
                         }
                         else{
+                            //this updates the user's password
                             firebaseUser.updatePassword(pwd).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
+                                        //this informs the user that their password has been updated
                                         Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
                                         finish();
                                         Intent confirm = new Intent(EditPwd.this, ProfilePage.class);
@@ -151,8 +150,8 @@ public class EditPwd extends AppCompatActivity {
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent overduepage = new Intent(StudentHomePage.this, OverdueLoan.class);
-                //startActivity(overduepage);
+                Intent overduepage = new Intent(EditPwd.this, OverDueLoan.class);
+                startActivity(overduepage);
             }
         });
     }

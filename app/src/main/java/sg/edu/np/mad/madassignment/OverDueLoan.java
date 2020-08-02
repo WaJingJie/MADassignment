@@ -30,15 +30,13 @@ import sg.edu.np.mad.madassignment.utils.DateUtil;
 
 
 public class OverDueLoan extends AppCompatActivity{
-    TextView canBorrow, totalCost,bookname,borrowdate,duedate,isbn,returndate,overdueduration,overduefee;
-    Spinner spinner;
+    TextView canBorrow, totalCost;
     ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
     DBHandler dbHandler;
     List<BorrowData> borrowDataList = new ArrayList<>();
     List<BorrowData> borrowList = new ArrayList<>();
     RecyclerView homepageview;
     String currentDate;
-    Button payloan;
     DatabaseReference ref;
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
@@ -50,13 +48,6 @@ public class OverDueLoan extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.overduebook);
 
-//        bookname = findViewById(R.id.overduebookname);
-//        borrowdate = findViewById(R.id.borrowdate);
-//        duedate = findViewById(R.id.overduedate);
-//        isbn = findViewById(R.id.overdueisbn);
-//        returndate = findViewById(R.id.returndate);
-//        overdueduration = findViewById(R.id.duration);
-//        overduefee = findViewById(R.id.fee);
         currentDate = DateUtil.getCurrentTimeStamp();
         totalCost = findViewById(R.id.canborrow2);
         canBorrow = findViewById(R.id.canborrow);
@@ -68,37 +59,35 @@ public class OverDueLoan extends AppCompatActivity{
         homepageview = findViewById(R.id.homepageview);
         homepageview.setLayoutManager(new LinearLayoutManager(this));
 
-        dbHandler = new DBHandler(this,null,null,1);
         ref = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        //UserData userData = LoginPage.userdata;
-        //Log.e("email :",""+userData.getMyEmail());
-        //borrowDataList = dbHandler.getborrowbyEmail(userData.getMyEmail());
-        //Log.e("borrow list  :",""+borrowDataList.toString());
-
         overdueloandadapter = new Overdueloandadapter(OverDueLoan.this, new ArrayList<OverdueLoanData>());
         homepageview.setAdapter(overdueloandadapter);
 
         ref.child("users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                //this gets the user email
                 useremail = (String)snapshot.child("email").getValue();
-                //Log.d(TAG, useremail);
                 ref.child("borrowedbooks").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                         for (DataSnapshot child : snapshot.getChildren()) {
+                            //this gets the email from the borrowedbook object
                             String e = (String) child.child("email").getValue();
+                            //this validates whether the email matches the user email
                             if(e.equals(useremail)){
+                                //this gets the isbn, name, borrow date and due date
                                 final String isbn = (String) child.child("isbn").getValue();
                                 final String bookname = (String) child.child("bookname").getValue();
-                                String borrowdate = (String) child.child("borrowdate").getValue();
+                                final String borrowdate = (String) child.child("borrowdate").getValue();
                                 final String duedate = (String) child.child("duedate").getValue();
+                                //this creates the new borrow data object
                                 BorrowData borrowData = new BorrowData(useremail, isbn, bookname, borrowdate, duedate);
+                                //this adds the object to the list
                                 borrowDataList.add(borrowData);
+                                //this checks that the borrowdata list is not empty
                                 if(!borrowDataList.isEmpty()){
                                     for(int i=0; i< borrowDataList.size(); i++){
                                         if(DateUtil.checkTimeElapseOrNot(borrowDataList.get(i).getDueDate(),currentDate)){
@@ -112,12 +101,15 @@ public class OverDueLoan extends AppCompatActivity{
                                         for(int i=0; i< borrowList.size(); i++){
                                             String diff = DateUtil.getDiffBetTwoDate(borrowList.get(i).getDueDate(), currentDate);
                                             if(diff != null){
+                                                //this gets the days overdue
                                                 totalDayElapsed = totalDayElapsed + Integer.parseInt(diff);
                                             }
                                         }
                                         Log.e("total day Elapsed  :",""+totalDayElapsed);
                                         if(totalDayElapsed != 0){
+                                            //this calculates the book fee
                                             bookfee = totalDayElapsed * 0.50;
+                                            //this makes an unique id for the new overdueloan object in firebase
                                             final String id = ref.child("overdueloans").push().getKey();
                                             final String days = totalDayElapsed.toString();
                                             final String fee = bookfee.toString();
@@ -127,6 +119,7 @@ public class OverDueLoan extends AppCompatActivity{
                                                     for (DataSnapshot child : snapshot.getChildren()) {
                                                         String overdueisbn = (String) child.child("isbn").getValue();
                                                         if(!overdueisbn.equals(isbn)){
+                                                            //this creates the new overdue object in firebase
                                                             writeNewLoan(id, useremail, isbn, bookname, duedate, days, fee);
                                                         }
                                                     }
@@ -137,24 +130,13 @@ public class OverDueLoan extends AppCompatActivity{
 
                                                 }
                                             });
-
-                                            //totalCost.setText("Total Overdue Fee: $ "+ totalPrice +".00");
                                         }
-
                                     }
-
-
-
                                 }
-                                //adapter.borrowdata.add(borrowData);
-                                //borrowcount += 1;
-                                //maxcount -= 1;
-
                             }
 
-                            //b = (String) child.child("bookname").getValue();
-                            //Log.d(TAG, b);
                         }
+
                         ref.child("overdueloans").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -167,6 +149,7 @@ public class OverDueLoan extends AppCompatActivity{
                                         String duedate = (String) child.child("duedate").getValue();
                                         Integer days = Integer.parseInt((String)child.child("days").getValue()) ;
                                         Double fee = Double.parseDouble((String)child.child("fees").getValue());
+                                        //this creates a new overdue loan object
                                         OverdueLoanData overdueLoanData = new OverdueLoanData(useremail, isbn, bookname, duedate, days, fee);
                                         overdueloandadapter.loanData.add(overdueLoanData);
                                         totalFee += fee;
@@ -182,15 +165,6 @@ public class OverDueLoan extends AppCompatActivity{
 
                             }
                         });
-
-
-
-
-                        //String borrowno = borrowcount.toString();
-                        //String maxno = maxcount.toString();
-                        //hbno.setText(borrowno);
-                        //cbno.setText(maxno);
-                        //adapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -205,13 +179,6 @@ public class OverDueLoan extends AppCompatActivity{
 
             }
         });
-
-        overdueloandadapter.notifyDataSetChanged();
-
-
-
-
-
 
         //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
@@ -261,6 +228,7 @@ public class OverDueLoan extends AppCompatActivity{
 
     }
 
+    //this method creates the new overdue loan object
     private void writeNewLoan(String id, String email, String isbn, String name, String duedate, String days, String fee) {
         ref.child("overdueloans").child(id).child("email").setValue(email);
         ref.child("overdueloans").child(id).child("isbn").setValue(isbn);

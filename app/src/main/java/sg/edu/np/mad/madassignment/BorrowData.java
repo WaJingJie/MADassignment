@@ -8,14 +8,6 @@ public class BorrowData implements Serializable {
     private String bookname;
     private String borrowdate;
     private String duedate;
-    public static final String TABLE_NAME = "Books Borrowed";
-    public static final String COLUMN_BOOKEMAIL = "User Email";
-    public static final String COLUMN_ISBN = "ISBN";
-    public static final String COLUMN_BOOKNAME = "Book Name";
-    public static final String COLUMN_BORROWDATE = "Borrow Date";
-    public static final String COLUMN_DUEDATE = "Due Date";
-    private static final String FILENAME = "BorrowData.java";
-    private static final String TAG = "NP Library";
 
     public BorrowData()
     {

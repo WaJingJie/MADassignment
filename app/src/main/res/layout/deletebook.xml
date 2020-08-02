@@ -7,68 +7,6 @@
     tools:layout_editor_absoluteY="25dp">
 
 
-    <EditText
-        android:id="@+id/deletebookname"
-        android:layout_width="283dp"
-        android:layout_height="49dp"
-        android:background="@drawable/greybox"
-        android:fontFamily="@font/benchnine_bold"
-        android:hint="Book Name"
-        android:paddingLeft="20dp"
-        android:paddingTop="6dp"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/deletebookstatus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletebookid" />
-
-    <EditText
-        android:id="@+id/deletebookid"
-        android:layout_width="283dp"
-        android:layout_height="49dp"
-        android:background="@drawable/greybox"
-        android:fontFamily="@font/benchnine_bold"
-        android:hint="Book ID"
-        android:paddingLeft="20dp"
-        android:paddingTop="6dp"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/deletebookname"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deleteisbnlist" />
-
-    <EditText
-        android:id="@+id/deletebookstatus"
-        android:layout_width="283dp"
-        android:layout_height="49dp"
-        android:background="@drawable/greybox"
-        android:fontFamily="@font/benchnine_bold"
-        android:hint="Status"
-        android:paddingLeft="20dp"
-        android:paddingTop="6dp"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/deletebutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletebookname" />
-
-    <Button
-        android:id="@+id/deletebutton"
-        android:layout_width="158dp"
-        android:layout_height="43dp"
-        android:background="#000000"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="Delete Book"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/staffbottombar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletebookstatus" />
-
     <TextView
         android:id="@+id/deletebooktitle"
         android:layout_width="0dp"
@@ -83,15 +21,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/deleteisbnlist"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/deletebookid"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletebooktitle" />
 
     <ImageView
         android:id="@+id/staffbottombar"
@@ -153,4 +82,43 @@
             app:srcCompat="@drawable/deleteicon" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/deletebookname"
+        android:layout_width="283dp"
+        android:layout_height="49dp"
+        android:background="@drawable/greybox"
+        android:fontFamily="@font/benchnine_bold"
+        android:paddingLeft="20dp"
+        android:paddingTop="7dp"
+        android:text="Book Name"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/deletebutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteisbnlist" />
+
+    <Spinner
+        android:id="@+id/deleteisbnlist"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/deletebookname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deletebooktitle" />
+
+    <Button
+        android:id="@+id/deletebutton"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
+        android:background="#000000"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Delete Book"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/staffbottombar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deletebookname" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

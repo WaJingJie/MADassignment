@@ -31,8 +31,6 @@ public class StudentHomePage extends AppCompatActivity {
     MaterialSearchBar materialSearchBar;
 
     List<String> suggestion = new ArrayList<>();
-    List<Book> booklist = new ArrayList<>();
-
     DBHandler dbHandler;
     DatabaseReference ref;
 
@@ -97,6 +95,7 @@ public class StudentHomePage extends AppCompatActivity {
 
             }
         });
+
         adapter = new Searchbookadapter(this,new ArrayList<Book>());
         rv.setAdapter(adapter);
         ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -168,12 +167,50 @@ public class StudentHomePage extends AppCompatActivity {
     }
 
     private void loadSuggestList(){
-        suggestion = dbHandler.getBookname();
-        materialSearchBar.setLastSuggestions(suggestion);
+        ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<String> booknameList = new ArrayList<>();
+                for(DataSnapshot child : snapshot.getChildren()) {
+                    String name = (String) child.child("bookname").getValue();
+                    booknameList.add(name);
+                }
+                suggestion = booknameList;
+                materialSearchBar.setLastSuggestions(suggestion);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
-    private void startSearch(String text){
-        adapter = new Searchbookadapter(this, dbHandler.getBookByName(text));
-        rv.setAdapter(adapter);
+    private void startSearch(final String text){
+        ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //this creates a new book list
+                List<Book> bookList = new ArrayList<>();
+                for(DataSnapshot child : snapshot.getChildren()) {
+                    String name = (String) child.child("bookname").getValue();
+                    //this validates whether the text equals the name
+                    if(name.equals(text)){
+                        String isbn = (String) child.child("isbn").getValue();
+                        String status = (String) child.child("status").getValue();
+                        //this creates a new book object
+                        Book book = new Book(name, isbn, status);
+                        bookList.add(book);
+                    }
+                }
+                adapter = new Searchbookadapter(StudentHomePage.this, bookList);
+                rv.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

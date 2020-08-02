@@ -2,9 +2,7 @@ package sg.edu.np.mad.madassignment;
 
 import android.view.View;
 import android.widget.TextView;
-
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class LibraryViewHolder extends RecyclerView.ViewHolder {

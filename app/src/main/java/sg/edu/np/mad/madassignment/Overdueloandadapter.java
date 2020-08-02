@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,9 +22,8 @@ import java.util.List;
 import sg.edu.np.mad.madassignment.utils.DateUtil;
 
 class OverdueloanViewHolder extends RecyclerView.ViewHolder{
-    public TextView bookname,borrowdate,duedate,isbn,returndate,overdueduration,overduefee;
+    public TextView bookname,borrowdate,duedate,isbn,overdueduration,overduefee;
     CardView frame;
-    View view;
     public OverdueloanViewHolder(View itemView){
         super(itemView);
         bookname = itemView.findViewById(R.id.overduebookname);
@@ -51,36 +49,29 @@ public class Overdueloandadapter extends RecyclerView.Adapter<OverdueloanViewHol
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.overdueloancv, parent,false);
         return new OverdueloanViewHolder(itemView);
     }
-//returndate,overdueduration,overduefee;
+
     @Override
     public void onBindViewHolder(@NonNull OverdueloanViewHolder holder, int position) {
         String bookname = loanData.get(position).getMyLoanName();
         String isbn = loanData.get(position).getISBN();
         String duedate = loanData.get(position).getDueDate();
-        //Integer days = loanData.get(position).getDays();
-        //String fee = String.valueOf(loanData.get(position).getFee());
 
         holder.bookname.setText(bookname);
         holder.isbn.setText(isbn);
         holder.duedate.setText("DUE DATE: " + duedate);
-        //holder.overdueduration.setText(days);
-        //holder.overduefee.setText(fee);
 
         Log.e("date format :",""+duedate);
-        //DateFormat sdf = new SimpleDateFormat("M/dd/yy");
-        //String currentDate = DateFormat.getDateInstance(DateFormat.SHORT).format(DateUtil.getCurrentDate());
+
+        //this gets the current date and formats it
         Calendar c = Calendar.getInstance();
         Date getDate = c.getTime();
         DateFormat sdf = new SimpleDateFormat("M/dd/yy");
         String currentDate = sdf.format(getDate);
-        //duedate.setText(date);
-
-        //String currentDate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
-        //DateFormat sdf = new SimpleDateFormat("M/dd/yy");
-        //String currentDate = DateUtil.getCurrentTimeStamp();
 
         String diff = DateUtil.getDiffBetTwoDate(loanData.get(position).getDueDate(),currentDate);
+
         if(diff != null && Integer.parseInt(diff) != 0){
+            //this calculates the fee
             Double totalPrice = Double.parseDouble(diff) * 0.50;
             holder.overdueduration.setText(diff+" Days Overdue");
             holder.overduefee.setText("$ "+totalPrice);
@@ -97,8 +88,6 @@ public class Overdueloandadapter extends RecyclerView.Adapter<OverdueloanViewHol
                 Overdueloandadapter.this.context.startActivity(intent);
             }
         });
-
-
 
     }
 

@@ -47,8 +47,6 @@ public class StaffEditPwd extends AppCompatActivity{
         profilebutton = findViewById(R.id.staffprofilebutton);
         addbutton = findViewById(R.id.addbookicon);
         deletebutton = findViewById(R.id.deletebookicon);
-        //initialize database
-        dbHandler = new DBHandler(this,null,null,1);
 
         ref = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -82,9 +80,6 @@ public class StaffEditPwd extends AppCompatActivity{
                                     }
                                 }
                             });
-                            //ref.child("staff").child(firebaseUser.getUid()).child("password").setValue();
-
-
                         }
                     }
                 });
@@ -147,8 +142,8 @@ public class StaffEditPwd extends AppCompatActivity{
         deletebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent overduepage = new Intent(StaffEditPwd.this, DeleteBook.class);
-                startActivity(overduepage);
+                Intent deletepage = new Intent(StaffEditPwd.this, DeleteBook.class);
+                startActivity(deletepage);
             }
         });
     }

@@ -41,16 +41,14 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginpage);
 
-// ...
-// Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference();
-        dbHandler = new DBHandler(this,null,null,1);
 
         loginemail = findViewById(R.id.loginemail);
         loginpassword = findViewById(R.id.loginpassword);
         submitbutton = findViewById(R.id.loginsubmit);
         cancelbutton = findViewById(R.id.logincancel);
+
         //This method occurs when the submit button is clicked by the user
         Log.v(TAG, FILENAME + ": Submit Button Clicked");
         submitbutton.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +66,7 @@ public class LoginPage extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "signInWithEmail:success");
+                                    //this gets the current user
                                     FirebaseUser user = mAuth.getCurrentUser();
 
                                     ref.child("users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -79,11 +78,11 @@ public class LoginPage extends AppCompatActivity {
                                                 Log.v(TAG, FILENAME + ": Redirecting to Home Page");
                                                 Intent homepage = new Intent(LoginPage.this, StudentHomePage.class);
                                                 startActivity(homepage);
-                                                //updateUI(user);
                                             } else {
                                                 // Invalid user
                                                 Toast.makeText(LoginPage.this, "Invalid user!",
                                                         Toast.LENGTH_SHORT).show();
+                                                //this signs out the user
                                                 mAuth.signOut();
                                             }
                                         }
@@ -107,17 +106,13 @@ public class LoginPage extends AppCompatActivity {
                                                 Toast.LENGTH_SHORT).show();
                                     }
 
-                                    //updateUI(null);
-                                    // ...
                                 }
 
-                                // ...
                             }
                         });
-
-
             }
         });
+
         //This method occurs when the cancel button is clicked by the user
         Log.v(TAG, FILENAME + ": Cancel Button Clicked");
         cancelbutton.setOnClickListener(new View.OnClickListener() {
@@ -129,14 +124,6 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
     }
 
     //This resets the login textboxes

@@ -1,33 +1,19 @@
 package sg.edu.np.mad.madassignment;
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import android.app.AlertDialog;
-
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -47,6 +33,7 @@ public class AddBook extends AppCompatActivity{
     private ArrayList<String> addbooknameList = new ArrayList<>();
     private ArrayList<Integer> copiesList = new ArrayList<>();
     private ArrayList<String> statusList = new ArrayList<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,13 +74,14 @@ public class AddBook extends AppCompatActivity{
                 //continue if all fields are filled
                 else{
                     dbHandler.addBook(isbn, bookname, status);
-                    // My top posts by number of stars
-                    // My top posts by number of stars
                     //String myUserId = getUid();
+                    //this makes the id for the new book object in firebase
                     String id = ref.child("books").push().getKey();
+                    //this makes the new object using the entered data
                     writeNewBook(id, isbn, bookname);
                     Toast.makeText(getApplicationContext(), "Book successfully added!",
                             Toast.LENGTH_LONG).show();
+                    //this prompts the staff whether they want to continue adding books or return to the homepage
                     returnQuery();
                 }
             }
@@ -147,6 +135,7 @@ public class AddBook extends AppCompatActivity{
 
     }
 
+    //this method creates the new book object
     private void writeNewBook(String id, String isbn, String name) {
         ref.child("books").child(id).child("isbn").setValue(isbn);
         ref.child("books").child(id).child("bookname").setValue(name);

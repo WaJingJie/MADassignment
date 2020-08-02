@@ -1,6 +1,5 @@
 package sg.edu.np.mad.madassignment;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,33 +9,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryAdapter extends RecyclerView.Adapter<LibraryViewHolder> {
     private static final String FILENAME = "LibraryAdapter.java";
     private static final String TAG = "NP Library";
-//    ArrayList<String> isbnList;
-//    ArrayList<String> booknameList;
-//    ArrayList<String> borrowdateList;
-//    ArrayList<String> duedateList;
     public List<BorrowData> borrowdata;
-    private Context context;
-    private DatabaseReference ref;
-
-//    public LibraryAdapter(ArrayList<String> isbnList, ArrayList<String> booknameList, ArrayList<String> borrowdateList, ArrayList<String> duedateList)
-//    {
-//        this.isbnList = isbnList;
-//        this.booknameList = booknameList;
-//        this.borrowdateList = borrowdateList;
-//        this.duedateList = duedateList;
-//    }
+    Context context;
+    DatabaseReference ref;
 
     public LibraryAdapter(Context context, List<BorrowData> borrowdata){
         this.context = context;
@@ -61,7 +44,6 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryViewHolder> {
         Log.v(TAG, FILENAME +": Retrieving data from the list");
         ref = FirebaseDatabase.getInstance().getReference();
         //retrieves data from the list
-
         String isbn = borrowdata.get(position).getISBN();
         String bname = borrowdata.get(position).getMyBookName();
         String borrowd = borrowdata.get(position).getBorrowDate();
@@ -74,7 +56,6 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryViewHolder> {
         holder.duedate.setText("Due Date: " + dued);
     }
 
-    ;
     //This gets the number of items in ISBN list
     @Override
     public int getItemCount() {

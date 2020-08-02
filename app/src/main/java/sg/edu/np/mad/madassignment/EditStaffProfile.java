@@ -25,11 +25,9 @@ public class EditStaffProfile extends AppCompatActivity{
     TextView email;
     EditText name, phoneno;
     Button confirm, cancel;
-    DBHandler dbHandler;
     DatabaseReference ref;
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
-    StaffData staffData = StaffLoginPage.staffdata;
     ImageButton logoutbutton, homebutton, profilebutton, addbutton, deletebutton;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,9 +44,6 @@ public class EditStaffProfile extends AppCompatActivity{
         profilebutton = findViewById(R.id.staffprofilebutton);
         addbutton = findViewById(R.id.addbookicon);
         deletebutton = findViewById(R.id.deletebookicon);
-
-        //initialize database
-        dbHandler = new DBHandler(this,null,null,1);
 
         ref = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -75,32 +70,32 @@ public class EditStaffProfile extends AppCompatActivity{
                         }
                         //when only name is filled
                         else if (pn.isEmpty()) {
-                            //boolean updated = dbHandler.staffUpdateName(staffData.getMyStaffEmail(), n);
+                            //this updates the staff's name
                             ref.child("staff").child(firebaseUser.getUid()).child("name").setValue(n);
+                            //this informs the staff that their name has been updated
                             Toast.makeText(getApplicationContext(), "Name successfully updated!", Toast.LENGTH_LONG).show();
                             Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
                             startActivity(confirm);
                         }
                         //when only phone number is filled
                         else if (n.isEmpty()) {
-                            //boolean updated = dbHandler.staffUpdatePhonenum(staffData.getMyStaffEmail(), pn);
+                            //this updates the staff's phone number
                             ref.child("staff").child(firebaseUser.getUid()).child("phoneno").setValue(pn);
+                            //this informs the staff that their phone no has been updated
                             Toast.makeText(getApplicationContext(), "Phone number successfully updated!", Toast.LENGTH_LONG).show();
                             Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
                             startActivity(confirm);
                         }
                         //when both name and phone number fields are filled
                         else {
-                            //boolean pnupdate = dbHandler.staffUpdatePhonenum(staffData.getMyStaffEmail(), pn);
-                            //boolean nupdate = dbHandler.staffUpdateName(staffData.getMyStaffEmail(), n);
+                            //this updates the staff's name and phone number
                             ref.child("staff").child(firebaseUser.getUid()).child("name").setValue(n);
                             ref.child("staff").child(firebaseUser.getUid()).child("phoneno").setValue(pn);
+                            //this informs the staff that their phone no and name has been updated
                             Toast.makeText(getApplicationContext(), "Profile successfully updated!", Toast.LENGTH_LONG).show();
                             Intent confirm = new Intent(EditStaffProfile.this, StaffProfilePage.class);
                             startActivity(confirm);
                         }
-                        //name.setText(staffname);
-                        //email.setText(staffemail);
 
                     }
 

@@ -33,13 +33,10 @@ import javax.crypto.spec.DESKeySpec;
 public class DeleteBook extends AppCompatActivity {
     private static final String TAG = "NPLibrary";
     String selectedisbn;
-    EditText deleteid;
-    EditText deletebookname;
-    EditText deletebookstatus;
+    TextView deletebookname;
     DBHandler dbHandler;
     Spinner spinner;
     ArrayAdapter<String> spinneradapter;
-    Integer bookid;
     private ImageButton logoutbutton, homebutton, profilebutton, addbook, deletebook;
     private Button deletebtn;
     private DatabaseReference ref;
@@ -53,10 +50,7 @@ public class DeleteBook extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deletebook);
-        deleteid = findViewById(R.id.deletebookid);
         deletebookname = findViewById(R.id.deletebookname);
-        deletebookstatus = findViewById(R.id.deletebookstatus);
-
         logoutbutton = findViewById(R.id.stafflogoutbutton);
         homebutton = findViewById(R.id.staffhomebutton);
         profilebutton = findViewById(R.id.staffprofilebutton);
@@ -69,30 +63,24 @@ public class DeleteBook extends AppCompatActivity {
         dbHandler = new DBHandler(this,null,null,1);
         ref = FirebaseDatabase.getInstance().getReference();
 
-        //this gets the data from home page
-        Intent recieveingEnd = getIntent();
-        //get arraylist from homepage
-        /*bookidList = recieveingEnd.getStringArrayListExtra("bookid");
-        deleteisbnList = recieveingEnd.getStringArrayListExtra("isbn");
-        deletebooknameList = recieveingEnd.getStringArrayListExtra("bookname");
-        copiesList = recieveingEnd.getIntegerArrayListExtra("copies");
-        statusList = recieveingEnd.getStringArrayListExtra("status");*/
-
         ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //create the new book list
                 ArrayList<String> booklist = new ArrayList<>();
+
                 for (DataSnapshot child : snapshot.getChildren()) {
+                    //this gets the isbn and the status
                     String bookisbn = (String) child.child("isbn").getValue();
                     String bookstatus = (String) child.child("status").getValue();
+                    //this checks if the status is available
                     if(bookstatus.equals("Available")){
+                        //this adds the isbn to the list
                         booklist.add(bookisbn);
                     }
                     spinneradapter = new ArrayAdapter<>(DeleteBook.this, R.layout.spinnerlayout, R.id.tvspinner, booklist);
                     spinner.setAdapter(spinneradapter);
 
-                    //b = (String) child.child("bookname").getValue();
-                    //Log.d(TAG, b);
                 }
             }
 
@@ -102,17 +90,32 @@ public class DeleteBook extends AppCompatActivity {
             }
         });
 
+        //this method is used when the isbn is selected in the spinner
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //this gets the isbn that is selected
                 selectedisbn = parent.getItemAtPosition(position).toString();
-                bookid = dbHandler.getBookID(selectedisbn);
-                String stringid = bookid.toString();
-                String bookname = dbHandler.getBookName(selectedisbn);
-                String bookstatus = dbHandler.getBookStatus(selectedisbn);
-                deleteid.setText(stringid);
-                deletebookname.setText(bookname);
-                deletebookstatus.setText(bookstatus);
+                ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot child : snapshot.getChildren()) {
+                            String isbn = (String)child.child("isbn").getValue();
+                            if(isbn.equals(selectedisbn)){
+                                String bookname = (String)child.child("bookname").getValue();
+                                //this sets the name field to the book name
+                                deletebookname.setText(bookname);
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
             }
 
             @Override
@@ -125,52 +128,29 @@ public class DeleteBook extends AppCompatActivity {
         deletebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //validation to disallow empty fields for both isbn and book name field
-                if(deleteid.getText().toString().isEmpty() || deletebookname.getText().toString().isEmpty() || deletebookstatus.getText().toString().isEmpty()) {
-                    Toast.makeText(DeleteBook.this, "Please ensure all details are filled", Toast.LENGTH_LONG).show();
-                }
-                //continue if all fields are filled
-                else{
-                    /*for(int i = 0; i < bookidList.size(); i++){
-                        if(copiesList.get(i) == 1){
-                            deleteisbnList.remove(deleteisbn.getText().toString());
-                            deletebooknameList.remove(deletebookname.getText().toString());
-                        }
-                        Integer copy = copiesList.get(copiesList.size() - 1);
-                        copiesList.set(i, (copy - 1));
-                        bookidList.remove(bookid);
-                        statusList.remove(statusList.get(i));
-
-                        Log.d("List", deleteisbnList.toString());
-                        Log.d("List", deletebooknameList.toString());
-                        Log.d("List", bookidList.toString());
-                        Log.d("List", copiesList.toString());
-                        Log.d("List", statusList.toString());
-                        returnQuery();
-                    }*/
-                    ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                            for(DataSnapshot child : snapshot.getChildren()) {
-                                String isbn = (String) child.child("isbn").getValue();
-                                if(isbn.equals(selectedisbn)){
-                                    ref.child("books").child(child.getKey()).setValue(null);
-                                }
+                ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot child : snapshot.getChildren()) {
+                            //this gets the isbn of the book
+                            String isbn = (String) child.child("isbn").getValue();
+                            //this validates whether the isbn matches the selected isbn
+                            if(isbn.equals(selectedisbn)){
+                                //this deletes the book from the firebase database
+                                ref.child("books").child(child.getKey()).setValue(null);
                             }
                         }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
-
-
-                    Toast.makeText(getApplicationContext(), "Book successfully deleted",
-                            Toast.LENGTH_LONG).show();
-                    returnQuery();
-                }
+                    }
+                });
+                //this informs the staff that the book has been deleted
+                Toast.makeText(getApplicationContext(), "Book successfully deleted",
+                        Toast.LENGTH_LONG).show();
+                returnQuery();
             }
         });
 
@@ -219,12 +199,6 @@ public class DeleteBook extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void writeDeleteBook(String id) {
-        ref.child("books").child(id).child("isbn").setValue(null);
-        ref.child("books").child(id).child("bookname").setValue(null);
-        ref.child("books").child(id).child("status").setValue(null);
     }
 
     //this asks the staff whether they want to continue deleting books

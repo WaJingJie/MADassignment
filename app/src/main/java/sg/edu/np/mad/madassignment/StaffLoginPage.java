@@ -75,7 +75,6 @@ public class StaffLoginPage extends AppCompatActivity {
                                                 Log.v(TAG, FILENAME + ": Redirecting to Home Page");
                                                 Intent homepage = new Intent(StaffLoginPage.this, StaffHomePage.class);
                                                 startActivity(homepage);
-                                                //updateUI(user);
                                             } else {
                                                 // Invalid user
                                                 Toast.makeText(StaffLoginPage.this, "Invalid user!",
@@ -94,7 +93,7 @@ public class StaffLoginPage extends AppCompatActivity {
                                         throw task.getException();
 
                                     } catch (FirebaseAuthInvalidCredentialsException invalidEmail) {
-                                        Toast.makeText(StaffLoginPage.this, "Invalid email.",
+                                        Toast.makeText(StaffLoginPage.this, "Invalid email or password.",
                                                 Toast.LENGTH_SHORT).show();
                                     } catch (Exception e) {
                                         // If sign in fails, display a message to the user.
@@ -102,12 +101,8 @@ public class StaffLoginPage extends AppCompatActivity {
                                         Toast.makeText(StaffLoginPage.this, "Authentication failed.",
                                                 Toast.LENGTH_SHORT).show();
                                     }
-
-                                    //updateUI(null);
-                                    // ...
                                 }
 
-                                // ...
                             }
                         });
 
@@ -125,7 +120,6 @@ public class StaffLoginPage extends AppCompatActivity {
         });
 
     }
-
 
     //This resets the login textboxes
     public void reset(){

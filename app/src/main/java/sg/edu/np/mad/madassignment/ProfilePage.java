@@ -44,21 +44,18 @@ public class ProfilePage extends AppCompatActivity {
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
         phone = findViewById(R.id.phoneno);
-        UserData userData = LoginPage.userdata;
 
         ref = FirebaseDatabase.getInstance().getReference();
-        //ref = FirebaseDatabase.getInstance().getReference().child(firebaseUser.getUid());
         firebaseAuth = FirebaseAuth.getInstance();
 
-
-        dbHandler = new DBHandler(this,null,null,1);
-        //This sets the profile name and the profile email using data from the public static Userdata object
+        //This gets the current user
         firebaseUser = firebaseAuth.getCurrentUser();
         ref.child("users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String n = snapshot.child("username").getValue().toString();
                 String e = snapshot.child("email").getValue().toString();
+                //this checks whether the user has added their phone number to their account
                 if(snapshot.child("phoneno").getValue().equals("")){
                     phone.setText("Add Phone Number");
                 }
@@ -68,7 +65,6 @@ public class ProfilePage extends AppCompatActivity {
                 }
                 name.setText(n);
                 email.setText(e);
-
             }
 
             @Override
@@ -76,10 +72,6 @@ public class ProfilePage extends AppCompatActivity {
 
             }
         });
-        //name.setText(dbHandler.getnamebyemail(userData.getMyEmail()));
-        //email.setText(userData.getMyEmail());
-        //phone.setText(dbHandler.getphonebyemail(userData.getMyEmail()));
-        //This method is to allow the user to log out
 
         //this is to allow the user to log out
         logoutbutton.setOnClickListener(new View.OnClickListener() {
@@ -121,8 +113,8 @@ public class ProfilePage extends AppCompatActivity {
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent overduepage = new Intent(ProfilePage.this, OverdueLoan.class);
-                startActivity(overduepage);*/
+                Intent overduepage = new Intent(ProfilePage.this, OverDueLoan.class);
+                startActivity(overduepage);
             }
         });
 

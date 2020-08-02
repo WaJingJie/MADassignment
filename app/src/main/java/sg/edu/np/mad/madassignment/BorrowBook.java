@@ -83,7 +83,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
 
         spinner = findViewById(R.id.isbnlist);
 
-        final UserData userData = LoginPage.userdata;
         ref = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -92,11 +91,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         //initialize database
         dbHandler = new DBHandler(this,null,null,1);
 
-        //gets the today date
-        //Calendar c = Calendar.getInstance();
-        //String todaydate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
-        //borrowdate.setText(todaydate);
-
         //auto increment date for due date
         incrementdate();
 
@@ -104,18 +98,20 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //this creates a new list for the spinner
                 ArrayList<String> booklist = new ArrayList<>();
+                //this gets the isbn for the list
                 for (DataSnapshot child : snapshot.getChildren()) {
                     String bookisbn = (String) child.child("isbn").getValue();
                     String bookstatus = (String) child.child("status").getValue();
+                    //this validates that the book status is available
                     if(bookstatus.equals("Available")){
+                        //this adds the isbn to the list
                         booklist.add(bookisbn);
                     }
                     spinneradapter = new ArrayAdapter<>(BorrowBook.this, R.layout.spinnerlayout, R.id.tvspinner, booklist);
                     spinner.setAdapter(spinneradapter);
 
-                    //b = (String) child.child("bookname").getValue();
-                    //Log.d(TAG, b);
                 }
             }
 
@@ -125,12 +121,11 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
-        //ArrayList<String> isbnlist = dbHandler.getIsbn();
-
-
+        //this method is used when the isbn is selected in the spinner
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //this gets the isbn that is selected
                 selectedisbn = parent.getItemAtPosition(position).toString();
                 ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -138,13 +133,17 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
                         for(DataSnapshot child : snapshot.getChildren()) {
                             String bookisbn = (String) child.child("isbn").getValue();
                             String bookstatus = (String) child.child("status").getValue();
+                            //this checks that the book isbn matches the selected isbn and checks the book status is available
                             if(bookisbn.equals(selectedisbn) && bookstatus.equals("Available")){
+                                //this gets the bookname
                                 b = (String) child.child("bookname").getValue();
                                 Log.d(TAG, b);
+                                //this sets the name field to the book name
                                 bookname.setText(b);
                                 //gets the today date
                                 Calendar c = Calendar.getInstance();
                                 String todaydate = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
+                                //this sets the borrow date field to the borrow date
                                 borrowdate.setText(todaydate);
                                 //auto increment date for due date
                                 incrementdate();
@@ -157,9 +156,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
 
                     }
                 });
-
-
-
             }
 
             @Override
@@ -167,8 +163,6 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
 
             }
         });
-
-        //end of database version
 
         //shows date picker when the text box is click
         borrowdate.setOnClickListener(new View.OnClickListener() {
@@ -196,8 +190,8 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         ref.child("users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //this gets the email of the current user
                 email = snapshot.child("email").getValue().toString();
-
             }
 
             @Override
@@ -206,23 +200,27 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
             }
         });
 
-
-        //this allows the user to borrow book
+        //this allows the user to borrow a book
         borrowbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 textname = bookname.getText().toString();
                 borrowdatetext = borrowdate.getText().toString();
                 duedatetext = duedate.getText().toString();
+                //this creates an unique id for the new borrow book object
                 String id = ref.child("books").push().getKey();
-
+                //this creates the borrow book object
                 writeNewBorrowBook(id, selectedisbn, textname, borrowdatetext, duedatetext, email);
                 ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for(DataSnapshot child : snapshot.getChildren()) {
+                            //this gets the isbn of each book object in the for loop
                             String bookisbn = (String) child.child("isbn").getValue();
+                            //this checks whether the isbn matches the selected isbn in the spinner
                             if(bookisbn.equals(selectedisbn)){
+                                //this sets the status of the book object to unavailable
                                 ref.child("books").child(child.getKey()).child("status").setValue("Unavailable");
                             }
                         }
@@ -233,10 +231,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
 
                     }
                 });
-                //addtodb(userData.getMyEmail(), spinner.getSelectedItem().toString(), bookname.getText().toString(), borrowdate.getText().toString(), duedate.getText().toString());
-                //updates book status to unavailable
-                //dbHandler.updatebookStatus(spinner.getSelectedItem().toString());
-                //ref.child("books").child(id).child("status").setValue("Unavailable");
+
                 Toast.makeText(getApplicationContext(), "Book successfully borrowed!", Toast.LENGTH_LONG).show();
 
                 //intent to go back to homepage
@@ -292,11 +287,7 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
 
     }
 
-    private void addtodb(String email, String isbn, String bookname, String borrowdate, String duedate){
-        dbHandler.addBorrowedBook(email, isbn, bookname, borrowdate, duedate);
-
-    }
-
+    //this method creates a new borrowed book object to add to the firebase database
     private void writeNewBorrowBook(String id, String isbn, String name, String borrowdate, String duedate, String email) {
         ref.child("borrowedbooks").child(id).child("email").setValue(email);
         ref.child("borrowedbooks").child(id).child("isbn").setValue(isbn);
@@ -319,12 +310,14 @@ public class BorrowBook extends AppCompatActivity implements DatePickerDialog.On
         calendar.set(year,day-1,month+14);
 
         Date getDate = calendar.getTime();
+        //this creates the format
         DateFormat sdf = new SimpleDateFormat("M/dd/yy");
-
+        //this formats the date
         String date = sdf.format(getDate);
         duedate.setText(date);
     }
 
+    //this gets the current date and sets the borrow date field to the current date
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar c = Calendar.getInstance();

@@ -25,19 +25,15 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUpPage extends AppCompatActivity {
     private static final String FILENAME = "LoginPage.java";
     private static final String TAG = "NP Library";
-    DBHandler dbHandler;
     private EditText signupemail, signupname, signuppassword, signupconfirm;
     private Button submitbutton, cancelbutton;
     private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
-
+    private DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signuppage);
-
-        dbHandler = new DBHandler(this,null,null,1);
 
         signupemail = findViewById(R.id.signupemail);
         signupname = findViewById(R.id.signupname);
@@ -45,10 +41,10 @@ public class SignUpPage extends AppCompatActivity {
         signupconfirm = findViewById(R.id.signupconfirm);
         submitbutton = findViewById(R.id.signupsubmit);
         cancelbutton = findViewById(R.id.signupcancel);
-        // ...
-        // Initialize Firebase Auth
+
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        ref = FirebaseDatabase.getInstance().getReference();
+
         //This method occurs when the submit button is clicked by the user
         Log.v(TAG, FILENAME + ": Submit Button Clicked");
         submitbutton.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +58,7 @@ public class SignUpPage extends AppCompatActivity {
                 String phonenumber = "";
                 int nofbooksborrowed = 0;
                 int canborrow = 9;
+
                 Log.v(TAG, FILENAME + ": Redirecting to Login Page");
                 //This method is to check if any of the sign-up boxes are empty
                 if(email.isEmpty() || password.isEmpty() || name.isEmpty() || confirm.isEmpty()) {
@@ -79,11 +76,9 @@ public class SignUpPage extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "createUserWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     writeNewStudent(user.getUid(), name, email);
-                                    //updateUI(user);
                                     Log.v(TAG, FILENAME + ": New user successfully created !");
                                     Toast.makeText(SignUpPage.this, "Account created successfully!",
                                             Toast.LENGTH_SHORT).show();
@@ -115,10 +110,8 @@ public class SignUpPage extends AppCompatActivity {
                                     Log.v(TAG, "createUserWithEmail:failure", task.getException());
                                     Toast.makeText(SignUpPage.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
-                                    //updateUI(null);
                                 }
 
-                                // ...
                             }
                         });
                 }
@@ -142,19 +135,11 @@ public class SignUpPage extends AppCompatActivity {
         });
     }
 
+    //this creates the new student object in users
     private void writeNewStudent(String userId, String name, String email) {
-        mDatabase.child("users").child(userId).child("username").setValue(name);
-        mDatabase.child("users").child(userId).child("phoneno").setValue("");
-        mDatabase.child("users").child(userId).child("email").setValue(email);
-        //mDatabase.child("users").child(userId).child("role").setValue("student");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
+        ref.child("users").child(userId).child("username").setValue(name);
+        ref.child("users").child(userId).child("phoneno").setValue("");
+        ref.child("users").child(userId).child("email").setValue(email);
     }
 
     // This method resets the text in the textboxes in the Sign Up page

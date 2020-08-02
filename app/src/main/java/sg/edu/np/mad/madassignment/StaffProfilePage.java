@@ -27,10 +27,8 @@ public class StaffProfilePage extends AppCompatActivity{
     TextView name, email, phoneno;
     private static final String FILENAME = "StaffProfilePage.java";
     private static final String TAG = "NP Library";
-    DBHandler dbHandler;
     DatabaseReference ref;
     private FirebaseAuth firebaseAuth;
-    private FirebaseDatabase firebaseDatabase;
     private FirebaseUser firebaseUser;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,11 +40,8 @@ public class StaffProfilePage extends AppCompatActivity{
         addbutton = findViewById(R.id.addbookicon);
         deletebutton = findViewById(R.id.deletebookicon);
 
-        //ref = FirebaseDatabase.getInstance().getReference().child(firebaseUser.getUid());
         ref = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
         name = findViewById(R.id.staffname);
         email = findViewById(R.id.staffemail);
         phoneno = findViewById(R.id.phoneno);
@@ -55,9 +50,7 @@ public class StaffProfilePage extends AppCompatActivity{
         editpwd = findViewById(R.id.staffchangepwd);
         StaffData staffData = StaffLoginPage.staffdata;
 
-        dbHandler = new DBHandler(this,null,null,1);
         firebaseUser = firebaseAuth.getCurrentUser();
-        DatabaseReference databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
         ref.child("staff").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -80,10 +73,6 @@ public class StaffProfilePage extends AppCompatActivity{
 
             }
         });
-        //This sets the profile name and the profile email using data from the public static Staffdata object
-        //name.setText(dbHandler.getstaffname(staffData.getMyStaffEmail()));
-        //email.setText(staffData.getMyStaffEmail());
-        //phoneno.setText(dbHandler.getphonebystaffemail(staffData.getMyStaffEmail()));
 
         //this is to redirect the staff to the edit profile page
         editbutton.setOnClickListener(new View.OnClickListener() {
@@ -143,8 +132,8 @@ public class StaffProfilePage extends AppCompatActivity{
        deletebutton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-              Intent overduepage = new Intent(StaffProfilePage.this, DeleteBook.class);
-              startActivity(overduepage);
+              Intent deletepage = new Intent(StaffProfilePage.this, DeleteBook.class);
+              startActivity(deletepage);
          }
        });
     }

@@ -17,7 +17,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
@@ -32,19 +31,13 @@ public class StaffHomePage extends AppCompatActivity{
     MaterialSearchBar materialSearchBar;
 
     List<String> suggestion = new ArrayList<>();
-    List<Book> booklist = new ArrayList<>();
     ImageButton logoutbutton, homebutton, profilebutton, addbutton, deletebutton;
-    DBHandler dbHandler;
-
     DatabaseReference ref;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.staffhomepage);
-
-        //initialize database
-        dbHandler = new DBHandler(this,null,null,1);
 
         logoutbutton = findViewById(R.id.stafflogoutbutton);
         homebutton = findViewById(R.id.staffhomebutton);
@@ -112,7 +105,6 @@ public class StaffHomePage extends AppCompatActivity{
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot child : snapshot.getChildren()) {
-
                     String isbn = (String) child.child("isbn").getValue();
                     String bookname = (String) child.child("bookname").getValue();
                     String status = (String) child.child("status").getValue();
@@ -177,13 +169,53 @@ public class StaffHomePage extends AppCompatActivity{
     }
 
     private void loadSuggestList(){
-        suggestion = dbHandler.getBookname();
-        materialSearchBar.setLastSuggestions(suggestion);
+        ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<String> booknameList = new ArrayList<>();
+                for(DataSnapshot child : snapshot.getChildren()) {
+                    String name = (String) child.child("bookname").getValue();
+                    booknameList.add(name);
+                }
+                suggestion = booknameList;
+                materialSearchBar.setLastSuggestions(suggestion);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
-    private void startSearch(String text){
-        adapter = new Searchbookadapter(this, dbHandler.getBookByName(text));
-        rv.setAdapter(adapter);
+    private void startSearch(final String text){
+        ref.child("books").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //this creates a new book list
+                List<Book> bookList = new ArrayList<>();
+                for(DataSnapshot child : snapshot.getChildren()) {
+                    String name = (String) child.child("bookname").getValue();
+                    //this validates whether the text equals the name
+                    if(name.equals(text)){
+                        String isbn = (String) child.child("isbn").getValue();
+                        String status = (String) child.child("status").getValue();
+                        //this creates a new book object
+                        Book book = new Book(name, isbn, status);
+                        bookList.add(book);
+                    }
+                }
+                adapter = new Searchbookadapter(StaffHomePage.this, bookList);
+                rv.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
 }

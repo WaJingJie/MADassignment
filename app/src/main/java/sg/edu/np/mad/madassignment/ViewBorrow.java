@@ -3,7 +3,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,10 +36,6 @@ public class ViewBorrow extends AppCompatActivity{
     Integer borrowcount;
     Integer maxcount;
     String email;
-    ArrayList<String> isbnList = new ArrayList<>();
-    ArrayList<String> booknameList = new ArrayList<>();
-    ArrayList<String> borrowdateList = new ArrayList<>();
-    ArrayList<String> duedateList = new ArrayList<>();
 
     DBHandler dbHandler;
 
@@ -69,49 +64,6 @@ public class ViewBorrow extends AppCompatActivity{
         //initialize db
         dbHandler = new DBHandler(this,null,null,1);
 
-//        //this gets the data from borrow book page
-//        Intent receivingEnd = getIntent();
-//
-//        //get arraylist from borrowbook page
-//        isbnList = receivingEnd.getStringArrayListExtra("isbn");
-//        booknameList = receivingEnd.getStringArrayListExtra("bookname");
-//        borrowdateList = receivingEnd.getStringArrayListExtra("borrowdate");
-//        duedateList = receivingEnd.getStringArrayListExtra("duedate");
-//
-//        //test log to see if arraykist is created properly
-//        if(isbnList == null){
-//            //sets the maximum borrow to 9 and borrow book count to 9 when the list is empty
-//            hbno.setText("0");
-//            cbno.setText("9");
-//            Log.d("List", "empty");
-//        }
-//        //continue on with the rest of the code if list is not null. null list will crash the program.
-//        else if(isbnList != null){
-//            //display the no of books borrowed
-//            int borrowcount = isbnList.size();
-//            hbno.setText(Integer.toString(borrowcount));
-//
-//            //display the remaining borrow count(9 is max)
-//            int remainingcount = 9-borrowcount;
-//            cbno.setText(Integer.toString(remainingcount));
-//
-//            //recyclerview code goes here
-//            RecyclerView rv = findViewById(R.id.homepageview);
-//
-//            LibraryAdapter adapter = new LibraryAdapter(isbnList, booknameList, borrowdateList, duedateList);
-//            rv.setAdapter(adapter);
-//
-//            LinearLayoutManager layout = new LinearLayoutManager(this);
-//            rv.setLayoutManager(layout);
-//            rv.setItemAnimator(new DefaultItemAnimator());
-//            adapter.notifyDataSetChanged();
-//
-//            Log.d("List", isbnList.toString());
-//            Log.d("List", booknameList.toString());
-//            Log.d("List", borrowdateList.toString());
-//            Log.d("List", duedateList.toString());
-//        }
-
         //initialize rv
         rv = findViewById(R.id.homepageview);
         layoutManager = new LinearLayoutManager(this);
@@ -131,15 +83,15 @@ public class ViewBorrow extends AppCompatActivity{
         ref.child("users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                //this gets the user email
                 email = (String)snapshot.child("email").getValue();
                 Log.d(TAG, email);
                 ref.child("borrowedbooks").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                         for (DataSnapshot child : snapshot.getChildren()) {
                             String e = (String) child.child("email").getValue();
+                            //this validates whether the email matches
                             if(e.equals(email)){
                                 String isbn = (String) child.child("isbn").getValue();
                                 String bookname = (String) child.child("bookname").getValue();
@@ -152,8 +104,6 @@ public class ViewBorrow extends AppCompatActivity{
 
                             }
 
-                            //b = (String) child.child("bookname").getValue();
-                            //Log.d(TAG, b);
                         }
                         String borrowno = borrowcount.toString();
                         String maxno = maxcount.toString();
@@ -175,17 +125,6 @@ public class ViewBorrow extends AppCompatActivity{
             }
         });
 
-
-
-
-
-        //display the no of books borrowed
-        //hbno.setText(borrowcount);
-
-        //display the remaining borrow count(9 is max)
-        //int remainingcount = 9- adapter.getItemCount();
-        //cbno.setText(maxcount);
-
         //creates an onclick listener to notify the user that they have reached the max amount of books they can borrow
         if(Integer.parseInt(cbno.getText().toString()) == adapter.getItemCount()){
 
@@ -202,12 +141,6 @@ public class ViewBorrow extends AppCompatActivity{
                 @Override
                 public void onClick(View v) {
                     Intent toborrowpage = new Intent(ViewBorrow.this, BorrowBook.class);
-                    //Bundle data = new Bundle();
-//                    data.putStringArrayList("isbn", isbnList);
-//                    data.putStringArrayList("bookname", booknameList);
-//                    data.putStringArrayList("borrowdate", borrowdateList);
-//                    data.putStringArrayList("duedate", duedateList);
-//                    toborrowpage.putExtras(data);
                     startActivity(toborrowpage);
                 }
             });

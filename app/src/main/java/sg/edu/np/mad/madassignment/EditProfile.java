@@ -26,7 +26,6 @@ public class EditProfile extends AppCompatActivity {
     TextView email;
     EditText phoneno, name;
     Button cfm, cancel;
-    DBHandler dbHandler;
     ImageButton logoutbutton, homebutton, profilebutton, viewbutton, overduebutton;
     private DatabaseReference ref;
     private FirebaseUser firebaseUser;
@@ -36,9 +35,6 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editprofile);
-
-        //get user's email
-        final UserData userData = LoginPage.userdata;
 
         email = findViewById(R.id.editprofileemail);
         phoneno = findViewById(R.id.editphoneno);
@@ -55,19 +51,18 @@ public class EditProfile extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        //initialize database
-        dbHandler = new DBHandler(this,null,null,1);
-
 
         ref.child("users").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //updates phone number when user clicks on the button
+                //this gets the user email
                 String useremail = snapshot.child("email").getValue().toString();
                 email.setText(useremail);
+                //updates phone number or/and name when user clicks on the button
                 cfm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //this retrieves the entered information
                         final String n = name.getText().toString();
                         final String pn = phoneno.getText().toString();
                         //this validates whether the details are empty
@@ -76,22 +71,28 @@ public class EditProfile extends AppCompatActivity {
                         }
                         //this updates only the name field
                         else if(pn.isEmpty()){
+                            //this updates the name of the user
                             ref.child("users").child(firebaseUser.getUid()).child("username").setValue(n);
+                            //this informs the user that their name has been updated
                             Toast.makeText(getApplicationContext(), "Name successfully updated!", Toast.LENGTH_LONG).show();
                             Intent confirm = new Intent(EditProfile.this, ProfilePage.class);
                             startActivity(confirm);
                         }
                         //this updates only the phone no field
                         else if(name.getText().toString().isEmpty()){
+                            //this updates the phone no of the user
                             ref.child("users").child(firebaseUser.getUid()).child("phoneno").setValue(pn);
+                            //this informs the user that their phone no has been updated
                             Toast.makeText(getApplicationContext(), "Phone number successfully updated!", Toast.LENGTH_LONG).show();
                             Intent confirm = new Intent(EditProfile.this, ProfilePage.class);
                             startActivity(confirm);
                         }
                         //this updates both the name and phone number of the user
                         else{
+                            //this updates the name and phone no of the user
                             ref.child("users").child(firebaseUser.getUid()).child("username").setValue(n);
                             ref.child("users").child(firebaseUser.getUid()).child("phoneno").setValue(pn);
+                            //this informs the user that their name and phone no has been updated
                             Toast.makeText(getApplicationContext(), "Profile successfully updated!", Toast.LENGTH_LONG).show();
                             Intent confirm = new Intent(EditProfile.this, ProfilePage.class);
                             startActivity(confirm);
@@ -157,8 +158,8 @@ public class EditProfile extends AppCompatActivity {
         overduebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent overduepage = new Intent(EditProfile.this, OverdueLoan.class);
-                //startActivity(overduepage);
+                Intent overduepage = new Intent(EditProfile.this, OverDueLoan.class);
+                startActivity(overduepage);
             }
         });
     }

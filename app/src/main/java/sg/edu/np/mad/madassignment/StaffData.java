@@ -2,13 +2,6 @@ package sg.edu.np.mad.madassignment;
 
 public class StaffData {
     private String staffemail, staffname, staffphoneno, staffpassword;
-    public static final String TABLE_NAME = "Staff";
-    public static final String COLUMN_STAFFEMAIL = "Staff Email";
-    public static final String COLUMN_STAFFNAME = "Staff Name";
-    public static final String COLUMN_STAFFPHONENO = "Staff Phone Number";
-    public static final String COLUMN_STAFFPASSWORD = "Staff Password";
-    private static final String FILENAME = "StaffData.java";
-    private static final String TAG = "NP Library";
 
     public StaffData()
     {

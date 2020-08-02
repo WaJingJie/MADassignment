@@ -7,53 +7,20 @@
     tools:layout_editor_absoluteY="25dp">
 
 
-    <EditText
+    <TextView
         android:id="@+id/deletebookname"
-        android:layout_width="266dp"
-        android:layout_height="35dp"
+        android:layout_width="283dp"
+        android:layout_height="49dp"
         android:background="@drawable/greybox"
         android:fontFamily="@font/benchnine_bold"
-        android:hint="Book Name"
         android:paddingLeft="20dp"
-        android:paddingTop="6dp"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/deletebookstatus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletebookid" />
-
-    <EditText
-        android:id="@+id/deletebookid"
-        android:layout_width="266dp"
-        android:layout_height="35dp"
-        android:background="@drawable/greybox"
-        android:fontFamily="@font/benchnine_bold"
-        android:hint="Book ID"
-        android:paddingLeft="20dp"
-        android:paddingTop="6dp"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/deletebookname"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deleteisbnlist" />
-
-    <EditText
-        android:id="@+id/deletebookstatus"
-        android:layout_width="266dp"
-        android:layout_height="35dp"
-        android:background="@drawable/greybox"
-        android:fontFamily="@font/benchnine_bold"
-        android:hint="Status"
-        android:paddingLeft="20dp"
-        android:paddingTop="6dp"
-        android:textColor="#000000"
+        android:paddingTop="7dp"
+        android:text="Book Name"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/deletebutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletebookname" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteisbnlist" />
 
     <Button
         android:id="@+id/deletebutton"
@@ -67,7 +34,7 @@
         app:layout_constraintBottom_toTopOf="@+id/staffbottombar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deletebookstatus" />
+        app:layout_constraintTop_toBottomOf="@+id/deletebookname" />
 
     <TextView
         android:id="@+id/deletebooktitle"
@@ -88,7 +55,7 @@
         android:id="@+id/deleteisbnlist"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/deletebookid"
+        app:layout_constraintBottom_toTopOf="@+id/deletebookname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deletebooktitle" />

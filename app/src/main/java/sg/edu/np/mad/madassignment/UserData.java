@@ -1,28 +1,9 @@
 package sg.edu.np.mad.madassignment;
 
-import android.widget.ArrayAdapter;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-
 public class UserData {
     private String email, name, phoneno, password;
     private int booksborrowed;
     private int canborrow;
-    public static final String TABLE_NAME = "Users";
-    public static final String COLUMN_EMAIL = "Email";
-    public static final String COLUMN_NAME = "Name";
-    public static final String COLUMN_PHONENUMBER = "Phone Number";
-    public static final String COLUMN_PASSWORD = "Password";
-    public static final String COLUMN_BOOKSBORROWED = "No Of Books Borrowed";
-    public static final String COLUMN_CANBORROW = "No of Books User Can Borrow";
-    private static final String FILENAME = "UserData.java";
-    private static final String TAG = "NP Library";
-
-
-    //public static final String;
-
 
     public UserData()
     {
