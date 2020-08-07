@@ -42,4 +42,8 @@ User Guide: <br>
 
 6. The user can log out through the left most button on the bottom of the page. <br>
 
-Storyboard: [link](https://github.com/WaJingJie/MADassignment/blob/master/images/NP%20Library%20Storyboard.pdf)
+Storyboard: [link](https://github.com/WaJingJie/MADassignment/blob/master/images/NP%20Library%20Storyboard.pdf)<br>
+part 2 contribution:<br>
+Wang Jing Jie S10198179<br/>
+Normal user profile page idsplaying name, email and phone number, updating profile details such as changing name, password and phone number, search bar function, improved borrow book
+
